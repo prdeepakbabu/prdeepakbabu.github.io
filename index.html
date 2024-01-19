@@ -12,12 +12,16 @@
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f7f7f7;
+  }
+
+  .profile-container-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f7f7f7;
-  }
+    padding: 20px;
+
+}
   .profile-container {
     display: flex;
     align-items: center;
@@ -56,6 +60,23 @@
     font-size: 28px; /* Adjust the size of the icons */
     color: blue;
   }
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the start of the container */
+    padding: 20px;
+}
+
+.column {
+    flex: 1; /* Each column takes equal width */
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    margin: 10px; /* Space between columns */
+}  
+.three-column-section {
+    clear: both; /* Clears the side floats, if any, from previous content */
+    width: 100%; /* Takes the full width */
+}
   /* Responsive design adjustments */
   @media (max-width: 768px) {
     .profile-container {
@@ -68,11 +89,14 @@
     .bio {
       text-align: center; /* Center text for better appearance on smaller screens */
     }
+    .container {
+        flex-direction: column;
+    }    
   }  
 </style>
 </head>
 <body>
-
+<div class="profile-container-wrapper">
 <div class="profile-container">
     <img src="download (46).png" alt="Profile Photo" class="profile-photo">
     <div class="bio">
@@ -93,6 +117,33 @@
         </ul>    
 </div>
 </div>
+</div>
+
+<div class="three-column-section">
+    <div class="container">
+        <div class="column">
+            <h2>Column 1 Title</h2>
+            <p>Some text for column 1.</p>
+            <a href="link-to-blog-post-1">Blog Post 1</a><br>
+            <a href="link-to-blog-post-2">Blog Post 2</a>
+            <!-- Add more links as needed -->
+        </div>
+        <div class="column">
+            <h2>Column 2 Title</h2>
+            <p>Some text for column 2.</p>
+            <a href="link-to-blog-post-3">Blog Post 3</a><br>
+            <a href="link-to-blog-post-4">Blog Post 4</a>
+            <!-- Add more links as needed -->
+        </div>
+        <div class="column">
+            <h2>Column 3 Title</h2>
+            <p>Some text for column 3.</p>
+            <a href="link-to-blog-post-5">Blog Post 5</a><br>
+            <a href="link-to-blog-post-6">Blog Post 6</a>
+            <!-- Add more links as needed -->
+        </div>
+    </div>
+</div>    
 
 </body>
 </html>
