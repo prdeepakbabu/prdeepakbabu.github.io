@@ -55,6 +55,18 @@
   .fa {
     font-size: 24px; /* Adjust the size of the icons */
   }
+  /* Responsive design adjustments */
+  @media (max-width: 768px) {
+    .profile-container {
+      flex-direction: column; /* Stack photo and bio vertically */
+    }
+    .profile-photo {
+      margin-right: 0; /* Since they are no longer side by side, no margin-right is needed */
+    }
+    .bio {
+      text-align: center; /* Center text for better appearance on smaller screens */
+    }
+  }  
 </style>
 </head>
 <body>
@@ -65,7 +77,7 @@
         <h1>Deepak Babu Piskala</h1>
         <p><b>Research Interests</b> : Speech(ASR), Language Models, NLP/G, LLM Agents and World Models, Behavioral Science, Computational Advertising, Search Relevance, IR and Voice Assistants<br><br>
         
-        With over 16 years of experience in ML/AI, I have developed and scaled models using large-scale datasets across various domains, including retail, FMCG, search relevance, computational advertising, and voice assistants. In my most recent role, I serve as a Senior Scientist, where I focus on building advanced speech and language models for voice assistants (Alexa) in the shopping domain. I am recognized for my first-principles thinking and a constant-learning mindset, qualities that have consistently led to innovative and unconventional solutions to challenging problems. Additionally, I have provided advised early-stage startups in the advertising and healthcare space.
+        With over 16 years of experience in ML/AI, I have developed and scaled models using large-scale datasets across various domains, including retail, FMCG, search relevance, computational advertising, and voice assistants. In my most recent role, I work as a Senior Scientist, where I focus on building advanced speech and language models for voice assistants (Alexa) in the shopping domain. I am recognized for my first-principles thinking and a constant-learning mindset, qualities that have consistently led to innovative and unconventional solutions to challenging problems. Additionally, I have advised early-stage startups in the advertising and healthcare space.
       </p>
         <ul class="social-links">
             <!-- Replace '#' with your actual URLs -->
