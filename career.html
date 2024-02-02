@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Short Bio</title>
+<!-- Add Font Awesome for social media icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2YH18C2QY3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2YH18C2QY3');
+</script>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+  }
+
+  .profile-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+}
+.timeline-block {
+    padding: 20px;
+    margin: auto;
+    background-color: #f7f7f7; /* Or any color that matches your design */
+    border-radius: 10px; /* Optional for rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional for a subtle shadow */
+        width: 55%;
+    height: auto;
+}
+
+  .profile-container {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  .profile-photo {
+    border-radius: 50%;
+    width: 300px; /* Adjust size as needed */
+    height: 300px; /* Adjust size as needed */
+    object-fit: cover; /* Keeps the aspect ratio, and crops the image */
+    margin-right: 20px;
+  }
+  .bio {
+    max-width: 600px; /* Adjust width as needed */ /* Allows the bio section to fill the available space */
+  }
+  .social-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin-top: 10px;
+  }
+  .social-links li {
+    margin-right: 10px;
+  }
+  .social-links a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .social-links a:hover {
+    color: #0077b5; /* LinkedIn color, for example */
+  }
+  .fa {
+    font-size: 28px; /* Adjust the size of the icons */
+    color: blue;
+  }
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the start of the container */
+    padding: 20px;
+}
+
+.column {
+    flex: 1; /* Each column takes equal width */
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    margin: 10px; /* Space between columns */
+}  
+.three-column-section {
+    clear: both; /* Clears the side floats, if any, from previous content */
+    width: 100%; /* Takes the full width */
+}
+  /* Responsive design adjustments */
+  @media (max-width: 768px) {
+    .profile-container {
+      flex-direction: column; /* Stack photo and bio vertically */
+    }
+    .profile-photo {
+      margin-right: 0; /* Since they are no longer side by side, no margin-right is needed */
+      padding-top: 20px;
+    }
+    .bio {
+      text-align: center; /* Center text for better appearance on smaller screens */
+    }
+    .container {
+        flex-direction: column;
+    }    
+  }  
+.book-list {
+    list-style: none;
+    padding: 0;
+}
+
+.book-list li {
+    margin-bottom: 10px;
+}
+
+.book-list img {
+    width: 50px; /* Adjust as needed */
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.book-list span {
+    vertical-align: middle;
+}
+.medium-button {
+    display: inline-block;
+    background-color: #00ab6c; /* Medium's brand color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.medium-button:hover {
+    background-color: #008952; /* Darker shade for hover effect */
+}
+
+</style>
+</head>
+<body>
+
+
+<div class="timeline-block">
+    <figure>
+        <img src="careertime.png" alt="My Career Journey Timeline" style="max-width: 100%; height: auto;">
+        <figcaption align="center">My Career Journey Timeline</figcaption>
+    </figure>
+</div>
+
+
+</body>
+</html>
