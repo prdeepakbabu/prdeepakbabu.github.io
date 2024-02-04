@@ -16,7 +16,35 @@
   gtag('config', 'G-2YH18C2QY3');
 </script>
 <style>
-  body {
+.quote {
+    margin-bottom: 20px; /* Adds space between quotes */
+    padding: 10px; /* Adds padding around the quote for better readability */
+    background-color: #f9f9f9; /* Light background color for the quote block */
+    border-left: 5px solid #ccc; /* Adds a left border for emphasis */
+}
+
+.quote p {
+    font-style: italic; /* Makes the quote text italic */
+    color: #333; /* Dark grey color for text */
+    margin: 0; /* Removes default paragraph margin */
+}
+
+.quote p::before {
+    content: "“"; /* Adds opening quote mark */
+    font-size: 30px; /* Larger font size for the quote mark */
+    vertical-align: sub; /* Aligns the quote mark with the text */
+}
+
+.quote p::after {
+    content: "”"; /* Adds closing quote mark */
+    font-size: 30px; /* Larger font size for the quote mark */
+    vertical-align: sub; /* Aligns the quote mark with the text */
+}
+
+.quote p::after {
+    content: "”"; /* Adds closing quote mark */
+}
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -256,6 +284,37 @@
         </div>
     </div>
 </div>    
+
+
+<div class="three-column-section">
+    <div class="container">
+        <div class="column">
+		<b> Photography (select) </b><br>
+		click on the image to open the gallery<br>
+	<a href="photo.html"><img src="thumbnail_photos.png" width="92%"></img></a>
+	</div>
+
+
+	<div class="column">
+		<b>Quotable Quotes</b><br>
+		    <div class="quote">
+        <p>"Solving a problem simply means representing it so as to make the solution transparent" - Herbert Simon</p>
+    </div>
+    <div class = "quote">
+	    <p>"The whole is greater than the sum of its parts" - Aristotle</p> 
+    </div>
+    <div class = "quote">
+	    <p> "Continuous improvement is better than delayed perfection" - Mark Twain</p>
+    </div>
+	</div>
+
+	<div class="column">
+		<b> Contact </b><br>
+		<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc9sv0DHP6n0e7vQu-REfY5XQxUFp0SkhfyLUYRe3jOtuy0Pw/viewform?embedded=true" width="640" height="788" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+	</div>
+    </div>
+</div>
+
 
 </body>
 </html>
