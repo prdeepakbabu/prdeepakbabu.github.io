@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Short Bio</title>
+<!-- Add Font Awesome for social media icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2YH18C2QY3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2YH18C2QY3');
+</script>
+<style>
+.quote {
+    margin-bottom: 20px; /* Adds space between quotes */
+    padding: 10px; /* Adds padding around the quote for better readability */
+    background-color: #f9f9f9; /* Light background color for the quote block */
+    border-left: 5px solid #ccc; /* Adds a left border for emphasis */
+}
+
+.quote p {
+    font-style: italic; /* Makes the quote text italic */
+    color: #333; /* Dark grey color for text */
+    margin: 0; /* Removes default paragraph margin */
+}
+
+.quote p::before {
+    content: "“"; /* Adds opening quote mark */
+    font-size: 30px; /* Larger font size for the quote mark */
+    vertical-align: sub; /* Aligns the quote mark with the text */
+}
+
+.quote p::after {
+    content: "”"; /* Adds closing quote mark */
+    font-size: 30px; /* Larger font size for the quote mark */
+    vertical-align: sub; /* Aligns the quote mark with the text */
+}
+
+.quote p::after {
+    content: "”"; /* Adds closing quote mark */
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+  }
+
+  .profile-container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+}
+.timeline-block {
+    padding: 20px;
+    margin: auto;
+    background-color: #f7f7f7; /* Or any color that matches your design */
+    border-radius: 10px; /* Optional for rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional for a subtle shadow */
+        width: 55%;
+    height: auto;
+}
+
+  .profile-container {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  .profile-photo {
+    border-radius: 50%;
+    width: 300px; /* Adjust size as needed */
+    height: 300px; /* Adjust size as needed */
+    object-fit: cover; /* Keeps the aspect ratio, and crops the image */
+    margin-right: 20px;
+  }
+  .bio {
+    max-width: 600px; /* Adjust width as needed */ /* Allows the bio section to fill the available space */
+  }
+  .social-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    margin-top: 10px;
+  }
+  .social-links li {
+    margin-right: 10px;
+  }
+  .social-links a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .social-links a:hover {
+    color: #0077b5; /* LinkedIn color, for example */
+  }
+  .fa {
+    font-size: 28px; /* Adjust the size of the icons */
+    color: blue;
+  }
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the start of the container */
+    padding: 20px;
+}
+
+.column {
+    flex: 1; /* Each column takes equal width */
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    margin: 10px; /* Space between columns */
+}  
+.three-column-section {
+    clear: both; /* Clears the side floats, if any, from previous content */
+    width: 100%; /* Takes the full width */
+}
+  /* Responsive design adjustments */
+  @media (max-width: 768px) {
+    .profile-container {
+      flex-direction: column; /* Stack photo and bio vertically */
+    }
+    .profile-photo {
+      margin-right: 0; /* Since they are no longer side by side, no margin-right is needed */
+      padding-top: 20px;
+    }
+    .bio {
+      text-align: center; /* Center text for better appearance on smaller screens */
+    }
+    .container {
+        flex-direction: column;
+    }    
+  }  
+.book-list {
+    list-style: none;
+    padding: 0;
+}
+
+.book-list li {
+    margin-bottom: 10px;
+}
+
+.book-list img {
+    width: 50px; /* Adjust as needed */
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.book-list span {
+    vertical-align: middle;
+}
+.medium-button {
+    display: inline-block;
+    background-color: #00ab6c; /* Medium's brand color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.medium-button:hover {
+    background-color: #008952; /* Darker shade for hover effect */
+}
+
+</style>
+</head>
+<body>
+<div class="profile-container-wrapper">
+<div class="profile-container">
+    <img src="download (46).png" alt="Profile Photo" class="profile-photo">
+    <div class="bio">
+        <h1>Deepak Babu Piskala</h1>
+        <p><b>Research Interests</b> : Speech(ASR), Language Models, NLP/G, LLM Agents and World Models, Behavioral Science, Computational Advertising, Search Relevance, IR and Voice Assistants<br><br>
+        
+        With over 16 years of experience in ML/AI, I have developed and scaled models using large-scale datasets across various domains, including retail, FMCG, search relevance, computational advertising, and voice assistants. In my most recent role, I work as a Senior Scientist, where I focus on building advanced speech and language models for voice assistants (Alexa) in the shopping domain. My technical leadership in research and applied science, spans early adoption of state-of-the-art research into ML products, driving science efficiency and accelerating innovation. I am recognized for my first-principles thinking and a constant-learning mindset, qualities that have consistently led to innovative and unconventional solutions to challenging problems. Additionally, I have advised early-stage startups in the advertising and healthcare space. I love reading books(non-fiction), hiking outdoors, landscape/astro photography and spending time with family. 
+<br><br>
+<b>Past Life:</b> Management Consultant for a fortune-50 CPG Pharma advising one of the world's largest loyalty program rollout
+      </p>
+        <ul class="social-links">
+            <!-- Replace '#' with your actual URLs -->
+            <li><a href="https://www.linkedin.com/in/prdeepak/" target="_blank"><i class="fab fa-linkedin fa"></i></a></li>
+            <li> &nbsp; </li>
+            <li><a href="https://www.twitter.com/prdeepakbabu" target="_blank"><i class="fab fa-twitter fa"></i></a></li>
+            <li> &nbsp; </li>
+            <li><a href="mailto:prdeepak.babu 8 gmail.com"><i class="fas fa-envelope fa" ></i></a></li>
+            <li> &nbsp; </li>
+            <li><a href="https://medium.com/@prdeepak.babu" target="_blank"><i class="fab fa-medium fa"></i></a></li>
+
+        </ul>    
+        <a href="career.html"> career timeline </a>
+</div>
+</div>
+</div>
+
+
+
+<div class="three-column-section">
+    <div class="container">
+        <div class="column">
+    <h2>My Blog Posts</h2>
+    <div class="medium-subscribe">
+    <a href="https://medium.com/@prdeepak.babu" target="_blank" class="medium-button">Subscribe on Medium</a>
+</div>
+
+    <ul class="blog-links">
+        <li>
+            <a href="https://blog.gopenai.com/from-n-grams-to-gpt-4-the-meteoric-rise-of-large-language-models-d9e064ec7bf0?source=friends_link&sk=f4c754ec41bea4c41ae50176210e3145" target="_blank">From N-grams to GPT-4: The Meteoric Rise of Large Language Models</a>
+        </li>
+        <li>
+            <a href="https://medium.com/@prdeepak.babu/reward-hacking-in-large-language-models-llms-c57abbc0cde7" target="_blank">Reward Hacking in Large Language Models (LLMs)</a>
+        </li>
+        <li>
+            <a href="https://medium.com/@prdeepak.babu/emergent-abilities-in-llm-unpredictable-abilities-in-large-language-models-72fc54059b41" target="_blank">Emergent Abilities in LLM : Unpredictable Abilities in Large Language Models</a>
+        </li>
+                        <li>
+            <a href="https://medium.com/@prdeepak.babu/multimodal-mastery-the-qwen-audio-foundation-models-for-advanced-audio-understanding-and-reasoning-b34a86b3c9f8" target="_blank">Multimodal Mastery: The Qwen Audio Foundation Models for Advanced Audio Understanding and Reasoning</a>
+        </li>
+        <li>
+            <a href="https://medium.com/@prdeepak.babu/decoding-ais-thought-process-mechanistic-interpretability-54db5727e7e8" target="_blank">Decoding AI’s Thought Process: Mechanistic Interpretability</a>
+        </li>
+        <li>
+            <a href="https://medium.com/@prdeepak.babu/the-dawn-of-synthetic-brains-how-large-language-models-are-shaping-ai-agents-640a78f3a830" target="_blank">The Dawn of Synthetic Brains: How Large Language Models Are Shaping AI Agents</a>
+        </li>              
+          
+                <li>
+            <a href="https://medium.com/@prdeepak.babu/deploying-large-language-models-llms-in-real-world-applications-354482c86ba5?source=friends_link&sk=7bcf719a5e046f8e1dbf690f878b7370" target="_blank">Deploying Large Language Models (LLMs) in Real-World Applications</a>
+        </li>  
+        <!-- Add more blog post links as needed -->
+    </ul>
+    <a href="https://medium.com/@prdeepak.babu">more posts</a>
+            <!-- Add more links as needed -->
+        </div>
+        <div class="column">
+          <a href="https://twitter.com/prdeepakbabu?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @prdeepakbabu</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+           <blockquote class="twitter-tweet"><p lang="en" dir="ltr">🔍 Dive into the <a href="https://twitter.com/hashtag/McGurkEffect?src=hash&amp;ref_src=twsrc%5Etfw">#McGurkEffect</a>: where our eyes trick our ears in speech perception. 👁️👂 How does what we see change what we hear? It&#39;s more than an illusion—it&#39;s shaping the future of <a href="https://twitter.com/hashtag/AI?src=hash&amp;ref_src=twsrc%5Etfw">#AI</a> as multimodal LLMs. <a href="https://twitter.com/hashtag/LLM?src=hash&amp;ref_src=twsrc%5Etfw">#LLM</a> <a href="https://twitter.com/hashtag/SpeechRecognition?src=hash&amp;ref_src=twsrc%5Etfw">#SpeechRecognition</a> <a href="https://twitter.com/hashtag/TechInsights?src=hash&amp;ref_src=twsrc%5Etfw">#TechInsights</a> ➡️ <a href="https://t.co/wCfeqV45Jm">https://t.co/wCfeqV45Jm</a></p>&mdash; Deepak Babu P R (@prdeepakbabu) <a href="https://twitter.com/prdeepakbabu/status/1731690142404923547?ref_src=twsrc%5Etfw">December 4, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            <!-- Add more links as needed -->
+        </div>
+        <div class="column">
+    <h2>Recommended Books</h2>
+    <ul class="book-list">
+        <li>
+            <a href="https://www.amazon.com/Brief-History-Intelligence-Humans-Breakthroughs/dp/0063286343">
+                <img src="https://m.media-amazon.com/images/I/81xA5147ATL._SL1500_.jpg" alt="Book 1 Title" />
+                <span>A Brief History of Intelligence: Evolution, AI, and the Five Breakthroughs That Made Our Brains</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.amazon.com/Nudge-Improving-Decisions-Health-Happiness/dp/014311526X/ref=sr_1_2?crid=1M9O8JY22JMMJ&keywords=nudge&qid=1705689598&s=books&sprefix=nudge%2Cstripbooks%2C193&sr=1-2">
+                <img src="https://m.media-amazon.com/images/I/71y7r6LdWtL._SL1500_.jpg" alt="Nudge: Improving Decisions About Health, Wealth, and Happiness" />
+                <span>Nudge: Improving Decisions About Health, Wealth, and Happiness</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.amazon.com/Alignment-Problem-Machine-Learning-Values/dp/B085DTXC59/">
+                <img src="https://m.media-amazon.com/images/I/51NTItonR1L.jpg" alt="Nudge: Improving Decisions About Health, Wealth, and Happiness" />
+                <span>The Alignment Problem: Machine Learning and Human Values</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://www.amazon.com/Predictably-Irrational-Revised-Expanded-Decisions/dp/0061353248">
+                <img src="https://m.media-amazon.com/images/I/61cjZXBNl2L._SL1360_.jpg" alt="Predictably Irrational, Revised and Expanded Edition: The Hidden Forces That Shape Our Decisions" />
+                <span>Predictably Irrational, Revised and Expanded Edition: The Hidden Forces That Shape Our Decisions</span>
+            </a>
+        </li>        
+                        <li>
+            <a href="https://www.amazon.com/Natural-Language-Processing-Transformers-Revised/dp/1098136799">
+                <img src="https://m.media-amazon.com/images/I/81gARWcOnYL._SL1500_.jpg" alt="Natural Language Processing with Transformers, Revised Edition " />
+                <span>Nudge: Improving Decisions About Health, Wealth, and Happiness</span>
+            </a>
+        </li>
+        <!-- More books -->
+    </ul>
+        </div>
+    </div>
+</div>    
+
+
+<div class="three-column-section">
+    <div class="container">
+        <div class="column">
+		<b> Photography (select) </b><br>
+		click on the image to open the gallery<br>
+	<a href="photo.html"><img src="thumbnail_photos.png" width="92%"></img></a>
+	</div>
+
+
+	<div class="column">
+		<b>Quotable Quotes</b><br>
+		    <div class="quote">
+        <p>"Solving a problem simply means representing it so as to make the solution transparent" - Herbert Simon</p>
+    </div>
+    <div class = "quote">
+	    <p>"The whole is greater than the sum of its parts" - Aristotle</p> 
+    </div>
+    <div class = "quote">
+	    <p> "Continuous improvement is better than delayed perfection" - Mark Twain</p>
+    </div>
+	</div>
+
+	<div class="column">
+		<b> Contact </b><br>
+		<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc9sv0DHP6n0e7vQu-REfY5XQxUFp0SkhfyLUYRe3jOtuy0Pw/viewform?embedded=true" width="640" height="788" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+	</div>
+    </div>
+</div>
+
+
+</body>
+</html>

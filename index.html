@@ -1,320 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Short Bio</title>
-<!-- Add Font Awesome for social media icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2YH18C2QY3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepak Babu Piskala</title>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
 
-  gtag('config', 'G-2YH18C2QY3');
-</script>
-<style>
-.quote {
-    margin-bottom: 20px; /* Adds space between quotes */
-    padding: 10px; /* Adds padding around the quote for better readability */
-    background-color: #f9f9f9; /* Light background color for the quote block */
-    border-left: 5px solid #ccc; /* Adds a left border for emphasis */
-}
+        header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
 
-.quote p {
-    font-style: italic; /* Makes the quote text italic */
-    color: #333; /* Dark grey color for text */
-    margin: 0; /* Removes default paragraph margin */
-}
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin: 0;
+        }
 
-.quote p::before {
-    content: "“"; /* Adds opening quote mark */
-    font-size: 30px; /* Larger font size for the quote mark */
-    vertical-align: sub; /* Aligns the quote mark with the text */
-}
+        header p {
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
 
-.quote p::after {
-    content: "”"; /* Adds closing quote mark */
-    font-size: 30px; /* Larger font size for the quote mark */
-    vertical-align: sub; /* Aligns the quote mark with the text */
-}
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            color: white;
+        }
 
-.quote p::after {
-    content: "”"; /* Adds closing quote mark */
-}
-body {
-    font-family: Arial, sans-serif;
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            margin-top: 0;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .three-column-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            list-style: disc inside;
+            padding: 0;
+        }
+
+        
+.three-column-list li {
     margin: 0;
-    padding: 0;
-    background-color: #f7f7f7;
-  }
-
-  .profile-container-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-
-}
-.timeline-block {
-    padding: 20px;
-    margin: auto;
-    background-color: #f7f7f7; /* Or any color that matches your design */
-    border-radius: 10px; /* Optional for rounded corners */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional for a subtle shadow */
-        width: 55%;
-    height: auto;
+    line-height: 1.4; /* Adjust this value as needed */
 }
 
-  .profile-container {
-    display: flex;
-    align-items: center;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  }
-  .profile-photo {
-    border-radius: 50%;
-    width: 300px; /* Adjust size as needed */
-    height: 300px; /* Adjust size as needed */
-    object-fit: cover; /* Keeps the aspect ratio, and crops the image */
-    margin-right: 20px;
-  }
-  .bio {
-    max-width: 600px; /* Adjust width as needed */ /* Allows the bio section to fill the available space */
-  }
-  .social-links {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    margin-top: 10px;
-  }
-  .social-links li {
-    margin-right: 10px;
-  }
-  .social-links a {
-    text-decoration: none;
-    color: inherit;
-  }
-  .social-links a:hover {
-    color: #0077b5; /* LinkedIn color, for example */
-  }
-  .fa {
-    font-size: 28px; /* Adjust the size of the icons */
-    color: blue;
-  }
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* Align items to the start of the container */
-    padding: 20px;
-}
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
 
-.column {
-    flex: 1; /* Each column takes equal width */
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
-    margin: 10px; /* Space between columns */
-}  
-.three-column-section {
-    clear: both; /* Clears the side floats, if any, from previous content */
-    width: 100%; /* Takes the full width */
-}
-  /* Responsive design adjustments */
-  @media (max-width: 768px) {
-    .profile-container {
-      flex-direction: column; /* Stack photo and bio vertically */
-    }
-    .profile-photo {
-      margin-right: 0; /* Since they are no longer side by side, no margin-right is needed */
-      padding-top: 20px;
-    }
-    .bio {
-      text-align: center; /* Center text for better appearance on smaller screens */
-    }
-    .container {
-        flex-direction: column;
-    }    
-  }  
+        footer a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            float: left;
+            margin-right: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tweets-section iframe {
+            border: none;
+            width: 100%;
+            height: 600px;
+        }        
+
 .book-list {
     list-style: none;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .book-list li {
-    margin-bottom: 10px;
+    text-align: center;
+    width: 150px;
 }
 
 .book-list img {
-    width: 50px; /* Adjust as needed */
+    width: 100%;
     height: auto;
-    margin-right: 10px;
-    vertical-align: middle;
-}
-
-.book-list span {
-    vertical-align: middle;
-}
-.medium-button {
-    display: inline-block;
-    background-color: #00ab6c; /* Medium's brand color */
-    color: white;
-    padding: 10px 20px;
     border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.book-list a {
     text-decoration: none;
-    font-weight: bold;
+    color: #333;
 }
 
-.medium-button:hover {
-    background-color: #008952; /* Darker shade for hover effect */
+.book-list a:hover span {
+    color: #4a90e2;
 }
 
-</style>
+.book-list li {
+    text-align: center;
+    width: 120px; /* Reduced width */
+    flex: 0 0 auto;
+}
+
+.book-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around; /* Ensures even spacing between items */
+    gap: 10px;
+}
+
+header h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+    margin: 0;
+}
+
+header p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+    </style>
 </head>
 <body>
-<div class="profile-container-wrapper">
-<div class="profile-container">
-    <img src="download (46).png" alt="Profile Photo" class="profile-photo">
-    <div class="bio">
+    <header>
         <h1>Deepak Babu Piskala</h1>
-        <p><b>Research Interests</b> : Speech(ASR), Language Models, NLP/G, LLM Agents and World Models, Behavioral Science, Computational Advertising, Search Relevance, IR and Voice Assistants<br><br>
-        
-        With over 16 years of experience in ML/AI, I have developed and scaled models using large-scale datasets across various domains, including retail, FMCG, search relevance, computational advertising, and voice assistants. In my most recent role, I work as a Senior Scientist, where I focus on building advanced speech and language models for voice assistants (Alexa) in the shopping domain. My technical leadership in research and applied science, spans early adoption of state-of-the-art research into ML products, driving science efficiency and accelerating innovation. I am recognized for my first-principles thinking and a constant-learning mindset, qualities that have consistently led to innovative and unconventional solutions to challenging problems. Additionally, I have advised early-stage startups in the advertising and healthcare space. I love reading books(non-fiction), hiking outdoors, landscape/astro photography and spending time with family. 
-<br><br>
-<b>Past Life:</b> Management Consultant for a fortune-50 CPG Pharma advising one of the world's largest loyalty program rollout
-      </p>
-        <ul class="social-links">
-            <!-- Replace '#' with your actual URLs -->
-            <li><a href="https://www.linkedin.com/in/prdeepak/" target="_blank"><i class="fab fa-linkedin fa"></i></a></li>
-            <li> &nbsp; </li>
-            <li><a href="https://www.twitter.com/prdeepakbabu" target="_blank"><i class="fab fa-twitter fa"></i></a></li>
-            <li> &nbsp; </li>
-            <li><a href="mailto:prdeepak.babu 8 gmail.com"><i class="fas fa-envelope fa" ></i></a></li>
-            <li> &nbsp; </li>
-            <li><a href="https://medium.com/@prdeepak.babu" target="_blank"><i class="fab fa-medium fa"></i></a></li>
+        <p>Principal AI Scientist</p>
+    </header>
 
-        </ul>    
-        <a href="career.html"> career timeline </a>
-</div>
-</div>
-</div>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#blog">Blog</a>
+        <a href="#tweets">Tweets</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-
-
-<div class="three-column-section">
-    <div class="container">
-        <div class="column">
-    <h2>My Blog Posts</h2>
-    <div class="medium-subscribe">
-    <a href="https://medium.com/@prdeepak.babu" target="_blank" class="medium-button">Subscribe on Medium</a>
-</div>
-
-    <ul class="blog-links">
-        <li>
-            <a href="https://blog.gopenai.com/from-n-grams-to-gpt-4-the-meteoric-rise-of-large-language-models-d9e064ec7bf0?source=friends_link&sk=f4c754ec41bea4c41ae50176210e3145" target="_blank">From N-grams to GPT-4: The Meteoric Rise of Large Language Models</a>
-        </li>
-        <li>
-            <a href="https://medium.com/@prdeepak.babu/reward-hacking-in-large-language-models-llms-c57abbc0cde7" target="_blank">Reward Hacking in Large Language Models (LLMs)</a>
-        </li>
-        <li>
-            <a href="https://medium.com/@prdeepak.babu/emergent-abilities-in-llm-unpredictable-abilities-in-large-language-models-72fc54059b41" target="_blank">Emergent Abilities in LLM : Unpredictable Abilities in Large Language Models</a>
-        </li>
-                        <li>
-            <a href="https://medium.com/@prdeepak.babu/multimodal-mastery-the-qwen-audio-foundation-models-for-advanced-audio-understanding-and-reasoning-b34a86b3c9f8" target="_blank">Multimodal Mastery: The Qwen Audio Foundation Models for Advanced Audio Understanding and Reasoning</a>
-        </li>
-        <li>
-            <a href="https://medium.com/@prdeepak.babu/decoding-ais-thought-process-mechanistic-interpretability-54db5727e7e8" target="_blank">Decoding AI’s Thought Process: Mechanistic Interpretability</a>
-        </li>
-        <li>
-            <a href="https://medium.com/@prdeepak.babu/the-dawn-of-synthetic-brains-how-large-language-models-are-shaping-ai-agents-640a78f3a830" target="_blank">The Dawn of Synthetic Brains: How Large Language Models Are Shaping AI Agents</a>
-        </li>              
-          
-                <li>
-            <a href="https://medium.com/@prdeepak.babu/deploying-large-language-models-llms-in-real-world-applications-354482c86ba5?source=friends_link&sk=7bcf719a5e046f8e1dbf690f878b7370" target="_blank">Deploying Large Language Models (LLMs) in Real-World Applications</a>
-        </li>  
-        <!-- Add more blog post links as needed -->
-    </ul>
-    <a href="https://medium.com/@prdeepak.babu">more posts</a>
-            <!-- Add more links as needed -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <img src="1DC549B4-26BA-4564-8BCA-40CBFABB7AC8.jpeg" alt="Profile Picture" class="profile-image">
+            <div>
+                <p>With over 16 years of experience in ML/AI, I have developed and scaled models using large-scale datasets across various domains, including retail, FMCG, search relevance, computational advertising, and voice assistants. In my most recent role, I work as a Senior Scientist, where I focus on building advanced speech and language models for voice assistants (Alexa) in the shopping domain. My technical leadership in research and applied science spans early adoption of state-of-the-art research into ML products, driving science efficiency and accelerating innovation. I am recognized for my first-principles thinking and a constant-learning mindset, qualities that have consistently led to innovative and unconventional solutions to challenging problems. Additionally, I have advised early-stage startups in the advertising and healthcare space. I love reading books (non-fiction), hiking outdoors, landscape/astro photography, and spending time with family.</p>
+                <p><strong>Past Life:</strong> Management Consultant for a Fortune-50 CPG Pharma advising one of the world's largest loyalty program rollouts.</p>
+            </div>
         </div>
-        <div class="column">
-          <a href="https://twitter.com/prdeepakbabu?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @prdeepakbabu</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-           <blockquote class="twitter-tweet"><p lang="en" dir="ltr">🔍 Dive into the <a href="https://twitter.com/hashtag/McGurkEffect?src=hash&amp;ref_src=twsrc%5Etfw">#McGurkEffect</a>: where our eyes trick our ears in speech perception. 👁️👂 How does what we see change what we hear? It&#39;s more than an illusion—it&#39;s shaping the future of <a href="https://twitter.com/hashtag/AI?src=hash&amp;ref_src=twsrc%5Etfw">#AI</a> as multimodal LLMs. <a href="https://twitter.com/hashtag/LLM?src=hash&amp;ref_src=twsrc%5Etfw">#LLM</a> <a href="https://twitter.com/hashtag/SpeechRecognition?src=hash&amp;ref_src=twsrc%5Etfw">#SpeechRecognition</a> <a href="https://twitter.com/hashtag/TechInsights?src=hash&amp;ref_src=twsrc%5Etfw">#TechInsights</a> ➡️ <a href="https://t.co/wCfeqV45Jm">https://t.co/wCfeqV45Jm</a></p>&mdash; Deepak Babu P R (@prdeepakbabu) <a href="https://twitter.com/prdeepakbabu/status/1731690142404923547?ref_src=twsrc%5Etfw">December 4, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </section>
 
-            <!-- Add more links as needed -->
-        </div>
-        <div class="column">
+    <section id="research">
+        <h2>Research Interests</h2>
+        <ul class="three-column-list">
+            <li>Speech (ASR)</li>
+            <li>Language Models</li>
+            <li>NLP/G</li>
+            <li>LLM Agents and World Models</li>
+            <li>Behavioral Science</li>
+            <li>Computational Advertising</li>
+            <li>Search Relevance</li>
+            <li>Information Retrieval</li>
+            <li>Voice Assistants</li>
+        </ul>
+    </section>
+
+    <section id="rewards">
+        <h2>Rewards & Recognitions</h2>
+        <ul>
+            <li>Recipient of Gold Medal and Certificate of Excellence for securing a university rank at Visvesvaraya Technological University, spanning 130 engineering colleges.</li>
+            <li>Holds multiple Speech and ASR Patents, including innovations in voice-to-web search bridging and automated ASR transcription using LLM agents (Theory of Mind).</li>
+            <li>Published Research Papers on ASR error correction and voice-to-web search bridging in Amazon’s machine learning conferences.</li>
+            <li>Elevated to IEEE Senior Member (2024) and reviews for Amazon Research Awards (ARA), NeurIPS, and AMLC in data science, speech, and NLP domains.</li>
+            <li>Recognized with Corporate Awards for contributions to high-visibility projects at InMobi and Mu Sigma, as well as innovation awards like the Clear-Piece Puzzle and Inventor Award.</li>
+            <li>Presented Research on Contextual Advertising at the Amazon Machine Learning Conference (AMLC), focusing on product affinity in web pages.</li>
+        </ul>
+    </section>
+
+    <section id="publications">
+        <h2>Publications</h2>
+        <ul>
+            <li>OPTIROUTE Dynamic LLM Routing and Selection Based on User Preferences: Balancing Performance, Cost, and Ethics Patent, IJCA, Nov 2024</li>
+            <li>WEB2VOICE - Bridging the gap between Voice Shopping and Web Shopping to Improve ASR, Amazon Machine Learning Conference AMLC 2022</li>
+            <li>Retrieve-Rank - ASR Error Correction for Long-tail Domains, Amazon Machine Learning Conference AMLC 2022</li>
+            <li>Identifying Product Affinity in Webpages for Contextual Advertising, Amazon Machine Learning Conference 2019</li>
+            <li>AutoTranscribe- Automated ASR Transcriptions using LLM Agent Learning to Imitate Humans, Patent, Filed 2023</li>
+            <li>Voice-based Computer Interfaces for Natural Language Inputs, Patent, Filed 2022</li>
+            <li>Suggest recommended utterances to advertise for product advertisements based on metadata like Intent/ProductName, Patent, Filed 2019 - Granted</li>
+            <li>Customer-assisted Recovery of ASR errors using customer enunciations in Alexa, Patent, Filed 2024</li>
+            <li>Interactive ASR error recovery using Reinforcement Learning, Patent, 2024 - Status Unknown</li>
+        </ul>
+    </section>
+
+<section id="books">
     <h2>Recommended Books</h2>
-    <ul class="book-list">
-        <li>
-            <a href="https://www.amazon.com/Brief-History-Intelligence-Humans-Breakthroughs/dp/0063286343">
-                <img src="https://m.media-amazon.com/images/I/81xA5147ATL._SL1500_.jpg" alt="Book 1 Title" />
-                <span>A Brief History of Intelligence: Evolution, AI, and the Five Breakthroughs That Made Our Brains</span>
-            </a>
-        </li>
-        <li>
-            <a href="https://www.amazon.com/Nudge-Improving-Decisions-Health-Happiness/dp/014311526X/ref=sr_1_2?crid=1M9O8JY22JMMJ&keywords=nudge&qid=1705689598&s=books&sprefix=nudge%2Cstripbooks%2C193&sr=1-2">
-                <img src="https://m.media-amazon.com/images/I/71y7r6LdWtL._SL1500_.jpg" alt="Nudge: Improving Decisions About Health, Wealth, and Happiness" />
-                <span>Nudge: Improving Decisions About Health, Wealth, and Happiness</span>
-            </a>
-        </li>
-        <li>
-            <a href="https://www.amazon.com/Alignment-Problem-Machine-Learning-Values/dp/B085DTXC59/">
-                <img src="https://m.media-amazon.com/images/I/51NTItonR1L.jpg" alt="Nudge: Improving Decisions About Health, Wealth, and Happiness" />
-                <span>The Alignment Problem: Machine Learning and Human Values</span>
-            </a>
-        </li>
-        <li>
-            <a href="https://www.amazon.com/Predictably-Irrational-Revised-Expanded-Decisions/dp/0061353248">
-                <img src="https://m.media-amazon.com/images/I/61cjZXBNl2L._SL1360_.jpg" alt="Predictably Irrational, Revised and Expanded Edition: The Hidden Forces That Shape Our Decisions" />
-                <span>Predictably Irrational, Revised and Expanded Edition: The Hidden Forces That Shape Our Decisions</span>
-            </a>
-        </li>        
-                        <li>
-            <a href="https://www.amazon.com/Natural-Language-Processing-Transformers-Revised/dp/1098136799">
-                <img src="https://m.media-amazon.com/images/I/81gARWcOnYL._SL1500_.jpg" alt="Natural Language Processing with Transformers, Revised Edition " />
-                <span>Nudge: Improving Decisions About Health, Wealth, and Happiness</span>
-            </a>
-        </li>
-        <!-- More books -->
-    </ul>
-        </div>
+    <div class="column">
+        <ul class="book-list">
+            <li>
+                <a href="https://www.amazon.com/Brief-History-Intelligence-Humans-Breakthroughs/dp/0063286343">
+                    <img src="https://m.media-amazon.com/images/I/81xA5147ATL._SL1500_.jpg" alt="A Brief History of Intelligence">
+                    <span>A Brief History of Intelligence: Evolution, AI, and the Five Breakthroughs That Made Our Brains</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.amazon.com/Nudge-Improving-Decisions-Health-Happiness/dp/014311526X">
+                    <img src="https://m.media-amazon.com/images/I/71y7r6LdWtL._SL1500_.jpg" alt="Nudge: Improving Decisions">
+                    <span>Nudge: Improving Decisions About Health, Wealth, and Happiness</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.amazon.com/Alignment-Problem-Machine-Learning-Values/dp/B085DTXC59/">
+                    <img src="https://m.media-amazon.com/images/I/51NTItonR1L.jpg" alt="The Alignment Problem">
+                    <span>The Alignment Problem: Machine Learning and Human Values</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.amazon.com/Predictably-Irrational-Revised-Expanded-Decisions/dp/0061353248">
+                    <img src="https://m.media-amazon.com/images/I/61cjZXBNl2L._SL1360_.jpg" alt="Predictably Irrational">
+                    <span>Predictably Irrational, Revised and Expanded Edition: The Hidden Forces That Shape Our Decisions</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.amazon.com/Natural-Language-Processing-Transformers-Revised/dp/1098136799">
+                    <img src="https://m.media-amazon.com/images/I/81gARWcOnYL._SL1500_.jpg" alt="Natural Language Processing with Transformers">
+                    <span>Natural Language Processing with Transformers, Revised Edition</span>
+                </a>
+            </li>
+        </ul>
     </div>
-</div>    
+</section>    
+
+    <section id="blog">
+        <h2>My Blog Posts</h2>
+        <ul>
+            <li><a href="#">From N-grams to GPT-4: The Meteoric Rise of Large Language Models</a></li>
+            <li><a href="#">Reward Hacking in Large Language Models (LLMs)</a></li>
+            <li><a href="#">Emergent Abilities in LLM: Unpredictable Abilities in Large Language Models</a></li>
+            <li><a href="#">Multimodal Mastery: The Qwen Audio Foundation Models for Advanced Audio Understanding and Reasoning</a></li>
+            <li><a href="#">Decoding AI’s Thought Process: Mechanistic Interpretability</a></li>
+            <li><a href="#">The Dawn of Synthetic Brains: How Large Language Models Are Shaping AI Agents</a></li>
+            <li><a href="#">Deploying Large Language Models (LLMs) in Real-World Applications</a></li>
+        </ul>
+        <p><a href="#">More posts</a></p>
+        <p><a href="https://medium.com/@prdeepakbabu" target="_blank" style="display: inline-block; margin-top: 10px; background-color: #00ab6c; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Subscribe on Medium</a></p>
+    </section>
 
 
-<div class="three-column-section">
-    <div class="container">
-        <div class="column">
-		<b> Photography (select) </b><br>
-		click on the image to open the gallery<br>
-	<a href="photo.html"><img src="thumbnail_photos.png" width="92%"></img></a>
-	</div>
+    <section id="tweets" class="tweets-section">
+        <h2>Recent Tweets</h2>
+        <ul>
+            <li> "Exploring LLMs and their applications in speech and language modeling. #AI #ML"</li>
+            <li> "New blog post on dynamic LLM routing! Check it out on Medium. #DeepLearning"</li>
+            <li> "Excited to present at the upcoming AI conference. Stay tuned! #TechInnovation"</li>
+            <li> "Published a new paper on ASR error correction. Proud moment! #Research"</li>
+        </ul>
+        <a href="https://x.com/prdeepakbabu" class="subscribe-btn" target="_blank">Subscribe on X</a>
+                <p><a href="https://twitter.com/prdeepakbabu" target="_blank" style="display: inline-block; margin-top: 10px; background-color: #1DA1F2; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Follow me on Twitter</a></p>
+    </section>    
+
+    <section id="quotes">
+        <h2>Quotable Quotes</h2>
+        <blockquote>"Solving a problem simply means representing it so as to make the solution transparent" - Herbert Simon</blockquote>
+        <blockquote>"The whole is greater than the sum of its parts" - Aristotle</blockquote>
+        <blockquote>"Continuous improvement is better than delayed perfection" - Mark Twain</blockquote>
+    </section>
 
 
-	<div class="column">
-		<b>Quotable Quotes</b><br>
-		    <div class="quote">
-        <p>"Solving a problem simply means representing it so as to make the solution transparent" - Herbert Simon</p>
-    </div>
-    <div class = "quote">
-	    <p>"The whole is greater than the sum of its parts" - Aristotle</p> 
-    </div>
-    <div class = "quote">
-	    <p> "Continuous improvement is better than delayed perfection" - Mark Twain</p>
-    </div>
-	</div>
-
-	<div class="column">
-		<b> Contact </b><br>
-		<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc9sv0DHP6n0e7vQu-REfY5XQxUFp0SkhfyLUYRe3jOtuy0Pw/viewform?embedded=true" width="640" height="788" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-	</div>
-    </div>
-</div>
 
 
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:prdeepak.babu@gmail.com">prdeepak.babu@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/deepakbabu" target="_blank">linkedin.com/in/deepakbabu</a></p>
+         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc9sv0DHP6n0e7vQu-REfY5XQxUFp0SkhfyLUYRe3jOtuy0Pw/viewform?usp=sf_link" width="100%" height="600" frameborder="0" style="border:0; margin-top: 20px;">Loading…</iframe>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Deepak Babu Piskala. Built with HTML & CSS.</p>
+    </footer>
 </body>
 </html>
