@@ -1,0 +1,70 @@
+Steps for Next Time
+Ensure you’re on the "add_papers" branch:
+If you’re not already on it, switch to it:
+bash
+
+git checkout add_papers
+
+If you deleted the branch previously and need to recreate it, start from the main branch and create it again:
+bash
+
+git checkout main
+git checkout -b add_papers
+
+Make and commit your changes:
+After making your changes, stage and commit them:
+bash
+
+git add .
+git commit -m "Describe your new changes here"
+
+Switch to the main branch:
+bash
+
+git checkout main
+
+Pull the latest changes from main (if working with a remote repository):
+Before merging, ensure your local main branch is up to date with the remote:
+bash
+
+git pull origin main
+
+This avoids potential conflicts if others have updated the main branch.
+
+Merge "add_papers" into main:
+bash
+
+git merge add_papers
+
+If there are no conflicts, the merge will complete automatically.
+
+If conflicts arise, resolve them manually in the affected files, then:
+bash
+
+git add <file(s)>
+git commit
+
+Push the updated main branch to the remote repository:
+bash
+
+git push origin main
+
+(Optional) Delete the "add_papers" branch:
+If you’re done with it again:
+bash
+
+git branch -d add_papers
+git push origin --delete add_papers
+
+Quick Workflow for Future Changes
+Assuming the branch exists and you’re just adding more changes:
+bash
+
+git checkout add_papers
+git add .
+git commit -m "Your changes"
+git checkout main
+git pull origin main
+git merge add_papers
+git push origin main
+
