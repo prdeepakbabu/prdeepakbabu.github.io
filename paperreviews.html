@@ -7,234 +7,269 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-XNWLG8DBTN');
   </script>
-  <meta charset="UTF-8" />
-  <title>Paper Reviews</title>
-  <!-- Same Google Fonts as index.html -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paper Reviews | Deepak Babu Piskala</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* --------------------------
-       BEGIN: Copied/Adapted From index.html for Consistency
-    -------------------------- */
+    :root {
+      --bg: #f4f1eb;
+      --ink: #1d1d1f;
+      --muted: #5c5c66;
+      --accent: #0f766e;
+      --accent-strong: #0b5f59;
+      --card: #ffffff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Lato', sans-serif;
+      font-family: "Manrope", "Segoe UI", sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-      line-height: 1.6;
+      background: radial-gradient(circle at top left, #fff8f0 0%, #f4f1eb 45%, #efe9df 100%);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(600px 280px at 12% 10%, rgba(15, 118, 110, 0.22), transparent 60%),
+        radial-gradient(500px 300px at 80% 18%, rgba(255, 180, 90, 0.18), transparent 60%),
+        radial-gradient(480px 320px at 70% 80%, rgba(56, 189, 248, 0.12), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     header {
-      background-color: #4a90e2;
-      color: white;
-      padding: 20px;
+      position: relative;
+      z-index: 1;
+      padding: 64px 20px 30px;
       text-align: center;
     }
 
-    /* Use Roboto for the main header, matching your homepage */
     header h1 {
-      font-family: 'Roboto', sans-serif;
-      font-size: 3em;
+      font-family: "DM Serif Display", "Times New Roman", serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
       margin: 0;
     }
 
     header p {
-      font-family: 'Roboto', sans-serif;
-      font-size: 1.2em;
-      margin: 5px 0;
+      margin: 12px 0 0;
+      color: var(--muted);
     }
 
     nav {
+      position: sticky;
+      top: 0;
+      z-index: 2;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      background-color: #333;
-      color: white;
+      gap: 8px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
     }
+
     nav a {
-      color: white;
+      color: var(--ink);
       text-decoration: none;
-      padding: 14px 20px;
-      display: block;
-    }
-    nav a:hover {
-      background-color: #555;
-    }
-
-    /* Instead of max-width: 800px, allow the section to expand. */
-    section {
-      width: 90%;
-      margin: 20px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all 0.2s ease;
     }
 
-    section h2 {
-      font-family: 'Roboto', sans-serif; /* or keep 'Playfair Display' if you prefer */
-      margin-top: 0;
+    nav a:hover,
+    nav a.active {
+      color: #ffffff;
+      background: var(--accent);
+      transform: translateY(-1px);
     }
 
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      margin-top: 20px;
-    }
-    footer a {
-      color: #4a90e2;
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      padding: 0 20px 20px;
     }
 
-    /* --------------------------
-       Table & Filter Controls
-    -------------------------- */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+
     .filter-section {
-      margin-bottom: 1em;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
     }
+
     .filter-section label {
-      margin-right: 8px;
-      font-weight: bold;
+      font-weight: 600;
+      color: var(--muted);
     }
+
     select,
     input[type="text"] {
-      padding: 0.5em;
-      margin-right: 1em;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      padding: 0.6em 0.8em;
+      border: 1px solid rgba(15, 23, 42, 0.15);
+      border-radius: 999px;
       font-size: 1em;
+      background: #fff;
+      color: var(--ink);
     }
 
     table {
-      width: 100%; /* Fill the available space in the parent section */
+      width: 100%;
       border-collapse: collapse;
       margin-top: 1em;
+      overflow: hidden;
+      border-radius: var(--radius-sm);
     }
 
     th,
     td {
-      border: 1px solid #ccc;
-      padding: 0.75em;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      padding: 0.9em;
       text-align: left;
       vertical-align: top;
     }
 
     th {
-      background-color: #f5f5f5;
-      font-weight: bold;
+      background-color: #f4f1eb;
+      font-weight: 700;
+      color: var(--ink);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    tbody tr:hover {
+      background: rgba(15, 118, 110, 0.06);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      color: var(--accent-strong);
     }
   </style>
 </head>
 
 <body>
-  <!-- Reuse the same header style -->
+  <div class="ambient-bg" aria-hidden="true"></div>
   <header>
-    <h1>Deepak Babu Piskala</h1>
-    <p>Principal AI Scientist</p>
+    <h1>Paper Reviews</h1>
+    <p>Short notes and curated summaries from recent reads.</p>
   </header>
 
-  <!-- Reuse the same nav bar -->
   <nav>
-    <!-- Link back to index.html for the other sections -->
     <a href="index.html#about">About</a>
     <a href="index.html#research">Research</a>
     <a href="index.html#publications">Publications</a>
-    <a href="index.html#blog">Blog</a>
-    <a href="paperreviews.html" style="background-color: #555;">Paper Reviews</a>
-    <a href="index.html#tweets">Tweets</a>
+    <a href="blogs.html">Blog</a>
+    <a href="paperreviews.html" class="active">Paper Reviews</a>
+    <a href="projects.html">My Works</a>
     <a href="index.html#contact">Contact</a>
   </nav>
 
-  <!-- Main content area for Paper Reviews -->
-  <section>
-    <h2>Paper Reviews</h2>
+  <main>
+    <section class="card">
+      <div class="filter-section">
+        <label for="filter-category">Filter by Category:</label>
+        <select id="filter-category">
+          <option value="all">All</option>
+          <option value="Machine Learning">Machine Learning</option>
+          <option value="Computer Vision">Computer Vision</option>
+          <option value="NLP">NLP</option>
+          <option value="Artificial Intelligence">Artificial Intelligence</option>
+        </select>
 
-    <!-- Filtering Controls -->
-    <div class="filter-section">
-      <label for="filter-category">Filter by Category:</label>
-      <select id="filter-category">
-        <option value="all">All</option>
-        <option value="Machine Learning">Machine Learning</option>
-        <option value="Computer Vision">Computer Vision</option>
-        <option value="NLP">NLP</option>
-        <!-- Add more categories as needed -->
-      </select>
+        <label for="filter-keywords">Search (any field):</label>
+        <input type="text" id="filter-keywords" placeholder="Enter text..." />
+      </div>
 
-      <label for="filter-keywords">Search (any field):</label>
-      <input type="text" id="filter-keywords" placeholder="Enter text..." />
-    </div>
+      <table id="papers-table">
+        <thead>
+          <tr>
+            <th>Paper Short Name</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Keywords</th>
+            <th>Authors</th>
+            <th>Affiliation</th>
+            <th>Description</th>
+            <th>Link</th>
+            <th>Relevance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- EXAMPLE ROW 1 -->
+          <tr>
+            <td>AI co-scientist</td>
+            <td>Towards an AI co-scientist</td>
+            <td>Artificial Intelligence</td>
+            <td>AI co-scientist, multi-agent system, biomedical discovery</td>
+            <td>Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, Tao Tu, Anil Palepu, et al.</td>
+            <td>Google Cloud AI Research, Google Research, Google DeepMind, Houston Methodist, Sequome, Fleming Initiative and Imperial College London, Stanford University School of Medicine</td>
+            <td>This paper introduces an AI co-scientist, a multi-agent system built on Gemini 2.0, designed to uncover new knowledge and formulate novel research hypotheses in biomedicine. The system employs a generate, debate, and evolve approach inspired by the scientific method, focusing on drug repurposing, novel target discovery, and explaining mechanisms of bacterial evolution and antimicrobial resistance.</td>
+            <td><a href="https://arxiv.org/abs/2502.18864" target="_blank" rel="noopener">Link</a></td>
+            <td>High</td>
+          </tr>
 
-    <!-- Papers Table -->
-    <table id="papers-table">
-      <thead>
-        <tr>
-          <th>Paper Short Name</th>
-          <th>Title</th>
-          <th>Category</th>
-          <th>Keywords</th>
-          <th>Authors</th>
-          <th>Affiliation</th>
-          <th>Description</th>
-          <th>Link</th>
-          <th>Relevance</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- EXAMPLE ROW 1 -->
-      <tr>
-        <td>AI co-scientist</td>
-        <td>Towards an AI co-scientist</td>
-        <td>Artificial Intelligence</td>
-        <td>AI co-scientist, multi-agent system, biomedical discovery</td>
-        <td>Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, Tao Tu, Anil Palepu, et al.</td>
-        <td>Google Cloud AI Research, Google Research, Google DeepMind, Houston Methodist, Sequome, Fleming Initiative and Imperial College London, Stanford University School of Medicine</td>
-        <td>This paper introduces an AI co-scientist, a multi-agent system built on Gemini 2.0, designed to uncover new knowledge and formulate novel research hypotheses in biomedicine. The system employs a generate, debate, and evolve approach inspired by the scientific method, focusing on drug repurposing, novel target discovery, and explaining mechanisms of bacterial evolution and antimicrobial resistance.</td>
-        <td><a href="https://arxiv.org/abs/2502.18864" target="_blank">Link</a></td>
-        <td>High</td>
-      </tr>
+          <!-- EXAMPLE ROW 2 -->
+          <tr>
+            <td>Paper2</td>
+            <td>Image Classification with CNNs</td>
+            <td>Computer Vision</td>
+            <td>cnn, image classification, vision</td>
+            <td>Alex Zhang</td>
+            <td>University B</td>
+            <td>Focuses on using CNNs for large-scale image classification tasks with data augmentation strategies.</td>
+            <td><a href="http://example.com/paper2" target="_blank" rel="noopener">Link</a></td>
+            <td>Medium</td>
+          </tr>
 
-        <!-- EXAMPLE ROW 2 -->
-        <tr>
-          <td>Paper2</td>
-          <td>Image Classification with CNNs</td>
-          <td>Computer Vision</td>
-          <td>cnn, image classification, vision</td>
-          <td>Alex Zhang</td>
-          <td>University B</td>
-          <td>Focuses on using CNNs for large-scale image classification tasks with data augmentation strategies.</td>
-          <td><a href="http://example.com/paper2" target="_blank">Link</a></td>
-          <td>Medium</td>
-        </tr>
-        <!-- EXAMPLE ROW 3 -->
-        <tr>
-          <td>Paper3</td>
-          <td>Transformers in NLP</td>
-          <td>NLP</td>
-          <td>transformers, language modeling, nlp</td>
-          <td>Emily Davis</td>
-          <td>Institute C</td>
-          <td>Presents advanced transformer-based methods for language modeling and machine translation.</td>
-          <td><a href="http://example.com/paper3" target="_blank">Link</a></td>
-          <td>High</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+          <!-- EXAMPLE ROW 3 -->
+          <tr>
+            <td>Paper3</td>
+            <td>Transformers in NLP</td>
+            <td>NLP</td>
+            <td>transformers, language modeling, nlp</td>
+            <td>Emily Davis</td>
+            <td>Institute C</td>
+            <td>Presents advanced transformer-based methods for language modeling and machine translation.</td>
+            <td><a href="http://example.com/paper3" target="_blank" rel="noopener">Link</a></td>
+            <td>High</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
 
-  <!-- Footer (optional) -->
-  <footer>
-    <p>&copy; 2025 Deepak Babu Piskala. Built with HTML &amp; CSS.</p>
-  </footer>
-
-  <!-- Same filtering script as before -->
   <script>
     const filterCategory = document.getElementById('filter-category');
     const filterKeywords = document.getElementById('filter-keywords');
@@ -245,15 +280,13 @@
       const categoryValue = filterCategory.value.toLowerCase();
       const searchValue = filterKeywords.value.toLowerCase();
 
-      // Skip the header (index 0)
       for (let i = 1; i < rows.length; i++) {
         const row = rows[i];
         const cols = row.getElementsByTagName('td');
-
-        // For category filtering, specifically check the third column (Category = index 2)
+        if (!cols.length) {
+          continue;
+        }
         const paperCategory = cols[2].textContent.toLowerCase();
-
-        // For the text-based search, check all columns
         const rowText = Array.from(cols)
           .map(col => col.textContent.toLowerCase())
           .join(' ');

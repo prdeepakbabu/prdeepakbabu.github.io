@@ -10,68 +10,197 @@
 
       gtag('config', 'G-XNWLG8DBTN');
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deepak Babu Piskala</title>
     <style>
+        :root {
+            --bg: #f4f1eb;
+            --ink: #1d1d1f;
+            --muted: #5c5c66;
+            --accent: #0f766e;
+            --accent-strong: #0b5f59;
+            --card: #ffffff;
+            --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+            --radius: 18px;
+            --radius-sm: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Lato', sans-serif;
+            font-family: "Manrope", "Segoe UI", sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
+            background: radial-gradient(circle at top left, #fff8f0 0%, #f4f1eb 45%, #efe9df 100%);
+            color: var(--ink);
+            line-height: 1.7;
+        }
+
+        .ambient-bg {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(600px 280px at 12% 10%, rgba(15, 118, 110, 0.22), transparent 60%),
+                radial-gradient(500px 300px at 80% 18%, rgba(255, 180, 90, 0.18), transparent 60%),
+                radial-gradient(480px 320px at 70% 80%, rgba(56, 189, 248, 0.12), transparent 60%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         header {
-            background-color: #4a90e2;
-            color: white;
-            padding: 20px;
+            position: relative;
+            z-index: 1;
+            padding: 72px 20px 48px;
             text-align: center;
         }
 
         header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3em;
+            font-family: "DM Serif Display", "Times New Roman", serif;
+            font-size: clamp(2.6rem, 4vw, 4.2rem);
             margin: 0;
+            letter-spacing: 0.5px;
         }
 
         header p {
-            font-size: 1.2em;
-            margin: 5px 0;
+            margin: 12px 0 0;
+            font-size: 1.1rem;
+            color: var(--muted);
+        }
+
+        .profile-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .profile-links a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--ink);
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+        }
+
+        .profile-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 30px rgba(15, 23, 42, 0.16);
+            color: var(--accent);
+        }
+
+        .profile-links svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
         }
 
         nav {
+            position: sticky;
+            top: 0;
+            z-index: 2;
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            background-color: #333;
-            color: white;
+            gap: 8px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.08);
         }
 
         nav a {
-            color: white;
+            color: var(--ink);
             text-decoration: none;
-            padding: 14px 20px;
-            display: block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: all 0.2s ease;
         }
 
         nav a:hover {
-            background-color: #555;
+            color: #ffffff;
+            background: var(--accent);
+            transform: translateY(-1px);
         }
 
         section {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+            max-width: 980px;
+            margin: 28px auto;
+            padding: 28px;
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(15, 23, 42, 0.06);
+            animation: reveal 0.7s ease both;
         }
 
         section h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: "DM Serif Display", "Times New Roman", serif;
+            font-size: 2rem;
             margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        section p {
+            color: var(--ink);
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        a:hover {
+            color: var(--accent-strong);
+        }
+
+        blockquote {
+            margin: 18px 0;
+            padding: 16px 18px;
+            border-left: 4px solid var(--accent);
+            background: #f8f7f4;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        .profile-image {
+            width: 170px;
+            height: 170px;
+            border-radius: 24px;
+            object-fit: cover;
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.2);
+            float: left;
+            margin: 6px 24px 10px 0;
+        }
+
+        .three-column-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 8px 18px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .three-column-list li {
+            padding: 6px 10px;
+            background: rgba(15, 118, 110, 0.08);
+            border-radius: 999px;
+            color: var(--accent-strong);
+            font-weight: 600;
+            text-align: center;
         }
 
         .gallery {
@@ -82,33 +211,157 @@
 
         .gallery img {
             width: 100%;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
         }
 
-        .three-column-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
-            list-style: disc inside;
+        .book-list {
+            list-style: none;
             padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
         }
 
-        
-.three-column-list li {
-    margin: 0;
-    line-height: 1.4; /* Adjust this value as needed */
-}
+        .book-list li {
+            text-align: left;
+            background: #f8f7f4;
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            border: 1px solid rgba(15, 23, 42, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .book-list li:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+        }
+
+        .book-list img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+        }
+
+        .book-list a {
+            text-decoration: none;
+            color: var(--ink);
+            font-weight: 600;
+            display: grid;
+            gap: 10px;
+        }
+
+        .book-list a:hover span {
+            color: var(--accent);
+        }
+
+        .post-preview {
+            background: #f8f7f4;
+            padding: 18px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            display: grid;
+            gap: 8px;
+        }
+
+        .post-preview .btn {
+            justify-self: start;
+        }
+
+        .post-preview h3 {
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .post-preview h3 a {
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .post-preview h3 a:hover {
+            color: var(--accent);
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+        }
+
+        .tweets-section iframe {
+            border: none;
+            width: 100%;
+            height: 600px;
+        }
+
+        .subscribe-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            padding: 10px 16px;
+            background: var(--accent);
+            color: #ffffff;
+            border-radius: 999px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(15, 118, 110, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .subscribe-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 30px rgba(15, 118, 110, 0.28);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            text-decoration: none;
+            background: var(--accent);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 10px 20px rgba(15, 118, 110, 0.22);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 30px rgba(15, 118, 110, 0.28);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid rgba(15, 118, 110, 0.4);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(15, 118, 110, 0.08);
+            box-shadow: none;
+        }
+
+        .btn-compact {
+            padding: 8px 14px;
+            font-size: 0.95rem;
+        }
 
         footer {
-            background-color: #333;
-            color: white;
+            position: relative;
+            z-index: 1;
             text-align: center;
-            padding: 10px;
-            margin-top: 20px;
+            padding: 30px 16px 40px;
+            color: var(--muted);
         }
 
         footer a {
-            color: #4a90e2;
+            color: var(--accent);
             text-decoration: none;
         }
 
@@ -116,90 +369,69 @@
             text-decoration: underline;
         }
 
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            float: left;
-            margin-right: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .tweets-section iframe {
-            border: none;
-            width: 100%;
-            height: 600px;
-        }        
+        @media (max-width: 720px) {
+            header {
+                padding: 56px 20px 32px;
+            }
 
-.book-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.book-list li {
-    text-align: center;
-    width: 150px;
-}
-
-.book-list img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.book-list a {
-    text-decoration: none;
-    color: #333;
-}
-
-.book-list a:hover span {
-    color: #4a90e2;
-}
-
-.book-list li {
-    text-align: center;
-    width: 120px; /* Reduced width */
-    flex: 0 0 auto;
-}
-
-.book-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: space-around; /* Ensures even spacing between items */
-    gap: 10px;
-}
-
-header h1 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 3em;
-    margin: 0;
-}
-
-header p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2em;
-    margin: 5px 0;
-}
-
+            .profile-image {
+                float: none;
+                display: block;
+                margin: 0 auto 16px;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="ambient-bg" aria-hidden="true"></div>
     <header>
         <h1>Deepak Babu Piskala</h1>
         <p>Principal AI Scientist</p>
+        <div class="profile-links" aria-label="Social links">
+            <a href="https://scholar.google.com/citations?user=jBtBPqcAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2L1 7l11 5 9-4.09V17h2V7L12 2zm0 13l-7-3.18V17c0 2.21 3.13 4 7 4s7-1.79 7-4v-5.18L12 15z"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/prdeepak" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.08 1 2.48 1s2.5 1.12 2.5 2.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.05 0 5.98 3.32 5.98 7.64V24h-5V15.4c0-2.05-.04-4.69-2.86-4.69-2.87 0-3.31 2.24-3.31 4.54V24h-5V8z"/>
+                </svg>
+            </a>
+            <a href="mailto:prdeepak.babu@gmail.com" aria-label="Email">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </a>
+            <a href="https://x.com/prdeepakbabu" target="_blank" rel="noopener" aria-label="X">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18.3 2H21l-6.5 7.43L22 22h-6.2l-4.85-6.3L5.4 22H2.7l7-8.02L2 2h6.35l4.4 5.82L18.3 2zm-1.1 18h1.7L7.05 4h-1.8l11.95 16z"/>
+                </svg>
+            </a>
+            <a href="https://medium.com/@prdeepak.babu" target="_blank" rel="noopener" aria-label="Medium">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M2 6l6.5 0 4 7 4-7H22v12h-4V12l-3.5 6h-2L9 12v6H5V6H2z"/>
+                </svg>
+            </a>
+        </div>
     </header>
 
     <nav>
         <a href="#about">About</a>
         <a href="#research">Research</a>
         <a href="#publications">Publications</a>
-        <a href="#blog">Blog</a>
+        <a href="blogs.html">Blog</a>
         <a href="paperreviews.html">Paper Reviews</a>
         <a href="#tweets">Tweets</a>
         <a href="projects.html">My Works</a>
@@ -211,7 +443,7 @@ header p {
         <div class="about-container">
             <img src="1DC549B4-26BA-4564-8BCA-40CBFABB7AC8.jpeg" alt="Profile Picture" class="profile-image">
             <div>
-                <p>With over 17+ years of experience in ML/AI, I have developed large-scale machine learning and deep learning models across various domains, including retail, FMCG, search relevance, computational advertising, and voice assistants. I have led technical efforts on improving speech recognition and language understanding at Amazon Alexa and built Contextual Advertising at Amazon Ads. At Alexa, I built personalized, self-healing error correction foundation models that learn from daily user interactions—enabling run-time query rewriting with speculative execution for low-latency, high-throughput inference on accelerated hardware. My technical leadership bridges research and production—driving early adoption of cutting-edge advancements in LLMs, Multimodal LLMs, RAG, agents, and cognitive architectures. I hold patents and have published in the areas of speech, language, and information retrieval. I actively contribute to the research community as a reviewer for NeurIPS, ICML, KDD, AMLC, ARA, and EMNLP, and I’m a Senior Member of IEEE (Seattle Chapter).  <br><br> I am recognized for my first-principles thinking and a constant-learning mindset, qualities that have consistently led to innovative and unconventional solutions to challenging problems. Additionally, I have advised early-stage startups in the advertising and healthcare space. I love reading books (non-fiction), hiking outdoors, landscape/astro photography, and spending time with family.</p>
+                <p>With over 18+ years of experience in ML/AI, I have developed large-scale machine learning and deep learning models across various domains, including retail, FMCG, search relevance, computational advertising, and voice assistants. I have led technical efforts on improving speech recognition and language understanding at Amazon Alexa and built Contextual Advertising at Amazon Ads. At Alexa, I built personalized, self-healing error correction foundation models that learn from daily user interactions—enabling run-time query rewriting with speculative execution for low-latency, high-throughput inference on accelerated hardware. My technical leadership bridges research and production—driving early adoption of cutting-edge advancements in LLMs, Multimodal LLMs, RAG, agents, and cognitive architectures. I hold patents and have published in the areas of speech, language, and information retrieval. I actively contribute to the research community as a reviewer for NeurIPS, ICML, KDD, AMLC, ARA, and EMNLP, and I’m a Senior Member of IEEE (Seattle Chapter).  <br><br> I am recognized for my first-principles thinking and a constant-learning mindset, qualities that have consistently led to innovative and unconventional solutions to challenging problems. Additionally, I have advised early-stage startups in the advertising and healthcare space. I love reading books (non-fiction), hiking outdoors, landscape/astro photography, and spending time with family.</p>
                 <p><strong>Past Life:</strong> Management Consultant for a Fortune-50 CPG Pharma advising one of the world's largest loyalty program rollouts.</p>
             </div>
         </div>
@@ -247,15 +479,17 @@ header p {
     <section id="publications">
         <h2>Publications</h2>
         <ul>
-            <li>Mind the Goal: Data-Efficient Goal-Oriented Evaluation of Conversational Agents and Chatbots using Teacher Models</li>
+            <li><a href="https://arxiv.org/pdf/2510.03696">Mind the Goal: Data-Efficient Goal-Oriented Evaluation of Conversational Agents and Chatbots using Teacher Models</a></li>
             <li>The Unification Imperative: End-to-End Models Are Replacing Modular Pipelines in AI Systems</li>
             <li><a href="https://arxiv.org/abs/2502.16696">OPTIROUTE Dynamic LLM Routing and Selection Based on User Preferences: Balancing Performance, Cost, and Ethics Patent, IJCA, Nov 2024</a></li>
+            <li><a href="https://arxiv.org/abs/2601.06087">The AI Roles Continuum: Blurring the Boundary Between Research and Engineering</a></li>
+            <li><a href="https://arxiv.org/abs/2512.23686">PROFASR-BENCH: A Benchmark for Context-Conditioned ASR in High-Stakes Professional Speech</a></li>
             <li>WEB2VOICE - Bridging the gap between Voice Shopping and Web Shopping to Improve ASR, Amazon Machine Learning Conference AMLC 2022</li>
             <li>Retrieve-Rank - ASR Error Correction for Long-tail Domains, Amazon Machine Learning Conference AMLC 2022</li>
             <li>Identifying Product Affinity in Webpages for Contextual Advertising, Amazon Machine Learning Conference 2019</li>
-            <li>AutoTranscribe- Automated ASR Transcriptions using LLM Agent Learning to Imitate Humans, Patent, Filed 2023</li>
+            <li><a href="https://patents.google.com/patent/US12444412B2/en">AutoTranscribe- Automated ASR Transcriptions using LLM Agent Learning to Imitate Humans, Patent, Filed 2023</a></li>
             <li>Voice-based Computer Interfaces for Natural Language Inputs, Patent, Filed 2022</li>
-            <li>Suggest recommended utterances to advertise for product advertisements based on metadata like Intent/ProductName, Patent, Filed 2019 - Granted</li>
+            <li><a href="https://patents.google.com/patent/US11600260B1/en">Suggest recommended utterances to advertise for product advertisements based on metadata like Intent/ProductName, Patent, Filed 2019 - Granted</a></li>
             <li>Customer-assisted Recovery of ASR errors using customer enunciations in Alexa, Patent, Filed 2024</li>
             <li>Interactive ASR error recovery using Reinforcement Learning, Patent, 2024 - Status Unknown</li>
         </ul>
@@ -300,18 +534,15 @@ header p {
 </section>    
 
     <section id="blog">
-        <h2>My Blog Posts</h2>
-        <ul>
-            <li><a href="#">From N-grams to GPT-4: The Meteoric Rise of Large Language Models</a></li>
-            <li><a href="#">Reward Hacking in Large Language Models (LLMs)</a></li>
-            <li><a href="#">Emergent Abilities in LLM: Unpredictable Abilities in Large Language Models</a></li>
-            <li><a href="#">Multimodal Mastery: The Qwen Audio Foundation Models for Advanced Audio Understanding and Reasoning</a></li>
-            <li><a href="#">Decoding AI’s Thought Process: Mechanistic Interpretability</a></li>
-            <li><a href="#">The Dawn of Synthetic Brains: How Large Language Models Are Shaping AI Agents</a></li>
-            <li><a href="#">Deploying Large Language Models (LLMs) in Real-World Applications</a></li>
-        </ul>
-        <p><a href="#">More posts</a></p>
-        <p><a href="https://medium.com/@prdeepakbabu" target="_blank" style="display: inline-block; margin-top: 10px; background-color: #00ab6c; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Subscribe on Medium</a></p>
+        <h2>Latest Posts</h2>
+        <div class="post-preview">
+            <div class="post-meta">Jan 19, 2026</div>
+            <h3><a href="post.html?post=abundance-jobs-specialists">Abundance, Jobs, and Specialists: The Missing Connection</a></h3>
+            <p>AI has turned ideation into a surplus. What happens to specialists, to jobs, and to the meaning of expertise when execution becomes cheap?</p>
+            <a class="btn btn-compact" href="post.html?post=abundance-jobs-specialists">Read</a>
+        </div>
+        <p style="margin-top: 16px;"><a href="blogs.html">View all posts</a></p>
+        <p><a class="btn btn-outline btn-compact" href="https://medium.com/@prdeepakbabu" target="_blank" rel="noopener">Medium</a></p>
     </section>
 
 
@@ -323,8 +554,8 @@ header p {
             <li> "Excited to present at the upcoming AI conference. Stay tuned! #TechInnovation"</li>
             <li> "Published a new paper on ASR error correction. Proud moment! #Research"</li>
         </ul>
-        <a href="https://x.com/prdeepakbabu" class="subscribe-btn" target="_blank">Subscribe on X</a>
-                <p><a href="https://twitter.com/prdeepakbabu" target="_blank" style="display: inline-block; margin-top: 10px; background-color: #1DA1F2; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Follow me on Twitter</a></p>
+        <a href="https://x.com/prdeepakbabu" class="btn btn-compact" target="_blank" rel="noopener">Follow on X</a>
+        <p><a href="https://twitter.com/prdeepakbabu" class="btn btn-outline btn-compact" target="_blank" rel="noopener">Twitter</a></p>
     </section>    
 
     <section id="quotes">
@@ -342,6 +573,7 @@ header p {
         <h2>Contact</h2>
         <p>Email: <a href="mailto:prdeepak.babu@gmail.com">prdeepak.babu@gmail.com</a></p>
         <p>LinkedIn: <a href="https://www.linkedin.com/in/prdeepak" target="_blank">linkedin.com/in/prdeepakbabau</a></p>
+        <p>Google Scholar: <a href="https://scholar.google.com/citations?user=jBtBPqcAAAAJ&hl=en" target="_blank">scholar.google.com/citations?user=jBtBPqcAAAAJ</a></p>
          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc9sv0DHP6n0e7vQu-REfY5XQxUFp0SkhfyLUYRe3jOtuy0Pw/viewform?usp=sf_link" width="100%" height="600" frameborder="0" style="border:0; margin-top: 20px;">Loading…</iframe>
     </section>
 

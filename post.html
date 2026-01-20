@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XNWLG8DBTN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XNWLG8DBTN');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Post | Deepak Babu Piskala</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f1eb;
+      --ink: #1d1d1f;
+      --muted: #5c5c66;
+      --accent: #0f766e;
+      --accent-strong: #0b5f59;
+      --card: #ffffff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top left, #fff8f0 0%, #f4f1eb 45%, #efe9df 100%);
+      color: var(--ink);
+      line-height: 1.75;
+    }
+
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(600px 280px at 12% 10%, rgba(15, 118, 110, 0.22), transparent 60%),
+        radial-gradient(500px 300px at 80% 18%, rgba(255, 180, 90, 0.18), transparent 60%),
+        radial-gradient(480px 320px at 70% 80%, rgba(56, 189, 248, 0.12), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #ffffff;
+      background: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 30px auto 60px;
+      padding: 30px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+
+    .post-header {
+      margin-bottom: 24px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      color: var(--accent-strong);
+    }
+
+    .post-content h1,
+    .post-content h2,
+    .post-content h3 {
+      font-family: "DM Serif Display", "Times New Roman", serif;
+      margin-top: 1.6em;
+    }
+
+    .post-content h1 {
+      font-size: clamp(2.2rem, 3vw, 3rem);
+    }
+
+    .post-content img {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      margin: 18px 0;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    }
+
+    .post-content blockquote {
+      margin: 18px 0;
+      padding: 16px 18px;
+      border-left: 4px solid var(--accent);
+      background: #f8f7f4;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .post-content a {
+      color: var(--accent);
+    }
+
+    .post-content a:hover {
+      color: var(--accent-strong);
+    }
+
+    .share-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .share-row button,
+    .share-row a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: none;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      background: #f8f7f4;
+      color: var(--ink);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .share-row button:hover,
+    .share-row a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.12);
+    }
+
+    .share-row .primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .share-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-bg" aria-hidden="true"></div>
+
+  <nav>
+    <a href="index.html#about">About</a>
+    <a href="index.html#research">Research</a>
+    <a href="index.html#publications">Publications</a>
+    <a href="blogs.html" class="active">Blog</a>
+    <a href="paperreviews.html">Paper Reviews</a>
+    <a href="projects.html">My Works</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+
+  <main>
+    <div class="post-header">
+      <a class="back-link" href="blogs.html">← Back to Blog</a>
+    </div>
+    <div id="post-content" class="post-content">Loading...</div>
+    <div class="share-row">
+      <button id="share-native" class="primary" type="button">Share</button>
+      <a id="share-x" href="#" target="_blank" rel="noopener">Post on X</a>
+      <a id="share-linkedin" href="#" target="_blank" rel="noopener">Share on LinkedIn</a>
+      <button id="copy-link" type="button">Copy link</button>
+    </div>
+    <div class="share-note" id="share-note"></div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('post') || 'abundance-jobs-specialists';
+    const postPath = `posts/${slug}.md`;
+    const shareNote = document.getElementById('share-note');
+    const shareX = document.getElementById('share-x');
+    const shareLinkedIn = document.getElementById('share-linkedin');
+    const shareNative = document.getElementById('share-native');
+    const copyLink = document.getElementById('copy-link');
+
+    fetch(postPath)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Post not found.');
+        }
+        return response.text();
+      })
+      .then((markdown) => {
+        const titleMatch = markdown.match(/^#\s+(.+)$/m);
+        const title = titleMatch ? titleMatch[1] : 'Blog Post';
+        if (titleMatch) {
+          document.title = `${titleMatch[1]} | Deepak Babu Piskala`;
+        }
+        document.getElementById('post-content').innerHTML = marked.parse(markdown);
+        const shareUrl = window.location.href;
+        shareX.href = `https://x.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(shareUrl)}`;
+        shareLinkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
+        shareNative.addEventListener('click', async () => {
+          if (navigator.share) {
+            try {
+              await navigator.share({ title, url: shareUrl });
+            } catch (error) {
+              shareNote.textContent = 'Share canceled.';
+            }
+          } else {
+            shareNote.textContent = 'Native sharing is not available on this device.';
+          }
+        });
+        copyLink.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(shareUrl);
+            shareNote.textContent = 'Link copied to clipboard.';
+          } catch (error) {
+            shareNote.textContent = 'Unable to copy link. Please copy from the address bar.';
+          }
+        });
+      })
+      .catch((error) => {
+        document.getElementById('post-content').innerHTML =
+          `<p>Unable to load this post. ${error.message}</p>`;
+      });
+  </script>
+</body>
+</html>

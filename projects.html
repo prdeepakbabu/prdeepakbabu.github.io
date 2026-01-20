@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>My Projects</title>
+  <title>My Works | Deepak Babu Piskala</title>
 
   <!-- Google Analytics (GA4) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XNWLG8DBTN"></script>
@@ -10,159 +10,237 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
-    // Replace with your own GA4 Measurement ID if needed
     gtag('config', 'G-XNWLG8DBTN');
   </script>
 
-  <!-- Example of a simple, minimal style consistent with a typical GitHub Pages layout -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    :root {
+      --bg: #f4f1eb;
+      --ink: #1d1d1f;
+      --muted: #5c5c66;
+      --accent: #0f766e;
+      --accent-strong: #0b5f59;
+      --card: #ffffff;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      --radius: 18px;
+      --radius-sm: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      margin: 2rem auto;
-      max-width: 1200px;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      padding: 0 1rem;
-      background-color: #fff;
-      color: #333;
+      margin: 0;
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #fff8f0 0%, #f4f1eb 45%, #efe9df 100%);
+      color: var(--ink);
+      line-height: 1.7;
     }
 
-    h1 {
-      margin-bottom: 2rem;
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(600px 280px at 12% 10%, rgba(15, 118, 110, 0.22), transparent 60%),
+        radial-gradient(500px 300px at 80% 18%, rgba(255, 180, 90, 0.18), transparent 60%),
+        radial-gradient(480px 320px at 70% 80%, rgba(56, 189, 248, 0.12), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
       text-align: center;
-      font-size: 2rem;
+      padding: 64px 20px 30px;
     }
 
-    /* Grid layout for the project tiles */
+    header h1 {
+      font-family: "DM Serif Display", "Times New Roman", serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      margin: 0;
+    }
+
+    header p {
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    nav a {
+      color: var(--ink);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: #ffffff;
+      background: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 20px 20px;
+    }
+
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
     }
 
-    /* Project tile styling */
     .tile {
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 1rem;
-      cursor: pointer; /* Indicate it's clickable */
-      transition: background-color 0.2s ease;
-      background-color: #fefefe;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: var(--radius);
+      padding: 20px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background-color: var(--card);
+      box-shadow: var(--shadow);
     }
 
     .tile:hover {
-      background-color: #f9f9f9;
+      transform: translateY(-4px);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.16);
     }
 
     .tile h2 {
       margin-top: 0;
       font-size: 1.2rem;
-      color: #000;
+      color: var(--ink);
     }
 
     .tile p {
       margin-bottom: 0;
-      color: #555;
-    }
-
-    /* Responsive: shrink columns on narrower screens */
-    @media (max-width: 900px) {
-      .grid-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .grid-container {
-        grid-template-columns: 1fr;
-      }
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
-  <h1>Projects</h1>
-  <div class="grid-container">
+  <div class="ambient-bg" aria-hidden="true"></div>
+  <header>
+    <h1>My Works</h1>
+    <p>Selected projects and systems built across AI, speech, and search.</p>
+  </header>
 
-    <!-- 1: Self-Healing Error Recovery System -->
-    <div class="tile"
-         onclick="gtag('event', 'tile_click', {
-           event_category: 'Projects',
-           event_label: 'Self-Healing Error Recovery System'
-         });">
-      <h2>Self-Healing Error Recovery System</h2>
-      <p>
-        Built continual-learning, run-time query rewriting systems that learn
-        from interaction data, enabling on-the-fly correction for long-tail
-        entities in speech recognition.
-      </p>
+  <nav>
+    <a href="index.html#about">About</a>
+    <a href="index.html#research">Research</a>
+    <a href="index.html#publications">Publications</a>
+    <a href="blogs.html">Blog</a>
+    <a href="paperreviews.html">Paper Reviews</a>
+    <a href="projects.html" class="active">My Works</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+
+  <main>
+    <div class="grid-container">
+
+      <!-- 1: Self-Healing Error Recovery System -->
+      <div class="tile"
+           onclick="gtag('event', 'tile_click', {
+             event_category: 'Projects',
+             event_label: 'Self-Healing Error Recovery System'
+           });">
+        <h2>Self-Healing Error Recovery System</h2>
+        <p>
+          Built continual-learning, run-time query rewriting systems that learn
+          from interaction data, enabling on-the-fly correction for long-tail
+          entities in speech recognition.
+        </p>
+      </div>
+
+      <!-- 2: Language Understanding -->
+      <div class="tile"
+           onclick="gtag('event', 'tile_click', {
+             event_category: 'Projects',
+             event_label: 'Language Understanding'
+           });">
+        <h2>Language Understanding</h2>
+        <p>
+          Created deep-learning and generative models to break down user questions
+          into component queries, enabling multi-domain reasoning.
+        </p>
+      </div>
+
+      <!-- 3: Data-Efficient Learning -->
+      <div class="tile"
+           onclick="gtag('event', 'tile_click', {
+             event_category: 'Projects',
+             event_label: 'Data Efficient Learning'
+           });">
+        <h2>Data-Efficient Learning</h2>
+        <p>
+          Scaled Alexa to use semi-supervised, weak-supervised, and active learning,
+          cutting the need for extensive human annotation when training LLMs.
+        </p>
+      </div>
+
+      <!-- 4: Search Relevance & RAG -->
+      <div class="tile"
+           onclick="gtag('event', 'tile_click', {
+             event_category: 'Projects',
+             event_label: 'Search Relevance and RAG'
+           });">
+        <h2>Search Relevance &amp; RAG</h2>
+        <p>
+          Developed query context prediction models that reduced search latency
+          by 1/8th, improved CTR by ~1% via relevance tuning, and built trending
+          search algorithms with anomaly detection.
+        </p>
+      </div>
+
+      <!-- 5: Contextual Advertising -->
+      <div class="tile"
+           onclick="gtag('event', 'tile_click', {
+             event_category: 'Projects',
+             event_label: 'Contextual Advertising'
+           });">
+        <h2>Contextual Advertising</h2>
+        <p>
+          Created ContX at Amazon Ads, an NLP-based recommendation engine leveraging
+          CPD pricing to show relevant product ads for any webpage.
+        </p>
+      </div>
+
+      <!-- 6: Spoken <-> Written Normalization Models -->
+      <div class="tile"
+           onclick="gtag('event', 'tile_click', {
+             event_category: 'Projects',
+             event_label: 'Spoken-Written Normalization Models'
+           });">
+        <h2>Spoken &#8594; Written / Written &#8594; Spoken</h2>
+        <p>
+          Created models that accurately convert spoken utterances to text and vice versa,
+          enabling robust transcription and natural-sounding TTS.
+        </p>
+      </div>
+
     </div>
-
-    <!-- 2: Language Understanding -->
-    <div class="tile"
-         onclick="gtag('event', 'tile_click', {
-           event_category: 'Projects',
-           event_label: 'Language Understanding'
-         });">
-      <h2>Language Understanding</h2>
-      <p>
-        Created deep-learning and generative models to break down user questions
-        into component queries, enabling multi-domain reasoning.
-      </p>
-    </div>
-
-    <!-- 3: Data-Efficient Learning -->
-    <div class="tile"
-         onclick="gtag('event', 'tile_click', {
-           event_category: 'Projects',
-           event_label: 'Data Efficient Learning'
-         });">
-      <h2>Data-Efficient Learning</h2>
-      <p>
-        Scaled Alexa to use semi-supervised, weak-supervised, and active learning,
-        cutting the need for extensive human annotation when training LLMs.
-      </p>
-    </div>
-
-    <!-- 4: Search Relevance & RAG -->
-    <div class="tile"
-         onclick="gtag('event', 'tile_click', {
-           event_category: 'Projects',
-           event_label: 'Search Relevance and RAG'
-         });">
-      <h2>Search Relevance &amp; RAG</h2>
-      <p>
-        Developed query context prediction models that reduced search latency
-        by 1/8th, improved CTR by ~1% via relevance tuning, and built trending
-        search algorithms with anomaly detection.
-      </p>
-    </div>
-
-    <!-- 5: Contextual Advertising -->
-    <div class="tile"
-         onclick="gtag('event', 'tile_click', {
-           event_category: 'Projects',
-           event_label: 'Contextual Advertising'
-         });">
-      <h2>Contextual Advertising</h2>
-      <p>
-        Created ContX at Amazon Ads, an NLP-based recommendation engine leveraging
-        CPD pricing to show relevant product ads for any webpage.
-      </p>
-    </div>
-
-    <!-- 6: Spoken <-> Written Normalization Models -->
-    <div class="tile"
-         onclick="gtag('event', 'tile_click', {
-           event_category: 'Projects',
-           event_label: 'Spoken-Written Normalization Models'
-         });">
-      <h2>Spoken &#8594; Written / Written &#8594; Spoken</h2>
-      <p>
-        Created models that accurately convert spoken utterances to text and vice versa,
-        enabling robust transcription and natural-sounding TTS.
-      </p>
-    </div>
-
-  </div> <!-- End .grid-container -->
+  </main>
 </body>
 </html>

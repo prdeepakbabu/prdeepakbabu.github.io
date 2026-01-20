@@ -1,0 +1,21 @@
+Title: Deepak Babu Piskala
+Description: Personal site featuring research, publications, and essays on AI, systems, and the future of work.
+Canonical: https://prdeepakbabu.github.io/
+
+Sections:
+- About: https://prdeepakbabu.github.io/index.html#about
+- Research: https://prdeepakbabu.github.io/index.html#research
+- Publications: https://prdeepakbabu.github.io/index.html#publications
+- Blog: https://prdeepakbabu.github.io/blogs.html
+
+Latest Posts:
+- Abundance, Jobs, and Specialists: The Missing Connection: https://prdeepakbabu.github.io/post.html?post=abundance-jobs-specialists
+
+Contact:
+- Email: mailto:prdeepak.babu@gmail.com
+- LinkedIn: https://www.linkedin.com/in/prdeepak
+- Google Scholar: https://scholar.google.com/citations?user=jBtBPqcAAAAJ&hl=en
+
+Social:
+- X: https://x.com/prdeepakbabu
+- Medium: https://medium.com/@prdeepak.babu
