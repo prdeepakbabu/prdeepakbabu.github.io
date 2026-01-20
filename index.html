@@ -11,362 +11,13 @@
       gtag('config', 'G-XNWLG8DBTN');
     </script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deepak Babu Piskala</title>
     <style>
-        :root {
-            --bg: #f4f1eb;
-            --ink: #1d1d1f;
-            --muted: #5c5c66;
-            --accent: #0f766e;
-            --accent-strong: #0b5f59;
-            --card: #ffffff;
-            --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
-            --radius: 18px;
-            --radius-sm: 12px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Manrope", "Segoe UI", sans-serif;
-            margin: 0;
-            padding: 0;
-            background: radial-gradient(circle at top left, #fff8f0 0%, #f4f1eb 45%, #efe9df 100%);
-            color: var(--ink);
-            line-height: 1.7;
-        }
-
-        .ambient-bg {
-            position: fixed;
-            inset: 0;
-            background:
-                radial-gradient(600px 280px at 12% 10%, rgba(15, 118, 110, 0.22), transparent 60%),
-                radial-gradient(500px 300px at 80% 18%, rgba(255, 180, 90, 0.18), transparent 60%),
-                radial-gradient(480px 320px at 70% 80%, rgba(56, 189, 248, 0.12), transparent 60%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        header {
-            position: relative;
-            z-index: 1;
-            padding: 72px 20px 48px;
-            text-align: center;
-        }
-
-        header h1 {
-            font-family: "DM Serif Display", "Times New Roman", serif;
-            font-size: clamp(2.6rem, 4vw, 4.2rem);
-            margin: 0;
-            letter-spacing: 0.5px;
-        }
-
-        header p {
-            margin: 12px 0 0;
-            font-size: 1.1rem;
-            color: var(--muted);
-        }
-
-        .profile-links {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 16px;
-        }
-
-        .profile-links a {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--ink);
-            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.12);
-            border: 1px solid rgba(15, 23, 42, 0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
-        }
-
-        .profile-links a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 30px rgba(15, 23, 42, 0.16);
-            color: var(--accent);
-        }
-
-        .profile-links svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 2;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-        }
-
-        nav a {
-            color: var(--ink);
-            text-decoration: none;
-            padding: 8px 14px;
-            border-radius: 999px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-
-        nav a:hover {
-            color: #ffffff;
-            background: var(--accent);
-            transform: translateY(-1px);
-        }
-
         section {
-            position: relative;
-            z-index: 1;
-            max-width: 980px;
-            margin: 28px auto;
-            padding: 28px;
-            background: var(--card);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(15, 23, 42, 0.06);
             animation: reveal 0.7s ease both;
-        }
-
-        section h2 {
-            font-family: "DM Serif Display", "Times New Roman", serif;
-            font-size: 2rem;
-            margin-top: 0;
-            margin-bottom: 12px;
-        }
-
-        section p {
-            color: var(--ink);
-        }
-
-        a {
-            color: var(--accent);
-        }
-
-        a:hover {
-            color: var(--accent-strong);
-        }
-
-        blockquote {
-            margin: 18px 0;
-            padding: 16px 18px;
-            border-left: 4px solid var(--accent);
-            background: #f8f7f4;
-            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-            color: var(--muted);
-            font-style: italic;
-        }
-
-        .profile-image {
-            width: 170px;
-            height: 170px;
-            border-radius: 24px;
-            object-fit: cover;
-            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.2);
-            float: left;
-            margin: 6px 24px 10px 0;
-        }
-
-        .three-column-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 8px 18px;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .three-column-list li {
-            padding: 6px 10px;
-            background: rgba(15, 118, 110, 0.08);
-            border-radius: 999px;
-            color: var(--accent-strong);
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-        }
-
-        .gallery img {
-            width: 100%;
-            border-radius: var(--radius-sm);
-        }
-
-        .book-list {
-            list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 16px;
-        }
-
-        .book-list li {
-            text-align: left;
-            background: #f8f7f4;
-            border-radius: var(--radius-sm);
-            padding: 12px;
-            border: 1px solid rgba(15, 23, 42, 0.06);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .book-list li:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
-        }
-
-        .book-list img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
-        }
-
-        .book-list a {
-            text-decoration: none;
-            color: var(--ink);
-            font-weight: 600;
-            display: grid;
-            gap: 10px;
-        }
-
-        .book-list a:hover span {
-            color: var(--accent);
-        }
-
-        .post-preview {
-            background: #f8f7f4;
-            padding: 18px;
-            border-radius: var(--radius-sm);
-            border: 1px solid rgba(15, 23, 42, 0.08);
-            display: grid;
-            gap: 8px;
-        }
-
-        .post-preview .btn {
-            justify-self: start;
-        }
-
-        .post-preview h3 {
-            margin: 0;
-            font-size: 1.4rem;
-        }
-
-        .post-preview h3 a {
-            color: var(--ink);
-            text-decoration: none;
-        }
-
-        .post-preview h3 a:hover {
-            color: var(--accent);
-        }
-
-        .post-meta {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--muted);
-        }
-
-        .tweets-section iframe {
-            border: none;
-            width: 100%;
-            height: 600px;
-        }
-
-        .subscribe-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-            padding: 10px 16px;
-            background: var(--accent);
-            color: #ffffff;
-            border-radius: 999px;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 10px 20px rgba(15, 118, 110, 0.25);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .subscribe-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 30px rgba(15, 118, 110, 0.28);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            border-radius: 999px;
-            font-weight: 700;
-            text-decoration: none;
-            background: var(--accent);
-            color: #ffffff;
-            border: none;
-            box-shadow: 0 10px 20px rgba(15, 118, 110, 0.22);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 30px rgba(15, 118, 110, 0.28);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid rgba(15, 118, 110, 0.4);
-            box-shadow: none;
-        }
-
-        .btn-outline:hover {
-            background: rgba(15, 118, 110, 0.08);
-            box-shadow: none;
-        }
-
-        .btn-compact {
-            padding: 8px 14px;
-            font-size: 0.95rem;
-        }
-
-        footer {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 30px 16px 40px;
-            color: var(--muted);
-        }
-
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
         }
 
         @keyframes reveal {
@@ -377,18 +28,6 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 720px) {
-            header {
-                padding: 56px 20px 32px;
-            }
-
-            .profile-image {
-                float: none;
-                display: block;
-                margin: 0 auto 16px;
             }
         }
     </style>
@@ -407,6 +46,11 @@
             <a href="https://www.linkedin.com/in/prdeepak" target="_blank" rel="noopener" aria-label="LinkedIn">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M4.98 3.5C4.98 4.88 3.9 6 2.5 6S0 4.88 0 3.5 1.08 1 2.48 1s2.5 1.12 2.5 2.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.05 0 5.98 3.32 5.98 7.64V24h-5V15.4c0-2.05-.04-4.69-2.86-4.69-2.87 0-3.31 2.24-3.31 4.54V24h-5V8z"/>
+                </svg>
+            </a>
+            <a href="https://github.com/prdeepakbabu" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.02-2-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.35-1.78-1.35-1.78-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.25 1.86 1.25 1.08 1.85 2.84 1.32 3.54 1.01.11-.78.42-1.32.76-1.62-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4 1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.47 5.92.43.37.82 1.1.82 2.22 0 1.6-.01 2.9-.01 3.29 0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
                 </svg>
             </a>
             <a href="mailto:prdeepak.babu@gmail.com" aria-label="Email">
@@ -469,6 +113,7 @@
         <ul>
             <li>Recipient of Gold Medal and Certificate of Excellence for securing a university rank at Visvesvaraya Technological University, spanning 130 engineering colleges.</li>
             <li>Holds multiple Speech and ASR Patents, including innovations in voice-to-web search bridging and automated ASR transcription using LLM agents (Theory of Mind).</li>
+            <li>Fellow at SCRS (Soft Computing Research Society).</li>
             <li>Published Research Papers on ASR error correction and voice-to-web search bridging in Amazon’s machine learning conferences.</li>
             <li>Elevated to IEEE Senior Member (2024) and reviews for Amazon Research Awards (ARA), NeurIPS, and AMLC in data science, speech, and NLP domains.</li>
             <li>Recognized with Corporate Awards for contributions to high-visibility projects at InMobi and Mu Sigma, as well as innovation awards like the Clear-Piece Puzzle and Inventor Award.</li>
@@ -542,7 +187,7 @@
             <a class="btn btn-compact" href="post.html?post=abundance-jobs-specialists">Read</a>
         </div>
         <p style="margin-top: 16px;"><a href="blogs.html">View all posts</a></p>
-        <p><a class="btn btn-outline btn-compact" href="https://medium.com/@prdeepakbabu" target="_blank" rel="noopener">Medium</a></p>
+        <p><a class="btn btn-outline btn-compact" href="https://medium.com/@prdeepak.babu" target="_blank" rel="noopener">Medium</a></p>
     </section>
 
 

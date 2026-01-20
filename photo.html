@@ -1,5 +1,5 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNWLG8DBTN"></script>
@@ -10,7 +10,11 @@
 
 	  gtag('config', 'G-XNWLG8DBTN');
 	</script>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>My Photos</title>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="styles.css">
 		<style>
 .photo-gallery {
     display: flex;
@@ -41,6 +45,25 @@
 </style>
 	</head>
 	<body>
+<div class="ambient-bg" aria-hidden="true"></div>
+<header>
+	<h1>Photography</h1>
+	<p>Landscape, travel, and experiments with light.</p>
+</header>
+
+<nav>
+	<a href="index.html#about">About</a>
+	<a href="index.html#research">Research</a>
+	<a href="index.html#publications">Publications</a>
+	<a href="blogs.html">Blog</a>
+	<a href="paperreviews.html">Paper Reviews</a>
+	<a href="projects.html">My Works</a>
+	<a href="photo.html" class="active">Photos</a>
+	<a href="index.html#contact">Contact</a>
+</nav>
+
+<main>
+<section class="card">
 <div class="photo-gallery">
     <div class="photo">
 	    <a href="photos/IMG_4790.jpg" target="_blank"><img src="photos/IMG_4790.jpg" alt="Bellevue Downtown during sunset."></a>
@@ -284,5 +307,7 @@
 	</div>
     <!-- Add more photos as needed -->
 </div>
+</section>
+</main>
 	</body>
 </html>
