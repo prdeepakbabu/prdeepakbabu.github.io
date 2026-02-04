@@ -187,7 +187,7 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const slug = params.get('post') || 'abundance-jobs-specialists';
-    const postPath = `posts/${slug}.md`;
+    const postPath = `posts/${encodeURIComponent(slug)}.md`;
     const shareNote = document.getElementById('share-note');
     const shareX = document.getElementById('share-x');
     const shareLinkedIn = document.getElementById('share-linkedin');
@@ -448,8 +448,16 @@
         });
       })
       .catch((error) => {
+        let extraHelp = '';
+        if (error && String(error.message).toLowerCase().includes('post not found')) {
+          extraHelp =
+            '<p class="share-note">' +
+            'If you are viewing this on GitHub Pages and the post exists in the repo, add an empty <code>.nojekyll</code> file at the site root so <code>/posts/*.md</code> is served as static content.' +
+            '</p>';
+        }
         document.getElementById('post-content').innerHTML =
-          `<p>Unable to load this post. ${error.message}</p>`;
+          `<p>Unable to load this post. ${escapeHtml(error.message || String(error))}</p>` +
+          extraHelp;
       });
     }
   </script>
