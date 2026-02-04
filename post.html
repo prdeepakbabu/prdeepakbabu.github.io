@@ -12,74 +12,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog Post | Deepak Babu Piskala</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <style>
-    :root {
-      --bg: #f4f1eb;
-      --ink: #1d1d1f;
-      --muted: #5c5c66;
-      --accent: #0f766e;
-      --accent-strong: #0b5f59;
-      --card: #ffffff;
-      --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
-      --radius: 18px;
-      --radius-sm: 12px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: "Manrope", "Segoe UI", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at top left, #fff8f0 0%, #f4f1eb 45%, #efe9df 100%);
-      color: var(--ink);
-      line-height: 1.75;
-    }
-
-    .ambient-bg {
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(600px 280px at 12% 10%, rgba(15, 118, 110, 0.22), transparent 60%),
-        radial-gradient(500px 300px at 80% 18%, rgba(255, 180, 90, 0.18), transparent 60%),
-        radial-gradient(480px 320px at 70% 80%, rgba(56, 189, 248, 0.12), transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-    }
-
-    nav a {
-      color: var(--ink);
-      text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    nav a:hover,
-    nav a.active {
-      color: #ffffff;
-      background: var(--accent);
-      transform: translateY(-1px);
-    }
-
     main {
       position: relative;
       z-index: 1;
@@ -89,7 +23,7 @@
       background: var(--card);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      border: 1px solid rgba(15, 23, 42, 0.06);
+      border: 3px solid var(--border);
     }
 
     .post-header {
@@ -100,19 +34,25 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--accent);
+      color: var(--ink);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 950;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      border: 2px solid var(--border);
+      padding: 8px 10px;
+      background: var(--card);
+      box-shadow: var(--shadow-sm);
     }
 
     .back-link:hover {
-      color: var(--accent-strong);
+      background: var(--accent);
     }
 
     .post-content h1,
     .post-content h2,
     .post-content h3 {
-      font-family: "DM Serif Display", "Times New Roman", serif;
+      font-family: var(--font-display);
       margin-top: 1.6em;
     }
 
@@ -124,25 +64,26 @@
       width: 100%;
       border-radius: var(--radius-sm);
       margin: 18px 0;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+      border: 2px solid var(--border);
+      box-shadow: var(--shadow);
     }
 
     .post-content blockquote {
       margin: 18px 0;
       padding: 16px 18px;
-      border-left: 4px solid var(--accent);
-      background: #f8f7f4;
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      color: var(--muted);
-      font-style: italic;
+      background: var(--subtle);
+      border: 3px solid var(--border);
+      border-radius: 0;
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
     }
 
     .post-content a {
-      color: var(--accent);
+      color: var(--ink);
     }
 
     .post-content a:hover {
-      color: var(--accent-strong);
+      background: var(--accent);
     }
 
     .share-row {
@@ -151,7 +92,7 @@
       gap: 10px;
       margin-top: 28px;
       padding-top: 18px;
-      border-top: 1px solid rgba(15, 23, 42, 0.08);
+      border-top: 3px solid var(--border);
     }
 
     .share-row button,
@@ -160,25 +101,28 @@
       align-items: center;
       gap: 8px;
       padding: 10px 16px;
-      border-radius: 999px;
-      border: none;
-      font-weight: 700;
+      border-radius: 0;
+      border: 3px solid var(--border);
+      font-weight: 950;
       text-decoration: none;
       cursor: pointer;
-      background: #f8f7f4;
+      background: var(--card);
       color: var(--ink);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: var(--shadow-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      transition: transform 0.08s ease;
     }
 
     .share-row button:hover,
     .share-row a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 25px rgba(15, 23, 42, 0.12);
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--border);
     }
 
     .share-row .primary {
       background: var(--accent);
-      color: #ffffff;
+      color: var(--ink);
     }
 
     .share-note {
@@ -186,19 +130,43 @@
       color: var(--muted);
       font-size: 0.95rem;
     }
+
+    .canonical-note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .canonical-note a {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .canonical-note a:hover {
+      background: var(--accent);
+    }
+
+    .canonical-footer {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 3px solid var(--border);
+    }
   </style>
 </head>
 <body>
   <div class="ambient-bg" aria-hidden="true"></div>
 
   <nav>
-    <a href="index.html#about">About</a>
-    <a href="index.html#research">Research</a>
-    <a href="index.html#publications">Publications</a>
+    <a href="index.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="publications.html">Publications</a>
+    <a href="awards.html">Awards</a>
     <a href="blogs.html" class="active">Blog</a>
     <a href="paperreviews.html">Paper Reviews</a>
     <a href="projects.html">My Works</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <main>
@@ -215,7 +183,7 @@
     <div class="share-note" id="share-note"></div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="scripts/marked.min.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
     const slug = params.get('post') || 'abundance-jobs-specialists';
@@ -226,6 +194,193 @@
     const shareNative = document.getElementById('share-native');
     const copyLink = document.getElementById('copy-link');
 
+    function escapeHtml(str) {
+      return String(str)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function parseFrontMatter(raw) {
+      const trimmed = raw.replace(/^\uFEFF/, '');
+      if (!trimmed.startsWith('---\n')) {
+        return { data: null, body: raw };
+      }
+
+      const endIdx = trimmed.indexOf('\n---\n', 4);
+      if (endIdx === -1) {
+        return { data: null, body: raw };
+      }
+
+      const fmBlock = trimmed.slice(4, endIdx);
+      const body = trimmed.slice(endIdx + '\n---\n'.length);
+      const data = {};
+
+      for (const line of fmBlock.split('\n')) {
+        const trimmedLine = line.trim();
+        if (!trimmedLine || trimmedLine.startsWith('#')) continue;
+        const colon = trimmedLine.indexOf(':');
+        if (colon === -1) continue;
+        const key = trimmedLine.slice(0, colon).trim();
+        let value = trimmedLine.slice(colon + 1).trim();
+        if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+          value = value.slice(1, -1);
+        }
+        data[key] = value;
+      }
+
+      return { data, body };
+    }
+
+    function formatIsoDate(iso) {
+      if (!iso) return '';
+      const m = String(iso).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (!m) return iso;
+      const year = Number(m[1]);
+      const month = Number(m[2]);
+      const day = Number(m[3]);
+      const d = new Date(year, month - 1, day);
+      return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function stripLeadingH1(markdown) {
+      const m = markdown.match(/^\s*#\s+.+\n/);
+      if (m) {
+        return markdown.slice(m[0].length);
+      }
+      return markdown;
+    }
+
+    function computeSuggestedCitationYear(dateIso) {
+      const m = String(dateIso || '').match(/^(\d{4})-\d{2}-\d{2}$/);
+      if (m) return m[1];
+      return String(new Date().getFullYear());
+    }
+
+    function computeSiteCanonicalUrl({ data, slug }) {
+      if (data && typeof data.siteCanonical === 'string' && data.siteCanonical.trim()) {
+        return data.siteCanonical.trim();
+      }
+      return `https://prdeepakbabu.github.io/post.html?post=${encodeURIComponent(slug)}`;
+    }
+
+    function computeBibTeXShortKey({ data, slug }) {
+      const raw = (data && typeof data.citeKey === 'string' && data.citeKey.trim())
+        ? data.citeKey.trim()
+        : slug;
+      const tokens = String(raw)
+        .toLowerCase()
+        .split(/[^a-z0-9]+/g)
+        .filter(Boolean);
+      const combined = tokens.slice(0, 2).join('') || 'blog';
+      return combined.replace(/[^a-z0-9]/g, '') || 'blog';
+    }
+
+    function ensureCanonicalLink(url) {
+      if (!url) return;
+      const head = document.head || document.getElementsByTagName('head')[0];
+      if (!head) return;
+      let link = head.querySelector('link[rel="canonical"]');
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', 'canonical');
+        head.appendChild(link);
+      }
+      link.setAttribute('href', url);
+    }
+
+    function appendSuggestedCitation({ container, slug, data, title }) {
+      if (!container) return;
+      const year = computeSuggestedCitationYear(data?.date);
+      const siteCanonicalUrl = computeSiteCanonicalUrl({ data, slug });
+      const shortKey = computeBibTeXShortKey({ data, slug });
+      const bibKey = `piskala${year}${shortKey}`;
+      const authorFull = 'Piskala, Deepak Babu';
+      const authorShort = 'D. B. Piskala';
+
+      const section = document.createElement('section');
+      section.className = 'suggested-citation';
+
+      function makeCitationLines({ authorLine, showBlogName }) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'citation-variant';
+
+        const label = document.createElement('div');
+        label.className = 'citation-label';
+        label.textContent = 'Suggested citation';
+        wrapper.appendChild(label);
+
+        const body = document.createElement('div');
+        body.className = 'citation-body';
+
+        const line1 = document.createElement('div');
+        line1.textContent = showBlogName
+          ? `${authorLine}. ${title}. Deepak Babu Blog.`
+          : `${authorLine}. ${title}.`;
+        body.appendChild(line1);
+
+        const line2 = document.createElement('div');
+        const link = document.createElement('a');
+        link.href = siteCanonicalUrl;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = siteCanonicalUrl;
+        line2.appendChild(link);
+        body.appendChild(line2);
+
+        wrapper.appendChild(body);
+        return wrapper;
+      }
+
+      // Recommended (default)
+      const recommendedTitle = document.createElement('h3');
+      recommendedTitle.textContent = 'Recommended (default)';
+      section.appendChild(recommendedTitle);
+      section.appendChild(makeCitationLines({ authorLine: `${authorFull} (${year})`, showBlogName: false }));
+
+      // Slightly more academic
+      const academicTitle = document.createElement('h3');
+      academicTitle.textContent = 'Slightly more academic';
+      section.appendChild(academicTitle);
+      section.appendChild(makeCitationLines({ authorLine: `${authorShort} (${year})`, showBlogName: true }));
+
+      // With BibTeX
+      const bibTitle = document.createElement('h3');
+      bibTitle.textContent = 'With BibTeX';
+      section.appendChild(bibTitle);
+      section.appendChild(makeCitationLines({ authorLine: `${authorFull} (${year})`, showBlogName: false }));
+
+      const bibLabel = document.createElement('div');
+      bibLabel.className = 'citation-label';
+      bibLabel.textContent = 'BibTeX';
+      section.appendChild(bibLabel);
+
+      const pre = document.createElement('pre');
+      pre.className = 'citation-bibtex';
+      const code = document.createElement('code');
+      code.className = 'language-bibtex';
+      code.textContent =
+	`@article{${bibKey},
+	  title  = {${title}},
+	  author = {Piskala, Deepak Babu},
+	  year   = {${year}},
+	  url    = {${siteCanonicalUrl}}
+	}`;
+      pre.appendChild(code);
+      section.appendChild(pre);
+
+      container.appendChild(section);
+    }
+
+    if (window.location.protocol === 'file:') {
+      const friendlyUrl = `http://localhost:8020/post.html?post=${encodeURIComponent(slug)}`;
+      document.getElementById('post-content').innerHTML =
+        `<p>This blog post can’t load when opened via <code>file://</code> because the browser blocks fetching <code>${postPath}</code>.</p>` +
+        `<p>Run <code>python3 -m http.server 8020</code> from the repo root and open: <a href="${friendlyUrl}">${friendlyUrl}</a>.</p>` +
+        `<p>(It will work normally on GitHub Pages.)</p>`;
+    } else {
     fetch(postPath)
       .then((response) => {
         if (!response.ok) {
@@ -234,12 +389,41 @@
         return response.text();
       })
       .then((markdown) => {
+        const parsed = parseFrontMatter(markdown);
+        const data = parsed.data || {};
+        const bodyMarkdown = parsed.data ? stripLeadingH1(parsed.body) : markdown;
+
         const titleMatch = markdown.match(/^#\s+(.+)$/m);
-        const title = titleMatch ? titleMatch[1] : 'Blog Post';
-        if (titleMatch) {
-          document.title = `${titleMatch[1]} | Deepak Babu Piskala`;
-        }
-        document.getElementById('post-content').innerHTML = marked.parse(markdown);
+        const title = data.title || (titleMatch ? titleMatch[1] : 'Blog Post');
+        document.title = `${title} | Deepak Babu Piskala`;
+
+        const dateLabel = data.date ? formatIsoDate(data.date) : '';
+        const coverImg = data.coverImage
+          ? `<img class="post-cover" src="${escapeHtml(data.coverImage)}" alt="${escapeHtml(title)}">`
+          : '';
+        const canonicalNote = (data.source === 'wordpress' && data.canonical)
+          ? `<p class="canonical-note">Originally published on WordPress: <a href="${escapeHtml(data.canonical)}" target="_blank" rel="noopener noreferrer">${escapeHtml(data.canonical)}</a></p>`
+          : '';
+        const canonicalFooter = (data.source === 'wordpress' && data.canonical)
+          ? `<div class="canonical-footer"><p class="canonical-note">Original post: <a href="${escapeHtml(data.canonical)}" target="_blank" rel="noopener noreferrer">${escapeHtml(data.canonical)}</a></p></div>`
+          : '';
+        const headerHtml = (data.title || data.date)
+          ? `<div class="post-frontmatter">
+              <h1 class="post-title">${escapeHtml(title)}</h1>
+              ${dateLabel ? `<div class="post-date">${escapeHtml(dateLabel)}</div>` : ''}
+              ${canonicalNote}
+            </div>`
+          : '';
+
+        const markdownHtml = marked.parse(bodyMarkdown);
+        const container = document.getElementById('post-content');
+        container.innerHTML = `${headerHtml}${coverImg}<div class="post-markdown">${markdownHtml}</div>${canonicalFooter}`;
+        const siteCanonicalUrl = computeSiteCanonicalUrl({ data, slug });
+        ensureCanonicalLink(siteCanonicalUrl);
+        appendSuggestedCitation({ container, slug, data, title });
+
+        // If the post has a cover image, we show it once above the body.
+        // We intentionally do not inject an inline image to avoid duplication.
         const shareUrl = window.location.href;
         shareX.href = `https://x.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(shareUrl)}`;
         shareLinkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
@@ -267,6 +451,7 @@
         document.getElementById('post-content').innerHTML =
           `<p>Unable to load this post. ${error.message}</p>`;
       });
+    }
   </script>
 </body>
 </html>

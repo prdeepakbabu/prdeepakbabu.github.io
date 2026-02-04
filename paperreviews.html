@@ -12,91 +12,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Paper Reviews | Deepak Babu Piskala</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 
   <style>
-    :root {
-      --bg: #f4f1eb;
-      --ink: #1d1d1f;
-      --muted: #5c5c66;
-      --accent: #0f766e;
-      --accent-strong: #0b5f59;
-      --card: #ffffff;
-      --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
-      --radius: 18px;
-      --radius-sm: 12px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: "Manrope", "Segoe UI", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at top left, #fff8f0 0%, #f4f1eb 45%, #efe9df 100%);
-      color: var(--ink);
-      line-height: 1.7;
-    }
-
-    .ambient-bg {
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(600px 280px at 12% 10%, rgba(15, 118, 110, 0.22), transparent 60%),
-        radial-gradient(500px 300px at 80% 18%, rgba(255, 180, 90, 0.18), transparent 60%),
-        radial-gradient(480px 320px at 70% 80%, rgba(56, 189, 248, 0.12), transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
     header {
-      position: relative;
-      z-index: 1;
-      padding: 64px 20px 30px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-family: "DM Serif Display", "Times New Roman", serif;
-      font-size: clamp(2.4rem, 4vw, 3.6rem);
-      margin: 0;
-    }
-
-    header p {
-      margin: 12px 0 0;
-      color: var(--muted);
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-    }
-
-    nav a {
-      color: var(--ink);
-      text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    nav a:hover,
-    nav a.active {
-      color: #ffffff;
-      background: var(--accent);
-      transform: translateY(-1px);
+      padding: calc(var(--banner-h) + var(--banner-gap)) 20px 18px;
     }
 
     main {
@@ -105,14 +25,6 @@
       max-width: 1200px;
       margin: 0 auto 60px;
       padding: 0 20px 20px;
-    }
-
-    .card {
-      background: var(--card);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(15, 23, 42, 0.06);
     }
 
     .filter-section {
@@ -131,10 +43,10 @@
     select,
     input[type="text"] {
       padding: 0.6em 0.8em;
-      border: 1px solid rgba(15, 23, 42, 0.15);
-      border-radius: 999px;
+      border: 2px solid var(--border);
+      border-radius: 0;
       font-size: 1em;
-      background: #fff;
+      background: var(--card-solid);
       color: var(--ink);
     }
 
@@ -144,37 +56,31 @@
       margin-top: 1em;
       overflow: hidden;
       border-radius: var(--radius-sm);
+      border: 3px solid var(--border);
+      box-shadow: var(--shadow);
     }
 
     th,
     td {
-      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      border-bottom: 2px solid var(--border);
       padding: 0.9em;
       text-align: left;
       vertical-align: top;
     }
 
     th {
-      background-color: #f4f1eb;
+      background-color: var(--accent);
       font-weight: 700;
       color: var(--ink);
       position: sticky;
       top: 0;
       z-index: 1;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
     }
 
     tbody tr:hover {
-      background: rgba(15, 118, 110, 0.06);
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    a:hover {
-      color: var(--accent-strong);
+      background: var(--subtle);
     }
   </style>
 </head>
@@ -187,13 +93,15 @@
   </header>
 
   <nav>
-    <a href="index.html#about">About</a>
-    <a href="index.html#research">Research</a>
-    <a href="index.html#publications">Publications</a>
+    <a href="index.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="publications.html">Publications</a>
+    <a href="awards.html">Awards</a>
     <a href="blogs.html">Blog</a>
     <a href="paperreviews.html" class="active">Paper Reviews</a>
     <a href="projects.html">My Works</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <main>

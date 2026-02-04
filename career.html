@@ -13,11 +13,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Career Timeline</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
   header {
-    padding: 64px 20px 30px;
+    padding: calc(var(--banner-h) + var(--banner-gap)) 20px 18px;
   }
 
   main {
@@ -34,7 +33,7 @@
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     background: var(--card);
-    border: 1px solid rgba(15, 23, 42, 0.06);
+    border: 3px solid var(--border);
   }
 
   figure {
@@ -55,15 +54,17 @@
 </header>
 
 <nav>
-  <a href="index.html#about">About</a>
-  <a href="index.html#research">Research</a>
-  <a href="index.html#publications">Publications</a>
-  <a href="blogs.html">Blog</a>
-  <a href="paperreviews.html">Paper Reviews</a>
-  <a href="projects.html">My Works</a>
-  <a href="career.html" class="active">Career</a>
-  <a href="index.html#contact">Contact</a>
-</nav>
+    <a href="index.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="publications.html">Publications</a>
+    <a href="awards.html">Awards</a>
+    <a href="blogs.html">Blog</a>
+    <a href="paperreviews.html">Paper Reviews</a>
+    <a href="projects.html">My Works</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
+      <a href="career.html" class="active">Career</a>
+  </nav>
 
 <main>
 <div class="timeline-block">

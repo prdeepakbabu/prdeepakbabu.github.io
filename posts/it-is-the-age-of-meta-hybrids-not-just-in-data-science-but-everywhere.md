@@ -1,0 +1,10 @@
+---
+title: "It is the age of meta & hybrids, not just in data science but everywhere!"
+date: "2014-01-24"
+canonical: "https://prdeepakbabu.wordpress.com/2014/01/24/it-is-the-age-of-meta-hybrids-not-just-in-data-science-but-everywhere/"
+source: "wordpress"
+---
+<p>I have spent most of my life into data and its applications to problems. Now, when i look at some patterns in algorithms we use in analyzing data, one thing that emerges is increased use of meta-algorithms. Boosting techniques(like AdaBoost) is one such meta-algorithm which uses multiple weak learners(classifiers) to improve prediction accuracy. Random forests,a very prominent <span id="more-6921"></span>supervised learning technique in ML world, similarly is an ensemble learning method for classification &amp; Regression that operate by constructing multitude of decision trees at training time, outputting the class that is the mode of the classes output by individual trees. It is no more a single-model-fits-all, but rather multiple models which works together(read optimized) for highest prediction accuracy or alternately least error rates<br />
+And then i was looking into trends in search, there is meta-search engines engines &#8211; services like IxQuick. Similarly for torrents, there is a meta-torrent which is basically an aggregate of various torrents search engines. For instance, torrentz is a meta-search engine, as it sends user queries to multiple other search engines (like pirate bay, publicHD,etc) and aggregates results from these torrent search engines based on its own ranking. Its great because i don&#8217;t have to go to 5 different torrent providers looking for a movie, instead submit it through meta-torrent and let it handle.<br />
+It looks like, this is turning out to be a design concept, hoping to see more interesting applications of this into wide array of domains.</p>
+[contact-form]

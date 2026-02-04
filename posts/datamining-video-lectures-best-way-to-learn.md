@@ -1,0 +1,16 @@
+---
+title: "Datamining Video Lectures – Best way to learn"
+date: "2010-03-03"
+canonical: "https://prdeepakbabu.wordpress.com/2010/03/03/datamining-video-lectures-best-way-to-learn/"
+source: "wordpress"
+---
+<p>  Do you find analytics/data mining a difficult topic to understand and learn? To a certain extent true if you were to use books as the source. Friends, i found these two very valuable and high quality source for learning topics related to data mining and above all these are free.</p>
+<p>  <strong>(i) From David Mease who teaches DM at Google</strong>:You can access approximately 11 hours of video(11 parts) on the semester topic &#8220;Statistical Aspects of Data Mining&#8221; here <a href="http://video.google.com/videosearch?q=mease+stats+202&amp;sitesearch">http://video.google.com/videosearch?q=mease+stats+202&amp;sitesearch</a>=# and also you can get pdf version of lecture slides and assignments, try to solve them and master them. I guess the author has also some blogs to discuss problems in this topic. The best thing about this video tutorial is that David has demonstrated implementation of each of these techniques using open source data mining tool &#8211; R (short for Revolution).</p>
+<p>Videos: <a href="http://video.google.com/videosearch?q=mease+stats+202&amp;sitesearch">http://video.google.com/videosearch?q=mease+stats+202&amp;sitesearch</a>=#<br />
+Lecture notes -pdf : <a href="http://www.stats202.com/original_index.html">http://www.stats202.com/original_index.html</a><br />
+Course Home: <a href="http://www.stats202.com/">http://www.stats202.com/</a></p>
+<p><strong>  (ii)From Stanford University as Andrew Ng. teaches &#8220;Machine learning&#8221;</strong>: This is another very usefull video course. The semester course is covered in 20 parts and hence approx. 20 hours of quality knowledge. The best thing about Andrew is he teaches the mathematics so good, you start visualizing equations and that is one good way to learn maths. Its not just about maths, he also demonstrates the video demos on Machine learning projects implemented by his students like autonomous car driving, autonomous flying, converting a picture to a 3-d experience,etc&#8230;that way you dont get bored anytime during the lecture.I loved it a lot.Hope you enjoy it too.</p>
+<p>videos: <a href="http://www.youtube.com/view_play_list?p=A89DCFA6ADACE599&amp;search_query=stanford+%2B+machine+learning">http://www.youtube.com/view_play_list?p=A89DCFA6ADACE599&amp;search_query=stanford+%2B+machine+learning</a><br />
+Lecture Notes:  <a href="http://www.stanford.edu/class/cs229/materials.html">http://www.stanford.edu/class/cs229/materials.html</a><br />
+Course Home: <a href="http://cs229.stanford.edu/">http://cs229.stanford.edu/</a></p>
+<p>   I am sure you will find more content than what i have mentioned here. Feel free to explore the course page. I personally believe anything can be learnt best only by first learning its applications,which in process gets you motivated and the rest is assured. I would like to thank Andrew Ng. and David Mease for sharing their expertise. A good initiative by stanford. Expecting more from top educational schools.</p>

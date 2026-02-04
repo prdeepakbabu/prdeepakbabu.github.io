@@ -12,92 +12,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog | Deepak Babu Piskala</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <style>
-    :root {
-      --bg: #f4f1eb;
-      --ink: #1d1d1f;
-      --muted: #5c5c66;
-      --accent: #0f766e;
-      --accent-strong: #0b5f59;
-      --card: #ffffff;
-      --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
-      --radius: 18px;
-      --radius-sm: 12px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: "Manrope", "Segoe UI", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at top left, #fff8f0 0%, #f4f1eb 45%, #efe9df 100%);
-      color: var(--ink);
-      line-height: 1.7;
-    }
-
-    .ambient-bg {
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(600px 280px at 12% 10%, rgba(15, 118, 110, 0.22), transparent 60%),
-        radial-gradient(500px 300px at 80% 18%, rgba(255, 180, 90, 0.18), transparent 60%),
-        radial-gradient(480px 320px at 70% 80%, rgba(56, 189, 248, 0.12), transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    header {
-      position: relative;
-      z-index: 1;
-      padding: 64px 20px 30px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-family: "DM Serif Display", "Times New Roman", serif;
-      font-size: clamp(2.4rem, 4vw, 3.6rem);
-      margin: 0;
-    }
-
-    header p {
-      margin: 12px 0 0;
-      color: var(--muted);
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-    }
-
-    nav a {
-      color: var(--ink);
-      text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    nav a:hover,
-    nav a.active {
-      color: #ffffff;
-      background: var(--accent);
-      transform: translateY(-1px);
-    }
-
     main {
       position: relative;
       z-index: 1;
@@ -111,7 +27,7 @@
       border-radius: var(--radius);
       padding: 24px;
       box-shadow: var(--shadow);
-      border: 1px solid rgba(15, 23, 42, 0.06);
+      border: 3px solid var(--border);
       margin-bottom: 24px;
     }
 
@@ -126,15 +42,16 @@
       border-radius: var(--radius);
       padding: 20px;
       box-shadow: var(--shadow);
-      border: 1px solid rgba(15, 23, 42, 0.06);
-      display: grid;
+      border: 3px solid var(--border);
+      display: flex;
+      flex-direction: column;
       gap: 12px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .post-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.16);
+      transform: translate(2px, 2px);
+      box-shadow: 6px 6px 0 var(--border);
     }
 
     .post-date {
@@ -156,7 +73,8 @@
     }
 
     .post-title a:hover {
-      color: var(--accent);
+      color: var(--ink);
+      background: var(--accent);
     }
 
     .post-excerpt {
@@ -168,42 +86,64 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin-top: auto;
+      padding-top: 12px;
     }
 
     .post-tag {
       padding: 6px 12px;
-      background: rgba(15, 118, 110, 0.12);
-      color: var(--accent-strong);
-      border-radius: 999px;
-      font-weight: 600;
+      background: var(--card);
+      color: var(--ink);
+      border-radius: 0;
+      font-weight: 900;
       font-size: 0.85rem;
+      border: 2px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .post-tag-link {
+      text-decoration: none;
+    }
+
+    .post-tag-link:hover {
+      background: var(--accent);
     }
 
     .post-link {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: #ffffff;
+      color: var(--ink);
       background: var(--accent);
       padding: 10px 16px;
-      border-radius: 999px;
+      border-radius: 0;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 950;
       width: fit-content;
+      margin-top: 12px;
+      border: 3px solid var(--border);
+      box-shadow: 5px 5px 0 var(--border);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      transition: transform 0.08s ease;
     }
 
     .post-link:hover {
-      background: var(--accent-strong);
+      background: var(--accent);
+      transform: translate(2px, 2px);
+      box-shadow: 3px 3px 0 var(--border);
     }
 
     .medium-note a {
-      color: var(--accent);
+      color: var(--ink);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 800;
     }
 
     .medium-note a:hover {
-      text-decoration: underline;
+      background: var(--accent);
     }
   </style>
 </head>
@@ -215,42 +155,642 @@
   </header>
 
   <nav>
-    <a href="index.html#about">About</a>
-    <a href="index.html#research">Research</a>
-    <a href="index.html#publications">Publications</a>
+    <a href="index.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="publications.html">Publications</a>
+    <a href="awards.html">Awards</a>
     <a href="blogs.html" class="active">Blog</a>
     <a href="paperreviews.html">Paper Reviews</a>
     <a href="projects.html">My Works</a>
-    <a href="index.html#contact">Contact</a>
+    <a href="resources.html">Resources</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <main>
     <div class="intro-card">
       <p class="medium-note">
         I also publish on Medium. For the cross-posted list, visit
-        <a href="https://medium.com/@prdeepak.babu" target="_blank">medium.com/@prdeepak.babu</a>.
+        <a href="https://medium.com/@prdeepak.babu" target="_blank" rel="noopener noreferrer">medium.com/@prdeepak.babu</a>.
       </p>
     </div>
 
     <div class="post-grid">
-      <article class="post-card">
-        <div class="post-date">Jan 19, 2026</div>
-        <h2 class="post-title">
-          <a href="post.html?post=abundance-jobs-specialists">
-            Abundance, Jobs, and Specialists: The Missing Connection
-          </a>
-        </h2>
-        <p class="post-excerpt">
-          AI has turned ideation into a surplus. What happens to specialists, to jobs,
-          and to the meaning of expertise when execution becomes cheap?
-        </p>
-        <div class="post-tags">
-          <span class="post-tag">AI</span>
-          <span class="post-tag">Work</span>
-          <span class="post-tag">Systems</span>
-        </div>
-        <a class="post-link" href="post.html?post=abundance-jobs-specialists">Read the post</a>
-      </article>
+    <article class="post-card">
+      <div class="post-date">Jan 24, 2026</div>
+      <h2 class="post-title">
+        <a href="post.html?post=files-are-all-you-need">From “Everything is a File” to “Files Are All You Need”: What a 50-Year-Old Unix Philosophy Teaches…</a>
+      </h2>
+      <p class="post-excerpt">How a design principle from 1970s operating systems is quietly shaping the future of autonomous AI Introduction In 1971, Ken Thompson and Dennis Ritchie faced a problem that sounds oddly familiar tod…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/from-everything-is-a-file-to-files-are-all-you-need-what-a-50-year-old-unix-philosophy-teaches-b51658fcfadb" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=files-are-all-you-need">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jan 20, 2026</div>
+      <h2 class="post-title">
+        <a href="post.html?post=abundance-jobs-specialists">Abundance, Jobs, and Specialists: The Missing Connection</a>
+      </h2>
+      <p class="post-excerpt">Introduction I’ve been working in and around AI research and applied machine learning for close to two decades now. I’ve lived through multiple hype cycles, winter cycles, algorithmic plateaus, infra…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/abundance-jobs-and-specialists-the-missing-connection-a82cf5318f01" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=abundance-jobs-specialists">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Dec 15, 2025</div>
+      <h2 class="post-title">
+        <a href="post.html?post=enterprise-ai-agents-lessons">Lessons Learned from Building Enterprise AI Agents for Millions of Users</a>
+      </h2>
+      <p class="post-excerpt">Insights, pitfalls, and architectural truths from real-world deployments The first time you demo an agent internally, it feels magical. It answers questions, writes decent text, sometimes even calls…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/lessons-learned-from-building-enterprise-ai-agents-for-millions-of-users-cfd6a1ad3f56" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=enterprise-ai-agents-lessons">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Nov 19, 2025</div>
+      <h2 class="post-title">
+        <a href="post.html?post=mind-the-goal-a-data-efficient-framework-to-evaluate-conversational-and-agenticai-and-why-it-bc209fbb03ac">Mind the Goal: A Data-Efficient Framework to Evaluate Conversational and AgenticAI (and Why It…</a>
+      </h2>
+      <p class="post-excerpt">Imagine you deploy a chatbot assistant at your company. It can answer FAQs, lookup policies, book meetings — all sorts of tasks. Early on, it seems to handle single questions well. But when employees…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/mind-the-goal-a-data-efficient-framework-to-evaluate-conversational-and-agenticai-and-why-it-bc209fbb03ac" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=mind-the-goal-a-data-efficient-framework-to-evaluate-conversational-and-agenticai-and-why-it-bc209fbb03ac">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jul 17, 2025</div>
+      <h2 class="post-title">
+        <a href="post.html?post=the-ai-roles-continuum-de5c23c6ac86">The AI Roles Continuum</a>
+      </h2>
+      <p class="post-excerpt">“In science, if you know what you’re doing, you shouldn’t be doing it. In engineering, if you don’t know what you’re doing, you shouldn’t be doing it.” — Richard Hamming This quote resonates deeply w…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/the-ai-roles-continuum-de5c23c6ac86" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=the-ai-roles-continuum-de5c23c6ac86">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Mar 16, 2025</div>
+      <h2 class="post-title">
+        <a href="post.html?post=coffee-chats-on-ai-assisted-coding-practical-tips-model-choices-and-lessons-learned-fbd62f5191ed">Coffee Chats on AI-assisted coding : Practical Tips, Model Choices, and Lessons Learned</a>
+      </h2>
+      <p class="post-excerpt">cross-posting from linkedin Deepak Babu P R on LinkedIn: #coding #ai #hci #reasoning #windsurf #cursor A͟I͟ ͟f͟o͟r͟ ͟c͟o͟d͟i͟n͟g͟ ͟t͟a͟s͟k͟s͟ One of the recurring topics in my coffee chats with scien…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/coffee-chats-on-ai-assisted-coding-practical-tips-model-choices-and-lessons-learned-fbd62f5191ed" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=coffee-chats-on-ai-assisted-coding-practical-tips-model-choices-and-lessons-learned-fbd62f5191ed">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Feb 1, 2025</div>
+      <h2 class="post-title">
+        <a href="post.html?post=how-reinforcement-learning-broke-ais-data-wall-and-sparked-a-new-era-of-superhuman-innovation-35ffcc8f7b47">How Reinforcement Learning Broke AI’s Data Wall — And Sparked a New Era of Superhuman Innovation</a>
+      </h2>
+      <p class="post-excerpt">Introduction: A ChatGPT Moment, Reimagined The release of DeepSeek this week has sparked a familiar buzz — a ChatGPT moment for 2025. Users outside the AI/tech bubble are once again witnessing the ma…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/how-reinforcement-learning-broke-ais-data-wall-and-sparked-a-new-era-of-superhuman-innovation-35ffcc8f7b47" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=how-reinforcement-learning-broke-ais-data-wall-and-sparked-a-new-era-of-superhuman-innovation-35ffcc8f7b47">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jan 6, 2025</div>
+      <h2 class="post-title">
+        <a href="post.html?post=journey-from-traditional-ir-to-rag-to-agentic-rag-b658210f46d4">Journey from traditional IR to RAG to agentic-RAG</a>
+      </h2>
+      <p class="post-excerpt">Information systems have evolved from simple keyword-based search engines to sophisticated natural language-based question-answering (QA) systems. I distinctly remember my early days in 2012, buildin…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/journey-from-traditional-ir-to-rag-to-agentic-rag-b658210f46d4" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=journey-from-traditional-ir-to-rag-to-agentic-rag-b658210f46d4">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Oct 28, 2024</div>
+      <h2 class="post-title">
+        <a href="post.html?post=vertical-ai-and-cognitive-architectures-lessons-from-cloud-and-mobile-transitions-8e87f364721e">Vertical AI and Cognitive Architectures: Lessons from Cloud and Mobile Transitions</a>
+      </h2>
+      <p class="post-excerpt">As an AI scientist who has been immersed in the field for many years, I’ve witnessed firsthand the grassroots innovations that have propelled artificial intelligence forward — be it large language mo…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/vertical-ai-and-cognitive-architectures-lessons-from-cloud-and-mobile-transitions-8e87f364721e" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=vertical-ai-and-cognitive-architectures-lessons-from-cloud-and-mobile-transitions-8e87f364721e">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Aug 27, 2024</div>
+      <h2 class="post-title">
+        <a href="post.html?post=the-need-for-machines-to-unlearn-f4285fe8578f">The Need for Machines to Unlearn</a>
+      </h2>
+      <p class="post-excerpt">M achine learning (ML) and artificial intelligence (AI) are fundamentally about learning patterns and models from data or a collection of experiences. These experiences can be thought of as individua…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/the-need-for-machines-to-unlearn-f4285fe8578f" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=the-need-for-machines-to-unlearn-f4285fe8578f">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jun 25, 2024</div>
+      <h2 class="post-title">
+        <a href="post.html?post=reflections-on-the-databricks-data-ai-summit-experiments-to-production-52a8044eedda">Reflections on the Databricks Data + AI Summit — Experiments to Production</a>
+      </h2>
+      <p class="post-excerpt">I had a fantastic time at the Databricks Data + AI Summit (DAIS) 2024, connecting with over 2K+ participants from diverse backgrounds, including CXOs and ICs (engineers, scientists, and product manag…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/reflections-on-the-databricks-data-ai-summit-experiments-to-production-52a8044eedda" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=reflections-on-the-databricks-data-ai-summit-experiments-to-production-52a8044eedda">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jun 9, 2024</div>
+      <h2 class="post-title">
+        <a href="post.html?post=the-evolution-of-siri-a-leap-in-language-understanding-and-action-c359b5bd4b38">The Evolution of Siri: A Leap in Language Understanding and Action</a>
+      </h2>
+      <p class="post-excerpt">I might be biased, but it seems that Siri’s ability to understand and execute commands has recently taken a significant leap forward. This step-function improvement in Siri’s responses might be due t…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/the-evolution-of-siri-a-leap-in-language-understanding-and-action-c359b5bd4b38" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=the-evolution-of-siri-a-leap-in-language-understanding-and-action-c359b5bd4b38">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jun 7, 2024</div>
+      <h2 class="post-title">
+        <a href="post.html?post=thinking-out-loud-on-swe-agent-agent-computer-interfaces-2cbb3baa9b27">Thinking-Out-Loud on “SWE Agent |Agent-Computer Interfaces”</a>
+      </h2>
+      <p class="post-excerpt">Welcome to “Thinking-Out-Loud,” a series where I delve into intriguing research papers and share my spontaneous reflections, insights, and personal experiences. Each post will explore a different pap…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/thinking-out-loud-on-swe-agent-agent-computer-interfaces-2cbb3baa9b27" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=thinking-out-loud-on-swe-agent-agent-computer-interfaces-2cbb3baa9b27">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">May 20, 2024</div>
+      <h2 class="post-title">
+        <a href="post.html?post=scalable-oversight-in-ai-beyond-human-supervision-d258b50dbf62">Scalable Oversight in AI: Beyond Human Supervision</a>
+      </h2>
+      <p class="post-excerpt">In recent years, the field of artificial intelligence has experienced unprecedented growth. Two driving forces underpin this advancement: the availability of colossal datasets, exemplified by the Lla…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/scalable-oversight-in-ai-beyond-human-supervision-d258b50dbf62" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=scalable-oversight-in-ai-beyond-human-supervision-d258b50dbf62">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Apr 9, 2024</div>
+      <h2 class="post-title">
+        <a href="post.html?post=sample-efficient-learning-in-llms-e81a62af4cc3">Sample Efficient Learning in LLMs</a>
+      </h2>
+      <p class="post-excerpt">Sample Efficiency (Data) In the realm of machine learning, “sample efficiency” is a term that defines a model’s ability to learn effectively from a limited number of examples. High sample efficiency…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/sample-efficient-learning-in-llms-e81a62af4cc3" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=sample-efficient-learning-in-llms-e81a62af4cc3">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Mar 31, 2024</div>
+      <h2 class="post-title">
+        <a href="post.html?post=audio-language-models-and-multimodal-architecture-1cdd90f46fac">Audio Language Models and Multimodal Architecture</a>
+      </h2>
+      <p class="post-excerpt">Multimodal models are creating a synergy between previously separate research areas such as language, vision, and speech. These models use universal architectures that treat each modality as a distin…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/audio-language-models-and-multimodal-architecture-1cdd90f46fac" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=audio-language-models-and-multimodal-architecture-1cdd90f46fac">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jan 22, 2024</div>
+      <h2 class="post-title">
+        <a href="post.html?post=joint-audio-language-embedding-model-for-representation-learning-522fcbefe2ce">Joint Audio-Language Embedding Model for Representation Learning</a>
+      </h2>
+      <p class="post-excerpt">We have been discussing audio and language models in last few posts ( Multimodal audio-language LMM and Qwen-Audio FM ). In continuation to these, here we discuss another important foundation model f…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/joint-audio-language-embedding-model-for-representation-learning-522fcbefe2ce" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=joint-audio-language-embedding-model-for-representation-learning-522fcbefe2ce">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jan 10, 2024</div>
+      <h2 class="post-title">
+        <a href="post.html?post=multimodal-mastery-the-qwen-audio-foundation-models-for-advanced-audio-understanding-and-reasoning-b34a86b3c9f8">Multimodal Mastery: The Qwen Audio Foundation Models for Advanced Audio Understanding and Reasoning</a>
+      </h2>
+      <p class="post-excerpt">As a follow-up to the last blog on large multimodal audio models (LMM), we’re here to explore an open-source large LMM audio model. While dozens of image and text MM models exist, those involving aud…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/multimodal-mastery-the-qwen-audio-foundation-models-for-advanced-audio-understanding-and-reasoning-b34a86b3c9f8" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=multimodal-mastery-the-qwen-audio-foundation-models-for-advanced-audio-understanding-and-reasoning-b34a86b3c9f8">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Dec 29, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=the-dawn-of-synthetic-brains-how-large-language-models-are-shaping-ai-agents-640a78f3a830">The Dawn of Synthetic Brains: How Large Language Models Are Shaping AI Agents</a>
+      </h2>
+      <p class="post-excerpt">Recent advancements in Large Language Models (LLMs) have demonstrated a significant capability for reasoning and planning, a trait predominantly seen in models with over 100 billion parameters (consi…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/the-dawn-of-synthetic-brains-how-large-language-models-are-shaping-ai-agents-640a78f3a830" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=the-dawn-of-synthetic-brains-how-large-language-models-are-shaping-ai-agents-640a78f3a830">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Dec 4, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=the-rise-of-multimodal-large-speech-language-models-4fc5ea34d04f">The Rise of Multimodal Large Speech &amp; Language Models</a>
+      </h2>
+      <p class="post-excerpt">In the age of foundational models that are based on deep learning architectures like transformer models, we can process large amounts of data to learn complex representations of data, forming world k…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/the-rise-of-multimodal-large-speech-language-models-4fc5ea34d04f" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=the-rise-of-multimodal-large-speech-language-models-4fc5ea34d04f">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Nov 4, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=decoding-ai-s-thought-process-mechanistic-interpretability-54db5727e7e8">Decoding AI’s Thought Process: Mechanistic Interpretability</a>
+      </h2>
+      <p class="post-excerpt">Mechanistic Interpretability is a field of study that concerns study of neural networks (more generally ML models) with an intent to understand and explain inner workings of a machine learned model.…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/decoding-ais-thought-process-mechanistic-interpretability-54db5727e7e8" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=decoding-ai-s-thought-process-mechanistic-interpretability-54db5727e7e8">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Oct 9, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=reward-hacking-in-large-language-models-llms-c57abbc0cde7">Reward Hacking in Large Language Models (LLMs)</a>
+      </h2>
+      <p class="post-excerpt">We often hear reward hacking in the context of LLMs generating content that mimics style over substance. so what exactly does this mean ? why does it occur ? Before we dive into concept of reward hac…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/reward-hacking-in-large-language-models-llms-c57abbc0cde7" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=reward-hacking-in-large-language-models-llms-c57abbc0cde7">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Sep 30, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=harnessing-the-power-of-synthetic-data-in-the-era-of-large-language-models-llms-and-generative-ai-f67763256d44">Harnessing the Power of Synthetic Data in the Era of Large Language Models (LLMs) and Generative AI</a>
+      </h2>
+      <p class="post-excerpt">As we transitioned from the traditional AI methods of the 2010s to deep learning-based approaches in the 2020s, there’s been a marked shift towards leveraging large-scale datasets. These datasets are…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/harnessing-the-power-of-synthetic-data-in-the-era-of-large-language-models-llms-and-generative-ai-f67763256d44" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=harnessing-the-power-of-synthetic-data-in-the-era-of-large-language-models-llms-and-generative-ai-f67763256d44">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Sep 28, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=scaling-network-effects-ed7b58270970">Scaling Network Effects</a>
+      </h2>
+      <p class="post-excerpt">A Comprehensive Look at ‘The Cold Start Problem’ Having been a part of several unicorn startups in India, including Mu Sigma, InMobi, and Snapdeal, I’ve had the opportunity to contribute to and obser…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/scaling-network-effects-a-comprehensive-look-at-the-cold-start-problem-ed7b58270970" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=scaling-network-effects-ed7b58270970">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Sep 28, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=scaling-network-effects-a-comprehensive-look-at-the-cold-start-problem">Scaling Network Effects: A Comprehensive Look at ‘The Cold Start Problem’</a>
+      </h2>
+      <p class="post-excerpt">Having been a part of several unicorn startups in India, including Mu Sigma, InMobi, and Snapdeal, I’ve had the opportunity to contribute to and observe the unique challenges and dynamics of their gr…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2023/09/28/scaling-network-effects-a-comprehensive-look-at-the-cold-start-problem/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=scaling-network-effects-a-comprehensive-look-at-the-cold-start-problem">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Aug 16, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=i-so-wish-research-community-stressed-more-on-this-7fca32f31353">I so wish research community stressed more on this.</a>
+      </h2>
+      <p class="post-excerpt">I so wish research community stressed more on this. (negative results) I think some conferences have started to have a forum dedicated to these, but these are not yet mainstream.</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/i-so-wish-research-community-stressed-more-on-this-7fca32f31353" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=i-so-wish-research-community-stressed-more-on-this-7fca32f31353">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Aug 16, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=i-would-emphasize-taking-an-independent-shot-at-the-problem-first-and-then-refer-literature-and-518bfee171bf">I would emphasize, taking an independent shot at the problem first and then refer literature and…</a>
+      </h2>
+      <p class="post-excerpt">I would emphasize, taking an independent shot at the problem first and then refer literature and third, see if existing methods can be improved fusing ideas from of your own from (i) or those resulti…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/i-would-emphasize-taking-an-independent-shot-at-the-problem-first-and-then-refer-literature-and-518bfee171bf" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=i-would-emphasize-taking-an-independent-shot-at-the-problem-first-and-then-refer-literature-and-518bfee171bf">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jun 28, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=exploring-the-llm-landscape-from-parametric-memory-to-agent-oriented-models-medium-2023-06-28">Exploring the LLM Landscape: From Parametric Memory to Agent-Oriented Models</a>
+      </h2>
+      <p class="post-excerpt">LLMs are fast-evolving and we have a new model every week, showing up on leaderboards[1] beating previous SoTA model on multiple NLP benchmarks. There are multiple architectures with nuances to train…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/exploring-the-llm-landscape-from-parametric-memory-to-agent-oriented-models-ab0088d1f14" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=exploring-the-llm-landscape-from-parametric-memory-to-agent-oriented-models-medium-2023-06-28">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jun 5, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=emergent-abilities-in-llm-unpredictable-abilities-in-large-language-models-72fc54059b41">Emergent Abilities in LLM : Unpredictable Abilities in Large Language Models</a>
+      </h2>
+      <p class="post-excerpt">Emergent abilities refer to the capabilities that arise spontaneously from the complex interactions of simpler components. They are properties that can’t be predicted solely based on the individual p…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/emergent-abilities-in-llm-unpredictable-abilities-in-large-language-models-72fc54059b41" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=emergent-abilities-in-llm-unpredictable-abilities-in-large-language-models-72fc54059b41">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Apr 28, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=deploying-large-language-models-llms-in-real-world-applications-354482c86ba5">Deploying Large Language Models (LLMs) in Real-World Applications</a>
+      </h2>
+      <p class="post-excerpt">The growing capabilities of Large Language Models (LLMs) have led to an increasing demand for their integration into production systems. However, implementing LLMs with low-latency requirements like…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/deploying-large-language-models-llms-in-real-world-applications-354482c86ba5" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=deploying-large-language-models-llms-in-real-world-applications-354482c86ba5">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Apr 20, 2023</div>
+      <h2 class="post-title">
+        <a href="post.html?post=from-n-grams-to-gpt-4-the-meteoric-rise-of-large-language-models-d9e064ec7bf0">From N-grams to GPT-4: The Meteoric Rise of Large Language Models</a>
+      </h2>
+      <p class="post-excerpt">Large Language Models (LLMs) have caused a paradigm shift in the way NLP is traditionally done i.e anything to do with text. I have been working in this domain for 10+ years having seen n-gram ways o…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/from-n-grams-to-gpt-4-the-meteoric-rise-of-large-language-models-d9e064ec7bf0" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=from-n-grams-to-gpt-4-the-meteoric-rise-of-large-language-models-d9e064ec7bf0">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Nov 18, 2022</div>
+      <h2 class="post-title">
+        <a href="post.html?post=importance-of-mental-models-for-data-scientists-ml-ai-practitioners-43c4b88b4871">Importance of Mental Models for Data Scientists &amp; ML/AI Practitioners</a>
+      </h2>
+      <p class="post-excerpt">We have all been in situations where we have felt a lack of clarity and understanding on a complex project, metrics defined for measurement disagree with customer anecdotes, deploying a solution that…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/importance-of-mental-models-for-data-scientists-ml-ai-practitioners-43c4b88b4871" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=importance-of-mental-models-for-data-scientists-ml-ai-practitioners-43c4b88b4871">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Apr 24, 2020</div>
+      <h2 class="post-title">
+        <a href="post.html?post=an-illustrated-overview-of-reinforcement-learning-medium-2020-04-24">An Illustrated Overview of Reinforcement Learning</a>
+      </h2>
+      <p class="post-excerpt">Reinforcement Learning (RL) is a learning paradigm different from traditional machine learning (supervised and unsupervised). The learning problem considered here mimics humans learning from interact…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/an-illustrated-overview-of-reinforcement-learning-ccc47ae43b6" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=an-illustrated-overview-of-reinforcement-learning-medium-2020-04-24">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Apr 23, 2017</div>
+      <h2 class="post-title">
+        <a href="post.html?post=deep-learning-gender-from-name-lstm-recurrent-neural-networks-448d64553044">Deep learning gender from name -LSTM Recurrent Neural Networks</a>
+      </h2>
+      <p class="post-excerpt">prdeepakbabu/Python Python - All *.py scripts github.com Deep learning neural networks have shown promising results in problems related to vision, speech and text with varying degrees of success. I h…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://medium.com/@prdeepak.babu/deep-learning-gender-from-name-lstm-recurrent-neural-networks-448d64553044" target="_blank" rel="noopener noreferrer">Medium</a>
+      </div>
+      <a class="post-link" href="post.html?post=deep-learning-gender-from-name-lstm-recurrent-neural-networks-448d64553044">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jun 11, 2016</div>
+      <h2 class="post-title">
+        <a href="post.html?post=machine-learning-regression-problems">Machine learning &amp; Regression Problems</a>
+      </h2>
+      <p class="post-excerpt">Machine Learning – Linear Regression using gradient descent vs. neural network Machine learning or Supervised Learning broadly encompasses two classes of problems – regression and classification. Reg…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2016/06/12/machine-learning-regression-problems/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=machine-learning-regression-problems">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Feb 28, 2016</div>
+      <h2 class="post-title">
+        <a href="post.html?post=spelling-correction-in-search-engines-algorithms-strategies">Spelling Correction in Search Engines – Algorithms &amp; Strategies</a>
+      </h2>
+      <p class="post-excerpt">Information Retrieval : Spell Correction in Search Engines – Algorithms &amp; Strategies Spell Checking &amp; Correction is an important component of any information retrieval(aka document retrieval) system…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2016/02/29/spelling-correction-in-search-engines-algorithms-strategies/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=spelling-correction-in-search-engines-algorithms-strategies">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Apr 30, 2015</div>
+      <h2 class="post-title">
+        <a href="post.html?post=overview-mobile-advertising-ad-marketplaces">Overview: Mobile Advertising &amp; Ad Marketplaces</a>
+      </h2>
+      <p class="post-excerpt">In this blog post, I am going to discuss about mobile advertising networks, ecosystem &amp; industry trends. This understanding would serve as base for the future posts I plan to write around data scienc…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2015/04/30/overview-mobile-advertising-ad-marketplaces/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=overview-mobile-advertising-ad-marketplaces">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Nov 7, 2014</div>
+      <h2 class="post-title">
+        <a href="post.html?post=data-science-101-data-vs-information-vs-knowledge">Data Science 101: Data vs. Information vs. Knowledge</a>
+      </h2>
+      <p class="post-excerpt">We talk about big data quite often these days, wanted to put some fundas about basics around data. Do you know the singular form of data ? How data differs from information vs. knowledge? How insight…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2014/11/07/data-science-101-data-vs-information-vs-knowledge/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=data-science-101-data-vs-information-vs-knowledge">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jan 24, 2014</div>
+      <h2 class="post-title">
+        <a href="post.html?post=it-is-the-age-of-meta-hybrids-not-just-in-data-science-but-everywhere">It is the age of meta &amp; hybrids, not just in data science but everywhere!</a>
+      </h2>
+      <p class="post-excerpt">I have spent most of my life into data and its applications to problems. Now, when i look at some patterns in algorithms we use in analyzing data, one thing that emerges is increased use of meta-algo…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2014/01/24/it-is-the-age-of-meta-hybrids-not-just-in-data-science-but-everywhere/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=it-is-the-age-of-meta-hybrids-not-just-in-data-science-but-everywhere">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Oct 6, 2012</div>
+      <h2 class="post-title">
+        <a href="post.html?post=social-network-analytics-visualization">Social Network Analytics &amp; Visualization</a>
+      </h2>
+      <p class="post-excerpt">We are in the era of big data, with newer sources of data emerging at an exponential rate involving sensor data, EHR, social network/media data &amp; machine generated data. In this blog post, I will be…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2012/10/06/social-network-analytics-visualization/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=social-network-analytics-visualization">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">May 25, 2012</div>
+      <h2 class="post-title">
+        <a href="post.html?post=clustering-techniques">Clustering  Techniques</a>
+      </h2>
+      <p class="post-excerpt">Clustering is an unsupervised classification (learning) technique, where the objective is to maximize inter-cluster distance while minimizing the intra-cluster distance. By unsupervised, we mean clus…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2012/05/26/clustering-techniques/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=clustering-techniques">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Mar 5, 2012</div>
+      <h2 class="post-title">
+        <a href="post.html?post=big-data-hadoop-map-reduce">Big Data: Hadoop Map Reduce</a>
+      </h2>
+      <p class="post-excerpt">Hadoop is an open source framework for writing and running distributed application that process huge amounts of data ( more famously called Big Data). The name Hadoop is not an acronym; it’s a made-u…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2012/03/06/big-data-hadoop-map-reduce/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=big-data-hadoop-map-reduce">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Oct 25, 2011</div>
+      <h2 class="post-title">
+        <a href="post.html?post=location-intelligence-using-social-media-data-customer-location-aware-systems">Location Intelligence using Social Media Data: Customer Location Aware Systems</a>
+      </h2>
+      <p class="post-excerpt">In the recent past, a variety of new social media sites have emerged – location Based Services( like foursquare, gowala), Group Deals( like groupon), microblogging( like twitter, fb). These social me…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2011/10/25/location-intelligence-using-social-media-data-customer-location-aware-systems/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=location-intelligence-using-social-media-data-customer-location-aware-systems">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Oct 12, 2011</div>
+      <h2 class="post-title">
+        <a href="post.html?post=did-use-of-helmets-reduce-deaths-due-to-2-wheeler-accidents">Did use of helmets reduce deaths due to 2 wheeler accidents?</a>
+      </h2>
+      <p class="post-excerpt">This blog post is about the analysis of implementation of helmet rule in various Indian states and the effect it had on bringing down accidental deaths due to 2 wheelers. Here we are specifically foc…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2011/10/13/did-use-of-helmets-reduce-deaths-due-to-2-wheeler-accidents/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=did-use-of-helmets-reduce-deaths-due-to-2-wheeler-accidents">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jul 31, 2011</div>
+      <h2 class="post-title">
+        <a href="post.html?post=socializing-insights-with-end-users-analytics-for-masses-amazon-vs-linkedin">Socializing Insights with end users: Analytics for masses – Amazon vs. LinkedIn</a>
+      </h2>
+      <p class="post-excerpt">This blog post is about comparison of amazon.com and linkedin.com in terms of similarities across dimensions of analytic maturity &amp; use of data shared by their customers. As Thomas Davenport mentions…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2011/07/31/socializing-insights-with-end-users-analytics-for-masses-amazon-vs-linkedin/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=socializing-insights-with-end-users-analytics-for-masses-amazon-vs-linkedin">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jul 2, 2011</div>
+      <h2 class="post-title">
+        <a href="post.html?post=integrate-analyze-visualize-socialize-visualization-tools-techniques">“Integrate, Analyze, Visualize &amp; Socialize” – Visualization Tools &amp; Techniques</a>
+      </h2>
+      <p class="post-excerpt">Turning raw data into insights often involves integrating data from multiple disparate sources (not just limited structured one), analyzing the data, visualizing it and socializing the results/insigh…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2011/07/03/integrate-analyze-visualize-socialize-visualization-tools-techniques/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=integrate-analyze-visualize-socialize-visualization-tools-techniques">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Feb 19, 2011</div>
+      <h2 class="post-title">
+        <a href="post.html?post=some-of-the-insights-have-stood-best-because-they-were-simple">Some of the insights have stood best, because they were simple!</a>
+      </h2>
+      <p class="post-excerpt">In this blog post, i talk about 3 scenarios where there had been highly valuable insights derived, yet remaining simple. 1. Customers shopped online returned via stores Randy Lea, VP product &amp; servic…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2011/02/20/some-of-the-insights-have-stood-best-because-they-were-simple/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=some-of-the-insights-have-stood-best-because-they-were-simple">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Nov 13, 2010</div>
+      <h2 class="post-title">
+        <a href="post.html?post=market-basket-analysisassociation-rule-mining-using-r-package-arules">Market Basket Analysis/Association Rule Mining using R package – arules</a>
+      </h2>
+      <p class="post-excerpt">In my previous post , i had discussed about Association rule mining in some detail. Here i have shown the implementation of the concept using open source tool R using the package arules. Market Baske…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2010/11/13/market-basket-analysisassociation-rule-mining-using-r-package-arules/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=market-basket-analysisassociation-rule-mining-using-r-package-arules">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Sep 11, 2010</div>
+      <h2 class="post-title">
+        <a href="post.html?post=beyond-bi-analytics">Beyond BI &amp; Analytics</a>
+      </h2>
+      <p class="post-excerpt">For the last 6 months, i have been closely following trends in information management. Below are few of my observations. Data source explosion: Business Problems are gaining complexity day by day, he…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2010/09/12/beyond-bi-analytics/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=beyond-bi-analytics">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Mar 3, 2010</div>
+      <h2 class="post-title">
+        <a href="post.html?post=datamining-video-lectures-best-way-to-learn">Datamining Video Lectures – Best way to learn</a>
+      </h2>
+      <p class="post-excerpt">Do you find analytics/data mining a difficult topic to understand and learn? To a certain extent true if you were to use books as the source. Friends, i found these two very valuable and high quality…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2010/03/03/datamining-video-lectures-best-way-to-learn/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=datamining-video-lectures-best-way-to-learn">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Feb 24, 2010</div>
+      <h2 class="post-title">
+        <a href="post.html?post=association-rule-mining">Association Rule Mining</a>
+      </h2>
+      <p class="post-excerpt">Association Rule Mining [ Implementation using R here] Association Rule mining is one of the classical DM technique. Association Rule mining is a very powerful technique of analysing / finding patter…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2010/02/24/association-rule-mining/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=association-rule-mining">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Jan 17, 2010</div>
+      <h2 class="post-title">
+        <a href="post.html?post=future-of-predictive-analytics-part-ii">Future of Predictive analytics – Part II</a>
+      </h2>
+      <p class="post-excerpt">Here is the continuation to the article i had posted few days back &lt; here &gt;. I am back with some interesting info on recent advancements in the area of analytics. Before going on to the details, wann…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2010/01/17/future-of-predictive-analytics-part-ii/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=future-of-predictive-analytics-part-ii">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Dec 28, 2009</div>
+      <h2 class="post-title">
+        <a href="post.html?post=informatica-interview-questions-all-in-one">Informatica interview Questions – All in one</a>
+      </h2>
+      <p class="post-excerpt">Informatica recently unvieled its latest release informatica 9 with some major enhancements as compared to its earlier versions, believed to revolutionize data integration &amp; ETL market. I know lot of…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2009/12/28/informatica-interview-questions-all-in-one/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=informatica-interview-questions-all-in-one">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Dec 10, 2009</div>
+      <h2 class="post-title">
+        <a href="post.html?post=visualization-techniques">Visualization Techniques</a>
+      </h2>
+      <p class="post-excerpt">Visualization is considered to be one of the valuable tools in data mining. Visual analysis helps to understand data with minimum effort. Using graphs/ 3D plots to visualize data is more effective wa…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2009/12/10/visualization-techniques/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=visualization-techniques">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Nov 23, 2009</div>
+      <h2 class="post-title">
+        <a href="post.html?post=amazon-com-an-analytics-perspective">amazon.com – An analytics perspective</a>
+      </h2>
+      <p class="post-excerpt">In my today’s post i will be talking about amazon.com, a leading e-commerce company. Amazon.com has huge amounts of data about its customer base, products and customer purchase behaviour. To boost up…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2009/11/23/amazon-com-an-analytics-perspective/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=amazon-com-an-analytics-perspective">Read</a>
+    </article>
+    <article class="post-card">
+      <div class="post-date">Nov 14, 2009</div>
+      <h2 class="post-title">
+        <a href="post.html?post=future-of-predictive-analytics">Future of Predictive Analytics</a>
+      </h2>
+      <p class="post-excerpt">Recently i had attended a conference on “Future of Predictive Analytics” here at Bangalore. Here is the summarized version of the topics covered; Data mining is an automated process of discovering hi…</p>
+      <div class="post-tags">
+        <a class="post-tag post-tag-link" href="https://prdeepakbabu.wordpress.com/2009/11/14/future-of-predictive-analytics/" target="_blank" rel="noopener noreferrer">WordPress</a>
+      </div>
+      <a class="post-link" href="post.html?post=future-of-predictive-analytics">Read</a>
+    </article>
     </div>
   </main>
 </body>
