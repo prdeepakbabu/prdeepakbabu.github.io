@@ -1,0 +1,32 @@
+{
+  "highlights": [
+    {
+      "id": "experience_years",
+      "value": "20+",
+      "label": "Years in ML/AI",
+      "href": "research.html",
+      "ariaLabel": "View research areas"
+    },
+    {
+      "id": "patents_and_papers",
+      "value": "18+",
+      "label": "Patents and publications",
+      "href": "publications.html",
+      "ariaLabel": "View publications"
+    },
+    {
+      "id": "recent_outputs",
+      "value": "8",
+      "label": "Recent papers and preprints (2025-2026)",
+      "href": "publications.html",
+      "ariaLabel": "View recent publications"
+    },
+    {
+      "id": "review_venues",
+      "value": "6+",
+      "label": "Review venues (NeurIPS, ICML, KDD, AMLC, ARA, EMNLP)",
+      "href": "research.html",
+      "ariaLabel": "View research and service"
+    }
+  ]
+}
