@@ -11,6 +11,8 @@ import glob
 import html
 import os
 import re
+import subprocess
+import sys
 from dataclasses import dataclass
 from datetime import date
 
@@ -220,7 +222,10 @@ def main() -> int:
     updated = raw[:start_end] + "\n" + cards + raw[end:]
     with open(blogs_path, "w", encoding="utf-8") as f:
         f.write(updated)
-    print(f"Updated {blogs_path} with {len(posts)} posts")
+
+    discovery_script = os.path.join("scripts", "build_discovery_assets.py")
+    subprocess.run([sys.executable, discovery_script], check=True)
+    print(f"Updated {blogs_path} with {len(posts)} posts and refreshed discovery assets")
     return 0
 
 

@@ -1,0 +1,86 @@
+[
+  {
+    "source": "x",
+    "url": "https://x.com/prdeepakbabu/status/2027849088038015339",
+    "postedAt": "2026-02-28T20:51:12.000Z",
+    "text": "experimenting with audio podcast format.\nFirst episode unpacks MAPLE — a decomposition of memory, learning, and personalization in agentic systems.\nMinds & Machines:\n\nhttps://\nopen.spotify.com/show/0d0o9mCoJ\n4Ve4R7YCRe4cS?si=3-6V0JtrRL6RqMV5dyZyTA\n…\n\n#MAPLE #podcast #personalization #memory #learning",
+    "links": [
+      "https://t.co/oi0e3TgHtW"
+    ],
+    "thumbnailUrl": "https://pbs.twimg.com/card_img/2027849088948174848/l34ubbrT?format=jpg&name=360x360",
+    "scrapedAt": "2026-03-02T05:18:07.114Z"
+  },
+  {
+    "source": "x",
+    "url": "https://x.com/prdeepakbabu/status/2027301506165432573",
+    "postedAt": "2026-02-27T08:35:19.000Z",
+    "text": "The most important question in agentic AI is not how intelligent a component is.\nIt’s who decides what happens next.\n\nTools execute.\nSkills encode procedure.\nSub-agents reason under contract.\nAgents own the loop.\n\nControl, not intelligence, is the real axis.\nNew paper + Medium write-up below.\nblog - \nhttps://\nmedium.com/@prdeepak.babu\n/control-not-intelligence-the-missing-axis-in-agentic-ai-choosing-between-tool-subagents-and-707c78aef7bb\n…\n\npaper - \nhttps://\ntechrxiv.org/users/1016007/\narticles/1385959-agent-sub-agent-skill-or-tool-a-practitioner-s-guide-to-extending-agentic-ai-systems\n…",
+    "links": [
+      "https://t.co/Gw8f8auwhi",
+      "https://t.co/odJ94Ez59u"
+    ],
+    "thumbnailUrl": "https://pbs.twimg.com/card_img/2027300981902630912/uoG24PQR?format=jpg&name=medium",
+    "scrapedAt": "2026-03-02T05:18:07.114Z"
+  },
+  {
+    "source": "x",
+    "url": "https://x.com/prdeepakbabu/status/2027286111421415720",
+    "postedAt": "2026-02-27T07:34:08.000Z",
+    "text": "𝗧𝗲𝘀𝘁-𝘁𝗶𝗺𝗲 𝘀𝗰𝗮𝗹𝗶𝗻𝗴 has become one of the most under-discussed but consequential shifts in AI systems. In early 2025, a “long-running” autonomous agent typically meant something that could operate for 45 seconds to a minute before it needed human steering. By late 2025, that stretched to several minutes, often around ten, before intervention was required. As we move through early 2026, that runtime continues to grow, and not linearly. With the rise of multi-agent systems, we are seeing an exponential expansion in how long agents can meaningfully operate on complex tasks. Much like Moore’s Law described the doubling of transistor density over time, we are now observing a similar compounding curve, not in hardware density, but in sustained autonomous runtime and task depth.\n\n𝗪𝗵𝗮𝘁 𝗺𝗮𝗱𝗲 𝘁𝗵𝗶𝘀 𝗽𝗼𝘀𝘀𝗶𝗯𝗹𝗲? \nOne of the primary constraints was context window limitation. Even when 128K tokens felt large, long-horizon reasoning and execution would quickly saturate memory. That constraint is now being addressed from both directions. On the model side, more efficient attention mechanisms and architectural improvements have expanded effective context windows from early 128K ranges to 1M and even 10M-token equivalents in structured settings. On the systems side, scaffolding has evolved dramatically. Modern multi-agent architectures intelligently decompose problems into sub-parts, spin off specialized sub-agents, and allow each to operate within its own context window. Long-term memory, context compaction, and state tracking are handled at the orchestration layer. Instead of relying on a single model to remember everything, we design systems that distribute cognition. The result is something close to virtually unlimited working context, achieved horizontally rather than by scaling a single model indefinitely.\n\n𝗪𝗵𝗲𝗿𝗲 𝗱𝗼𝗲𝘀 𝘁𝗵𝗶𝘀 𝗹𝗲𝗮𝗱? \nWe are entering a phase of agent teams, systems where entire organizational functions can be orchestrated through coordinated agents. Product design, research, development, infrastructure management, testing, and even marketing can be executed by agent swarms operating more like a collaborative society than a single tool. This is not a binary transition. It will unfold gradually. But the implication is timeline compression. A three-year roadmap becoming a six-month execution cycle is increasingly plausible. That compression enables companies to take bolder bets, entering adjacent markets, testing ambitious products, and experimenting at lower marginal cost. Short-term layoffs are often interpreted as AI replacing jobs, but in many cases they may signal organizations reacting tactically instead of structurally, cutting costs rather than redesigning around an AI-first operating model. The deeper shift is not workforce reduction. It is capability expansion. And we are still early in understanding its full implications.\nIt is an exciting time to be building in AI \n#AgenticAI #AgentTeams #MAS",
+    "links": [
+      "https://t.co/y147fv9qCe"
+    ],
+    "thumbnailUrl": "https://pbs.twimg.com/card_img/2024854040782528512/F25Lm-KL?format=png&name=medium",
+    "scrapedAt": "2026-03-02T05:18:07.114Z"
+  },
+  {
+    "source": "x",
+    "url": "https://x.com/prdeepakbabu/status/2026811669780062710",
+    "postedAt": "2026-02-26T00:08:53.000Z",
+    "text": "Its a beauty to see how coding agents just dont give up on the task it is being asked to solve. Agent comes back with approach 1 > feel risky > I skip perm > comes with approach 2 > still risky > I skip perm > comes up with approach 3 > ... on and on.. until I finally decided to give up. I feel models have got so much better looking at the explorations it is doing, it is us humans who need to adapt to this new intelligence now. #claudecode #codingagents",
+    "links": [],
+    "thumbnailUrl": "",
+    "scrapedAt": "2026-03-02T05:18:07.115Z"
+  },
+  {
+    "source": "x",
+    "url": "https://x.com/prdeepakbabu/status/2024178255558001126",
+    "postedAt": "2026-02-18T17:44:38.000Z",
+    "text": "This is literally the advise I give to people who worry about AI - a significant indication of success in new AI world is \"intent to learn AI the modern way to how your learn/work and continually adapt\"\n\nIt is a strange time to hire. \n\nI'm seeing this play out across the SPC community in ways that surprise me.\n\nWe're in the middle of the biggest shift in how knowledge work gets done — maybe ever. And it's made me realize that the old playbook of filtering for pedigree and years",
+    "links": [],
+    "thumbnailUrl": "",
+    "scrapedAt": "2026-03-02T05:18:07.115Z"
+  },
+  {
+    "source": "x",
+    "url": "https://x.com/prdeepakbabu/status/2020924013065929111",
+    "postedAt": "2026-02-09T18:13:26.000Z",
+    "text": ".\n@OpenAI\n is the only company (AFAIK) treating voice as a first class citizen. I use voice dictation (mic button) to speak really long prompts - I do that for codex/chatGPT all of them have it. The future is voice. Text was invented for days when making sense of unstructured data like audio was just next to impossible.",
+    "links": [
+      "https://x.com/OpenAI"
+    ],
+    "thumbnailUrl": "",
+    "scrapedAt": "2026-03-02T05:18:07.115Z"
+  },
+  {
+    "source": "x",
+    "url": "https://x.com/prdeepakbabu/status/2020922084994711841",
+    "postedAt": "2026-02-09T18:05:46.000Z",
+    "text": "Code is no longer the bottleneck.\nClarity is.\n\nIn the age of AI, intent becomes the source code — and specs stop being documentation and start being executable.\n\n Spec-Driven Development\n \nhttps://\nmedium.com/@prdeepak.babu\n/spec-driven-development-when-intent-becomes-the-source-code-3af39f86b9d3\n…\n\n#SpecDrivenDevelopment #AgenticAI #SoftwareEngineering #AIEngineering",
+    "links": [
+      "https://t.co/OB7PuMXrPn",
+      "https://t.co/vZt5f538h9"
+    ],
+    "thumbnailUrl": "https://pbs.twimg.com/card_img/2026023230079660032/y6JTK598?format=jpg&name=medium",
+    "scrapedAt": "2026-03-02T05:18:07.115Z"
+  },
+  {
+    "source": "x",
+    "url": "https://x.com/prdeepakbabu/status/2020584570803118355",
+    "postedAt": "2026-02-08T19:44:36.000Z",
+    "text": "time and again these cycles keep repeating. for some reason, we seem to always say \"this one is different\" when it isn't - part of the problem could be because not many of us haven't lived long enough to experience 2-3 major cycle shifts like the one we are in !\n\nWill AI replace SaaS. One of the tech promoters I admire, his take",
+    "links": [],
+    "thumbnailUrl": "https://pbs.twimg.com/media/HApshdaaMAAjNQ2?format=jpg&name=medium",
+    "scrapedAt": "2026-03-02T05:18:07.115Z"
+  }
+]

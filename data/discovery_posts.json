@@ -1,0 +1,1008 @@
+[
+  {
+    "slug": "control-not-intelligence-the-missing-axis-in-agentic-ai-choosing-between-tool-subagents-and-707c78aef7bb",
+    "title": "Control, Not Intelligence: The Missing Axis in Agentic AI (Choosing between Tool, Subagents and Skills)",
+    "url": "https://prdeepakbabu.github.io/post.html?post=control-not-intelligence-the-missing-axis-in-agentic-ai-choosing-between-tool-subagents-and-707c78aef7bb",
+    "date": "2026-02-27",
+    "summary": "Control, Not Intelligence: The Missing Axis in Agentic AI (Choosing between Tool, Subagents and Skills)  “The most important question in an agentic system is not how smart a compo…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Software Engineering",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/control-not-intelligence-the-missing-axis-in-agentic-ai-choosing-between-tool-subagents-and-707c78aef7bb",
+    "question_targets": [
+      "What are the key ideas in Control, Not Intelligence: The Missing Axis in Agentic AI (Choosing between Tool, Subagents and Skills)?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "spec-driven-development-when-intent-becomes-the-source-code-3af39f86b9d3",
+    "title": "Spec-Driven Development: When Intent Becomes the Source Code",
+    "url": "https://prdeepakbabu.github.io/post.html?post=spec-driven-development-when-intent-becomes-the-source-code-3af39f86b9d3",
+    "date": "2026-02-09",
+    "summary": "For decades, software engineering quietly accepted a strange inversion. We  say  that requirements matter, that design matters, that intent matters — but in practice, we treat cod…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Evaluation",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/data-science-collective/spec-driven-development-when-intent-becomes-the-source-code-3af39f86b9d3",
+    "question_targets": [
+      "What are the key ideas in Spec-Driven Development: When Intent Becomes the Source Code?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "files-are-all-you-need",
+    "title": "From “Everything is a File” to “Files Are All You Need”: What a 50-Year-Old Unix Philosophy Teaches…",
+    "url": "https://prdeepakbabu.github.io/post.html?post=files-are-all-you-need",
+    "date": "2026-01-24",
+    "summary": "How a design principle from 1970s operating systems is quietly shaping the future of autonomous AI   Introduction  In 1971, Ken Thompson and Dennis Ritchie faced a problem that so…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/from-everything-is-a-file-to-files-are-all-you-need-what-a-50-year-old-unix-philosophy-teaches-b51658fcfadb",
+    "question_targets": [
+      "What are the key ideas in From “Everything is a File” to “Files Are All You Need”: What a 50-Year-Old Unix Philosophy Teaches…?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "abundance-jobs-specialists",
+    "title": "Abundance, Jobs, and Specialists: The Missing Connection",
+    "url": "https://prdeepakbabu.github.io/post.html?post=abundance-jobs-specialists",
+    "date": "2026-01-20",
+    "summary": "Introduction  I’ve been working in and around AI research and applied machine learning for close to two decades now. I’ve lived through multiple hype cycles, winter cycles, algori…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Speech / ASR",
+      "Evaluation"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/abundance-jobs-and-specialists-the-missing-connection-a82cf5318f01",
+    "question_targets": [
+      "What are the key ideas in Abundance, Jobs, and Specialists: The Missing Connection?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "enterprise-ai-agents-lessons",
+    "title": "Lessons Learned from Building Enterprise AI Agents for Millions of Users",
+    "url": "https://prdeepakbabu.github.io/post.html?post=enterprise-ai-agents-lessons",
+    "date": "2025-12-15",
+    "summary": "Insights, pitfalls, and architectural truths from real-world deployments   The first time you demo an agent internally, it feels magical. It answers questions, writes decent text,…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Speech / ASR",
+      "Evaluation"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/lessons-learned-from-building-enterprise-ai-agents-for-millions-of-users-cfd6a1ad3f56",
+    "question_targets": [
+      "What are the key ideas in Lessons Learned from Building Enterprise AI Agents for Millions of Users?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "mind-the-goal-a-data-efficient-framework-to-evaluate-conversational-and-agenticai-and-why-it-bc209fbb03ac",
+    "title": "Mind the Goal: A Data-Efficient Framework to Evaluate Conversational and AgenticAI (and Why It…",
+    "url": "https://prdeepakbabu.github.io/post.html?post=mind-the-goal-a-data-efficient-framework-to-evaluate-conversational-and-agenticai-and-why-it-bc209fbb03ac",
+    "date": "2025-11-19",
+    "summary": "Imagine you deploy a chatbot assistant at your company. It can answer FAQs, lookup policies, book meetings — all sorts of tasks. Early on, it seems to handle single questions well…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Evaluation",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/mind-the-goal-a-data-efficient-framework-to-evaluate-conversational-and-agenticai-and-why-it-bc209fbb03ac",
+    "question_targets": [
+      "What are the key ideas in Mind the Goal: A Data-Efficient Framework to Evaluate Conversational and AgenticAI (and Why It…?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "the-ai-roles-continuum-de5c23c6ac86",
+    "title": "The AI Roles Continuum",
+    "url": "https://prdeepakbabu.github.io/post.html?post=the-ai-roles-continuum-de5c23c6ac86",
+    "date": "2025-07-17",
+    "summary": "“In science, if you know what you’re doing, you shouldn’t be doing it. In engineering, if you don’t know what you’re doing, you shouldn’t be doing it.” — Richard Hamming   This qu…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/the-ai-roles-continuum-de5c23c6ac86",
+    "question_targets": [
+      "What are the key ideas in The AI Roles Continuum?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "coffee-chats-on-ai-assisted-coding-practical-tips-model-choices-and-lessons-learned-fbd62f5191ed",
+    "title": "Coffee Chats on AI-assisted coding : Practical Tips, Model Choices, and Lessons Learned",
+    "url": "https://prdeepakbabu.github.io/post.html?post=coffee-chats-on-ai-assisted-coding-practical-tips-model-choices-and-lessons-learned-fbd62f5191ed",
+    "date": "2025-03-16",
+    "summary": "cross-posting from linkedin    Deepak Babu P R on LinkedIn: #coding #ai #hci #reasoning #windsurf #cursor   A͟I͟ ͟f͟o͟r͟ ͟c͟o͟d͟i͟n͟g͟ ͟t͟a͟s͟k͟s͟ One of the recurring topics in m…",
+    "topics": [
+      "Agentic AI",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/coffee-chats-on-ai-assisted-coding-practical-tips-model-choices-and-lessons-learned-fbd62f5191ed",
+    "question_targets": [
+      "What are the key ideas in Coffee Chats on AI-assisted coding : Practical Tips, Model Choices, and Lessons Learned?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "how-reinforcement-learning-broke-ais-data-wall-and-sparked-a-new-era-of-superhuman-innovation-35ffcc8f7b47",
+    "title": "How Reinforcement Learning Broke AI’s Data Wall — And Sparked a New Era of Superhuman Innovation",
+    "url": "https://prdeepakbabu.github.io/post.html?post=how-reinforcement-learning-broke-ais-data-wall-and-sparked-a-new-era-of-superhuman-innovation-35ffcc8f7b47",
+    "date": "2025-02-01",
+    "summary": "Introduction: A ChatGPT Moment, Reimagined  The release of DeepSeek this week has sparked a familiar buzz — a  ChatGPT moment  for 2025. Users outside the AI/tech bubble are once…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Evaluation",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/how-reinforcement-learning-broke-ais-data-wall-and-sparked-a-new-era-of-superhuman-innovation-35ffcc8f7b47",
+    "question_targets": [
+      "What are the key ideas in How Reinforcement Learning Broke AI’s Data Wall — And Sparked a New Era of Superhuman Innovation?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "journey-from-traditional-ir-to-rag-to-agentic-rag-b658210f46d4",
+    "title": "Journey from traditional IR to RAG to agentic-RAG",
+    "url": "https://prdeepakbabu.github.io/post.html?post=journey-from-traditional-ir-to-rag-to-agentic-rag-b658210f46d4",
+    "date": "2025-01-06",
+    "summary": "Information systems have evolved from simple keyword-based search engines to sophisticated natural language-based question-answering (QA) systems. I distinctly remember my early d…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/journey-from-traditional-ir-to-rag-to-agentic-rag-b658210f46d4",
+    "question_targets": [
+      "What are the key ideas in Journey from traditional IR to RAG to agentic-RAG?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "vertical-ai-and-cognitive-architectures-lessons-from-cloud-and-mobile-transitions-8e87f364721e",
+    "title": "Vertical AI and Cognitive Architectures: Lessons from Cloud and Mobile Transitions",
+    "url": "https://prdeepakbabu.github.io/post.html?post=vertical-ai-and-cognitive-architectures-lessons-from-cloud-and-mobile-transitions-8e87f364721e",
+    "date": "2024-10-28",
+    "summary": "As an AI scientist who has been immersed in the field for many years, I’ve witnessed firsthand the grassroots innovations that have propelled artificial intelligence forward — be…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "Speech / ASR",
+      "Software Engineering",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/vertical-ai-and-cognitive-architectures-lessons-from-cloud-and-mobile-transitions-8e87f364721e",
+    "question_targets": [
+      "What are the key ideas in Vertical AI and Cognitive Architectures: Lessons from Cloud and Mobile Transitions?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "the-need-for-machines-to-unlearn-f4285fe8578f",
+    "title": "The Need for Machines to Unlearn",
+    "url": "https://prdeepakbabu.github.io/post.html?post=the-need-for-machines-to-unlearn-f4285fe8578f",
+    "date": "2024-08-27",
+    "summary": "M achine learning (ML) and artificial intelligence (AI) are fundamentally about learning patterns and models from data or a collection of experiences. These experiences can be tho…",
+    "topics": [
+      "LLMs",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/the-need-for-machines-to-unlearn-f4285fe8578f",
+    "question_targets": [
+      "What are the key ideas in The Need for Machines to Unlearn?",
+      "How does this relate to llms in production systems?"
+    ]
+  },
+  {
+    "slug": "reflections-on-the-databricks-data-ai-summit-experiments-to-production-52a8044eedda",
+    "title": "Reflections on the Databricks Data + AI Summit — Experiments to Production",
+    "url": "https://prdeepakbabu.github.io/post.html?post=reflections-on-the-databricks-data-ai-summit-experiments-to-production-52a8044eedda",
+    "date": "2024-06-25",
+    "summary": "I had a fantastic time at the  Databricks Data + AI Summit  (DAIS) 2024, connecting with over 2K+ participants from diverse backgrounds, including CXOs and ICs (engineers, scienti…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Evaluation",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/reflections-on-the-databricks-data-ai-summit-experiments-to-production-52a8044eedda",
+    "question_targets": [
+      "What are the key ideas in Reflections on the Databricks Data + AI Summit — Experiments to Production?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "the-evolution-of-siri-a-leap-in-language-understanding-and-action-c359b5bd4b38",
+    "title": "The Evolution of Siri: A Leap in Language Understanding and Action",
+    "url": "https://prdeepakbabu.github.io/post.html?post=the-evolution-of-siri-a-leap-in-language-understanding-and-action-c359b5bd4b38",
+    "date": "2024-06-09",
+    "summary": "I might be biased, but it seems that Siri’s ability to understand and execute commands has recently taken a significant leap forward. This step-function improvement in Siri’s resp…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "Speech / ASR",
+      "Software Engineering",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/the-evolution-of-siri-a-leap-in-language-understanding-and-action-c359b5bd4b38",
+    "question_targets": [
+      "What are the key ideas in The Evolution of Siri: A Leap in Language Understanding and Action?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "thinking-out-loud-on-swe-agent-agent-computer-interfaces-2cbb3baa9b27",
+    "title": "Thinking-Out-Loud on “SWE Agent |Agent-Computer Interfaces”",
+    "url": "https://prdeepakbabu.github.io/post.html?post=thinking-out-loud-on-swe-agent-agent-computer-interfaces-2cbb3baa9b27",
+    "date": "2024-06-07",
+    "summary": "Welcome to “Thinking-Out-Loud,” a series where I delve into intriguing research papers and share my spontaneous reflections, insights, and personal experiences. Each post will exp…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "Software Engineering",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/thinking-out-loud-on-swe-agent-agent-computer-interfaces-2cbb3baa9b27",
+    "question_targets": [
+      "What are the key ideas in Thinking-Out-Loud on “SWE Agent |Agent-Computer Interfaces”?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "scalable-oversight-in-ai-beyond-human-supervision-d258b50dbf62",
+    "title": "Scalable Oversight in AI: Beyond Human Supervision",
+    "url": "https://prdeepakbabu.github.io/post.html?post=scalable-oversight-in-ai-beyond-human-supervision-d258b50dbf62",
+    "date": "2024-05-20",
+    "summary": "In recent years, the field of artificial intelligence has experienced unprecedented growth. Two driving forces underpin this advancement: the availability of colossal datasets, ex…",
+    "topics": [
+      "LLMs",
+      "Speech / ASR",
+      "Evaluation",
+      "Software Engineering",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/scalable-oversight-in-ai-beyond-human-supervision-d258b50dbf62",
+    "question_targets": [
+      "What are the key ideas in Scalable Oversight in AI: Beyond Human Supervision?",
+      "How does this relate to llms in production systems?"
+    ]
+  },
+  {
+    "slug": "sample-efficient-learning-in-llms-e81a62af4cc3",
+    "title": "Sample Efficient Learning in LLMs",
+    "url": "https://prdeepakbabu.github.io/post.html?post=sample-efficient-learning-in-llms-e81a62af4cc3",
+    "date": "2024-04-09",
+    "summary": "Sample Efficiency (Data)  In the realm of machine learning, “sample efficiency” is a term that defines a model’s ability to learn effectively from a limited number of examples. Hi…",
+    "topics": [
+      "LLMs",
+      "RAG",
+      "Speech / ASR",
+      "Evaluation",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/sample-efficient-learning-in-llms-e81a62af4cc3",
+    "question_targets": [
+      "What are the key ideas in Sample Efficient Learning in LLMs?",
+      "How does this relate to llms in production systems?"
+    ]
+  },
+  {
+    "slug": "audio-language-models-and-multimodal-architecture-1cdd90f46fac",
+    "title": "Audio Language Models and Multimodal Architecture",
+    "url": "https://prdeepakbabu.github.io/post.html?post=audio-language-models-and-multimodal-architecture-1cdd90f46fac",
+    "date": "2024-03-31",
+    "summary": "Multimodal models are creating a synergy between previously separate research areas such as language, vision, and speech. These models use universal architectures that treat each…",
+    "topics": [
+      "LLMs",
+      "RAG",
+      "Speech / ASR",
+      "Software Engineering",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/audio-language-models-and-multimodal-architecture-1cdd90f46fac",
+    "question_targets": [
+      "What are the key ideas in Audio Language Models and Multimodal Architecture?",
+      "How does this relate to llms in production systems?"
+    ]
+  },
+  {
+    "slug": "joint-audio-language-embedding-model-for-representation-learning-522fcbefe2ce",
+    "title": "Joint Audio-Language Embedding Model for Representation Learning",
+    "url": "https://prdeepakbabu.github.io/post.html?post=joint-audio-language-embedding-model-for-representation-learning-522fcbefe2ce",
+    "date": "2024-01-22",
+    "summary": "We have been discussing audio and language models in last few posts ( Multimodal audio-language LMM  and  Qwen-Audio FM ). In continuation to these, here we discuss another import…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Speech / ASR",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/joint-audio-language-embedding-model-for-representation-learning-522fcbefe2ce",
+    "question_targets": [
+      "What are the key ideas in Joint Audio-Language Embedding Model for Representation Learning?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "multimodal-mastery-the-qwen-audio-foundation-models-for-advanced-audio-understanding-and-reasoning-b34a86b3c9f8",
+    "title": "Multimodal Mastery: The Qwen Audio Foundation Models for Advanced Audio Understanding and Reasoning",
+    "url": "https://prdeepakbabu.github.io/post.html?post=multimodal-mastery-the-qwen-audio-foundation-models-for-advanced-audio-understanding-and-reasoning-b34a86b3c9f8",
+    "date": "2024-01-10",
+    "summary": "As a follow-up to the  last blog on large multimodal audio models  (LMM), we’re here to explore an open-source large LMM audio model. While dozens of image and text MM models exis…",
+    "topics": [
+      "LLMs",
+      "RAG",
+      "Speech / ASR",
+      "Evaluation",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/multimodal-mastery-the-qwen-audio-foundation-models-for-advanced-audio-understanding-and-reasoning-b34a86b3c9f8",
+    "question_targets": [
+      "What are the key ideas in Multimodal Mastery: The Qwen Audio Foundation Models for Advanced Audio Understanding and Reasoning?",
+      "How does this relate to llms in production systems?"
+    ]
+  },
+  {
+    "slug": "the-dawn-of-synthetic-brains-how-large-language-models-are-shaping-ai-agents-640a78f3a830",
+    "title": "The Dawn of Synthetic Brains: How Large Language Models Are Shaping AI Agents",
+    "url": "https://prdeepakbabu.github.io/post.html?post=the-dawn-of-synthetic-brains-how-large-language-models-are-shaping-ai-agents-640a78f3a830",
+    "date": "2023-12-29",
+    "summary": "Recent advancements in Large Language Models (LLMs) have demonstrated a significant capability for reasoning and planning, a trait predominantly seen in models with over 100 billi…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Speech / ASR",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/the-dawn-of-synthetic-brains-how-large-language-models-are-shaping-ai-agents-640a78f3a830",
+    "question_targets": [
+      "What are the key ideas in The Dawn of Synthetic Brains: How Large Language Models Are Shaping AI Agents?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "the-rise-of-multimodal-large-speech-language-models-4fc5ea34d04f",
+    "title": "The Rise of Multimodal Large Speech & Language Models",
+    "url": "https://prdeepakbabu.github.io/post.html?post=the-rise-of-multimodal-large-speech-language-models-4fc5ea34d04f",
+    "date": "2023-12-04",
+    "summary": "In the age of foundational models that are based on deep learning architectures like transformer models, we can process large amounts of data to learn complex representations of d…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Speech / ASR",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/the-rise-of-multimodal-large-speech-language-models-4fc5ea34d04f",
+    "question_targets": [
+      "What are the key ideas in The Rise of Multimodal Large Speech & Language Models?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "decoding-ai-s-thought-process-mechanistic-interpretability-54db5727e7e8",
+    "title": "Decoding AI’s Thought Process: Mechanistic Interpretability",
+    "url": "https://prdeepakbabu.github.io/post.html?post=decoding-ai-s-thought-process-mechanistic-interpretability-54db5727e7e8",
+    "date": "2023-11-04",
+    "summary": "Mechanistic Interpretability is a field of study that concerns study of neural networks (more generally ML models) with an intent to understand and explain inner workings of a mac…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Speech / ASR",
+      "Evaluation"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/decoding-ais-thought-process-mechanistic-interpretability-54db5727e7e8",
+    "question_targets": [
+      "What are the key ideas in Decoding AI’s Thought Process: Mechanistic Interpretability?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "reward-hacking-in-large-language-models-llms-c57abbc0cde7",
+    "title": "Reward Hacking in Large Language Models (LLMs)",
+    "url": "https://prdeepakbabu.github.io/post.html?post=reward-hacking-in-large-language-models-llms-c57abbc0cde7",
+    "date": "2023-10-09",
+    "summary": "We often hear reward hacking in the context of LLMs generating content that mimics style over substance. so what exactly does this mean ? why does it occur ? Before we dive into c…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "Software Engineering",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/reward-hacking-in-large-language-models-llms-c57abbc0cde7",
+    "question_targets": [
+      "What are the key ideas in Reward Hacking in Large Language Models (LLMs)?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "harnessing-the-power-of-synthetic-data-in-the-era-of-large-language-models-llms-and-generative-ai-f67763256d44",
+    "title": "Harnessing the Power of Synthetic Data in the Era of Large Language Models (LLMs) and Generative AI",
+    "url": "https://prdeepakbabu.github.io/post.html?post=harnessing-the-power-of-synthetic-data-in-the-era-of-large-language-models-llms-and-generative-ai-f67763256d44",
+    "date": "2023-09-30",
+    "summary": "As we transitioned from the traditional AI methods of the 2010s to deep learning-based approaches in the 2020s, there’s been a marked shift towards leveraging large-scale datasets…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Speech / ASR",
+      "Evaluation"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/harnessing-the-power-of-synthetic-data-in-the-era-of-large-language-models-llms-and-generative-ai-f67763256d44",
+    "question_targets": [
+      "What are the key ideas in Harnessing the Power of Synthetic Data in the Era of Large Language Models (LLMs) and Generative AI?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "scaling-network-effects-a-comprehensive-look-at-the-cold-start-problem",
+    "title": "Scaling Network Effects: A Comprehensive Look at ‘The Cold Start Problem’",
+    "url": "https://prdeepakbabu.github.io/post.html?post=scaling-network-effects-a-comprehensive-look-at-the-cold-start-problem",
+    "date": "2023-09-28",
+    "summary": "Having been a part of several unicorn startups in India, including Mu Sigma, InMobi, and Snapdeal, I’ve had the opportunity to contribute to and observe the unique challenges and…",
+    "topics": [
+      "Agentic AI",
+      "Speech / ASR",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2023/09/28/scaling-network-effects-a-comprehensive-look-at-the-cold-start-problem/",
+    "question_targets": [
+      "What are the key ideas in Scaling Network Effects: A Comprehensive Look at ‘The Cold Start Problem’?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "scaling-network-effects-ed7b58270970",
+    "title": "Scaling Network Effects",
+    "url": "https://prdeepakbabu.github.io/post.html?post=scaling-network-effects-ed7b58270970",
+    "date": "2023-09-28",
+    "summary": "A Comprehensive Look at ‘The Cold Start Problem’  Having been a part of several unicorn startups in India, including Mu Sigma, InMobi, and Snapdeal, I’ve had the opportunity to co…",
+    "topics": [
+      "Agentic AI",
+      "Speech / ASR",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/scaling-network-effects-a-comprehensive-look-at-the-cold-start-problem-ed7b58270970",
+    "question_targets": [
+      "What are the key ideas in Scaling Network Effects?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "i-would-emphasize-taking-an-independent-shot-at-the-problem-first-and-then-refer-literature-and-518bfee171bf",
+    "title": "I would emphasize, taking an independent shot at the problem first and then refer literature and…",
+    "url": "https://prdeepakbabu.github.io/post.html?post=i-would-emphasize-taking-an-independent-shot-at-the-problem-first-and-then-refer-literature-and-518bfee171bf",
+    "date": "2023-08-16",
+    "summary": "I would emphasize, taking an independent shot at the problem first and then refer literature and third, see if existing methods can be improved fusing ideas from of your own from…",
+    "topics": [
+      "AI Systems"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/i-would-emphasize-taking-an-independent-shot-at-the-problem-first-and-then-refer-literature-and-518bfee171bf",
+    "question_targets": [
+      "What are the key ideas in I would emphasize, taking an independent shot at the problem first and then refer literature and…?",
+      "How does this relate to ai systems in production systems?"
+    ]
+  },
+  {
+    "slug": "i-so-wish-research-community-stressed-more-on-this-7fca32f31353",
+    "title": "I so wish research community stressed more on this.",
+    "url": "https://prdeepakbabu.github.io/post.html?post=i-so-wish-research-community-stressed-more-on-this-7fca32f31353",
+    "date": "2023-08-16",
+    "summary": "I so wish research community stressed more on this. (negative results) I think some conferences have started to have a forum dedicated to these, but these are not yet mainstream.",
+    "topics": [
+      "AI Systems"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/i-so-wish-research-community-stressed-more-on-this-7fca32f31353",
+    "question_targets": [
+      "What are the key ideas in I so wish research community stressed more on this.?",
+      "How does this relate to ai systems in production systems?"
+    ]
+  },
+  {
+    "slug": "exploring-the-llm-landscape-from-parametric-memory-to-agent-oriented-models-medium-2023-06-28",
+    "title": "Exploring the LLM Landscape: From Parametric Memory to Agent-Oriented Models",
+    "url": "https://prdeepakbabu.github.io/post.html?post=exploring-the-llm-landscape-from-parametric-memory-to-agent-oriented-models-medium-2023-06-28",
+    "date": "2023-06-28",
+    "summary": "LLMs are fast-evolving and we have a new model every week, showing up on leaderboards[1] beating previous SoTA model on multiple NLP benchmarks. There are multiple architectures w…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Evaluation",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/exploring-the-llm-landscape-from-parametric-memory-to-agent-oriented-models-ab0088d1f14",
+    "question_targets": [
+      "What are the key ideas in Exploring the LLM Landscape: From Parametric Memory to Agent-Oriented Models?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "emergent-abilities-in-llm-unpredictable-abilities-in-large-language-models-72fc54059b41",
+    "title": "Emergent Abilities in LLM : Unpredictable Abilities in Large Language Models",
+    "url": "https://prdeepakbabu.github.io/post.html?post=emergent-abilities-in-llm-unpredictable-abilities-in-large-language-models-72fc54059b41",
+    "date": "2023-06-05",
+    "summary": "Emergent abilities refer to the capabilities that arise spontaneously from the complex interactions of simpler components. They are properties that can’t be predicted solely based…",
+    "topics": [
+      "LLMs",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/emergent-abilities-in-llm-unpredictable-abilities-in-large-language-models-72fc54059b41",
+    "question_targets": [
+      "What are the key ideas in Emergent Abilities in LLM : Unpredictable Abilities in Large Language Models?",
+      "How does this relate to llms in production systems?"
+    ]
+  },
+  {
+    "slug": "deploying-large-language-models-llms-in-real-world-applications-354482c86ba5",
+    "title": "Deploying Large Language Models (LLMs) in Real-World Applications",
+    "url": "https://prdeepakbabu.github.io/post.html?post=deploying-large-language-models-llms-in-real-world-applications-354482c86ba5",
+    "date": "2023-04-28",
+    "summary": "The growing capabilities of Large Language Models (LLMs) have led to an increasing demand for their integration into production systems. However, implementing LLMs with low-latenc…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Evaluation",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/deploying-large-language-models-llms-in-real-world-applications-354482c86ba5",
+    "question_targets": [
+      "What are the key ideas in Deploying Large Language Models (LLMs) in Real-World Applications?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "from-n-grams-to-gpt-4-the-meteoric-rise-of-large-language-models-d9e064ec7bf0",
+    "title": "From N-grams to GPT-4: The Meteoric Rise of Large Language Models",
+    "url": "https://prdeepakbabu.github.io/post.html?post=from-n-grams-to-gpt-4-the-meteoric-rise-of-large-language-models-d9e064ec7bf0",
+    "date": "2023-04-20",
+    "summary": "Large Language Models (LLMs) have caused a paradigm shift in the way NLP is traditionally done i.e anything to do with text. I have been working in this domain for 10+ years havin…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/from-n-grams-to-gpt-4-the-meteoric-rise-of-large-language-models-d9e064ec7bf0",
+    "question_targets": [
+      "What are the key ideas in From N-grams to GPT-4: The Meteoric Rise of Large Language Models?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "importance-of-mental-models-for-data-scientists-ml-ai-practitioners-43c4b88b4871",
+    "title": "Importance of Mental Models for Data Scientists & ML/AI Practitioners",
+    "url": "https://prdeepakbabu.github.io/post.html?post=importance-of-mental-models-for-data-scientists-ml-ai-practitioners-43c4b88b4871",
+    "date": "2022-11-18",
+    "summary": "We have all been in situations where we have felt a lack of clarity and understanding on a complex project, metrics defined for measurement disagree with customer anecdotes, deplo…",
+    "topics": [
+      "Agentic AI",
+      "RAG",
+      "Speech / ASR",
+      "Software Engineering",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/importance-of-mental-models-for-data-scientists-ml-ai-practitioners-43c4b88b4871",
+    "question_targets": [
+      "What are the key ideas in Importance of Mental Models for Data Scientists & ML/AI Practitioners?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "an-illustrated-overview-of-reinforcement-learning-medium-2020-04-24",
+    "title": "An Illustrated Overview of Reinforcement Learning",
+    "url": "https://prdeepakbabu.github.io/post.html?post=an-illustrated-overview-of-reinforcement-learning-medium-2020-04-24",
+    "date": "2020-04-24",
+    "summary": "Reinforcement Learning (RL) is a learning paradigm different from traditional machine learning (supervised and unsupervised). The learning problem considered here mimics humans le…",
+    "topics": [
+      "Agentic AI",
+      "LLMs",
+      "RAG",
+      "Evaluation",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/an-illustrated-overview-of-reinforcement-learning-ccc47ae43b6",
+    "question_targets": [
+      "What are the key ideas in An Illustrated Overview of Reinforcement Learning?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "deep-learning-gender-from-name-lstm-recurrent-neural-networks-448d64553044",
+    "title": "Deep learning gender from name -LSTM Recurrent Neural Networks",
+    "url": "https://prdeepakbabu.github.io/post.html?post=deep-learning-gender-from-name-lstm-recurrent-neural-networks-448d64553044",
+    "date": "2017-04-23",
+    "summary": "prdeepakbabu/Python   Python - All *.py scripts github.com     Deep learning neural networks have shown promising results in problems related to vision, speech and text with varyi…",
+    "topics": [
+      "RAG",
+      "Speech / ASR",
+      "Software Engineering",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://medium.com/@prdeepak.babu/deep-learning-gender-from-name-lstm-recurrent-neural-networks-448d64553044",
+    "question_targets": [
+      "What are the key ideas in Deep learning gender from name -LSTM Recurrent Neural Networks?",
+      "How does this relate to rag in production systems?"
+    ]
+  },
+  {
+    "slug": "machine-learning-regression-problems",
+    "title": "Machine learning & Regression Problems",
+    "url": "https://prdeepakbabu.github.io/post.html?post=machine-learning-regression-problems",
+    "date": "2016-06-11",
+    "summary": "Machine Learning – Linear Regression using gradient descent vs. neural network \n Machine learning or Supervised Learning broadly encompasses two classes of problems – regression a…",
+    "topics": [
+      "Agentic AI",
+      "Speech / ASR",
+      "Software Engineering",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2016/06/12/machine-learning-regression-problems/",
+    "question_targets": [
+      "What are the key ideas in Machine learning & Regression Problems?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "spelling-correction-in-search-engines-algorithms-strategies",
+    "title": "Spelling Correction in Search Engines – Algorithms & Strategies",
+    "url": "https://prdeepakbabu.github.io/post.html?post=spelling-correction-in-search-engines-algorithms-strategies",
+    "date": "2016-02-28",
+    "summary": "Information Retrieval : Spell Correction in Search Engines – Algorithms & Strategies  \n Spell Checking & Correction is an important component of any information retrieval(aka docu…",
+    "topics": [
+      "RAG",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2016/02/29/spelling-correction-in-search-engines-algorithms-strategies/",
+    "question_targets": [
+      "What are the key ideas in Spelling Correction in Search Engines – Algorithms & Strategies?",
+      "How does this relate to rag in production systems?"
+    ]
+  },
+  {
+    "slug": "overview-mobile-advertising-ad-marketplaces",
+    "title": "Overview: Mobile Advertising & Ad Marketplaces",
+    "url": "https://prdeepakbabu.github.io/post.html?post=overview-mobile-advertising-ad-marketplaces",
+    "date": "2015-04-30",
+    "summary": "In this blog post, I am going to discuss about mobile advertising networks, ecosystem & industry trends. This understanding would serve as base for the future posts I plan to writ…",
+    "topics": [
+      "Software Engineering"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2015/04/30/overview-mobile-advertising-ad-marketplaces/",
+    "question_targets": [
+      "What are the key ideas in Overview: Mobile Advertising & Ad Marketplaces?",
+      "How does this relate to software engineering in production systems?"
+    ]
+  },
+  {
+    "slug": "data-science-101-data-vs-information-vs-knowledge",
+    "title": "Data Science 101: Data vs. Information vs. Knowledge",
+    "url": "https://prdeepakbabu.github.io/post.html?post=data-science-101-data-vs-information-vs-knowledge",
+    "date": "2014-11-07",
+    "summary": "We talk about big data quite often these days, wanted to put some fundas about basics around data. Do you know the singular form of data ? How data differs from information vs. kn…",
+    "topics": [
+      "AI Systems"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2014/11/07/data-science-101-data-vs-information-vs-knowledge/",
+    "question_targets": [
+      "What are the key ideas in Data Science 101: Data vs. Information vs. Knowledge?",
+      "How does this relate to ai systems in production systems?"
+    ]
+  },
+  {
+    "slug": "it-is-the-age-of-meta-hybrids-not-just-in-data-science-but-everywhere",
+    "title": "It is the age of meta & hybrids, not just in data science but everywhere!",
+    "url": "https://prdeepakbabu.github.io/post.html?post=it-is-the-age-of-meta-hybrids-not-just-in-data-science-but-everywhere",
+    "date": "2014-01-24",
+    "summary": "I have spent most of my life into data and its applications to problems. Now, when i look at some patterns in algorithms we use in analyzing data, one thing that emerges is increa…",
+    "topics": [
+      "AI Systems"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2014/01/24/it-is-the-age-of-meta-hybrids-not-just-in-data-science-but-everywhere/",
+    "question_targets": [
+      "What are the key ideas in It is the age of meta & hybrids, not just in data science but everywhere!?",
+      "How does this relate to ai systems in production systems?"
+    ]
+  },
+  {
+    "slug": "social-network-analytics-visualization",
+    "title": "Social Network Analytics & Visualization",
+    "url": "https://prdeepakbabu.github.io/post.html?post=social-network-analytics-visualization",
+    "date": "2012-10-06",
+    "summary": "We are in the era of big data, with newer sources of data emerging at an exponential rate involving sensor data, EHR, social network/media data & machine generated data. In this b…",
+    "topics": [
+      "Agentic AI",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2012/10/06/social-network-analytics-visualization/",
+    "question_targets": [
+      "What are the key ideas in Social Network Analytics & Visualization?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "clustering-techniques",
+    "title": "Clustering  Techniques",
+    "url": "https://prdeepakbabu.github.io/post.html?post=clustering-techniques",
+    "date": "2012-05-25",
+    "summary": "Clustering is an unsupervised classification (learning) technique, where the objective is to maximize inter-cluster distance while minimizing the intra-cluster distance.  By unsup…",
+    "topics": [
+      "Software Engineering"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2012/05/26/clustering-techniques/",
+    "question_targets": [
+      "What are the key ideas in Clustering Techniques?",
+      "How does this relate to software engineering in production systems?"
+    ]
+  },
+  {
+    "slug": "big-data-hadoop-map-reduce",
+    "title": "Big Data: Hadoop Map Reduce",
+    "url": "https://prdeepakbabu.github.io/post.html?post=big-data-hadoop-map-reduce",
+    "date": "2012-03-05",
+    "summary": "Hadoop is an open source framework for writing and running distributed application that process huge amounts of data ( more famously called Big Data). The name Hadoop is not an ac…",
+    "topics": [
+      "RAG",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2012/03/06/big-data-hadoop-map-reduce/",
+    "question_targets": [
+      "What are the key ideas in Big Data: Hadoop Map Reduce?",
+      "How does this relate to rag in production systems?"
+    ]
+  },
+  {
+    "slug": "location-intelligence-using-social-media-data-customer-location-aware-systems",
+    "title": "Location Intelligence using Social Media Data: Customer Location Aware Systems",
+    "url": "https://prdeepakbabu.github.io/post.html?post=location-intelligence-using-social-media-data-customer-location-aware-systems",
+    "date": "2011-10-25",
+    "summary": "In the recent past, a variety of new social media sites have emerged – location Based Services( like foursquare, gowala), Group Deals( like groupon),  microblogging( like twitter,…",
+    "topics": [
+      "RAG",
+      "Speech / ASR"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2011/10/25/location-intelligence-using-social-media-data-customer-location-aware-systems/",
+    "question_targets": [
+      "What are the key ideas in Location Intelligence using Social Media Data: Customer Location Aware Systems?",
+      "How does this relate to rag in production systems?"
+    ]
+  },
+  {
+    "slug": "did-use-of-helmets-reduce-deaths-due-to-2-wheeler-accidents",
+    "title": "Did use of helmets reduce deaths due to 2 wheeler accidents?",
+    "url": "https://prdeepakbabu.github.io/post.html?post=did-use-of-helmets-reduce-deaths-due-to-2-wheeler-accidents",
+    "date": "2011-10-12",
+    "summary": "This blog post is about the analysis of implementation of helmet rule in various Indian states and the effect it had on bringing down accidental deaths due to 2 wheelers. Here we…",
+    "topics": [
+      "Software Engineering"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2011/10/13/did-use-of-helmets-reduce-deaths-due-to-2-wheeler-accidents/",
+    "question_targets": [
+      "What are the key ideas in Did use of helmets reduce deaths due to 2 wheeler accidents??",
+      "How does this relate to software engineering in production systems?"
+    ]
+  },
+  {
+    "slug": "socializing-insights-with-end-users-analytics-for-masses-amazon-vs-linkedin",
+    "title": "Socializing Insights with end users: Analytics for masses – Amazon vs. LinkedIn",
+    "url": "https://prdeepakbabu.github.io/post.html?post=socializing-insights-with-end-users-analytics-for-masses-amazon-vs-linkedin",
+    "date": "2011-07-31",
+    "summary": "This blog post is about comparison of amazon.com and linkedin.com in terms of similarities across dimensions of analytic maturity & use of data shared by their customers. As Thoma…",
+    "topics": [
+      "RAG",
+      "Evaluation"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2011/07/31/socializing-insights-with-end-users-analytics-for-masses-amazon-vs-linkedin/",
+    "question_targets": [
+      "What are the key ideas in Socializing Insights with end users: Analytics for masses – Amazon vs. LinkedIn?",
+      "How does this relate to rag in production systems?"
+    ]
+  },
+  {
+    "slug": "integrate-analyze-visualize-socialize-visualization-tools-techniques",
+    "title": "“Integrate, Analyze, Visualize & Socialize” – Visualization Tools & Techniques",
+    "url": "https://prdeepakbabu.github.io/post.html?post=integrate-analyze-visualize-socialize-visualization-tools-techniques",
+    "date": "2011-07-02",
+    "summary": "Turning raw data into insights often involves integrating data from multiple disparate sources (not just limited structured one), analyzing the data, visualizing it and socializin…",
+    "topics": [
+      "Agentic AI",
+      "RAG",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2011/07/03/integrate-analyze-visualize-socialize-visualization-tools-techniques/",
+    "question_targets": [
+      "What are the key ideas in “Integrate, Analyze, Visualize & Socialize” – Visualization Tools & Techniques?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "some-of-the-insights-have-stood-best-because-they-were-simple",
+    "title": "Some of the insights have stood best, because they were simple!",
+    "url": "https://prdeepakbabu.github.io/post.html?post=some-of-the-insights-have-stood-best-because-they-were-simple",
+    "date": "2011-02-19",
+    "summary": "In this blog post, i talk about 3 scenarios where there had been highly valuable insights derived, yet remaining simple. \n   1. Customers shopped online returned via stores   Rand…",
+    "topics": [
+      "RAG"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2011/02/20/some-of-the-insights-have-stood-best-because-they-were-simple/",
+    "question_targets": [
+      "What are the key ideas in Some of the insights have stood best, because they were simple!?",
+      "How does this relate to rag in production systems?"
+    ]
+  },
+  {
+    "slug": "market-basket-analysisassociation-rule-mining-using-r-package-arules",
+    "title": "Market Basket Analysis/Association Rule Mining using R package – arules",
+    "url": "https://prdeepakbabu.github.io/post.html?post=market-basket-analysisassociation-rule-mining-using-r-package-arules",
+    "date": "2010-11-13",
+    "summary": "In my  previous post , i had discussed about Association rule mining in some detail.  Here i have shown the implementation of the concept using open source tool  R  using the pack…",
+    "topics": [
+      "Agentic AI",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2010/11/13/market-basket-analysisassociation-rule-mining-using-r-package-arules/",
+    "question_targets": [
+      "What are the key ideas in Market Basket Analysis/Association Rule Mining using R package – arules?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "beyond-bi-analytics",
+    "title": "Beyond BI & Analytics",
+    "url": "https://prdeepakbabu.github.io/post.html?post=beyond-bi-analytics",
+    "date": "2010-09-11",
+    "summary": "For the last 6 months, i have been closely following trends in information management. Below are few of my observations. \n \n Data source explosion: Business Problems are gaining c…",
+    "topics": [
+      "Agentic AI",
+      "RAG",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2010/09/12/beyond-bi-analytics/",
+    "question_targets": [
+      "What are the key ideas in Beyond BI & Analytics?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "datamining-video-lectures-best-way-to-learn",
+    "title": "Datamining Video Lectures – Best way to learn",
+    "url": "https://prdeepakbabu.github.io/post.html?post=datamining-video-lectures-best-way-to-learn",
+    "date": "2010-03-03",
+    "summary": "Do you find analytics/data mining a difficult topic to understand and learn? To a certain extent true if you were to use books as the source. Friends, i found these two very valua…",
+    "topics": [
+      "Agentic AI",
+      "Software Engineering",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2010/03/03/datamining-video-lectures-best-way-to-learn/",
+    "question_targets": [
+      "What are the key ideas in Datamining Video Lectures – Best way to learn?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "association-rule-mining",
+    "title": "Association Rule Mining",
+    "url": "https://prdeepakbabu.github.io/post.html?post=association-rule-mining",
+    "date": "2010-02-24",
+    "summary": "Association Rule Mining   [ Implementation using R here]   \n  \n Association Rule mining is one of the classical DM technique. Association Rule mining is a very powerful technique…",
+    "topics": [
+      "Evaluation",
+      "Software Engineering",
+      "Machine Learning"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2010/02/24/association-rule-mining/",
+    "question_targets": [
+      "What are the key ideas in Association Rule Mining?",
+      "How does this relate to evaluation in production systems?"
+    ]
+  },
+  {
+    "slug": "future-of-predictive-analytics-part-ii",
+    "title": "Future of Predictive analytics – Part II",
+    "url": "https://prdeepakbabu.github.io/post.html?post=future-of-predictive-analytics-part-ii",
+    "date": "2010-01-17",
+    "summary": "Here is the continuation to the article i had posted few days back < here >. I am back with some interesting info on recent advancements in the area of analytics. Before going on…",
+    "topics": [
+      "Agentic AI"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2010/01/17/future-of-predictive-analytics-part-ii/",
+    "question_targets": [
+      "What are the key ideas in Future of Predictive analytics – Part II?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "informatica-interview-questions-all-in-one",
+    "title": "Informatica interview Questions – All in one",
+    "url": "https://prdeepakbabu.github.io/post.html?post=informatica-interview-questions-all-in-one",
+    "date": "2009-12-28",
+    "summary": "Informatica recently unvieled its latest release informatica 9 with some major enhancements as compared to its earlier versions, believed to revolutionize data integration &  ETL…",
+    "topics": [
+      "AI Systems"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2009/12/28/informatica-interview-questions-all-in-one/",
+    "question_targets": [
+      "What are the key ideas in Informatica interview Questions – All in one?",
+      "How does this relate to ai systems in production systems?"
+    ]
+  },
+  {
+    "slug": "visualization-techniques",
+    "title": "Visualization Techniques",
+    "url": "https://prdeepakbabu.github.io/post.html?post=visualization-techniques",
+    "date": "2009-12-10",
+    "summary": "Visualization is considered to be one of the valuable tools in data mining. Visual analysis helps to understand data with minimum effort. Using graphs/ 3D plots to visualize data…",
+    "topics": [
+      "Agentic AI",
+      "RAG",
+      "Speech / ASR",
+      "Software Engineering"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2009/12/10/visualization-techniques/",
+    "question_targets": [
+      "What are the key ideas in Visualization Techniques?",
+      "How does this relate to agentic ai in production systems?"
+    ]
+  },
+  {
+    "slug": "amazon-com-an-analytics-perspective",
+    "title": "amazon.com – An analytics perspective",
+    "url": "https://prdeepakbabu.github.io/post.html?post=amazon-com-an-analytics-perspective",
+    "date": "2009-11-23",
+    "summary": "In my today’s post i will be talking about  amazon.com,  a leading e-commerce company. Amazon.com has huge amounts of data about its customer base, products and customer purchase…",
+    "topics": [
+      "Software Engineering"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2009/11/23/amazon-com-an-analytics-perspective/",
+    "question_targets": [
+      "What are the key ideas in amazon.com – An analytics perspective?",
+      "How does this relate to software engineering in production systems?"
+    ]
+  },
+  {
+    "slug": "future-of-predictive-analytics",
+    "title": "Future of Predictive Analytics",
+    "url": "https://prdeepakbabu.github.io/post.html?post=future-of-predictive-analytics",
+    "date": "2009-11-14",
+    "summary": "Recently i had attended a conference on “Future of Predictive Analytics” here at Bangalore. Here is the summarized version of the topics covered; Data mining is an automated proce…",
+    "topics": [
+      "RAG",
+      "Speech / ASR"
+    ],
+    "canonical_source": "https://prdeepakbabu.wordpress.com/2009/11/14/future-of-predictive-analytics/",
+    "question_targets": [
+      "What are the key ideas in Future of Predictive Analytics?",
+      "How does this relate to rag in production systems?"
+    ]
+  }
+]

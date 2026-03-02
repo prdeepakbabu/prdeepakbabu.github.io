@@ -12,6 +12,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog Post | Deepak Babu Piskala</title>
+  <meta name="description" content="Technical blog posts by Deepak Babu Piskala on agentic AI, LLM systems, retrieval, and production ML.">
+  <link rel="canonical" href="https://prdeepakbabu.github.io/blogs.html">
+  <meta property="og:title" content="Blog Post | Deepak Babu Piskala">
+  <meta property="og:description" content="Technical blog posts on AI systems, agent orchestration, speech, and production engineering.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://prdeepakbabu.github.io/blogs.html">
+  <meta property="og:image" content="https://prdeepakbabu.github.io/1DC549B4-26BA-4564-8BCA-40CBFABB7AC8.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog Post | Deepak Babu Piskala">
+  <meta name="twitter:description" content="Technical blog posts on AI systems, agent orchestration, speech, and production engineering.">
+  <meta name="twitter:image" content="https://prdeepakbabu.github.io/1DC549B4-26BA-4564-8BCA-40CBFABB7AC8.jpeg">
+  <script id="blogposting-jsonld" type="application/ld+json"></script>
   <link rel="stylesheet" href="styles.css">
   <style>
     main {
@@ -165,6 +177,7 @@
     <a href="blogs.html" class="active">Blog</a>
     <a href="projects.html">My Works</a>
     <a href="resources.html">Resources</a>
+    <a href="sm_posts.html">Social</a>
     <a href="contact.html">Contact</a>
   </nav>
 
@@ -173,6 +186,9 @@
       <a class="back-link" href="blogs.html">← Back to Blog</a>
     </div>
     <div id="post-content" class="post-content">Loading...</div>
+    <noscript>
+      <p>This page renders post content with JavaScript. For crawlable source text, use links in <a href="blogs.html">blogs</a>, <a href="answers.html">answers</a>, or <a href="sitemap.xml">sitemap.xml</a>.</p>
+    </noscript>
     <div class="share-row">
       <button id="share-native" class="primary" type="button">Share</button>
       <a id="share-x" href="#" target="_blank" rel="noopener">Post on X</a>
@@ -263,6 +279,98 @@
         return data.siteCanonical.trim();
       }
       return `https://prdeepakbabu.github.io/post.html?post=${encodeURIComponent(slug)}`;
+    }
+
+    function parseCsvList(value) {
+      if (!value) return [];
+      return String(value)
+        .split(',')
+        .map((part) => part.trim())
+        .filter(Boolean);
+    }
+
+    function stripToPlainText(raw) {
+      return String(raw || '')
+        .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
+        .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
+        .replace(/[`*_>#-]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    function deriveDescription(data, bodyMarkdown) {
+      if (data && typeof data.summary === 'string' && data.summary.trim()) {
+        return data.summary.trim();
+      }
+      const text = stripToPlainText(bodyMarkdown);
+      if (!text) return 'Technical blog post by Deepak Babu Piskala.';
+      return text.length <= 180 ? text : `${text.slice(0, 179).trimEnd()}…`;
+    }
+
+    function inferTopicsFromContent(title, bodyMarkdown) {
+      const text = `${title} ${bodyMarkdown}`.toLowerCase();
+      const topics = [];
+      const mapping = [
+        ['Agentic AI', ['agent', 'agentic', 'orchestration', 'sub-agent', 'tool']],
+        ['LLMs', ['llm', 'language model', 'gpt', 'transformer']],
+        ['RAG', ['rag', 'retrieval']],
+        ['Speech / ASR', ['speech', 'asr', 'voice']],
+        ['Software Engineering', ['software', 'coding', 'spec', 'development']],
+      ];
+      mapping.forEach(([label, needles]) => {
+        if (needles.some((needle) => text.includes(needle))) {
+          topics.push(label);
+        }
+      });
+      return topics.length ? topics : ['AI Systems'];
+    }
+
+    function setMetaAttr(selector, attr, value) {
+      if (!value) return;
+      const el = document.head.querySelector(selector);
+      if (el) {
+        el.setAttribute(attr, value);
+      }
+    }
+
+    function updatePageMetadata({ title, description, url, imageUrl }) {
+      if (title) document.title = `${title} | Deepak Babu Piskala`;
+      setMetaAttr('meta[name="description"]', 'content', description);
+      setMetaAttr('meta[property="og:title"]', 'content', title);
+      setMetaAttr('meta[property="og:description"]', 'content', description);
+      setMetaAttr('meta[property="og:url"]', 'content', url);
+      setMetaAttr('meta[property="og:image"]', 'content', imageUrl);
+      setMetaAttr('meta[name="twitter:title"]', 'content', title);
+      setMetaAttr('meta[name="twitter:description"]', 'content', description);
+      setMetaAttr('meta[name="twitter:image"]', 'content', imageUrl);
+    }
+
+    function ensureBlogPostingJsonLd({ data, title, description, canonicalUrl, topics, imageUrl }) {
+      const target = document.getElementById('blogposting-jsonld');
+      if (!target) return;
+      const datePublished = (data && data.date) ? data.date : undefined;
+      const payload = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title,
+        author: {
+          '@type': 'Person',
+          name: 'Deepak Babu Piskala',
+          url: 'https://prdeepakbabu.github.io/',
+        },
+        datePublished,
+        keywords: topics,
+        mainEntityOfPage: canonicalUrl,
+        about: topics.map((topic) => ({
+          '@type': 'Thing',
+          name: topic,
+        })),
+        image: imageUrl ? [imageUrl] : undefined,
+        description,
+      };
+      target.textContent = JSON.stringify(payload, null, 2);
     }
 
     function computeBibTeXShortKey({ data, slug }) {
@@ -394,7 +502,29 @@
 
         const titleMatch = markdown.match(/^#\s+(.+)$/m);
         const title = data.title || (titleMatch ? titleMatch[1] : 'Blog Post');
-        document.title = `${title} | Deepak Babu Piskala`;
+        const topics = parseCsvList(data.topics).length
+          ? parseCsvList(data.topics)
+          : inferTopicsFromContent(title, bodyMarkdown);
+        const siteCanonicalUrl = computeSiteCanonicalUrl({ data, slug });
+        const description = deriveDescription(data, bodyMarkdown);
+        const coverImage = (data.coverImage && String(data.coverImage).trim())
+          ? String(data.coverImage).trim()
+          : 'https://prdeepakbabu.github.io/1DC549B4-26BA-4564-8BCA-40CBFABB7AC8.jpeg';
+        updatePageMetadata({
+          title,
+          description,
+          url: siteCanonicalUrl,
+          imageUrl: coverImage,
+        });
+        ensureCanonicalLink(siteCanonicalUrl);
+        ensureBlogPostingJsonLd({
+          data,
+          title,
+          description,
+          canonicalUrl: siteCanonicalUrl,
+          topics,
+          imageUrl: coverImage,
+        });
 
         const dateLabel = data.date ? formatIsoDate(data.date) : '';
         const coverImg = data.coverImage
@@ -417,8 +547,6 @@
         const markdownHtml = marked.parse(bodyMarkdown);
         const container = document.getElementById('post-content');
         container.innerHTML = `${headerHtml}${coverImg}<div class="post-markdown">${markdownHtml}</div>${canonicalFooter}`;
-        const siteCanonicalUrl = computeSiteCanonicalUrl({ data, slug });
-        ensureCanonicalLink(siteCanonicalUrl);
         appendSuggestedCitation({ container, slug, data, title });
 
         // If the post has a cover image, we show it once above the body.
