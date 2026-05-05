@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Building Speech AI — Deepak Babu Piskala</title>
+<meta name="description" content="A practitioner's guide to speech AI: signal processing, ASR, TTS, embeddings, voice cloning, and audio language models. With a full open-source companion codebase." />
+<meta property="og:title" content="Building Speech AI — A Practitioner's Guide" />
+<meta property="og:description" content="From the physics of sound to production voice systems — with 12 runnable notebooks and scripts." />
+<meta property="og:type" content="book" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff9447' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M3 12h2M7 8v8M11 4v16M15 8v8M19 11v2M23 12h-2'/%3E%3C/svg%3E" />
+<script>document.documentElement.classList.add('js');</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNWLG8DBTN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XNWLG8DBTN', {
+    page_title: 'Building Speech AI — Book Landing',
+    page_path: '/speech-ai-book/'
+  });
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 12h2M7 8v8M11 4v16M15 8v8M19 11v2M23 12h-2"/></svg>
+      <span>Building Speech AI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about" data-analytics-event="nav_click" data-analytics-label="book">Book</a></li>
+      <li><a href="#arc" data-analytics-event="nav_click" data-analytics-label="the_arc">The Arc</a></li>
+      <li><a href="#chapters" data-analytics-event="nav_click" data-analytics-label="chapters">Chapters</a></li>
+      <li><a href="#code" data-analytics-event="nav_click" data-analytics-label="code">Code</a></li>
+      <li><a href="#quickstart" data-analytics-event="nav_click" data-analytics-label="quick_start">Quick Start</a></li>
+      <li><a href="#author" data-analytics-event="nav_click" data-analytics-label="author">Author</a></li>
+    </ul>
+    <a href="https://github.com/prdeepakbabu/building-speech-ai" target="_blank" rel="noopener" class="nav-cta" data-analytics-event="nav_repo_click" data-analytics-label="github_repo">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.13-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.39.97.01 1.95.14 2.86.39 2.18-1.49 3.14-1.18 3.14-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.26 5.68.41.36.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.14 0 .31.21.68.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+      <span>Repo</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <canvas id="wave-canvas"></canvas>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="badge badge-release"><span class="badge-dot"></span> Coming May 2026 · Pre-release</div>
+    <h1 class="hero-title">
+      <span class="hero-title-pre">Building</span>
+      <span class="hero-title-main">Speech<span class="accent"> AI</span></span>
+    </h1>
+    <p class="hero-sub">Speech Representation, Understanding &amp; Synthesis<br/><em>A Practitioner's Guide</em></p>
+    <p class="hero-lede">
+      From the physics of pressure waves to production voice systems. Twelve chapters that connect acoustic fundamentals,
+      modern transformer architectures, and the engineering trade-offs that decide whether speech AI ships. Every concept
+      ships with runnable code.
+    </p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">12</div><div class="stat-label">Chapters</div></div>
+      <div class="stat"><div class="stat-num">12</div><div class="stat-label">Notebooks</div></div>
+      <div class="stat"><div class="stat-num">12</div><div class="stat-label">CLI Scripts</div></div>
+      <div class="stat"><div class="stat-num">320+</div><div class="stat-label">Pages</div></div>
+    </div>
+    <div class="hero-cta">
+      <a href="#code" class="btn btn-primary" data-analytics-event="hero_cta_click" data-analytics-label="explore_code">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+        Explore the Code
+      </a>
+      <a href="https://github.com/prdeepakbabu/building-speech-ai" target="_blank" rel="noopener" class="btn btn-ghost" data-analytics-event="hero_cta_click" data-analytics-label="view_github">
+        View on GitHub
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span></span></div>
+</header>
+
+<!-- ============ ABOUT ============ -->
+<section class="section section-about" id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">About the Book</div>
+      <h2>The book I wish I'd had when I started.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="lede">
+          Speech AI sits at an unusual intersection: signal processing, linguistics, machine learning, and systems
+          engineering. Academic papers assume you know Fourier analysis; DSP textbooks ignore neural networks; ML
+          courses treat audio as just another input modality.
+        </p>
+        <p>
+          This is a builder's book. Whether you're a machine-learning engineer exploring audio for the first time,
+          a software developer integrating voice into a product, a researcher pushing state of the art, or a technical
+          leader evaluating voice strategies — you'll find the conceptual foundations <em>and</em> the practical
+          implementations together.
+        </p>
+        <p class="quote">
+          <span class="quote-mark">&ldquo;</span>If you can't run it, you don't really understand it.<span class="quote-mark">&rdquo;</span>
+        </p>
+        <p>
+          Every concept ships with working code. Not toy examples, but real implementations you can run, modify,
+          and extend. We resist the temptation to hide complexity behind library calls. When we use Whisper or
+          wav2vec 2.0, we understand what's happening inside.
+        </p>
+      </div>
+      <aside class="about-side">
+        <div class="card-spine">
+          <div class="spine-header">
+            <span>BUILDING</span>
+            <span class="spine-title">Speech AI</span>
+            <span class="spine-sub">A Practitioner's Guide</span>
+            <span class="spine-author">Deepak Babu Piskala</span>
+          </div>
+        </div>
+        <ul class="bullet-list">
+          <li><strong>Audience:</strong> ML engineers, voice product builders, researchers, tech leaders</li>
+          <li><strong>Prereqs:</strong> Python &amp; basic ML — gradient descent, neural nets</li>
+          <li><strong>Bring:</strong> Curiosity. We build DSP from the ground up.</li>
+          <li><strong>Code:</strong> 12 pre-executed Jupyter notebooks &amp; CLI scripts</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE ARC ============ -->
+<section class="section section-arc" id="arc">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Four Parts. One Arc.</div>
+      <h2>Sound &rarr; Meaning &rarr; Voice &rarr; Production.</h2>
+    </div>
+    <div class="arc-track">
+      <div class="arc-step" data-step="01">
+        <div class="arc-num">01</div>
+        <h3>Foundations of Sound</h3>
+        <p>Pressure waves, sampling theory, spectrograms, and the perceptual quirks of human hearing that shape how machines represent audio.</p>
+        <div class="arc-chip">Chapters 1–3</div>
+      </div>
+      <div class="arc-step" data-step="02">
+        <div class="arc-num">02</div>
+        <h3>Speech Recognition</h3>
+        <p>From CTC and HMM-GMM through attention-based encoder–decoders. Whisper, wav2vec 2.0, HuBERT, Conformer — and what each gets right.</p>
+        <div class="arc-chip">Chapters 4–6</div>
+      </div>
+      <div class="arc-step" data-step="03">
+        <div class="arc-num">03</div>
+        <h3>Speech Synthesis</h3>
+        <p>Neural TTS from WaveNet to VITS. Voice cloning, prosody, voice conversion — and the ethics that have to ride alongside the math.</p>
+        <div class="arc-chip">Chapter 7</div>
+      </div>
+      <div class="arc-step" data-step="04">
+        <div class="arc-num">04</div>
+        <h3>Production Voice AI</h3>
+        <p>Audio language models, real-time pipelines, edge deployment, deepfakes, bias, and the engineering trade-offs that decide what ships.</p>
+        <div class="arc-chip">Chapters 8–12</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTERS ============ -->
+<section class="section section-chapters" id="chapters">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Inside the Book</div>
+      <h2>Twelve chapters of speech AI, from first principles to production.</h2>
+    </div>
+    <p class="chapters-hint">Hover a tile to peek at <em>what to look for</em> — click to read a sample.</p>
+    <div class="chapters-grid">
+
+      <article class="chapter-card" data-ch="1" tabindex="0" role="button" aria-label="Chapter 1 sample"><div class="ch-flipper">
+        <div class="ch-face ch-front">
+          <div class="ch-num">01</div>
+          <h3>Introduction to Speech &amp; Audio AI</h3>
+          <p>The convergence of four disciplines. The human instrument. Applications that listen and speak.</p>
+        </div>
+        <div class="ch-face ch-back">
+          <div class="ch-back-label">What to look for</div>
+          <ul class="ch-watch">
+            <li>The four disciplines you must hold at once: <strong>signal processing, linguistics, ML, systems</strong></li>
+            <li>Why "the human instrument" sets a ceiling speech tech still chases</li>
+            <li>The central transformation: pressure waves in air → numbers in RAM</li>
+          </ul>
+          <span class="ch-open-hint">Click to read the sample &rarr;</span>
+        </div>
+      </div></article>
+
+      <article class="chapter-card" data-ch="2" tabindex="0" role="button" aria-label="Chapter 2 sample"><div class="ch-flipper">
+        <div class="ch-face ch-front">
+          <div class="ch-num">02</div>
+          <h3>Understanding Audio Data</h3>
+          <p>Why audio is fundamentally different from text and images: temporal essence, the fragile dance with noise.</p>
+        </div>
+        <div class="ch-face ch-back">
+          <div class="ch-back-label">What to look for</div>
+          <ul class="ch-watch">
+            <li>Why audio is <strong>not</strong> like text or images — the fundamental divide</li>
+            <li>The 16,000-samples-per-second computational storm, made tangible</li>
+            <li>Noise as a <em>feature</em> of the medium, not a bug to remove</li>
+          </ul>
+          <span class="ch-open-hint">Click to read the sample &rarr;</span>
+        </div>
+      </div></article>
+
+      <article class="chapter-card" data-ch="3" tabindex="0" role="button" aria-label="Chapter 3 sample"><div class="ch-flipper">
+        <div class="ch-face ch-front">
+          <div class="ch-num">03</div>
+          <h3>Signal Processing Fundamentals</h3>
+          <p>The Fourier transform. Spectrograms. Filtering. The mathematical foundations that don't go away.</p>
+        </div>
+        <div class="ch-face ch-back">
+          <div class="ch-back-label">What to look for</div>
+          <ul class="ch-watch">
+            <li>The <strong>Fourier intuition</strong> without the calculus pain</li>
+            <li>Spectrogram as the Rosetta Stone between time and frequency</li>
+            <li>Filtering as <em>selective attention</em> for a machine</li>
+          </ul>
+          <span class="ch-open-hint">Click to read the sample &rarr;</span>
+        </div>
+      </div></article>
+
+      <article class="chapter-card" data-ch="4" tabindex="0" role="button" aria-label="Chapter 4 sample"><div class="ch-flipper">
+        <div class="ch-face ch-front">
+          <div class="ch-num">04</div>
+          <h3>The Evolution of Speech Tech</h3>
+          <p>HMM-GMM, n-grams, the neural revolution, and the path to end-to-end learning.</p>
+        </div>
+        <div class="ch-face ch-back">
+          <div class="ch-back-label">What to look for</div>
+          <ul class="ch-watch">
+            <li>HMM-GMM as a snapshot of pre-deep-learning reasoning</li>
+            <li>The <strong>n-gram arithmetic</strong> that ran search and dictation for a decade</li>
+            <li>Why end-to-end neural ate the field</li>
+          </ul>
+          <span class="ch-open-hint">Click to read the sample &rarr;</span>
+        </div>
+      </div></article>
+
+      <article class="chapter-card" data-ch="5" tabindex="0" role="button" aria-label="Chapter 5 sample"><div class="ch-flipper">
+        <div class="ch-face ch-front">
+          <div class="ch-num">05</div>
+          <h3>Modern ASR Architectures</h3>
+          <p>Wav2Vec, HuBERT, Conformer, Whisper. Streaming ASR. Self-supervised learning as the dark matter of audio AI.</p>
+        </div>
+        <div class="ch-face ch-back">
+          <div class="ch-back-label">What to look for</div>
+          <ul class="ch-watch">
+            <li>Whisper's <strong>"weak supervision at scale"</strong> trick — and why it generalizes</li>
+            <li>Self-supervised learning as the field's dark matter</li>
+            <li>Streaming vs offline: the engineering you can't skip</li>
+          </ul>
+          <span class="ch-open-hint">Click to read the sample &rarr;</span>
+        </div>
+      </div></article>
+
+      <article class="chapter-card" data-ch="6" tabindex="0" role="button" aria-label="Chapter 6 sample"><div class="ch-flipper">
+        <div class="ch-face ch-front">
+          <div class="ch-num">06</div>
+          <h3>Audio Representations &amp; Embeddings</h3>
+          <p>The mel scale, vector quantization, contrastive learning. What embeddings encode about content, speaker, and emotion.</p>
+        </div>
+        <div class="ch-face ch-back">
+          <div class="ch-back-label">What to look for</div>
+          <ul class="ch-watch">
+            <li>What embeddings encode — <strong>content, speaker, emotion are separable</strong></li>
+            <li>Why the mel scale mirrors the cochlea</li>
+            <li>Contrastive learning as cheap supervision</li>
+          </ul>
+          <span class="ch-open-hint">Click to read the sample &rarr;</span>
+        </div>
+      </div></article>
+
+      <article class="chapter-card" data-ch="7" tabindex="0" role="button" aria-label="Chapter 7 sample"><div class="ch-flipper">
+        <div class="ch-face ch-front">
+          <div class="ch-num">07</div>
+          <h3>Text-to-Speech Synthesis</h3>
+          <p>WaveNet, FastSpeech, diffusion, VITS, VALL-E. Voice cloning, voice conversion, and prosody.</p>
+        </div>
+        <div class="ch-face ch-back">
+          <div class="ch-back-label">What to look for</div>
+          <ul class="ch-watch">
+            <li>The vocoder revolution: WaveNet → HiFi-GAN → diffusion</li>
+            <li>VITS as the first end-to-end neural TTS that <em>just works</em></li>
+            <li><strong>Voice cloning ethics</strong> ride alongside the math, every paragraph</li>
+          </ul>
+          <span class="ch-open-hint">Click to read the sample &rarr;</span>
+        </div>
+      </div></article>
+
+      <article class="chapter-card" data-ch="8" tabindex="0" role="button" aria-label="Chapter 8 sample"><div class="ch-flipper">
+        <div class="ch-face ch-front">
+          <div class="ch-num">08</div>
+          <h3>Advanced Applications</h3>
+          <p>Diarization, verification, audio generation, multimodal fusion, speech translation, deepfakes, bias, privacy.</p>
+        </div>
+        <div class="ch-face ch-back">
+          <div class="ch-back-label">What to look for</div>
+          <ul class="ch-watch">
+            <li>Diarization as a <strong>clustering problem in disguise</strong></li>
+            <li>Audio deepfakes — detection lags generation, always</li>
+            <li>Bias in speech AI is bias in the data, recorded</li>
+          </ul>
+          <span class="ch-open-hint">Click to read the sample &rarr;</span>
+        </div>
+      </div></article>
+
+      <article class="chapter-card" data-ch="9" tabindex="0" role="button" aria-label="Chapter 9 sample"><div class="ch-flipper">
+        <div class="ch-face ch-front">
+          <div class="ch-num">09</div>
+          <h3>Audio Language Models</h3>
+          <p>Discrete audio tokens, SpeechGPT, AudioLM. Real-time conversational voice AI from pipelines to native models.</p>
+        </div>
+        <div class="ch-face ch-back">
+          <div class="ch-back-label">What to look for</div>
+          <ul class="ch-watch">
+            <li>The <strong>cascade problem</strong>: ASR → LLM → TTS leaks latency and meaning</li>
+            <li>Discrete audio tokens as a first-class language</li>
+            <li>Why real-time speech-to-speech changes the API itself</li>
+          </ul>
+          <span class="ch-open-hint">Click to read the sample &rarr;</span>
+        </div>
+      </div></article>
+
+      <article class="chapter-card" data-ch="10" tabindex="0" role="button" aria-label="Chapter 10 sample"><div class="ch-flipper">
+        <div class="ch-face ch-front">
+          <div class="ch-num">10</div>
+          <h3>Ethics, Society &amp; the Future</h3>
+          <p>Robustness, bias mitigation, edge AI, brain-computer interfaces. A speech-AI timeline you can hold in one hand.</p>
+        </div>
+        <div class="ch-face ch-back">
+          <div class="ch-back-label">What to look for</div>
+          <ul class="ch-watch">
+            <li>Robustness ≠ accuracy — and why it matters more in voice</li>
+            <li>Edge AI: where compute, privacy, and latency converge</li>
+            <li>A <strong>speech-AI timeline</strong> you can hold in one hand</li>
+          </ul>
+          <span class="ch-open-hint">Click to read the sample &rarr;</span>
+        </div>
+      </div></article>
+
+      <article class="chapter-card" data-ch="11" tabindex="0" role="button" aria-label="Chapter 11 sample"><div class="ch-flipper">
+        <div class="ch-face ch-front">
+          <div class="ch-num">11</div>
+          <h3>Voice as HCI</h3>
+          <p>Why voice is different from text. Habit inertia, edge architectures, keyword spotting, model compression.</p>
+        </div>
+        <div class="ch-face ch-back">
+          <div class="ch-back-label">What to look for</div>
+          <ul class="ch-watch">
+            <li>Why voice is fundamentally different from text as an interface</li>
+            <li>The <strong>habit-inertia problem</strong> — why we still don't say "computer, ..."</li>
+            <li>Latency budgets for conversational systems</li>
+          </ul>
+          <span class="ch-open-hint">Click to read the sample &rarr;</span>
+        </div>
+      </div></article>
+
+      <article class="chapter-card highlight" data-ch="12" tabindex="0" role="button" aria-label="Chapter 12 sample"><div class="ch-flipper">
+        <div class="ch-face ch-front">
+          <div class="ch-num">12</div>
+          <h3>Hands-On Implementation</h3>
+          <p>The capstone. Whisper, wav2vec 2.0, SpeechT5, embeddings, end-to-end pipeline, and notebook-to-production deployment.</p>
+          <div class="ch-badge">★ Companion Code</div>
+        </div>
+        <div class="ch-face ch-back">
+          <div class="ch-back-label">What to look for</div>
+          <ul class="ch-watch">
+            <li>Notebook → production: <strong>the gap that kills most projects</strong></li>
+            <li>Memory management for 8 GB GPUs is a real, learnable skill</li>
+            <li>A field guide to today's open-source models you'll actually use</li>
+          </ul>
+          <span class="ch-open-hint">Click to read the sample &rarr;</span>
+        </div>
+      </div></article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPANION CODE — THE STAR ============ -->
+<section class="section section-code" id="code">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow accent-eyebrow">Companion Codebase</div>
+      <h2>Twelve runnable notebooks. Zero magic.</h2>
+      <p class="section-intro">
+        Every chapter has a pre-executed Jupyter notebook and a CLI script you can run in minutes. The notebooks
+        are committed already executed — you can browse them on GitHub before installing a thing. Click any card to jump
+        straight to the code.
+      </p>
+    </div>
+
+    <div class="code-toolbar">
+      <a class="tool-btn" href="https://github.com/prdeepakbabu/building-speech-ai" target="_blank" rel="noopener" data-analytics-event="code_toolbar_click" data-analytics-label="repository">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.13-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.39.97.01 1.95.14 2.86.39 2.18-1.49 3.14-1.18 3.14-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.26 5.68.41.36.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.14 0 .31.21.68.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+        Repository
+      </a>
+      <a class="tool-btn" href="https://github.com/prdeepakbabu/building-speech-ai/tree/main/notebooks" target="_blank" rel="noopener" data-analytics-event="code_toolbar_click" data-analytics-label="all_notebooks">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h12a4 4 0 0 1 4 4v12H8a4 4 0 0 1-4-4V4z"/><path d="M4 16h16M9 4v16"/></svg>
+        All Notebooks
+      </a>
+      <a class="tool-btn" href="https://github.com/prdeepakbabu/building-speech-ai/tree/main/examples" target="_blank" rel="noopener" data-analytics-event="code_toolbar_click" data-analytics-label="cli_scripts">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+        CLI Scripts
+      </a>
+      <a class="tool-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/INSTALL.md" target="_blank" rel="noopener" data-analytics-event="code_toolbar_click" data-analytics-label="install_guide">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Install Guide
+      </a>
+      <div class="tool-spacer"></div>
+      <div class="filter-group" role="tablist" aria-label="Filter notebooks by hardware">
+        <button class="filter-btn active" data-filter="all" data-analytics-event="notebook_filter_click" data-analytics-label="all">All</button>
+        <button class="filter-btn" data-filter="cpu" data-analytics-event="notebook_filter_click" data-analytics-label="cpu">CPU</button>
+        <button class="filter-btn" data-filter="gpu-small" data-analytics-event="notebook_filter_click" data-analytics-label="gpu_4gb">4 GB GPU</button>
+        <button class="filter-btn" data-filter="gpu-large" data-analytics-event="notebook_filter_click" data-analytics-label="gpu_8gb_plus">8 GB+ GPU</button>
+      </div>
+    </div>
+
+    <div class="notebook-grid">
+
+      <!-- 01 -->
+      <article class="nb-card" data-hw="cpu">
+        <div class="nb-head">
+          <div class="nb-num">01</div>
+          <span class="nb-tag tag-cpu">CPU</span>
+        </div>
+        <h3>Foundations</h3>
+        <p>GPU detection, audio as numbers, sampling theory, the Nyquist theorem in code.</p>
+        <ul class="nb-tech">
+          <li>torch</li><li>torchaudio</li><li>numpy</li>
+        </ul>
+        <div class="nb-actions">
+          <a class="nb-btn primary" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/notebooks/01_foundations.ipynb" target="_blank" rel="noopener">Notebook &rarr;</a>
+          <a class="nb-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/examples/01_device_setup.py" target="_blank" rel="noopener">Script</a>
+          <a class="nb-btn ghost" href="https://colab.research.google.com/github/prdeepakbabu/building-speech-ai/blob/main/notebooks/01_foundations.ipynb" target="_blank" rel="noopener">Colab</a>
+        </div>
+      </article>
+
+      <!-- 02 -->
+      <article class="nb-card" data-hw="cpu">
+        <div class="nb-head">
+          <div class="nb-num">02</div>
+          <span class="nb-tag tag-cpu">CPU</span>
+        </div>
+        <h3>Whisper Basics</h3>
+        <p>Loading Whisper, basic transcription, language detection, and the cost of getting it wrong.</p>
+        <ul class="nb-tech">
+          <li>whisper</li><li>transformers</li><li>ffmpeg</li>
+        </ul>
+        <div class="nb-actions">
+          <a class="nb-btn primary" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/notebooks/02_whisper_basic.ipynb" target="_blank" rel="noopener">Notebook &rarr;</a>
+          <a class="nb-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/examples/02_whisper_basic.py" target="_blank" rel="noopener">Script</a>
+          <a class="nb-btn ghost" href="https://colab.research.google.com/github/prdeepakbabu/building-speech-ai/blob/main/notebooks/02_whisper_basic.ipynb" target="_blank" rel="noopener">Colab</a>
+        </div>
+      </article>
+
+      <!-- 03 -->
+      <article class="nb-card" data-hw="gpu-small">
+        <div class="nb-head">
+          <div class="nb-num">03</div>
+          <span class="nb-tag tag-gpu-small">4 GB GPU</span>
+        </div>
+        <h3>Whisper Advanced</h3>
+        <p>Beam vs. greedy decoding. Word-level timestamps. Long-audio chunking and the silence problem.</p>
+        <ul class="nb-tech">
+          <li>whisper</li><li>pyannote</li><li>beam search</li>
+        </ul>
+        <div class="nb-actions">
+          <a class="nb-btn primary" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/notebooks/03_whisper_advanced.ipynb" target="_blank" rel="noopener">Notebook &rarr;</a>
+          <a class="nb-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/examples/03_whisper_advanced.py" target="_blank" rel="noopener">Script</a>
+          <a class="nb-btn ghost" href="https://colab.research.google.com/github/prdeepakbabu/building-speech-ai/blob/main/notebooks/03_whisper_advanced.ipynb" target="_blank" rel="noopener">Colab</a>
+        </div>
+      </article>
+
+      <!-- 04 -->
+      <article class="nb-card" data-hw="cpu">
+        <div class="nb-head">
+          <div class="nb-num">04</div>
+          <span class="nb-tag tag-cpu">CPU</span>
+        </div>
+        <h3>wav2vec 2.0 + CTC</h3>
+        <p>Frame-by-frame CTC decoding visualized. See what self-supervised models actually predict at every 20 ms tick.</p>
+        <ul class="nb-tech">
+          <li>wav2vec2</li><li>CTC</li><li>matplotlib</li>
+        </ul>
+        <div class="nb-actions">
+          <a class="nb-btn primary" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/notebooks/04_wav2vec2_ctc.ipynb" target="_blank" rel="noopener">Notebook &rarr;</a>
+          <a class="nb-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/examples/04_wav2vec2_asr.py" target="_blank" rel="noopener">Script</a>
+          <a class="nb-btn ghost" href="https://colab.research.google.com/github/prdeepakbabu/building-speech-ai/blob/main/notebooks/04_wav2vec2_ctc.ipynb" target="_blank" rel="noopener">Colab</a>
+        </div>
+      </article>
+
+      <!-- 05 -->
+      <article class="nb-card" data-hw="gpu-small">
+        <div class="nb-head">
+          <div class="nb-num">05</div>
+          <span class="nb-tag tag-gpu-small">4 GB GPU</span>
+        </div>
+        <h3>SpeechT5 TTS</h3>
+        <p>Text → mel-spectrogram → audio. Speaker embeddings as a control surface. Four distinct voices from one model.</p>
+        <ul class="nb-tech">
+          <li>SpeechT5</li><li>HiFi-GAN</li><li>x-vectors</li>
+        </ul>
+        <div class="nb-actions">
+          <a class="nb-btn primary" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/notebooks/05_speecht5_tts.ipynb" target="_blank" rel="noopener">Notebook &rarr;</a>
+          <a class="nb-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/examples/05_speecht5_tts.py" target="_blank" rel="noopener">Script</a>
+          <a class="nb-btn ghost" href="https://colab.research.google.com/github/prdeepakbabu/building-speech-ai/blob/main/notebooks/05_speecht5_tts.ipynb" target="_blank" rel="noopener">Colab</a>
+        </div>
+      </article>
+
+      <!-- 06 -->
+      <article class="nb-card" data-hw="gpu-small">
+        <div class="nb-head">
+          <div class="nb-num">06</div>
+          <span class="nb-tag tag-gpu-small">4 GB GPU</span>
+        </div>
+        <h3>Audio Embeddings</h3>
+        <p>Content vs. speaker. WavLM-SV verifier. Why "the same words in two voices" land far apart in embedding space.</p>
+        <ul class="nb-tech">
+          <li>WavLM</li><li>cosine sim</li><li>x-vectors</li>
+        </ul>
+        <div class="nb-actions">
+          <a class="nb-btn primary" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/notebooks/06_audio_embeddings.ipynb" target="_blank" rel="noopener">Notebook &rarr;</a>
+          <a class="nb-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/examples/06_audio_embeddings.py" target="_blank" rel="noopener">Script</a>
+          <a class="nb-btn ghost" href="https://colab.research.google.com/github/prdeepakbabu/building-speech-ai/blob/main/notebooks/06_audio_embeddings.ipynb" target="_blank" rel="noopener">Colab</a>
+        </div>
+      </article>
+
+      <!-- 07 -->
+      <article class="nb-card flagship" data-hw="gpu-small">
+        <div class="nb-head">
+          <div class="nb-num">07</div>
+          <span class="nb-tag tag-gpu-small">4 GB GPU</span>
+          <span class="nb-flag">FLAGSHIP</span>
+        </div>
+        <h3>Voice Assistant Pipeline</h3>
+        <p>The full cascade: ASR → agent → TTS. End-to-end voice loop on a single GPU, microphone in, synthesized voice out.</p>
+        <ul class="nb-tech">
+          <li>Whisper</li><li>SpeechT5</li><li>cascade</li>
+        </ul>
+        <div class="nb-actions">
+          <a class="nb-btn primary" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/notebooks/07_voice_assistant.ipynb" target="_blank" rel="noopener">Notebook &rarr;</a>
+          <a class="nb-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/examples/07_voice_assistant.py" target="_blank" rel="noopener">Script</a>
+          <a class="nb-btn ghost" href="https://colab.research.google.com/github/prdeepakbabu/building-speech-ai/blob/main/notebooks/07_voice_assistant.ipynb" target="_blank" rel="noopener">Colab</a>
+        </div>
+      </article>
+
+      <!-- 08 -->
+      <article class="nb-card" data-hw="cpu">
+        <div class="nb-head">
+          <div class="nb-num">08</div>
+          <span class="nb-tag tag-cpu">CPU</span>
+        </div>
+        <h3>Audio Visualization</h3>
+        <p>STFT, mel-spectrograms, MFCCs, energy envelopes. The visual language for debugging audio models.</p>
+        <ul class="nb-tech">
+          <li>librosa</li><li>matplotlib</li><li>STFT</li>
+        </ul>
+        <div class="nb-actions">
+          <a class="nb-btn primary" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/notebooks/08_audio_visualization.ipynb" target="_blank" rel="noopener">Notebook &rarr;</a>
+          <a class="nb-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/examples/08_audio_visualization.py" target="_blank" rel="noopener">Script</a>
+          <a class="nb-btn ghost" href="https://colab.research.google.com/github/prdeepakbabu/building-speech-ai/blob/main/notebooks/08_audio_visualization.ipynb" target="_blank" rel="noopener">Colab</a>
+        </div>
+      </article>
+
+      <!-- 09 -->
+      <article class="nb-card" data-hw="gpu-large">
+        <div class="nb-head">
+          <div class="nb-num">09</div>
+          <span class="nb-tag tag-gpu-large">8 GB GPU</span>
+        </div>
+        <h3>Fine-tuning Whisper</h3>
+        <p>Adapting Whisper to Hindi using FLEURS. A gentle introduction to fine-tuning, with WER you can chart against the baseline.</p>
+        <ul class="nb-tech">
+          <li>FLEURS</li><li>HF Trainer</li><li>WER</li>
+        </ul>
+        <div class="nb-actions">
+          <a class="nb-btn primary" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/notebooks/09_finetuning_whisper.ipynb" target="_blank" rel="noopener">Notebook &rarr;</a>
+          <a class="nb-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/examples/09_finetune_whisper.py" target="_blank" rel="noopener">Script</a>
+          <a class="nb-btn ghost" href="https://colab.research.google.com/github/prdeepakbabu/building-speech-ai/blob/main/notebooks/09_finetuning_whisper.ipynb" target="_blank" rel="noopener">Colab</a>
+        </div>
+      </article>
+
+      <!-- 10 -->
+      <article class="nb-card" data-hw="gpu-large">
+        <div class="nb-head">
+          <div class="nb-num">10</div>
+          <span class="nb-tag tag-gpu-large">8 GB GPU</span>
+          <span class="nb-flag warn">ETHICS</span>
+        </div>
+        <h3>Voice Cloning with F5-TTS</h3>
+        <p>Zero-shot cloning, ethics-first. We build the system, then we discuss what should and shouldn't be built with it.</p>
+        <ul class="nb-tech">
+          <li>F5-TTS</li><li>flow-matching</li><li>consent</li>
+        </ul>
+        <div class="nb-actions">
+          <a class="nb-btn primary" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/notebooks/10_voice_cloning.ipynb" target="_blank" rel="noopener">Notebook &rarr;</a>
+          <a class="nb-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/examples/10_voice_cloning.py" target="_blank" rel="noopener">Script</a>
+          <a class="nb-btn ghost" href="https://colab.research.google.com/github/prdeepakbabu/building-speech-ai/blob/main/notebooks/10_voice_cloning.ipynb" target="_blank" rel="noopener">Colab</a>
+        </div>
+      </article>
+
+      <!-- 11 -->
+      <article class="nb-card flagship" data-hw="gpu-large">
+        <div class="nb-head">
+          <div class="nb-num">11</div>
+          <span class="nb-tag tag-gpu-large">16 GB GPU</span>
+          <span class="nb-flag">DEEP DIVE</span>
+        </div>
+        <h3>Whisper-large + LoRA</h3>
+        <p>A dozen fine-tune runs charted side by side. Full fine-tune vs. LoRA vs. frozen-encoder. When does parameter-efficient win?</p>
+        <ul class="nb-tech">
+          <li>Whisper-large-v3</li><li>peft / LoRA</li><li>scaling</li>
+        </ul>
+        <div class="nb-actions">
+          <a class="nb-btn primary" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/notebooks/11_finetuning_whisper_large.ipynb" target="_blank" rel="noopener">Notebook &rarr;</a>
+          <a class="nb-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/examples/11_finetune_whisper_large.py" target="_blank" rel="noopener">Script</a>
+          <a class="nb-btn ghost" href="https://colab.research.google.com/github/prdeepakbabu/building-speech-ai/blob/main/notebooks/11_finetuning_whisper_large.ipynb" target="_blank" rel="noopener">Colab</a>
+        </div>
+      </article>
+
+      <!-- 12 -->
+      <article class="nb-card" data-hw="gpu-large">
+        <div class="nb-head">
+          <div class="nb-num">12</div>
+          <span class="nb-tag tag-gpu-large">8 GB GPU</span>
+        </div>
+        <h3>Audio Language Models</h3>
+        <p>Qwen2-Audio with bitsandbytes 4-bit quantization. The next paradigm after the cascade — audio as a first-class token.</p>
+        <ul class="nb-tech">
+          <li>Qwen2-Audio</li><li>bnb 4-bit</li><li>multimodal</li>
+        </ul>
+        <div class="nb-actions">
+          <a class="nb-btn primary" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/notebooks/12_audio_language_models.ipynb" target="_blank" rel="noopener">Notebook &rarr;</a>
+          <a class="nb-btn" href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/examples/12_audio_lm.py" target="_blank" rel="noopener">Script</a>
+          <a class="nb-btn ghost" href="https://colab.research.google.com/github/prdeepakbabu/building-speech-ai/blob/main/notebooks/12_audio_language_models.ipynb" target="_blank" rel="noopener">Colab</a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="code-cta">
+      <p>Notebooks are committed pre-executed — you can read every output on GitHub before installing a thing.</p>
+      <a class="btn btn-primary" href="https://github.com/prdeepakbabu/building-speech-ai/tree/main/notebooks" target="_blank" rel="noopener" data-analytics-event="code_section_cta" data-analytics-label="browse_all_notebooks">Browse all 12 notebooks &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUICK START ============ -->
+<section class="section section-quickstart" id="quickstart">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Quick Start</div>
+      <h2>From clone to transcription in five commands.</h2>
+    </div>
+    <div class="qs-grid">
+      <div class="qs-step">
+        <div class="qs-num">1</div>
+        <h4>Clone the companion repo</h4>
+        <pre class="code-block"><code><span class="cmt"># Bring it home</span>
+git clone https://github.com/prdeepakbabu/building-speech-ai.git
+cd building-speech-ai</code></pre>
+      </div>
+      <div class="qs-step">
+        <div class="qs-num">2</div>
+        <h4>Create a virtual environment</h4>
+        <pre class="code-block"><code>python3 -m venv .venv
+<span class="cmt"># macOS / Linux</span>
+source .venv/bin/activate
+<span class="cmt"># Windows (PowerShell)</span>
+.venv\Scripts\Activate.ps1</code></pre>
+      </div>
+      <div class="qs-step">
+        <div class="qs-num">3</div>
+        <h4>Install</h4>
+        <pre class="code-block"><code>pip install -r requirements.txt
+<span class="cmt"># Optional — for fine-tuning chapters 9–12</span>
+pip install -r requirements-extras.txt</code></pre>
+      </div>
+      <div class="qs-step">
+        <div class="qs-num">4</div>
+        <h4>Verify your environment</h4>
+        <pre class="code-block"><code>python examples/01_device_setup.py
+<span class="cmt"># → CUDA / MPS / CPU detected, sample rate sanity checks</span></code></pre>
+      </div>
+      <div class="qs-step qs-step-wide">
+        <div class="qs-num">5</div>
+        <h4>Synthesize, then transcribe</h4>
+        <pre class="code-block"><code><span class="cmt"># Generate a 7-second test clip with SpeechT5</span>
+python examples/05_speecht5_tts.py \
+  --text "The quick brown fox jumps over the lazy dog." \
+  --output samples/test.wav
+
+<span class="cmt"># Transcribe it with Whisper-tiny</span>
+python examples/02_whisper_basic.py --audio samples/test.wav</code></pre>
+      </div>
+    </div>
+    <div class="hw-block">
+      <h3>Hardware reality check</h3>
+      <div class="hw-grid">
+        <div class="hw-cell"><div class="hw-tag tag-cpu">CPU</div><div class="hw-text">Chapters 1, 2, 4, 8 — runs anywhere Python runs.</div></div>
+        <div class="hw-cell"><div class="hw-tag tag-gpu-small">4 GB GPU</div><div class="hw-text">Chapters 3, 5, 6, 7 — entry-level GPU is plenty.</div></div>
+        <div class="hw-cell"><div class="hw-tag tag-gpu-large">8 GB GPU</div><div class="hw-text">Chapters 9, 10, 12 — fine-tuning &amp; audio LMs.</div></div>
+        <div class="hw-cell"><div class="hw-tag tag-gpu-xl">16 GB GPU</div><div class="hw-text">Chapter 11 — Whisper-large LoRA scaling runs.</div></div>
+      </div>
+      <p class="hw-note">Verified end-to-end on an NVIDIA Tesla T4 (16 GB). Apple Silicon supports chapters 1–8 via MPS; CUDA required for fine-tuning chapters.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUTHOR ============ -->
+<section class="section section-author" id="author">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">About the Author</div>
+      <h2>Written by a builder, for builders.</h2>
+    </div>
+    <div class="author-card">
+      <a href="https://prdeepakbabu.github.io/" target="_blank" rel="noopener" class="author-photo-link" aria-label="Visit Deepak Babu Piskala's homepage" data-analytics-event="author_homepage_click" data-analytics-label="photo">
+        <img class="author-photo"
+             src="https://prdeepakbabu.github.io/1DC549B4-26BA-4564-8BCA-40CBFABB7AC8.jpeg"
+             alt="Portrait of Deepak Babu Piskala"
+             width="180" height="180" loading="lazy" />
+        <span class="author-photo-ring"></span>
+      </a>
+      <div class="author-text">
+        <h3><a href="https://prdeepakbabu.github.io/" target="_blank" rel="noopener" class="author-name-link" data-analytics-event="author_homepage_click" data-analytics-label="name">Deepak Babu Piskala</a></h3>
+        <p class="author-role">Speech &amp; Language AI · San Francisco</p>
+        <p>
+          I've spent years building speech and language systems, from developing speech recognition and language
+          understanding models at Alexa to architecting search and information-retrieval systems that evolved from
+          bag-of-words to today's BERT-like embeddings. I've watched the field transform from hand-engineered features
+          and HMM-GMM pipelines to end-to-end neural systems that match or exceed human performance.
+        </p>
+        <p>
+          I've seen models fail spectacularly in production and others succeed beyond anyone's expectations. This book
+          distills what I've learned along the way — the conceptual foundations <em>and</em> the engineering trade-offs
+          that decide whether a speech AI system actually ships.
+        </p>
+        <p class="author-homepage-line">
+          <a href="https://prdeepakbabu.github.io/" target="_blank" rel="noopener" class="author-homepage" data-analytics-event="author_homepage_click" data-analytics-label="homepage_text_link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2v8h6v-6h2v6h6v-8l2 2L12 3z"/></svg>
+            prdeepakbabu.github.io
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
+        </p>
+        <div class="author-links" aria-label="Social links">
+          <a href="https://prdeepakbabu.github.io/" target="_blank" rel="noopener" class="author-link" title="Homepage" aria-label="Homepage" data-analytics-event="author_social_click" data-analytics-label="homepage">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2v8h6v-6h2v6h6v-8l2 2L12 3z"/></svg>
+            <span>Home</span>
+          </a>
+          <a href="https://www.linkedin.com/in/prdeepak" target="_blank" rel="noopener" class="author-link" title="LinkedIn" aria-label="LinkedIn" data-analytics-event="author_social_click" data-analytics-label="linkedin">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.48-.9 1.65-1.85 3.39-1.85 3.62 0 4.29 2.38 4.29 5.49v6.25zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://x.com/prdeepakbabu" target="_blank" rel="noopener" class="author-link" title="X (Twitter)" aria-label="X (Twitter)" data-analytics-event="author_social_click" data-analytics-label="x_twitter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <span>X / Twitter</span>
+          </a>
+          <a href="https://github.com/prdeepakbabu" target="_blank" rel="noopener" class="author-link" title="GitHub" aria-label="GitHub" data-analytics-event="author_social_click" data-analytics-label="github">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.13-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.25 3.35.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.39.97.01 1.95.14 2.86.39 2.18-1.49 3.14-1.18 3.14-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.26 5.68.41.36.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.14 0 .31.21.68.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="https://scholar.google.com/citations?user=jBtBPqcAAAAJ&amp;hl=en" target="_blank" rel="noopener" class="author-link" title="Google Scholar" aria-label="Google Scholar" data-analytics-event="author_social_click" data-analytics-label="scholar">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+            <span>Scholar</span>
+          </a>
+          <a href="https://medium.com/@prdeepak.babu" target="_blank" rel="noopener" class="author-link" title="Medium" aria-label="Medium" data-analytics-event="author_social_click" data-analytics-label="medium">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795H24v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537V8.321l-5.389 13.688h-.728L4.28 8.321v9.174c-.052.385.076.774.347 1.052l2.521 3.058v.404H0v-.404l2.521-3.058c.27-.279.39-.67.325-1.052V6.887z"/></svg>
+            <span>Medium</span>
+          </a>
+          <a href="mailto:prdeepak.babu@gmail.com" class="author-link" title="Email" aria-label="Email" data-analytics-event="author_social_click" data-analytics-label="email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.01L12 12l8-5.99V6H4zm16 2.24l-7.4 5.55a1 1 0 0 1-1.2 0L4 8.24V18h16V8.24z"/></svg>
+            <span>Email</span>
+          </a>
+          <a href="https://github.com/prdeepakbabu/building-speech-ai" target="_blank" rel="noopener" class="author-link" title="Book Repository" aria-label="Book Repository" data-analytics-event="author_social_click" data-analytics-label="book_repo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>Book Repo</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section section-final-cta">
+  <div class="container">
+    <div class="final-cta">
+      <h2>Read the book. Run the code. Ship the system.</h2>
+      <p>The future of how humans and machines communicate is being written now, by people like you.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary big" href="https://github.com/prdeepakbabu/building-speech-ai" target="_blank" rel="noopener" data-analytics-event="final_cta_click" data-analytics-label="get_the_code">Get the Code</a>
+        <a class="btn btn-ghost big" href="#chapters" data-analytics-event="final_cta_click" data-analytics-label="see_the_chapters">See the Chapters</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-title">Building Speech AI</div>
+      <div class="footer-sub">A Practitioner's Guide · First edition coming May 2026</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/prdeepakbabu/building-speech-ai" target="_blank" rel="noopener" data-analytics-event="footer_link_click" data-analytics-label="repository">Repository</a>
+      <a href="https://github.com/prdeepakbabu/building-speech-ai/tree/main/notebooks" target="_blank" rel="noopener" data-analytics-event="footer_link_click" data-analytics-label="notebooks">Notebooks</a>
+      <a href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/INSTALL.md" target="_blank" rel="noopener" data-analytics-event="footer_link_click" data-analytics-label="install">Install</a>
+      <a href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/LICENSE" target="_blank" rel="noopener" data-analytics-event="footer_link_click" data-analytics-label="license">MIT License</a>
+    </div>
+    <div class="footer-meta">© 2026 Deepak Babu Piskala</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
