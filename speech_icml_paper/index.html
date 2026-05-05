@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beyond Text — A Speech-First Future for Foundation Models · ICML 2026 Spotlight</title>
+<meta name="description" content="Position paper (ICML 2026 Spotlight, top 5%) arguing the ML community should prioritize speech-native foundation models — anticipating the inevitable shift from text-dominated to speech-first data distributions." />
+<meta property="og:title" content="Beyond Text: A Speech-First Future for Foundation Models" />
+<meta property="og:description" content="ICML 2026 Spotlight Position Paper (top 5%). The text-centric bias in foundation models must be revisited for a speech-first future." />
+<meta property="og:type" content="article" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNWLG8DBTN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-XNWLG8DBTN', {
+    page_title: 'Beyond Text — ICML 2026 Spotlight',
+    send_page_view: true,
+  });
+  // Helper used everywhere below
+  window.track = function(name, params) {
+    try { gtag('event', name, params || {}); } catch (e) { /* no-op */ }
+  };
+</script>
+<style>
+  :root {
+    --bg: #fafaf6;
+    --bg-soft: #f3f1ea;
+    --bg-elev: #ffffff;
+    --ink: #0e1116;
+    --ink-soft: #3a3f47;
+    --ink-mute: #6a7079;
+    --line: #e6e2d6;
+    --line-strong: #cfc9b8;
+    --text: #2563eb;
+    --text-2: #1d4ed8;
+    --speech: #ea580c;
+    --speech-2: #c2410c;
+    --audio: #059669;
+    --warn: #b91c1c;
+    --accent: #7c3aed;
+    --shadow: 0 1px 2px rgba(15,17,22,.04), 0 8px 24px rgba(15,17,22,.06);
+    --shadow-lg: 0 12px 40px rgba(15,17,22,.08), 0 32px 80px rgba(15,17,22,.06);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b0d10;
+      --bg-soft: #11141a;
+      --bg-elev: #161a21;
+      --ink: #f1f3f5;
+      --ink-soft: #c5c9d1;
+      --ink-mute: #8b939e;
+      --line: #232830;
+      --line-strong: #2f3640;
+      --text: #60a5fa;
+      --text-2: #93c5fd;
+      --speech: #fb923c;
+      --speech-2: #fdba74;
+      --audio: #34d399;
+      --warn: #f87171;
+      --accent: #a78bfa;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.4);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,.5);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.55;
+    font-size: 17px;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--speech); color: #fff; }
+
+  a { color: var(--text); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .narrow { max-width: 820px; margin: 0 auto; }
+
+  /* ===== NAV ===== */
+  nav.top {
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.top .row {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  nav.top .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  nav.top .brand span { color: var(--speech); font-style: italic; }
+  nav.top ul {
+    display: flex; gap: 28px; list-style: none; padding: 0; margin: 0;
+    font-size: 14px; color: var(--ink-soft);
+  }
+  nav.top ul a { color: inherit; }
+  nav.top ul a:hover { color: var(--ink); text-decoration: none; }
+  nav.top .pdf {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 13px; border-radius: 999px;
+    background: var(--ink); color: var(--bg);
+    font-size: 13px; font-weight: 500;
+    transition: transform .15s;
+  }
+  nav.top .pdf:hover { transform: translateY(-1px); text-decoration: none; }
+  @media (max-width: 760px) { nav.top ul { display: none; } }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    padding: 100px 0 80px;
+    overflow: hidden;
+  }
+  .hero .wave-bg {
+    position: absolute; inset: 0;
+    pointer-events: none; opacity: .55;
+    z-index: 0;
+  }
+  .hero .container { position: relative; z-index: 1; }
+
+  .badge-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 6px 12px; border-radius: 999px;
+    font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .badge.spotlight {
+    background: linear-gradient(135deg, #fb923c, #ea580c);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(234,88,12,.35);
+  }
+  .badge.icml {
+    background: var(--bg-elev); color: var(--ink);
+    border: 1px solid var(--line);
+  }
+  .badge.position {
+    background: color-mix(in srgb, var(--text) 12%, transparent);
+    color: var(--text-2);
+  }
+  .badge .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: currentColor;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .5; transform: scale(1.3); }
+  }
+
+  h1.title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(40px, 6.2vw, 80px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 0 0 28px;
+    max-width: 17ch;
+  }
+  h1.title em {
+    font-style: italic;
+    color: var(--speech);
+    font-weight: 600;
+  }
+  h1.title .underline {
+    background-image: linear-gradient(transparent 70%, rgba(234,88,12,.25) 70%);
+    background-position: 0 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 0 .15em;
+  }
+
+  .lede {
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0 0 36px;
+  }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  .authors {
+    display: flex; align-items: center; gap: 14px;
+    color: var(--ink-mute); font-size: 14px;
+    margin-bottom: 36px;
+  }
+  .authors .av {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--text), var(--accent));
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 13px;
+    border: 2px solid var(--bg);
+  }
+  .authors .vr { width: 1px; height: 20px; background: var(--line-strong); }
+
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 20px; border-radius: 10px;
+    font-weight: 500; font-size: 15px;
+    transition: all .18s ease;
+    cursor: pointer; border: 0; font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--ink); color: var(--bg);
+    box-shadow: var(--shadow);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); text-decoration: none; }
+  .btn-secondary {
+    background: var(--bg-elev); color: var(--ink);
+    border: 1px solid var(--line-strong);
+  }
+  .btn-secondary:hover { background: var(--bg-soft); text-decoration: none; }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* hero stats strip */
+  .hero-stats {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .hero-stats .cell {
+    background: var(--bg-elev);
+    padding: 24px 22px;
+  }
+  .hero-stats .cell .v {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .hero-stats .cell .v .unit { font-size: .55em; color: var(--ink-mute); margin-left: 4px; font-family: 'Inter', sans-serif; font-weight: 500; }
+  .hero-stats .cell .l { font-size: 13px; color: var(--ink-mute); margin-top: 8px; line-height: 1.4; }
+  .hero-stats .cell .accent { color: var(--speech); }
+  @media (max-width: 720px) {
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    padding: 96px 0;
+    border-top: 1px solid var(--line);
+    position: relative;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--speech);
+    margin-bottom: 14px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .eyebrow::before {
+    content: ''; display: inline-block;
+    width: 24px; height: 1.5px; background: var(--speech);
+  }
+
+  h2.section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(30px, 3.6vw, 46px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+    max-width: 24ch;
+  }
+  h2.section-title em { font-style: italic; color: var(--speech); }
+
+  .section-lede {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 64ch;
+    margin: 0 0 48px;
+  }
+
+  /* ===== TLDR ===== */
+  .tldr {
+    background: var(--bg-soft);
+    border-radius: 18px;
+    padding: 40px 44px;
+    border-left: 4px solid var(--speech);
+    position: relative;
+  }
+  .tldr .quote-mark {
+    position: absolute;
+    top: 18px; right: 28px;
+    font-family: 'Fraunces', serif;
+    font-size: 80px; line-height: 1;
+    color: var(--speech);
+    opacity: .15;
+    font-weight: 800;
+  }
+  .tldr .label {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--speech-2);
+    margin-bottom: 14px;
+  }
+  .tldr .text {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.4;
+    color: var(--ink);
+    font-weight: 400;
+    margin: 0;
+  }
+  .tldr .text strong { font-weight: 600; color: var(--speech-2); }
+
+  /* ===== PRESENT/FUTURE TOGGLE ===== */
+  .pf-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 36px;
+    box-shadow: var(--shadow);
+  }
+  .pf-toggle {
+    display: inline-flex;
+    background: var(--bg-soft);
+    padding: 4px;
+    border-radius: 999px;
+    margin-bottom: 32px;
+    border: 1px solid var(--line);
+  }
+  .pf-toggle button {
+    background: transparent; border: 0;
+    padding: 9px 22px;
+    font-family: inherit; font-size: 14px; font-weight: 500;
+    color: var(--ink-mute); cursor: pointer;
+    border-radius: 999px;
+    transition: all .2s;
+  }
+  .pf-toggle button.active {
+    background: var(--bg-elev);
+    color: var(--ink);
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  }
+
+  .pf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    align-items: start;
+  }
+  @media (max-width: 800px) { .pf-grid { grid-template-columns: 1fr; } }
+
+  .pf-panel {
+    padding: 24px;
+    border-radius: 12px;
+    background: var(--bg-soft);
+    transition: all .3s;
+  }
+  .pf-panel.future {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--speech) 8%, transparent), color-mix(in srgb, var(--accent) 6%, transparent));
+    border: 1px solid color-mix(in srgb, var(--speech) 25%, transparent);
+  }
+  .pf-panel h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    margin: 0 0 6px;
+    font-weight: 600;
+  }
+  .pf-panel .sub {
+    font-size: 13px; color: var(--ink-mute); margin-bottom: 22px;
+  }
+  .pf-panel .scene {
+    height: 130px; display: flex; align-items: center; justify-content: center; gap: 22px;
+    margin-bottom: 22px;
+    font-size: 38px;
+  }
+  .pf-panel .scene span {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 54px; height: 54px; border-radius: 14px;
+    background: var(--bg-elev); border: 1px solid var(--line);
+    transition: transform .2s;
+  }
+  .pf-panel .scene span:hover { transform: translateY(-4px) rotate(-3deg); }
+
+  .dist-bars {
+    background: var(--bg-elev); border: 1px solid var(--line);
+    border-radius: 8px; padding: 16px;
+  }
+  .dist-bars .row {
+    display: grid; grid-template-columns: 60px 1fr 50px;
+    align-items: center; gap: 12px;
+    margin: 8px 0;
+    font-size: 13px; color: var(--ink-soft);
+  }
+  .dist-bars .bar {
+    height: 14px; border-radius: 4px;
+    background: var(--line);
+    overflow: hidden; position: relative;
+  }
+  .dist-bars .bar .fill {
+    height: 100%; border-radius: 4px;
+    transition: width 1.2s cubic-bezier(.25,.85,.4,1);
+    width: 0;
+  }
+  .dist-bars .row.text .fill { background: linear-gradient(90deg, var(--text), var(--text-2)); }
+  .dist-bars .row.audio .fill { background: linear-gradient(90deg, var(--speech), var(--speech-2)); }
+  .dist-bars .row.image .fill { background: linear-gradient(90deg, var(--audio), #047857); }
+  .dist-bars .pct { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); }
+
+  /* ===== EFFORT CHART ===== */
+  .ec-wrap {
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 36px;
+    box-shadow: var(--shadow);
+  }
+  .ec-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+  @media (max-width: 800px) { .ec-grid { grid-template-columns: 1fr; } }
+  .ec-canvas { position: relative; height: 360px; }
+  .ec-callout { font-size: 14px; color: var(--ink-soft); }
+  .ec-callout .big {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    font-weight: 600;
+    color: var(--speech);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .ec-callout .label { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-mute); margin-bottom: 18px; }
+  .ec-callout p { margin: 12px 0; }
+  .ec-legend { display: flex; gap: 18px; margin-top: 14px; font-size: 13px; }
+  .ec-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .ec-legend i { width: 16px; height: 3px; border-radius: 2px; }
+
+  /* ===== ARCH COMPARE ===== */
+  .arch-compare {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 920px) { .arch-compare { grid-template-columns: 1fr; } }
+  .arch-card {
+    background: var(--bg-elev); border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .arch-card.cascaded::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--warn) 4%, transparent), transparent 60%);
+    pointer-events: none;
+  }
+  .arch-card.native::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--audio) 5%, transparent), transparent 60%);
+    pointer-events: none;
+  }
+  .arch-card > * { position: relative; }
+  .arch-card h3 { margin: 0 0 4px; font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; }
+  .arch-card .tag {
+    display: inline-block;
+    font-size: 11px; text-transform: uppercase; letter-spacing: .12em;
+    padding: 3px 10px; border-radius: 999px;
+    font-weight: 600; margin-bottom: 16px;
+  }
+  .arch-card.cascaded .tag { background: color-mix(in srgb, var(--warn) 12%, transparent); color: var(--warn); }
+  .arch-card.native .tag { background: color-mix(in srgb, var(--audio) 14%, transparent); color: var(--audio); }
+  .arch-card .desc { font-size: 14px; color: var(--ink-soft); margin: 0 0 22px; }
+
+  .pipeline {
+    display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+    margin-bottom: 18px;
+  }
+  .pipeline .step {
+    background: var(--bg-soft); border: 1px solid var(--line);
+    padding: 8px 12px; border-radius: 8px;
+    font-size: 12px; font-weight: 500; color: var(--ink);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .pipeline .arr { color: var(--ink-mute); font-size: 14px; }
+  .pipeline .step.audio { border-color: color-mix(in srgb, var(--speech) 30%, var(--line)); }
+  .pipeline .step.txt { border-color: color-mix(in srgb, var(--text) 30%, var(--line)); }
+  .pipeline .step.llm { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  .latency-bar {
+    margin-top: 14px;
+    display: flex; flex-direction: column; gap: 6px;
+    font-size: 12.5px;
+  }
+  .latency-bar .lbar {
+    height: 8px; border-radius: 4px;
+    background: var(--line); overflow: hidden;
+    position: relative;
+  }
+  .latency-bar .lbar .fill {
+    height: 100%; border-radius: 4px;
+    transition: width 1.4s cubic-bezier(.25,.85,.4,1);
+    width: 0;
+  }
+  .arch-card.cascaded .latency-bar .lbar .fill { background: linear-gradient(90deg, #f59e0b, var(--warn)); }
+  .arch-card.native .latency-bar .lbar .fill { background: linear-gradient(90deg, #34d399, var(--audio)); }
+  .latency-bar .ll { display: flex; justify-content: space-between; color: var(--ink-mute); }
+  .latency-bar .ll b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  /* ===== LATENCY BUDGET ===== */
+  .latency-section {
+    background: var(--bg-elev); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 36px;
+    box-shadow: var(--shadow);
+  }
+  .latency-stages {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin: 24px 0 8px;
+  }
+  @media (max-width: 800px) { .latency-stages { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 480px) { .latency-stages { grid-template-columns: repeat(2, 1fr); } }
+  .lstage {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+    transition: all .2s;
+    cursor: pointer;
+    position: relative;
+  }
+  .lstage:hover {
+    transform: translateY(-3px);
+    border-color: var(--speech);
+    background: var(--bg-elev);
+  }
+  .lstage .icon {
+    font-size: 22px; margin-bottom: 6px; display: block;
+  }
+  .lstage .name {
+    font-size: 11.5px; font-weight: 500; color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .lstage .ms {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--ink-mute); font-weight: 500;
+  }
+
+  .lat-summary {
+    margin-top: 28px; padding-top: 22px;
+    border-top: 1px dashed var(--line-strong);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  @media (max-width: 700px) { .lat-summary { grid-template-columns: 1fr; } }
+  .lat-summary .ls {
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .lat-summary .ls .v {
+    font-family: 'Fraunces', serif;
+    font-size: 44px; font-weight: 600; line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .lat-summary .ls .v.bad { color: var(--warn); }
+  .lat-summary .ls .v.good { color: var(--audio); }
+  .lat-summary .ls .desc { font-size: 13px; color: var(--ink-soft); }
+  .lat-summary .ls .desc b { color: var(--ink); display: block; font-weight: 600; font-size: 14px; }
+
+  /* ===== TURN-TAKING ===== */
+  .tt-wrap {
+    background: var(--bg-elev); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 36px;
+    box-shadow: var(--shadow);
+  }
+  .tt-canvas { height: 320px; position: relative; }
+  .tt-cap {
+    margin-top: 14px; font-size: 13px; color: var(--ink-mute);
+    text-align: center; font-style: italic;
+  }
+  .tt-marks {
+    margin-top: 24px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  @media (max-width: 720px) { .tt-marks { grid-template-columns: 1fr; } }
+  .tt-mark {
+    padding: 18px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--bg-soft);
+  }
+  .tt-mark .v {
+    font-family: 'Fraunces', serif; font-size: 32px; font-weight: 600;
+    line-height: 1; letter-spacing: -0.02em;
+  }
+  .tt-mark.human .v { color: var(--audio); }
+  .tt-mark.bot .v { color: var(--warn); }
+  .tt-mark .l { font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
+
+  /* ===== SURVEY ===== */
+  .survey-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 900px) { .survey-grid { grid-template-columns: 1fr; } }
+  .stat-card {
+    background: var(--bg-elev); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 32px;
+    box-shadow: var(--shadow);
+  }
+  .stat-card h3 { margin: 0 0 22px; font-family: 'Fraunces', serif; font-weight: 600; font-size: 21px; }
+
+  .barriers-list .row {
+    display: grid; grid-template-columns: 170px 1fr 60px;
+    align-items: center; gap: 14px;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  @media (max-width: 540px) { .barriers-list .row { grid-template-columns: 130px 1fr 50px; gap: 8px; font-size: 13px; } }
+  .barriers-list .lbl { color: var(--ink-soft); }
+  .barriers-list .bar {
+    height: 22px; border-radius: 6px;
+    background: var(--bg-soft);
+    overflow: hidden; position: relative;
+  }
+  .barriers-list .bar .fill {
+    height: 100%; border-radius: 6px;
+    width: 0; transition: width 1.4s cubic-bezier(.25,.85,.4,1);
+    background: linear-gradient(90deg, var(--warn), #ef4444);
+  }
+  .barriers-list .row:nth-child(2) .fill { background: linear-gradient(90deg, var(--warn), #f87171); }
+  .barriers-list .row:nth-child(3) .fill { background: linear-gradient(90deg, #f87171, #fb923c); }
+  .barriers-list .row:nth-child(4) .fill { background: linear-gradient(90deg, #fb923c, #f59e0b); }
+  .barriers-list .row:nth-child(5) .fill { background: linear-gradient(90deg, #f59e0b, #facc15); }
+  .barriers-list .row:nth-child(6) .fill { background: linear-gradient(90deg, #facc15, #fde047); }
+  .barriers-list .pct { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); text-align: right; }
+
+  .donut-wrap {
+    display: grid; grid-template-columns: 200px 1fr; gap: 24px; align-items: center;
+  }
+  @media (max-width: 540px) { .donut-wrap { grid-template-columns: 1fr; justify-items: center; } }
+  .donut-stats { font-size: 14px; color: var(--ink-soft); }
+  .donut-stats .row {
+    display: flex; align-items: center; gap: 10px;
+    margin: 8px 0;
+  }
+  .donut-stats .sw { width: 12px; height: 12px; border-radius: 3px; }
+  .donut-stats b { color: var(--ink); margin-left: auto; font-variant-numeric: tabular-nums; }
+
+  /* survey insight cards row */
+  .insight-row {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin-top: 28px;
+  }
+  @media (max-width: 800px) { .insight-row { grid-template-columns: repeat(2, 1fr); } }
+  .insight {
+    background: var(--bg-elev); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px;
+  }
+  .insight .v {
+    font-family: 'Fraunces', serif;
+    font-size: 30px; font-weight: 600; line-height: 1; letter-spacing: -0.02em;
+    color: var(--speech); margin-bottom: 8px;
+  }
+  .insight .l { font-size: 13px; color: var(--ink-soft); }
+
+  /* ===== MODEL LANDSCAPE ===== */
+  .ml-wrap {
+    background: var(--bg-elev); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 36px;
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+  }
+  .ml-canvas-wrap { position: relative; height: 420px; min-width: 600px; }
+  .ml-legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; font-size: 13px; }
+  .ml-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .ml-legend i { width: 12px; height: 12px; border-radius: 50%; }
+
+  /* ===== COUNTERARGS ===== */
+  .alt-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  @media (max-width: 800px) { .alt-grid { grid-template-columns: 1fr; } }
+  .alt-card {
+    background: var(--bg-elev); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 28px;
+    transition: all .2s;
+    box-shadow: var(--shadow);
+  }
+  .alt-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--speech); }
+  .alt-card .num {
+    font-family: 'Fraunces', serif;
+    font-size: 36px; font-weight: 600;
+    color: var(--speech); opacity: .35;
+    line-height: 1; margin-bottom: 6px;
+  }
+  .alt-card .objection {
+    font-family: 'Fraunces', serif; font-size: 19px; font-weight: 600;
+    margin: 0 0 14px;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .alt-card .objection::before { content: '"'; color: var(--speech); }
+  .alt-card .objection::after { content: '"'; color: var(--speech); }
+  .alt-card .response-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .12em;
+    color: var(--audio);
+    background: color-mix(in srgb, var(--audio) 12%, transparent);
+    padding: 3px 10px; border-radius: 999px;
+    margin-bottom: 10px;
+  }
+  .alt-card .response { font-size: 14.5px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+
+  /* ===== CTA ===== */
+  .cta-tabs {
+    background: var(--bg-elev); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 36px;
+    box-shadow: var(--shadow);
+  }
+  .cta-tabbar {
+    display: flex; gap: 6px;
+    background: var(--bg-soft);
+    padding: 4px; border-radius: 999px;
+    margin-bottom: 28px;
+    width: fit-content;
+    border: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+  .cta-tabbar button {
+    background: transparent; border: 0; padding: 9px 18px;
+    font-family: inherit; font-size: 14px; font-weight: 500;
+    color: var(--ink-mute); cursor: pointer;
+    border-radius: 999px; transition: all .2s;
+  }
+  .cta-tabbar button.active {
+    background: var(--ink); color: var(--bg);
+  }
+  .cta-tabpanel { display: none; }
+  .cta-tabpanel.active { display: block; animation: fadein .3s; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .cta-list {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  @media (max-width: 800px) { .cta-list { grid-template-columns: 1fr; } }
+  .cta-list li {
+    padding: 22px;
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    transition: all .2s;
+  }
+  .cta-list li:hover { border-color: var(--speech); transform: translateY(-3px); background: var(--bg-elev); }
+  .cta-list .step-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--speech); color: #fff;
+    font-size: 12px; font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .cta-list h4 {
+    margin: 0 0 8px; font-family: 'Fraunces', serif; font-weight: 600; font-size: 17px;
+  }
+  .cta-list p { margin: 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* ===== CITE ===== */
+  .cite-block {
+    background: var(--bg-elev); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 28px;
+    position: relative;
+    box-shadow: var(--shadow);
+  }
+  .cite-block pre {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink);
+    overflow-x: auto;
+    line-height: 1.6;
+  }
+  .cite-block .copy-btn {
+    position: absolute; top: 18px; right: 18px;
+    background: var(--bg-soft); border: 1px solid var(--line);
+    padding: 7px 12px; border-radius: 6px;
+    font-family: inherit; font-size: 12px; font-weight: 500;
+    color: var(--ink-soft); cursor: pointer;
+    transition: all .15s;
+  }
+  .cite-block .copy-btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .cite-block .copy-btn.copied { background: var(--audio); color: #fff; border-color: var(--audio); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 48px 0; border-top: 1px solid var(--line);
+    color: var(--ink-mute); font-size: 13px;
+    text-align: center;
+  }
+  footer .row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px; }
+  @media (max-width: 600px) { footer .row { flex-direction: column; } }
+
+  /* reveal animations — only when JS is active and motion isn't reduced */
+  body.scroll-anim [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  body.scroll-anim [data-reveal].visible {
+    opacity: 1; transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body.scroll-anim [data-reveal] { opacity: 1 !important; transform: none !important; }
+  }
+
+  /* utility */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+  @media (max-width: 800px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .figure-caption {
+    font-size: 13px; color: var(--ink-mute); font-style: italic;
+    margin-top: 12px; max-width: 60ch;
+  }
+  .figure-caption b { color: var(--ink-soft); font-style: normal; font-weight: 600; }
+
+  .pillquote {
+    border-left: 3px solid var(--speech);
+    padding: 6px 0 6px 18px;
+    margin: 22px 0;
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  /* TikZ-generated SVGs */
+  .tikz-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  @media (prefers-color-scheme: dark) {
+    .tikz-svg {
+      filter: invert(0.92) hue-rotate(180deg) saturate(1.15);
+      background: #fafaf6;
+      border-radius: 8px;
+      padding: 14px;
+    }
+  }
+  .tikz-tag {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    font-style: normal;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="container row">
+    <div class="brand">Beyond <span>Text</span> · ICML '26</div>
+    <ul>
+      <li><a href="#thesis">Thesis</a></li>
+      <li><a href="#shift">Shift</a></li>
+      <li><a href="#tech">Technical</a></li>
+      <li><a href="#barrier">Barrier</a></li>
+      <li><a href="#alt">Counterargs</a></li>
+      <li><a href="#cta">Action</a></li>
+    </ul>
+    <a class="pdf" href="images/beyondtext_main_v2_final.pdf" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      PDF
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <svg class="wave-bg" viewBox="0 0 1440 600" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="wg1" x1="0" x2="1">
+        <stop offset="0" stop-color="#ea580c" stop-opacity=".25"/>
+        <stop offset="1" stop-color="#7c3aed" stop-opacity=".18"/>
+      </linearGradient>
+      <linearGradient id="wg2" x1="0" x2="1">
+        <stop offset="0" stop-color="#2563eb" stop-opacity=".15"/>
+        <stop offset="1" stop-color="#ea580c" stop-opacity=".15"/>
+      </linearGradient>
+    </defs>
+    <path id="wave1" d="M0,300 Q120,200 240,300 T480,300 T720,300 T960,300 T1200,300 T1440,300 V600 H0 Z" fill="url(#wg1)"/>
+    <path id="wave2" d="M0,360 Q120,280 240,360 T480,360 T720,360 T960,360 T1200,360 T1440,360 V600 H0 Z" fill="url(#wg2)"/>
+  </svg>
+
+  <div class="container">
+    <div class="badge-row">
+      <span class="badge spotlight"><span class="dot"></span>ICML 2026 Spotlight</span>
+      <span class="badge icml">Position Paper</span>
+      <span class="badge position">Top 5% of accepts</span>
+    </div>
+
+    <h1 class="title">
+      The text-centric bias in foundation models must be revisited for a <em>speech-first future</em>.
+    </h1>
+
+    <p class="lede">
+      Text dominates AI not because it is cognitively natural, but because decades of interface design conditioned us to express knowledge through keyboards and search boxes. <strong>Recent advances in speech recognition and multimodal foundation models have removed the technical barriers to voice-based interaction; what remains is primarily a habit problem.</strong> As voice becomes habitual, the data ecosystem underlying ML will shift toward speech-native knowledge — with profound implications for model architecture, training efficiency, and evaluation paradigms.
+    </p>
+
+    <div class="authors">
+      <div class="av">A</div>
+      <div>
+        <div style="color:var(--ink); font-weight:500;">Anonymous Authors</div>
+        <div>Under review · ICML 2026</div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="images/beyondtext_main_v2_final.pdf" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Read Paper
+      </a>
+      <a class="btn btn-secondary" href="#cite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Cite
+      </a>
+      <a class="btn btn-secondary" href="#thesis">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        Explore
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="cell">
+        <div class="v" data-counter="232" data-suffix="ms"><span class="unit">ms</span></div>
+        <div class="l">GPT-4o speech-to-speech latency<br/>(within human conversational range)</div>
+      </div>
+      <div class="cell">
+        <div class="v accent" data-counter="3" data-suffix="×"><span class="unit">×</span></div>
+        <div class="l">Speech is faster than mobile typing<br/>(~153 vs ~52 WPM)</div>
+      </div>
+      <div class="cell">
+        <div class="v" data-counter="8.4" data-decimals="1" data-suffix="B"><span class="unit">B</span></div>
+        <div class="l">Voice-assistant devices in 2024,<br/>up from 4.2B in 2020</div>
+      </div>
+      <div class="cell">
+        <div class="v accent" data-counter="76" data-suffix="%"><span class="unit">%</span></div>
+        <div class="l">Of survey respondents use voice,<br/>but only 25% at work</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ THESIS / TLDR ============ -->
+<section id="thesis">
+  <div class="container narrow">
+    <div class="eyebrow" data-reveal>The Position</div>
+    <h2 class="section-title" data-reveal>One sentence to remember.</h2>
+
+    <div class="tldr" data-reveal>
+      <div class="quote-mark">"</div>
+      <div class="label">Our Position</div>
+      <p class="text">
+        The ML community should prioritize building <strong>speech-native foundation models</strong> — architectures that learn from audio as a <strong>first-class modality</strong> rather than grafting speech onto text-pretrained systems — because the data ecosystem underlying AI is poised to shift toward speech-first knowledge generation.
+      </p>
+    </div>
+
+    <div class="pillquote" data-reveal>
+      "Text feels natural largely because it is habitual. Speech, by contrast, has been treated as a convenience feature — yet it is humanity's most fundamental communication modality, preceding writing by millennia."
+    </div>
+
+    <p style="color: var(--ink-soft); font-size: 16px;" data-reveal>
+      This page distills the paper's argument into interactive visualizations: <a href="#shift">the data-distribution shift</a>, <a href="#tech">the technical readiness</a>, <a href="#barrier">the habit barrier</a>, <a href="#alt">the counterarguments we address</a>, and <a href="#cta">the call to action</a> for researchers, industry, and the broader community.
+    </p>
+  </div>
+</section>
+
+<!-- ============ THE SHIFT ============ -->
+<section id="shift" style="background: var(--bg-soft);">
+  <div class="container">
+    <div class="eyebrow" data-reveal>§1 · The Data Shift</div>
+    <h2 class="section-title" data-reveal>Present is keyboards. <em>Future is everywhere else.</em></h2>
+    <p class="section-lede" data-reveal>
+      As interaction shifts from keyboard- and screen-based inputs toward speech-first wearables and ambient devices, the dominant <em>data modality</em> transitions from text-heavy corpora to audio-rich representations. Models trained on yesterday's data distribution will be increasingly misaligned with tomorrow's.
+    </p>
+
+    <div class="pf-card" data-reveal>
+      <img src="generated/hero_transition.svg" alt="Keyboard era to ambient era — modality shift" class="tikz-svg" />
+      <div class="figure-caption" style="margin-top: 22px;">
+        <b>Figure 1.</b> Evolution of human–computer interaction interfaces and their implications for training data distributions. The dominant data modality transitions from text-heavy corpora to audio-rich representations. <span class="tikz-tag">Generated with TikZ</span>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 56px;" data-reveal>
+      <div>
+        <h3 style="font-family:'Fraunces', serif; font-weight:600; font-size: 24px; margin: 0 0 14px;">The feedback loop that favored text — for decades.</h3>
+        <p style="color: var(--ink-soft);">
+          <b>① Interfaces shape expression.</b> Search boxes condition users to express queries as keyword lists; voice enables natural language questions with context and nuance.<br/><br/>
+          <b>② Expression shapes data.</b> What users externalize becomes the training corpus for future models.<br/><br/>
+          <b>③ Data shapes models.</b> The modalities, structures, and biases in training data determine what AI systems learn and how they represent knowledge.
+        </p>
+        <p style="color: var(--ink-soft); margin-top: 18px;">
+          Each step reinforces the next. Speech-first interfaces are how we reroute the loop.
+        </p>
+      </div>
+      <div style="background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px;">
+        <img src="generated/feedback_loop.svg" alt="Text-favoring feedback loop: interfaces → expression → data → models" class="tikz-svg" />
+        <div class="figure-caption" style="text-align:center; margin-top: 6px;">The feedback loop that favored text. <span class="tikz-tag">TikZ</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EFFORT VS COMPLEXITY ============ -->
+<section>
+  <div class="container">
+    <div class="eyebrow" data-reveal>§2 · Why Speech, Why Now</div>
+    <h2 class="section-title" data-reveal>As complexity grows, <em>typing breaks down.</em></h2>
+    <p class="section-lede" data-reveal>
+      For short queries, both modalities are roughly comparable. But as expressiveness rises — emotion, multi-turn reasoning, long compositions — typing scales <em>non-linearly</em>. Speech remains nearly flat. This crossover is where adoption tips.
+    </p>
+
+    <div class="ec-wrap" data-reveal>
+      <div class="ec-grid">
+        <div class="ec-canvas">
+          <canvas id="effortChart"></canvas>
+        </div>
+        <div class="ec-callout">
+          <div class="label">Speech, on mobile</div>
+          <div class="big">~3×</div>
+          <p>faster than smartphone typing — <b>~153 WPM</b> spoken vs <b>~52 WPM</b> typed (Ruan et al., 2016).</p>
+          <p>Speech doesn't just save time. It changes <em>what</em> users are willing to express in the first place.</p>
+          <div class="ec-legend">
+            <span><i style="background:var(--text);"></i> Typing</span>
+            <span><i style="background:var(--speech);"></i> Speech</span>
+          </div>
+        </div>
+      </div>
+      <div class="figure-caption" style="margin-top: 22px;"><b>Figure 2.</b> As query complexity increases, speech becomes increasingly efficient relative to typing.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECHNICAL READINESS ============ -->
+<section id="tech" style="background: var(--bg-soft);">
+  <div class="container">
+    <div class="eyebrow" data-reveal>§3 · Technical Readiness</div>
+    <h2 class="section-title" data-reveal>The barriers <em>have already fallen.</em></h2>
+    <p class="section-lede" data-reveal>
+      Speech recognition has transformed from a research curiosity into infrastructure: accurate enough for deployment, efficient enough for on-device, scalable enough to process the world's audio. The remaining gap is architectural — speech is <em>accessible</em> to LLMs, but not yet <em>native</em>.
+    </p>
+
+    <h3 style="font-family:'Fraunces', serif; font-weight:600; font-size: 24px; margin: 48px 0 14px;" data-reveal>Cascaded vs. Speech-Native</h3>
+
+    <div class="arch-compare" data-reveal>
+      <div class="arch-card cascaded">
+        <span class="tag">Legacy · Cascaded</span>
+        <h3>ASR → LLM → TTS</h3>
+        <p class="desc">Audio is converted to text, processed by a text-trained LLM, and synthesized back to speech. Paralinguistic information — tone, emphasis, hesitation, emotion — is <strong>discarded at the bottleneck</strong>.</p>
+        <div class="pipeline">
+          <span class="step audio">🎙 Audio</span><span class="arr">→</span>
+          <span class="step txt">📝 ASR text</span><span class="arr">→</span>
+          <span class="step llm">🧠 LLM</span><span class="arr">→</span>
+          <span class="step txt">📝 Text reply</span><span class="arr">→</span>
+          <span class="step audio">🔊 TTS</span>
+        </div>
+        <div class="latency-bar">
+          <div class="lbar"><div class="fill" data-w="100"></div></div>
+          <div class="ll"><span>Total latency</span><b>≈ 1,200 ms</b></div>
+        </div>
+      </div>
+
+      <div class="arch-card native">
+        <span class="tag">Speech-Native · GPT-4o, Gemini Live</span>
+        <h3>End-to-end audio</h3>
+        <p class="desc">Audio tokens are processed directly by the foundation model alongside text tokens; the model emits interleaved audio + text and a vocoder synthesizes voice. <strong>Paralinguistic information is preserved.</strong></p>
+        <div class="pipeline">
+          <span class="step audio">🎙 Audio tokens</span><span class="arr">→</span>
+          <span class="step llm">🧠 Audio-Text LMM</span><span class="arr">→</span>
+          <span class="step audio">🔊 Audio tokens</span><span class="arr">→</span>
+          <span class="step audio">🎵 Vocoder</span>
+        </div>
+        <div class="latency-bar">
+          <div class="lbar"><div class="fill" data-w="19.3"></div></div>
+          <div class="ll"><span>Total latency</span><b>≈ 232 ms</b> <span style="color:var(--audio); font-weight:600;">→ within human range</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Latency budget (TikZ) -->
+    <div class="latency-section" style="margin-top: 32px;" data-reveal>
+      <h3 style="font-family:'Fraunces', serif; font-weight:600; font-size: 22px; margin: 0 0 6px;">Cascaded latency budget — where the milliseconds go</h3>
+      <p style="color: var(--ink-soft); margin: 0 0 18px; font-size: 14px;">Each stage of a cascaded pipeline contributes to total latency, far exceeding the ~200ms human conversational norm.</p>
+
+      <img src="generated/latency_budget.svg" alt="Cascaded voice-assistant latency budget" class="tikz-svg" />
+
+      <div class="lat-summary" style="margin-top: 12px;">
+        <div class="ls">
+          <div class="v bad">1,200 ms</div>
+          <div class="desc"><b>Cascaded pipeline</b>Six times the human norm. Conversation feels broken.</div>
+        </div>
+        <div class="ls">
+          <div class="v good">232 ms</div>
+          <div class="desc"><b>Speech-native (GPT-4o)</b>End-to-end audio · within human turn-taking range.</div>
+        </div>
+      </div>
+
+      <div class="figure-caption" style="margin-top: 16px;"><b>Figure 6.</b> End-to-end voice assistant pipeline showing latency budget. <span class="tikz-tag">Generated with TikZ</span></div>
+    </div>
+
+    <!-- Speech-Native Architecture (TikZ) -->
+    <h3 style="font-family:'Fraunces', serif; font-weight:600; font-size: 24px; margin: 56px 0 14px;" data-reveal>Inside a speech-native foundation model</h3>
+    <p style="color: var(--ink-soft); margin: 0 0 22px; font-size: 16px; max-width: 64ch;" data-reveal>
+      A key architectural pattern: an LLM checkpoint serves as the foundational backbone, extended with custom modal tokens. Audio is discretized into tokens (via HuBERT or wav2vec 2.0) and interleaved with text. The model autoregressively produces both — audio passed through a vocoder for synthesis, text emitted directly.
+    </p>
+    <div class="latency-section" data-reveal>
+      <img src="generated/architecture.svg" alt="Speech-native foundation model architecture" class="tikz-svg" style="max-height: 620px;" />
+      <div class="figure-caption" style="margin-top: 10px;"><b>Figure 4.</b> Speech-native architecture: audio encoder → joint audio+text token stream → bootstrapped LMM → interleaved audio+text output → vocoder + detokenizer. <span class="tikz-tag">Generated with TikZ</span></div>
+    </div>
+
+    <!-- model landscape -->
+    <h3 style="font-family:'Fraunces', serif; font-weight:600; font-size: 24px; margin: 56px 0 14px;" data-reveal>The trajectory of foundation speech models</h3>
+    <p style="color: var(--ink-soft); margin: 0 0 24px; font-size: 16px; max-width: 64ch;" data-reveal>
+      From supervised speech-only systems to self-supervised multimodal architectures jointly processing audio, text, and vision — fewer labels, more modalities.
+    </p>
+
+    <div class="ml-wrap" data-reveal>
+      <div class="ml-canvas-wrap">
+        <canvas id="landscapeChart"></canvas>
+      </div>
+      <div class="ml-legend">
+        <span><i style="background:#ea580c;"></i>Speech-only</span>
+        <span><i style="background:#2563eb;"></i>Speech + Text</span>
+        <span><i style="background:#7c3aed;"></i>Audio + Vision + Text</span>
+      </div>
+      <div class="figure-caption" style="margin-top: 12px;"><b>Figure 3.</b> Evolution of speech and multimodal models, from supervised speech-only systems to self-supervised multimodal architectures (Baevski et al., 2020; Hsu et al., 2021; Girdhar et al., 2023).</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE HABIT BARRIER ============ -->
+<section id="barrier">
+  <div class="container">
+    <div class="eyebrow" data-reveal>§4 · Habit Inertia</div>
+    <h2 class="section-title" data-reveal>Not a tech problem. <em>A human one.</em></h2>
+    <p class="section-lede" data-reveal>
+      If the technical barriers have largely been removed, why hasn't voice replaced text? The cognitive and behavioral cost of switching from a familiar workflow to an unfamiliar one — even when the new workflow is objectively superior — is the primary friction. This is a human problem with technical consequences.
+    </p>
+
+    <!-- Turn-taking -->
+    <div class="tt-wrap" data-reveal>
+      <h3 style="font-family:'Fraunces', serif; font-weight:600; font-size: 22px; margin: 0 0 8px;">A 4× gap in turn-taking timing</h3>
+      <p style="color: var(--ink-soft); font-size: 14px; margin: 0 0 22px;">Human conversation has gaps clustered tightly around <b>~200ms</b>. Today's voice assistants typically respond in <b>~900–1,000ms</b> — feeling slow, prompting interrupts and disengagement.</p>
+      <div class="tt-canvas">
+        <canvas id="ttChart"></canvas>
+      </div>
+      <div class="tt-cap">Frequency of response times. Adapted from Stivers et al. (2009); Levinson &amp; Torreira (2015).</div>
+
+      <div class="tt-marks">
+        <div class="tt-mark human">
+          <div class="v">~200 ms</div>
+          <div class="l">Human turn-taking gap (median, multiple languages)</div>
+        </div>
+        <div class="tt-mark bot">
+          <div class="v">~900 ms</div>
+          <div class="l">Typical assistant response delay (cascaded pipelines)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barriers taxonomy -->
+    <h3 style="font-family:'Fraunces', serif; font-weight:600; font-size: 24px; margin: 56px 0 18px;" data-reveal>Three classes of friction</h3>
+
+    <div class="alt-grid" data-reveal>
+      <div class="alt-card" style="border-top: 3px solid var(--text);">
+        <div class="num">A.</div>
+        <div class="objection" style="font-style:normal;">Technical</div>
+        <span class="response-label" style="background: color-mix(in srgb, var(--text) 12%, transparent); color: var(--text-2);">Largely solved</span>
+        <p class="response">Accuracy &amp; robustness · Latency &amp; endpointing · Noise &amp; environmental factors · Out-of-domain generalization. ASR is at near-human WER on standard benchmarks; remaining gaps are accent and domain coverage.</p>
+      </div>
+      <div class="alt-card" style="border-top: 3px solid var(--accent);">
+        <div class="num">B.</div>
+        <div class="objection" style="font-style:normal;">Social</div>
+        <span class="response-label" style="background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent);">Context-dependent</span>
+        <p class="response">Public awkwardness · Privacy perception · Shared spaces. <b>100%</b> of voice users in our survey reported using it at home, but only <b>25%</b> at work and even fewer in public.</p>
+      </div>
+      <div class="alt-card" style="border-top: 3px solid var(--speech);">
+        <div class="num">C.</div>
+        <div class="objection" style="font-style:normal;">Behavioral</div>
+        <span class="response-label">Primary remaining barrier</span>
+        <p class="response">Habit inertia · Discoverability · Trust calibration. Decades of typing have made it feel "natural" — but naturalness is acquired, not inherent. Many users simply forget the capability exists.</p>
+      </div>
+      <div class="alt-card" style="border-top: 3px solid var(--audio);">
+        <div class="num">↳</div>
+        <div class="objection" style="font-style:normal;">Implication for ML</div>
+        <span class="response-label">Why this matters here</span>
+        <p class="response">As long as users default to text, the data ecosystem stays text-dominated, reinforcing text-centric model development. Breaking the cycle requires either <b>compelling interfaces</b> or <b>models that can learn from speech that already exists</b> — podcasts, meetings, lectures, voice messages.</p>
+      </div>
+    </div>
+    <div class="figure-caption" style="margin-top: 16px;"><b>Figure 5.</b> Taxonomy of barriers to voice adoption — adapted from Klein et al. (2024).</div>
+  </div>
+</section>
+
+<!-- ============ SURVEY ============ -->
+<section style="background: var(--bg-soft);">
+  <div class="container">
+    <div class="eyebrow" data-reveal>§4.1 · Empirical Evidence</div>
+    <h2 class="section-title" data-reveal>What 200 voice users <em>actually told us.</em></h2>
+    <p class="section-lede" data-reveal>
+      We conducted an informal survey (N=200) of voice interface users — illustrative evidence, not statistically representative. The pattern is revealing: the top barriers (slowness, accuracy) are technical issues that are rapidly improving. The persistent ones are behavioral and social.
+    </p>
+
+    <div class="survey-grid">
+      <div class="stat-card" data-reveal>
+        <h3>Primary barriers cited</h3>
+        <div class="barriers-list">
+          <div class="row"><span class="lbl">Too Slow / Prefer Typing</span><div class="bar"><div class="fill" data-w="48"></div></div><span class="pct">48%</span></div>
+          <div class="row"><span class="lbl">Poor Quality</span><div class="bar"><div class="fill" data-w="43"></div></div><span class="pct">43%</span></div>
+          <div class="row"><span class="lbl">Single-Turn Limitation</span><div class="bar"><div class="fill" data-w="38"></div></div><span class="pct">38%</span></div>
+          <div class="row"><span class="lbl">Social Discomfort</span><div class="bar"><div class="fill" data-w="33"></div></div><span class="pct">33%</span></div>
+          <div class="row"><span class="lbl">Privacy Concerns</span><div class="bar"><div class="fill" data-w="29"></div></div><span class="pct">29%</span></div>
+          <div class="row"><span class="lbl">Not Intuitive</span><div class="bar"><div class="fill" data-w="19"></div></div><span class="pct">19%</span></div>
+        </div>
+        <div class="figure-caption"><b>Figure 8.</b> Survey results — speed and quality lead, but social and behavioral factors persist.</div>
+      </div>
+
+      <div class="stat-card" data-reveal>
+        <h3>Adoption &amp; perceived quality</h3>
+        <div class="donut-wrap">
+          <div style="width:200px; height:200px; position:relative;">
+            <canvas id="adoptionChart"></canvas>
+          </div>
+          <div class="donut-stats">
+            <div class="row"><span class="sw" style="background:var(--text);"></span> Use voice <b>76%</b></div>
+            <div class="row"><span class="sw" style="background:var(--line-strong);"></span> Don't use <b>24%</b></div>
+            <div style="height: 14px;"></div>
+            <div class="row"><span class="sw" style="background:var(--audio);"></span> Quality "Great" <b>6%</b></div>
+            <div class="row"><span class="sw" style="background:#facc15;"></span> Quality "Average" <b>69%</b></div>
+            <div class="row"><span class="sw" style="background:var(--warn);"></span> Quality "Poor" <b>25%</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-row" data-reveal>
+      <div class="insight"><div class="v">100%</div><div class="l">use voice <b>at home</b></div></div>
+      <div class="insight"><div class="v">25%</div><div class="l">use voice <b>at work</b></div></div>
+      <div class="insight"><div class="v">63%</div><div class="l">invoke via <b>wake word</b></div></div>
+      <div class="insight"><div class="v">6%</div><div class="l">rate recognition <b>"Great"</b></div></div>
+    </div>
+
+    <p style="margin-top: 32px; color: var(--ink-soft); font-size: 16px; max-width: 64ch;" data-reveal>
+      Among those who rated recognition quality, only <b>6%</b> described it as "Great" while <b>69%</b> rated it "Average." Technical improvements alone are insufficient: voice interfaces must also address user perception, social context, and discoverability to achieve mainstream adoption.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ALTERNATIVE VIEWS ============ -->
+<section id="alt">
+  <div class="container">
+    <div class="eyebrow" data-reveal>§5 · Counterarguments</div>
+    <h2 class="section-title" data-reveal>The strongest objections — <em>and our response.</em></h2>
+    <p class="section-lede" data-reveal>
+      Position papers earn their keep by engaging serious counterarguments. Here are the four strongest objections to a speech-first agenda, and how we address each.
+    </p>
+
+    <div class="alt-grid">
+      <div class="alt-card" data-reveal>
+        <div class="num">01</div>
+        <div class="objection">Text is more computationally efficient.</div>
+        <span class="response-label">Our response</span>
+        <p class="response">This argument optimizes for the <em>current</em> cost ratio, which is fixed. Self-supervised learning has already collapsed audio processing costs — wav2vec 2.0 and HuBERT enable training on audio without transcription labels. Hierarchical tokenization (AudioLM, SoundStorm) compresses audio to 50–75 tokens/sec, approaching text density. The question is not which modality is cheaper today, but which will be more representative tomorrow.</p>
+      </div>
+
+      <div class="alt-card" data-reveal>
+        <div class="num">02</div>
+        <div class="objection">Paralinguistic information doesn't justify the cost.</div>
+        <span class="response-label">Our response</span>
+        <p class="response">This reflects a text-centric definition of "what matters." For many real-world applications — customer service, healthcare, education, mental-health support — emotional state and speaker intent are <em>central</em>, not peripheral. Sarcasm, rhetorical questions, and emphasis change meaning without changing words.</p>
+      </div>
+
+      <div class="alt-card" data-reveal>
+        <div class="num">03</div>
+        <div class="objection">User preference for text reflects genuine advantages.</div>
+        <span class="response-label">Our response</span>
+        <p class="response">We agree text has real advantages — privacy in shared spaces, scannability, archival. Our position is not that speech replaces text. It's that the <em>proportion</em> of knowledge generated via speech will grow, and models should be prepared for a data ecosystem where both modalities are common, rather than treating text as the default and speech as an edge case.</p>
+      </div>
+
+      <div class="alt-card" data-reveal>
+        <div class="num">04</div>
+        <div class="objection">The habit shift may never happen.</div>
+        <span class="response-label">Our response</span>
+        <p class="response">QWERTY persisted because the switching cost exceeded the benefit. For speech, the switching cost is lower (no new skill to learn) and the benefit higher (3× input speed, hands-free, accessibility). The shift is already visible: voice search queries exceed 20% of mobile searches; smart-speaker adoption is growing; voice messaging is exploding worldwide. The question is not <em>whether</em> speech usage will grow, but <em>how fast</em> — and whether the ML community will be prepared.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALL TO ACTION ============ -->
+<section id="cta" style="background: var(--bg-soft);">
+  <div class="container">
+    <div class="eyebrow" data-reveal>§6 · Call to Action</div>
+    <h2 class="section-title" data-reveal>Concrete steps toward a <em>speech-native future.</em></h2>
+    <p class="section-lede" data-reveal>
+      The preceding analysis motivates specific actions. Three audiences, three agendas — but a shared direction.
+    </p>
+
+    <div class="cta-tabs" data-reveal>
+      <div class="cta-tabbar">
+        <button class="active" data-tab="researchers">For Researchers</button>
+        <button data-tab="industry">For Industry</button>
+        <button data-tab="community">For the Community</button>
+      </div>
+
+      <div class="cta-tabpanel active" data-panel="researchers">
+        <ul class="cta-list">
+          <li>
+            <span class="step-num">1</span>
+            <h4>Develop audio-native benchmarks</h4>
+            <p>Current evaluation suites (GLUE, SuperGLUE, MMLU) are text-centric. We need benchmarks measuring reasoning <em>over</em> audio — comprehension, summarization, QA on audio inputs without intermediate text. ProfASR-Bench (Piskala, 2025) is one example.</p>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <h4>Explore speech-first pretraining</h4>
+            <p>Rather than fine-tuning text-trained models on audio, investigate what happens when models are pretrained on audio from the start. Does it produce different representational structures? Does it generalize differently downstream?</p>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <h4>Design semantic audio tokens</h4>
+            <p>Move beyond phonetic tokenization (HuBERT, wav2vec) toward representations that preserve meaning and paralinguistic information — audio encoders whose latent spaces reflect <em>semantic</em> similarity, not just acoustic similarity.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cta-tabpanel" data-panel="industry">
+        <ul class="cta-list">
+          <li>
+            <span class="step-num">1</span>
+            <h4>Invest in speech-data infrastructure</h4>
+            <p>The podcasts, meetings, and voice messages being generated today are tomorrow's training data. Building pipelines to collect, clean, and curate speech — with appropriate consent and privacy protections — is a strategic investment.</p>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <h4>Deploy speech-native interfaces</h4>
+            <p>Rather than retrofitting voice onto text-designed products, design experiences where speech is the primary modality. This generates training signal for speech-native models <em>and</em> shifts user habits.</p>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <h4>Open-source speech-native models</h4>
+            <p>GPT-4o and Gemini Live are proprietary. The research community needs open alternatives to study speech-native architectures, identify failure modes, and iterate on designs.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cta-tabpanel" data-panel="community">
+        <ul class="cta-list">
+          <li>
+            <span class="step-num">1</span>
+            <h4>Diversify speech datasets</h4>
+            <p>Current speech corpora overrepresent English and standard accents. Expanding to underrepresented languages, dialects, and speaking styles ensures speech-native models serve global populations.</p>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <h4>Address privacy concerns</h4>
+            <p>Speech data is uniquely sensitive (voiceprints, ambient sounds, emotional state). Privacy-preserving techniques — federated learning, on-device models, differential privacy — are an ethical imperative <em>and</em> an adoption requirement.</p>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <h4>Engage with HCI researchers</h4>
+            <p>The habit barriers we identified require interdisciplinary solutions. ML researchers should collaborate with HCI, cognitive science, and design communities to build interfaces users actually want to speak to.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONCLUSION + CITE ============ -->
+<section id="cite">
+  <div class="container narrow">
+    <div class="eyebrow" data-reveal>§7 · Conclusion</div>
+    <h2 class="section-title" data-reveal>The transition won't happen overnight. <em>But it's already underway.</em></h2>
+
+    <p style="font-size: 17px; color: var(--ink-soft);" data-reveal>
+      The technical barriers have largely been removed. Modern ASR achieves near-human accuracy. Speech-native models demonstrate sub-300ms latency. Self-supervised learning has made audio processing tractable at scale. What remains is primarily habit inertia — users default to text not because it is superior, but because decades of keyboard-centric interfaces have made it familiar.
+    </p>
+    <p style="font-size: 17px; color: var(--ink-soft);" data-reveal>
+      As voice becomes habitual, the data ecosystem underlying ML will shift toward speech-first knowledge generation. Models designed for text-centric assumptions will be increasingly misaligned with future training distributions. The transition will not happen overnight, and text will remain important — but the ML community should anticipate this shift rather than react to it.
+    </p>
+    <p style="font-size: 17px; color: var(--ink-soft);" data-reveal>
+      <b>Models that can learn from the speech data that already exists</b> — podcasts, meetings, lectures, voice messages — <b>and architectures that preserve paralinguistic information natively will be better positioned for a future where humans increasingly speak their knowledge before writing it down.</b>
+    </p>
+
+    <h3 style="font-family:'Fraunces', serif; font-weight:600; font-size: 22px; margin: 48px 0 16px;" data-reveal>BibTeX</h3>
+    <div class="cite-block" data-reveal>
+      <button class="copy-btn" id="copyBtn">Copy</button>
+<pre id="bibtex">@inproceedings{anonymous2026beyondtext,
+  title     = {Position: The Text-Centric Bias in Foundation Models
+               Must Be Revisited for a Speech-First Future},
+  author    = {Anonymous Authors},
+  booktitle = {Proceedings of the 43rd International Conference
+               on Machine Learning (ICML)},
+  year      = {2026},
+  note      = {Spotlight Presentation (top 5\% of accepted papers)}
+}</pre>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container row">
+    <div>© 2026 · Beyond Text · Position paper, ICML 2026 Spotlight (top 5%)</div>
+    <div>
+      <a href="images/beyondtext_main_v2_final.pdf" target="_blank">Paper PDF</a> ·
+      <a href="tikz/" >TikZ source</a> ·
+      <a href="#thesis">Top</a>
+    </div>
+  </div>
+  <div class="container" style="margin-top: 18px; color: var(--ink-mute); font-size: 12px; text-align: center; opacity:.8;">
+    Figures rendered via TikZ (LaTeX) → SVG. Interactive charts powered by Chart.js. Single-page, dependency-free homepage.
+  </div>
+</footer>
+
+<script>
+/* ============ Analytics — fine-grained engagement tracking ============ */
+(() => {
+  const t = (window.track || function(){});
+  const startTime = Date.now();
+  const sessionId = Math.random().toString(36).slice(2, 10);
+
+  // 1. Section view (fired once per section when ≥40% visible)
+  const sectionIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting || e.target.dataset.tracked) return;
+      e.target.dataset.tracked = '1';
+      const id = e.target.id || 'unnamed';
+      const heading = e.target.querySelector('h2, h3');
+      t('view_section', {
+        section_id: id,
+        section_title: heading ? heading.innerText.trim().slice(0, 96) : '',
+        time_to_section_s: Math.floor((Date.now() - startTime) / 1000),
+        session_id: sessionId,
+      });
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('section[id], header.hero').forEach(s => sectionIO.observe(s));
+
+  // 2. Figure / chart view tracking
+  const figIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting || e.target.dataset.figTracked) return;
+      e.target.dataset.figTracked = '1';
+      const desc = e.target.alt || e.target.id || e.target.tagName.toLowerCase();
+      t('view_figure', {
+        figure: desc.slice(0, 96),
+        figure_type: e.target.tagName.toLowerCase(),
+      });
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('img.tikz-svg, canvas[id]').forEach(el => figIO.observe(el));
+
+  // 3. Scroll-depth milestones (25/50/75/90/100)
+  const scrollMarks = [25, 50, 75, 90, 100];
+  const firedScroll = new Set();
+  let maxScroll = 0;
+  const onScroll = () => {
+    const docH = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+    const pct = Math.min(100, Math.round((window.scrollY / docH) * 100));
+    if (pct > maxScroll) maxScroll = pct;
+    scrollMarks.forEach(m => {
+      if (pct >= m && !firedScroll.has(m)) {
+        firedScroll.add(m);
+        t('scroll_depth', { percent: m, time_s: Math.floor((Date.now() - startTime) / 1000) });
+      }
+    });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // 4. Time-on-page milestones
+  const timeMarks = [10, 30, 60, 120, 300, 600];
+  const firedTime = new Set();
+  setInterval(() => {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    timeMarks.forEach(m => {
+      if (elapsed >= m && !firedTime.has(m)) {
+        firedTime.add(m);
+        t('time_milestone', { seconds: m, max_scroll_pct: maxScroll });
+      }
+    });
+  }, 5000);
+
+  // 5. Click delegation — links and buttons
+  document.addEventListener('click', (ev) => {
+    const a = ev.target.closest('a, button');
+    if (!a) return;
+    const text = (a.innerText || a.textContent || '').trim().slice(0, 96);
+    const id = a.id || '';
+    if (a.tagName === 'A') {
+      const href = a.getAttribute('href') || '';
+      const isPdf = /\.pdf(\?|#|$)/i.test(href);
+      const isExternal = /^https?:\/\//i.test(href) && !href.includes(location.host);
+      const isAnchor = href.startsWith('#');
+      if (isPdf) {
+        t('paper_pdf_click', { url: href, link_text: text, location: a.closest('nav') ? 'nav' : (a.closest('.cta-row') ? 'hero_cta' : (a.closest('footer') ? 'footer' : 'inline')) });
+      } else if (isExternal) {
+        t('outbound_click', { url: href, link_text: text });
+      } else if (isAnchor) {
+        t('anchor_nav', { anchor: href, link_text: text, location: a.closest('nav') ? 'nav' : 'inline' });
+      } else {
+        t('internal_click', { url: href, link_text: text });
+      }
+    } else if (a.tagName === 'BUTTON') {
+      t('button_click', { button_text: text, button_id: id });
+    }
+  });
+
+  // 6. CTA tab switches (Researchers / Industry / Community)
+  document.querySelectorAll('.cta-tabbar button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      t('cta_tab_switch', { tab: btn.dataset.tab || '', tab_text: btn.innerText.trim() });
+    });
+  });
+
+  // 7. BibTeX copy
+  const copyBtn = document.getElementById('copyBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => t('bibtex_copy', { source: 'cite_block' }));
+  }
+
+  // 8. Counterargument card engagement (hover or click)
+  document.querySelectorAll('.alt-card').forEach((card, idx) => {
+    let hovered = false;
+    card.addEventListener('mouseenter', () => {
+      if (hovered) return;
+      hovered = true;
+      const num = card.querySelector('.num');
+      const obj = card.querySelector('.objection');
+      t('counterargument_engaged', {
+        index: idx + 1,
+        number: num ? num.innerText.trim() : String(idx + 1),
+        objection: obj ? obj.innerText.trim().slice(0, 96) : '',
+      });
+    });
+  });
+
+  // 9. Insight card hover (the 100% / 25% / 63% / 6% blocks)
+  document.querySelectorAll('.insight').forEach((el, idx) => {
+    let seen = false;
+    el.addEventListener('mouseenter', () => {
+      if (seen) return;
+      seen = true;
+      const v = el.querySelector('.v');
+      const l = el.querySelector('.l');
+      t('insight_hover', {
+        index: idx + 1,
+        value: v ? v.innerText.trim() : '',
+        label: l ? l.innerText.trim().slice(0, 96) : '',
+      });
+    });
+  });
+
+  // 10. Latency-stage hover (cascaded pipeline boxes — pre-TikZ replacement may be gone, but harmless if absent)
+  document.querySelectorAll('.lstage').forEach((el) => {
+    let seen = false;
+    el.addEventListener('mouseenter', () => {
+      if (seen) return;
+      seen = true;
+      t('latency_stage_hover', { stage: (el.title || el.querySelector('.name')?.innerText || '').trim() });
+    });
+  });
+
+  // 11. Page exit summary (uses sendBeacon-friendly gtag transport)
+  const sendExit = () => {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    t('session_summary', {
+      time_on_page_s: elapsed,
+      max_scroll_pct: maxScroll,
+      sections_viewed: document.querySelectorAll('section[data-tracked="1"]').length,
+      figures_viewed: document.querySelectorAll('[data-fig-tracked="1"]').length,
+      session_id: sessionId,
+    });
+  };
+  // Use both pagehide and visibilitychange for reliability across mobile/desktop
+  window.addEventListener('pagehide', sendExit);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') sendExit();
+  });
+})();
+
+/* ============ Reveal on scroll (progressive enhancement) ============ */
+document.body.classList.add('scroll-anim');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+// Failsafe: after 4s reveal anything that hasn't fired (off-screen edge cases, screenshot tooling, etc.)
+setTimeout(() => {
+  document.querySelectorAll('[data-reveal]:not(.visible)').forEach(el => el.classList.add('visible'));
+}, 4000);
+
+/* ============ Animated counters ============ */
+const counterIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseFloat(el.dataset.counter);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const suffix = el.dataset.suffix || '';
+      const dur = 1500;
+      const start = performance.now();
+      const unitSpan = el.querySelector('.unit');
+      const tick = (t) => {
+        const p = Math.min(1, (t - start) / dur);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const v = (target * eased).toFixed(decimals);
+        el.firstChild.nodeValue = v;
+        if (unitSpan) el.appendChild(unitSpan);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      // Replace contents with number; preserve unit span
+      const u = el.querySelector('.unit');
+      el.textContent = '0';
+      if (u) el.appendChild(u);
+      requestAnimationFrame(tick);
+      counterIO.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-counter]').forEach(el => counterIO.observe(el));
+
+/* ============ Animate bar fills when visible ============ */
+const barIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('[data-w]').forEach(bar => {
+        bar.style.width = bar.dataset.w + '%';
+      });
+      barIO.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.dist-bars, .barriers-list, .latency-bar, .pf-card').forEach(el => barIO.observe(el));
+
+/* ============ CTA tabs ============ */
+const tabBtns = document.querySelectorAll('.cta-tabbar button');
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.cta-tabpanel').forEach(p => p.classList.remove('active'));
+    document.querySelector('.cta-tabpanel[data-panel="' + btn.dataset.tab + '"]').classList.add('active');
+  });
+});
+
+/* ============ Copy bibtex ============ */
+document.getElementById('copyBtn').addEventListener('click', async (e) => {
+  const text = document.getElementById('bibtex').innerText;
+  try {
+    await navigator.clipboard.writeText(text);
+    e.target.textContent = 'Copied ✓';
+    e.target.classList.add('copied');
+    setTimeout(() => {
+      e.target.textContent = 'Copy';
+      e.target.classList.remove('copied');
+    }, 1600);
+  } catch (err) {
+    console.error(err);
+  }
+});
+
+/* ============ Hero waveform animation ============ */
+(function animateWaves(){
+  const w1 = document.getElementById('wave1');
+  const w2 = document.getElementById('wave2');
+  if (!w1 || !w2) return;
+  let t = 0;
+  function build(amp, ph, baseline){
+    const points = [];
+    const segments = 24;
+    const W = 1440;
+    for (let i = 0; i <= segments; i++) {
+      const x = (W / segments) * i;
+      const y = baseline + Math.sin((i / segments) * Math.PI * 4 + ph) * amp
+                          + Math.sin((i / segments) * Math.PI * 7 + ph * 1.3) * amp * 0.4;
+      points.push([x, y]);
+    }
+    let d = `M${points[0][0]},${points[0][1]}`;
+    for (let i = 1; i < points.length; i++) {
+      const [px, py] = points[i-1];
+      const [x, y] = points[i];
+      const cx = (px + x) / 2;
+      d += ` Q${px},${py} ${cx},${(py+y)/2}`;
+    }
+    d += ` L1440,600 L0,600 Z`;
+    return d;
+  }
+  function frame(){
+    t += 0.012;
+    w1.setAttribute('d', build(36, t, 300));
+    w2.setAttribute('d', build(28, t * 0.7 + 1.4, 360));
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+/* ============ CHARTS ============ */
+const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+Chart.defaults.font.family = "'Inter', sans-serif";
+Chart.defaults.color = css('--ink-soft');
+Chart.defaults.borderColor = css('--line');
+
+/* ---- Effort vs complexity ---- */
+(() => {
+  const ctx = document.getElementById('effortChart');
+  if (!ctx) return;
+  const xs = Array.from({length: 60}, (_, i) => i / 59);
+  const typing = xs.map(x => 5 + Math.pow(x, 2.4) * 95);
+  const speech = xs.map(x => 8 + x * 32 + Math.pow(x, 1.4) * 4);
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: xs.map(x => x.toFixed(2)),
+      datasets: [
+        {
+          label: 'Typing',
+          data: typing,
+          borderColor: css('--text'),
+          backgroundColor: 'rgba(37, 99, 235, .08)',
+          borderWidth: 3,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          fill: true,
+          tension: 0.4
+        },
+        {
+          label: 'Speech',
+          data: speech,
+          borderColor: css('--speech'),
+          backgroundColor: 'rgba(234, 88, 12, .08)',
+          borderWidth: 3,
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          fill: true,
+          tension: 0.4
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: (items) => 'Complexity ' + (items[0].dataIndex / 59 * 10).toFixed(1) + '/10',
+            label: (item) => item.dataset.label + ': effort ' + item.formattedValue
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: 'User effort (time + attention)', color: css('--ink-mute'), font: { size: 12 } },
+          ticks: { display: false },
+          grid: { color: css('--line') }
+        },
+        y: {
+          title: { display: true, text: 'Expressiveness · intent complexity', color: css('--ink-mute'), font: { size: 12 } },
+          ticks: { display: false },
+          grid: { color: css('--line') },
+          beginAtZero: true
+        }
+      },
+      animation: { duration: 1400, easing: 'easeOutCubic' }
+    }
+  });
+})();
+
+/* ---- Turn-taking histogram ---- */
+(() => {
+  const ctx = document.getElementById('ttChart');
+  if (!ctx) return;
+  const bins = [];
+  const human = [];
+  const bot = [];
+  for (let ms = 0; ms <= 1200; ms += 50) {
+    bins.push(ms);
+    // human peak around 200
+    const h = Math.exp(-Math.pow((ms - 220) / 70, 2));
+    human.push(h);
+    // bot peak around 900
+    const b = Math.exp(-Math.pow((ms - 900) / 130, 2)) * 1.05;
+    bot.push(b);
+  }
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: bins.map(b => b),
+      datasets: [
+        { label: 'Human conversation', data: human, backgroundColor: css('--audio'), borderRadius: 2, barPercentage: 1, categoryPercentage: 1 },
+        { label: 'Voice assistant', data: bot, backgroundColor: 'rgba(185, 28, 28, .55)', borderRadius: 2, barPercentage: 1, categoryPercentage: 1 }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      responsive: true,
+      plugins: {
+        legend: { position: 'top', labels: { boxWidth: 14, boxHeight: 14, usePointStyle: true, pointStyle: 'rectRounded' } },
+        tooltip: {
+          callbacks: { title: (items) => 'Response time: ' + items[0].label + ' ms', label: (item) => item.dataset.label }
+        }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: 'Response Time (ms)', color: css('--ink-mute') },
+          stacked: false,
+          ticks: { maxRotation: 0, autoSkip: true, callback: (v, i) => (bins[i] % 200 === 0 ? bins[i] : '') },
+          grid: { display: false }
+        },
+        y: {
+          title: { display: true, text: 'Frequency', color: css('--ink-mute') },
+          ticks: { display: false },
+          grid: { color: css('--line') },
+          beginAtZero: true
+        }
+      },
+      animation: { duration: 1400 }
+    }
+  });
+})();
+
+/* ---- Adoption donut ---- */
+(() => {
+  const ctx = document.getElementById('adoptionChart');
+  if (!ctx) return;
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Use voice', "Don't use"],
+      datasets: [{ data: [76, 24], backgroundColor: [css('--text'), css('--line-strong')], borderWidth: 0 }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      responsive: true,
+      cutout: '68%',
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: (i) => i.label + ': ' + i.formattedValue + '%' } }
+      },
+      animation: { duration: 1400 }
+    },
+    plugins: [{
+      id: 'centerText',
+      afterDraw(chart) {
+        const { ctx, chartArea: { width, height } } = chart;
+        ctx.save();
+        ctx.fillStyle = css('--ink');
+        ctx.font = "600 36px 'Fraunces', serif";
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('76%', width / 2, height / 2 - 6);
+        ctx.fillStyle = css('--ink-mute');
+        ctx.font = "500 12px 'Inter', sans-serif";
+        ctx.fillText('use voice', width / 2, height / 2 + 18);
+        ctx.restore();
+      }
+    }]
+  });
+})();
+
+/* ---- Model landscape scatter (Figure 3) ---- */
+(() => {
+  const ctx = document.getElementById('landscapeChart');
+  if (!ctx) return;
+  // y: 1 = Speech-only, 2 = Speech+Text, 3 = Audio+Vision+Text
+  // x: level of supervision: 1 = Supervised, 2 = Mid, 3 = Weak/SSL
+  const speechOnly = [
+    { x: 1.1, y: 1.3, label: 'Conformer' },
+    { x: 1.6, y: 1.0, label: 'HuBERT' },
+    { x: 2.4, y: 1.0, label: 'wav2vec 2.0' }
+  ];
+  const speechText = [
+    { x: 1.7, y: 2.0, label: 'SpeechT5' },
+    { x: 2.2, y: 2.0, label: 'Whisper' },
+    { x: 2.7, y: 2.0, label: 'w2v-BERT' }
+  ];
+  const multimodal = [
+    { x: 1.2, y: 3.0, label: 'LAION-Audio' },
+    { x: 1.5, y: 3.05, label: 'CLAP' },
+    { x: 2.6, y: 3.0, label: 'ImageBind' },
+    { x: 2.95, y: 3.0, label: 'SeamlessM4T' }
+  ];
+
+  new Chart(ctx, {
+    type: 'scatter',
+    data: {
+      datasets: [
+        { label: 'Speech-only', data: speechOnly, backgroundColor: '#ea580c', pointRadius: 12, pointHoverRadius: 14 },
+        { label: 'Speech + Text', data: speechText, backgroundColor: '#2563eb', pointRadius: 12, pointHoverRadius: 14 },
+        { label: 'Audio + Vision + Text', data: multimodal, backgroundColor: '#7c3aed', pointRadius: 12, pointHoverRadius: 14 }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false,
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: (i) => i.raw.label } }
+      },
+      scales: {
+        x: {
+          title: { display: true, text: 'Level of supervision   →   weak / SSL', color: css('--ink-mute') },
+          min: 0.7, max: 3.3,
+          ticks: { callback: (v) => ({ 1: 'Supervised', 2: '', 3: 'Weak/SSL' }[Math.round(v)] || '') },
+          grid: { color: css('--line') }
+        },
+        y: {
+          title: { display: true, text: 'Modality scope', color: css('--ink-mute') },
+          min: 0.5, max: 3.5,
+          ticks: { stepSize: 1, callback: (v) => ({ 1: 'Speech-only', 2: 'Speech+Text', 3: 'Audio+Vision+Text' }[v] || '') },
+          grid: { color: css('--line') }
+        }
+      },
+      animation: { duration: 1400 }
+    },
+    plugins: [{
+      id: 'pointLabels',
+      afterDatasetsDraw(chart) {
+        const { ctx } = chart;
+        ctx.save();
+        ctx.font = "500 11px 'Inter', sans-serif";
+        ctx.fillStyle = css('--ink');
+        ctx.textAlign = 'center';
+        chart.data.datasets.forEach((ds, di) => {
+          const meta = chart.getDatasetMeta(di);
+          meta.data.forEach((pt, i) => {
+            const lbl = ds.data[i].label;
+            ctx.fillText(lbl, pt.x, pt.y - 18);
+          });
+        });
+        ctx.restore();
+      }
+    }]
+  });
+})();
+</script>
+</body>
+</html>

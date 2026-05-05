@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TikZ source · Beyond Text</title>
+<style>
+  body { font-family: -apple-system, 'Segoe UI', sans-serif; max-width: 720px; margin: 60px auto; padding: 0 24px; color: #0e1116; line-height: 1.55; }
+  h1 { font-family: serif; font-weight: 600; font-size: 32px; margin-bottom: 6px; }
+  h1 em { color: #ea580c; font-style: italic; }
+  p.lede { color: #6a7079; margin-top: 0; }
+  ul { list-style: none; padding: 0; }
+  li { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center; padding: 14px 18px; border: 1px solid #e6e2d6; border-radius: 10px; margin-bottom: 10px; background: #fff; }
+  li b { font-family: 'JetBrains Mono', monospace; }
+  li small { color: #6a7079; }
+  a { color: #2563eb; text-decoration: none; padding: 4px 10px; border-radius: 6px; background: #f3f1ea; font-size: 13px; }
+  a:hover { background: #2563eb; color: #fff; }
+  a.back { background: transparent; padding: 0; }
+  .head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; }
+</style>
+</head>
+<body>
+<div class="head">
+  <h1><em>TikZ</em> source</h1>
+  <a class="back" href="../">← back to homepage</a>
+</div>
+<p class="lede">LaTeX/TikZ sources for the four publication-quality figures on the homepage. Run <code>build.ps1</code> to recompile (requires MiKTeX + pdftocairo).</p>
+<ul>
+  <li>
+    <span><b>hero_transition.tex</b><br/><small>Figure 1 — keyboard era → ambient era + modality distribution</small></span>
+    <a href="hero_transition.tex">.tex</a>
+    <a href="hero_transition.pdf">.pdf</a>
+  </li>
+  <li>
+    <span><b>feedback_loop.tex</b><br/><small>Interfaces → Expression → Data → Models cycle</small></span>
+    <a href="feedback_loop.tex">.tex</a>
+    <a href="feedback_loop.pdf">.pdf</a>
+  </li>
+  <li>
+    <span><b>latency_budget.tex</b><br/><small>Figure 6 — cascaded pipeline budget vs human + GPT-4o markers</small></span>
+    <a href="latency_budget.tex">.tex</a>
+    <a href="latency_budget.pdf">.pdf</a>
+  </li>
+  <li>
+    <span><b>architecture.tex</b><br/><small>Figure 4 — speech-native LMM with audio/text token streams</small></span>
+    <a href="architecture.tex">.tex</a>
+    <a href="architecture.pdf">.pdf</a>
+  </li>
+  <li>
+    <span><b>build.ps1</b><br/><small>PowerShell script: compile all .tex → .pdf → .svg</small></span>
+    <a href="build.ps1">.ps1</a>
+    <span></span>
+  </li>
+</ul>
+</body>
+</html>
