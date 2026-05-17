@@ -456,6 +456,8 @@ def write_llms_txt(posts: list[PostRecord], sections: list[SearchIntentSection])
     lines.append(f"- About: {SITE_URL}/index.html#about")
     lines.append(f"- Research: {SITE_URL}/research.html")
     lines.append(f"- Publications: {SITE_URL}/publications.html")
+    lines.append(f"- ICML 2026 Spotlight paper: {SITE_URL}/speech_icml_paper/")
+    lines.append(f"- Building Speech AI book: {SITE_URL}/building-speech-ai/")
     lines.append(f"- Blog: {SITE_URL}/blogs.html")
     lines.append(f"- Question Answers: {SITE_URL}/answers.html")
     lines.append(f"- Social Posts: {SITE_URL}/sm_posts.html")
@@ -678,6 +680,7 @@ def answers_page_markup(sections: list[SearchIntentSection]) -> str:
     <a href=\"blogs.html\">Blog</a>
     <a href=\"projects.html\">My Works</a>
     <a href=\"resources.html\">Resources</a>
+    <a href=\"sm_posts.html\">Social</a>
     <a href=\"contact.html\">Contact</a>
   </nav>
 
@@ -710,7 +713,9 @@ def write_sitemap(posts: list[PostRecord]) -> None:
         ("/research.html", "monthly", "0.9", "research.html"),
         ("/publications.html", "weekly", "0.9", "publications.html"),
         ("/awards.html", "monthly", "0.7", "awards.html"),
+        ("/speech_icml_paper/", "monthly", "0.8", "speech_icml_paper/index.html"),
         ("/blogs.html", "weekly", "0.9", "blogs.html"),
+        ("/building-speech-ai/", "monthly", "0.9", "building-speech-ai/index.html"),
         ("/answers.html", "weekly", "0.8", "answers.html"),
         ("/sm_posts.html", "weekly", "0.8", "sm_posts.html"),
         ("/paperreviews.html", "monthly", "0.7", "paperreviews.html"),

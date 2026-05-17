@@ -75,6 +75,8 @@ Sections:
 - About: https://prdeepakbabu.github.io/index.html#about
 - Research: https://prdeepakbabu.github.io/research.html
 - Publications: https://prdeepakbabu.github.io/publications.html
+- ICML 2026 Spotlight paper: https://prdeepakbabu.github.io/speech_icml_paper/
+- Building Speech AI book: https://prdeepakbabu.github.io/building-speech-ai/
 - Blog: https://prdeepakbabu.github.io/blogs.html
 - Question Answers: https://prdeepakbabu.github.io/answers.html
 - Social Posts: https://prdeepakbabu.github.io/sm_posts.html
