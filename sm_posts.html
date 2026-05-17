@@ -364,6 +364,10 @@
   </main>
 
   <script>
+    window.SM_POSTS_ARCHIVE = window.SM_POSTS_ARCHIVE || null;
+  </script>
+  <script src="data/sm_posts/archive.js"></script>
+  <script>
     (function() {
       const feedEl = document.getElementById('feed');
       const loadingEl = document.getElementById('loading');
@@ -530,12 +534,34 @@
         doneEl.hidden = !show;
       }
 
-      async function loadIndex() {
-        const res = await fetch('data/sm_posts/index.json', { cache: 'no-cache' });
-        if (!res.ok) {
-          throw new Error(`index failed: ${res.status}`);
+      async function loadJson(path, fallback) {
+        try {
+          const res = await fetch(path, { cache: 'no-cache' });
+          if (!res.ok) {
+            throw new Error(`${path} failed: ${res.status}`);
+          }
+          return await res.json();
+        } catch (err) {
+          const fallbackData = fallback();
+          if (fallbackData) {
+            return fallbackData;
+          }
+          throw err;
         }
-        const data = await res.json();
+      }
+
+      function archivePage(pageNumber) {
+        const archive = window.SM_POSTS_ARCHIVE;
+        if (!archive || !archive.pages) {
+          return null;
+        }
+        return archive.pages[String(pageNumber)] || null;
+      }
+
+      async function loadIndex() {
+        const data = await loadJson('data/sm_posts/index.json', function() {
+          return window.SM_POSTS_ARCHIVE && window.SM_POSTS_ARCHIVE.index;
+        });
         totalPages = Math.max(1, Number(data.totalPages || 1));
         pageSize = Math.max(1, Number(data.pageSize || 30));
         totalItems = Math.max(0, Number(data.totalItems || 0));
@@ -554,11 +580,9 @@
 
         try {
           const nextPage = page + 1;
-          const res = await fetch(`data/sm_posts/page-${nextPage}.json`, { cache: 'no-cache' });
-          if (!res.ok) {
-            throw new Error(`page failed: ${res.status}`);
-          }
-          const payload = await res.json();
+          const payload = await loadJson(`data/sm_posts/page-${nextPage}.json`, function() {
+            return archivePage(nextPage);
+          });
           const items = Array.isArray(payload.items) ? payload.items : [];
 
           if (items.length === 0 && page === 0) {

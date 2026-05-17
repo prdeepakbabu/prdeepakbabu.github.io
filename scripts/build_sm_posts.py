@@ -397,6 +397,21 @@ def write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+def write_js_archive(path: Path, index_payload: dict, pages: list[list[SocialItem]]) -> None:
+    payload = {
+        "index": index_payload,
+        "pages": {
+            str(idx): {
+                "page": idx,
+                "items": [asdict(item) for item in page_items],
+            }
+            for idx, page_items in enumerate(pages, start=1)
+        },
+    }
+    js = "window.SM_POSTS_ARCHIVE = " + json.dumps(payload, indent=2, ensure_ascii=False) + ";\n"
+    path.write_text(js, encoding="utf-8")
+
+
 def atomic_publish(data_dir: Path, pages: list[list[SocialItem]], index_payload: dict) -> None:
     tmp_dir = data_dir / ".tmp_sm_posts"
     if tmp_dir.exists():
@@ -416,6 +431,7 @@ def atomic_publish(data_dir: Path, pages: list[list[SocialItem]], index_payload:
         )
 
     write_json(tmp_dir / "index.json", index_payload)
+    write_js_archive(tmp_dir / "archive.js", index_payload, pages)
 
     # Replace page files first; swap index last so clients never see index
     # referring to missing page files.
@@ -423,6 +439,7 @@ def atomic_publish(data_dir: Path, pages: list[list[SocialItem]], index_payload:
         os.replace(tmp_dir / name, data_dir / name)
 
     os.replace(tmp_dir / "index.json", data_dir / "index.json")
+    os.replace(tmp_dir / "archive.js", data_dir / "archive.js")
 
     # Cleanup stale pages from older versions.
     for old_path in data_dir.glob(PAGE_GLOB):
