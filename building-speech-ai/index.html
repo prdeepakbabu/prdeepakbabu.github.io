@@ -26,6 +26,175 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
+
+<!-- =====================================================================
+     Structured data (schema.org JSON-LD)
+     Helps Google Search show this page as a rich Book result, with cover,
+     author, ratings (once accrued), and direct links to each format.
+     Validate at: https://search.google.com/test/rich-results
+     ===================================================================== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://prdeepakbabu.github.io/#person",
+      "name": "Deepak Babu Piskala",
+      "url": "https://prdeepakbabu.github.io/",
+      "image": "https://prdeepakbabu.github.io/1DC549B4-26BA-4564-8BCA-40CBFABB7AC8.jpeg",
+      "jobTitle": "Principal Applied Scientist",
+      "sameAs": [
+        "https://www.linkedin.com/in/prdeepak",
+        "https://x.com/prdeepakbabu",
+        "https://github.com/prdeepakbabu",
+        "https://scholar.google.com/citations?user=jBtBPqcAAAAJ&hl=en",
+        "https://medium.com/@prdeepak.babu"
+      ]
+    },
+    {
+      "@type": "Book",
+      "@id": "https://prdeepakbabu.github.io/building-speech-ai/#book",
+      "url": "https://prdeepakbabu.github.io/building-speech-ai/",
+      "name": "Building Speech AI: A Practitioner's Guide to Speech Recognition, Synthesis, and Audio Language Models with Python",
+      "alternateName": "Building Speech AI",
+      "description": "A practitioner's guide to speech AI: twelve chapters covering signal processing fundamentals, classical and modern ASR (HMM-GMM, n-grams, Whisper, wav2vec 2.0, HuBERT, Conformer), neural text-to-speech (Tacotron, WaveNet, FastSpeech, VITS, VALL-E), audio language models (AudioLM, SpeechGPT), real-time voice agents, edge deployment, and the ethics of voice technology. Every concept ships with runnable Python code.",
+      "image": "https://m.media-amazon.com/images/I/81qK1Znrv-L.jpg",
+      "thumbnailUrl": "https://m.media-amazon.com/images/I/81qK1Znrv-L._SY522_.jpg",
+      "author": { "@id": "https://prdeepakbabu.github.io/#person" },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Independently published"
+      },
+      "inLanguage": "en-US",
+      "numberOfPages": 320,
+      "datePublished": "2026-05-14",
+      "copyrightYear": 2026,
+      "bookEdition": "1st edition",
+      "genre": ["Computer Science", "Machine Learning", "Speech Recognition", "Artificial Intelligence"],
+      "keywords": "speech AI, automatic speech recognition, ASR, text-to-speech, TTS, Whisper, wav2vec 2.0, HuBERT, Conformer, VALL-E, AudioLM, SpeechGPT, audio language models, neural TTS, voice cloning, voice agents, edge AI, Python, deep learning",
+      "audience": {
+        "@type": "PeopleAudience",
+        "audienceType": "ML engineers, voice product builders, speech AI researchers, technical leaders"
+      },
+      "workExample": [
+        {
+          "@type": "Book",
+          "@id": "https://www.amazon.com/dp/B0H1ZXP6YS#paperback",
+          "isbn": "9798249501402",
+          "bookEdition": "1st edition",
+          "bookFormat": "https://schema.org/Paperback",
+          "inLanguage": "en-US",
+          "datePublished": "2026-05-14",
+          "url": "https://www.amazon.com/dp/B0H1ZXP6YS",
+          "name": "Building Speech AI (Paperback)",
+          "potentialAction": {
+            "@type": "ReadAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.amazon.com/dp/B0H1ZXP6YS",
+              "actionPlatform": [
+                "https://schema.org/DesktopWebPlatform",
+                "https://schema.org/MobileWebPlatform"
+              ]
+            },
+            "expectsAcceptanceOf": {
+              "@type": "Offer",
+              "price": "44.95",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "url": "https://www.amazon.com/dp/B0H1ZXP6YS"
+            }
+          }
+        },
+        {
+          "@type": "Book",
+          "@id": "https://www.amazon.com/dp/B0GX2WG2ZC#ebook",
+          "bookEdition": "1st edition",
+          "bookFormat": "https://schema.org/EBook",
+          "inLanguage": "en-US",
+          "datePublished": "2026-07-01",
+          "url": "https://www.amazon.com/dp/B0GX2WG2ZC",
+          "name": "Building Speech AI (Kindle eBook)",
+          "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "Amazon ASIN",
+            "value": "B0GX2WG2ZC"
+          },
+          "potentialAction": {
+            "@type": "ReadAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.amazon.com/dp/B0GX2WG2ZC",
+              "actionPlatform": [
+                "https://schema.org/DesktopWebPlatform",
+                "https://schema.org/MobileWebPlatform",
+                "https://schema.org/IOSPlatform",
+                "https://schema.org/AndroidPlatform"
+              ]
+            },
+            "expectsAcceptanceOf": {
+              "@type": "Offer",
+              "price": "39.99",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/PreOrder",
+              "availabilityStarts": "2026-07-01",
+              "url": "https://www.amazon.com/dp/B0GX2WG2ZC"
+            }
+          }
+        }
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Paperback",
+          "price": "44.95",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "itemCondition": "https://schema.org/NewCondition",
+          "url": "https://www.amazon.com/dp/B0H1ZXP6YS",
+          "seller": { "@type": "Organization", "name": "Amazon.com" }
+        },
+        {
+          "@type": "Offer",
+          "name": "Kindle eBook",
+          "price": "39.99",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/PreOrder",
+          "availabilityStarts": "2026-07-01",
+          "itemCondition": "https://schema.org/NewCondition",
+          "url": "https://www.amazon.com/dp/B0GX2WG2ZC",
+          "seller": { "@type": "Organization", "name": "Amazon.com" }
+        }
+      ],
+      "sameAs": [
+        "https://www.amazon.com/dp/B0H1ZXP6YS",
+        "https://www.amazon.com/dp/B0GX2WG2ZC",
+        "https://github.com/prdeepakbabu/building-speech-ai"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://prdeepakbabu.github.io/building-speech-ai/#website",
+      "url": "https://prdeepakbabu.github.io/building-speech-ai/",
+      "name": "Building Speech AI",
+      "description": "A practitioner's guide to speech AI: signal processing, ASR, TTS, embeddings, voice cloning, and audio language models. With a full open-source companion codebase.",
+      "publisher": { "@id": "https://prdeepakbabu.github.io/#person" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://prdeepakbabu.github.io/building-speech-ai/#webpage",
+      "url": "https://prdeepakbabu.github.io/building-speech-ai/",
+      "name": "Building Speech AI — A Practitioner's Guide",
+      "isPartOf": { "@id": "https://prdeepakbabu.github.io/building-speech-ai/#website" },
+      "about": { "@id": "https://prdeepakbabu.github.io/building-speech-ai/#book" },
+      "primaryImageOfPage": "https://m.media-amazon.com/images/I/81qK1Znrv-L.jpg",
+      "inLanguage": "en-US"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -38,11 +207,12 @@
     </a>
     <ul class="nav-links">
       <li><a href="#about" data-analytics-event="nav_click" data-analytics-label="book">Book</a></li>
-      <li><a href="#arc" data-analytics-event="nav_click" data-analytics-label="the_arc">The Arc</a></li>
+      <li><a href="#buy" data-analytics-event="nav_click" data-analytics-label="buy">Buy</a></li>
       <li><a href="#chapters" data-analytics-event="nav_click" data-analytics-label="chapters">Chapters</a></li>
       <li><a href="#code" data-analytics-event="nav_click" data-analytics-label="code">Code</a></li>
-      <li><a href="#quickstart" data-analytics-event="nav_click" data-analytics-label="quick_start">Quick Start</a></li>
+      <li><a href="#cheatsheet" data-analytics-event="nav_click" data-analytics-label="cheatsheet">Cheatsheet</a></li>
       <li><a href="#author" data-analytics-event="nav_click" data-analytics-label="author">Author</a></li>
+      <li><a href="#cite" data-analytics-event="nav_click" data-analytics-label="cite">Cite</a></li>
       <li><a href="feedback.html" data-analytics-event="nav_click" data-analytics-label="feedback">Feedback</a></li>
     </ul>
     <a href="https://github.com/prdeepakbabu/building-speech-ai" target="_blank" rel="noopener" class="nav-cta" data-analytics-event="nav_repo_click" data-analytics-label="github_repo">
@@ -57,7 +227,7 @@
   <canvas id="wave-canvas"></canvas>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="badge badge-release"><span class="badge-dot"></span> Coming May 2026 · Pre-release</div>
+    <div class="badge badge-release"><span class="badge-dot"></span> Paperback available now · Kindle pre-order (Jul 1, 2026)</div>
     <h1 class="hero-title">
       <span class="hero-title-pre">Building</span>
       <span class="hero-title-main">Speech<span class="accent"> AI</span></span>
@@ -75,13 +245,16 @@
       <div class="stat"><div class="stat-num">320+</div><div class="stat-label">Pages</div></div>
     </div>
     <div class="hero-cta">
-      <a href="#code" class="btn btn-primary" data-analytics-event="hero_cta_click" data-analytics-label="explore_code">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
-        Explore the Code
+      <a href="https://www.amazon.com/dp/B0H1ZXP6YS" target="_blank" rel="noopener" class="btn btn-primary" data-analytics-event="hero_cta_click" data-analytics-label="buy_paperback">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Buy Paperback ($44.95)
       </a>
-      <a href="https://github.com/prdeepakbabu/building-speech-ai" target="_blank" rel="noopener" class="btn btn-ghost" data-analytics-event="hero_cta_click" data-analytics-label="view_github">
-        View on GitHub
+      <a href="https://www.amazon.com/dp/B0GX2WG2ZC" target="_blank" rel="noopener" class="btn btn-ghost" data-analytics-event="hero_cta_click" data-analytics-label="preorder_kindle">
+        Pre-order Kindle ($39.99)
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a href="#code" class="btn btn-ghost" data-analytics-event="hero_cta_click" data-analytics-label="explore_code">
+        Explore the Code
       </a>
     </div>
   </div>
@@ -661,6 +834,130 @@
   </div>
 </section>
 
+<!-- ============ CHEAT SHEET ============ -->
+<section class="section section-cheatsheet" id="cheatsheet">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow accent-eyebrow">Free Companion Resources</div>
+      <h2>Speech AI infographics — print, pin, share.</h2>
+      <p class="section-intro">
+        Three free one-page guides pulled from across the book. Designed to be
+        screenshot-able, printable, and immediately useful at your desk. Scan
+        any QR to come back to this site.
+      </p>
+    </div>
+
+    <!-- Cheatsheet selector tabs -->
+    <div class="cs-tabs" role="tablist">
+      <button class="cs-tab active" data-cs-tab="01" role="tab" aria-selected="true">
+        <span class="cs-tab-num">01</span>
+        <span class="cs-tab-name">Model Selector</span>
+      </button>
+      <button class="cs-tab" data-cs-tab="02" role="tab" aria-selected="false">
+        <span class="cs-tab-num">02</span>
+        <span class="cs-tab-name">How Speech is Tokenized</span>
+      </button>
+      <button class="cs-tab" data-cs-tab="03" role="tab" aria-selected="false">
+        <span class="cs-tab-num">03</span>
+        <span class="cs-tab-name">Model Scorecard</span>
+      </button>
+    </div>
+
+    <!-- Cheatsheet panel: Model Selector -->
+    <div class="cs-panel active" data-cs-panel="01">
+      <div class="cheatsheet-shell">
+        <a href="assets/cheatsheets/01_model_selector.png" target="_blank" rel="noopener" class="cheatsheet-image-link" data-analytics-event="cheatsheet_image_click" data-analytics-label="model_selector_infographic">
+          <img src="assets/cheatsheets/01_model_selector.png"
+               alt="Infographic: The Modern Speech AI Model Selector — task → constraint → model decision guide for 2026"
+               class="cheatsheet-image"
+               loading="lazy"
+               width="2544" height="5008" />
+          <div class="cheatsheet-image-cta">
+            <span>Open full-resolution</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </div>
+        </a>
+        <div class="cheatsheet-cta-row">
+          <a class="btn btn-primary" href="assets/cheatsheets/01_model_selector.png" download data-analytics-event="cheatsheet_download" data-analytics-label="model_selector_png">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Download PNG (1.2 MB · 2544 × 5008)
+          </a>
+          <a class="btn btn-ghost" href="https://www.amazon.com/dp/B0H1ZXP6YS" target="_blank" rel="noopener" data-analytics-event="cheatsheet_click" data-analytics-label="buy_paperback">
+            Want the full decision rationale? Buy the book →
+          </a>
+        </div>
+      </div>
+      <div class="cs-blurb">
+        <strong>Pulled from chapters 5–9.</strong> Task router (ASR / TTS / VC / Audio LMs / real-time agents) → ASR decision tree by labeled data budget → TTS picker → 11-model reference card.
+      </div>
+    </div>
+
+    <!-- Cheatsheet panel: Tokenization -->
+    <div class="cs-panel" data-cs-panel="02">
+      <div class="cheatsheet-shell">
+        <a href="assets/cheatsheets/02_speech_tokenization.png" target="_blank" rel="noopener" class="cheatsheet-image-link" data-analytics-event="cheatsheet_image_click" data-analytics-label="tokenization_infographic">
+          <img src="assets/cheatsheets/02_speech_tokenization.png"
+               alt="Infographic: How is speech tokenized — from continuous waveform to discrete tokens in four stages"
+               class="cheatsheet-image"
+               loading="lazy"
+               width="2544" height="5351" />
+          <div class="cheatsheet-image-cta">
+            <span>Open full-resolution</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </div>
+        </a>
+        <div class="cheatsheet-cta-row">
+          <a class="btn btn-primary" href="assets/cheatsheets/02_speech_tokenization.png" download data-analytics-event="cheatsheet_download" data-analytics-label="tokenization_png">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Download PNG (1.3 MB · 2544 × 5351)
+          </a>
+          <a class="btn btn-ghost" href="https://www.amazon.com/dp/B0H1ZXP6YS" target="_blank" rel="noopener">
+            Read the full chapter on audio embeddings →
+          </a>
+        </div>
+      </div>
+      <div class="cs-blurb">
+        <strong>Pulled from chapters 6 &amp; 9.</strong> The four-stage pipeline (sample → encode → quantize → stack) with code-block visualizations of the tensor at each step, plus EnCodec / SoundStream / DAC / HuBERT / AudioLM / Mimi compared.
+      </div>
+    </div>
+
+    <!-- Cheatsheet panel: Scorecard -->
+    <div class="cs-panel" data-cs-panel="03">
+      <div class="cheatsheet-shell">
+        <a href="assets/cheatsheets/03_speech_ai_scorecard.png" target="_blank" rel="noopener" class="cheatsheet-image-link" data-analytics-event="cheatsheet_image_click" data-analytics-label="scorecard_infographic">
+          <img src="assets/cheatsheets/03_speech_ai_scorecard.png"
+               alt="Infographic: Speech AI Model Scorecard — eight production models graded A–F across six dimensions"
+               class="cheatsheet-image"
+               loading="lazy"
+               width="2544" height="4048" />
+          <div class="cheatsheet-image-cta">
+            <span>Open full-resolution</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </div>
+        </a>
+        <div class="cheatsheet-cta-row">
+          <a class="btn btn-primary" href="assets/cheatsheets/03_speech_ai_scorecard.png" download data-analytics-event="cheatsheet_download" data-analytics-label="scorecard_png">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Download PNG (1.0 MB · 2544 × 4048)
+          </a>
+          <a class="btn btn-ghost" href="https://www.amazon.com/dp/B0H1ZXP6YS" target="_blank" rel="noopener">
+            Full deployment trade-offs in the book →
+          </a>
+        </div>
+      </div>
+      <div class="cs-blurb">
+        <strong>Cross-chapter reference.</strong> Eight models graded A–F across six dimensions (accuracy, speed, multilingual, open-weights, production readiness, cost), the four use-case winners, and a "pick by your hard constraint" matrix.
+      </div>
+    </div>
+
+    <p class="cheatsheet-more">
+      More cheat sheets coming:
+      <a href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/marketing/cheatsheets/02_voice_agent_latency_budget.md" target="_blank" rel="noopener">Voice Agent Latency Budget</a> ·
+      <a href="https://github.com/prdeepakbabu/building-speech-ai/blob/main/marketing/cheatsheets/03_speech_ai_ethics_checklist.md" target="_blank" rel="noopener">Speech AI Ethics Checklist</a>
+    </p>
+  </div>
+</section>
+
 <!-- ============ QUICK START ============ -->
 <section class="section section-quickstart" id="quickstart">
   <div class="container">
@@ -798,6 +1095,110 @@ python examples/02_whisper_basic.py --audio samples/test.wav</code></pre>
   </div>
 </section>
 
+<!-- ============ BUY ============ -->
+<section class="section section-buy" id="buy">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Get the Book</div>
+      <h2>Three formats. One ASIN per format. Pick your fit.</h2>
+    </div>
+    <div class="buy-grid">
+      <article class="buy-card available">
+        <div class="buy-badge">Available now</div>
+        <h3>Paperback</h3>
+        <div class="buy-price">$44.95</div>
+        <ul class="buy-meta">
+          <li>320 pages</li>
+          <li>7 × 10 in trim</li>
+          <li>Standard color interior</li>
+          <li>ISBN: 979-8-249-50140-2</li>
+        </ul>
+        <a class="btn btn-primary big buy-btn" href="https://www.amazon.com/dp/B0H1ZXP6YS" target="_blank" rel="noopener" data-analytics-event="buy_click" data-analytics-label="paperback">
+          Buy on Amazon →
+        </a>
+      </article>
+      <article class="buy-card preorder">
+        <div class="buy-badge buy-badge-preorder">Pre-order · Releases Jul 1, 2026</div>
+        <h3>Kindle eBook</h3>
+        <div class="buy-price">$39.99</div>
+        <ul class="buy-meta">
+          <li>EPUB / Kindle format</li>
+          <li>Reflowable text</li>
+          <li>MathML for equations</li>
+          <li>ASIN: B0GX2WG2ZC</li>
+        </ul>
+        <a class="btn btn-primary big buy-btn" href="https://www.amazon.com/dp/B0GX2WG2ZC" target="_blank" rel="noopener" data-analytics-event="buy_click" data-analytics-label="kindle">
+          Pre-order on Amazon →
+        </a>
+      </article>
+      <article class="buy-card coming">
+        <div class="buy-badge buy-badge-coming">Coming soon</div>
+        <h3>Hardcover</h3>
+        <div class="buy-price">~$69.99</div>
+        <ul class="buy-meta">
+          <li>320 pages</li>
+          <li>7 × 10 in trim</li>
+          <li>Premium color, case-laminate</li>
+          <li>ISBN: 979-8-196-45507-0</li>
+        </ul>
+        <a class="btn btn-ghost big buy-btn disabled" aria-disabled="true">
+          In review at KDP
+        </a>
+      </article>
+    </div>
+    <p class="buy-note">
+      Worldwide availability via Amazon (US, UK, EU, Canada, Australia, Japan, India*).
+      Each Amazon marketplace converts the price to local currency at order time.
+      <span class="buy-note-fine">*India: paperback &amp; Kindle only; hardcover not yet supported on Amazon.in.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ============ CITE ============ -->
+<section class="section section-cite" id="cite">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">For Academic Use</div>
+      <h2>How to cite this book.</h2>
+      <p class="section-intro">
+        If this book helped your research, teaching, or production work, please cite it.
+        Citations help self-published technical books reach the readers who'd benefit most.
+      </p>
+    </div>
+    <div class="cite-grid">
+      <div class="cite-card">
+        <div class="cite-label">APA 7</div>
+        <pre class="cite-block"><code>Piskala, D. B. (2026). <em>Building Speech AI: A practitioner's guide to speech recognition, synthesis, and audio language models with Python</em>. Independently published. ISBN 979-8-249-50140-2.</code></pre>
+      </div>
+      <div class="cite-card">
+        <div class="cite-label">MLA 9</div>
+        <pre class="cite-block"><code>Piskala, Deepak Babu. <em>Building Speech AI: A Practitioner's Guide to Speech Recognition, Synthesis, and Audio Language Models with Python</em>. Independently published, 2026.</code></pre>
+      </div>
+      <div class="cite-card">
+        <div class="cite-label">Chicago (author-date)</div>
+        <pre class="cite-block"><code>Piskala, Deepak Babu. 2026. <em>Building Speech AI: A Practitioner's Guide to Speech Recognition, Synthesis, and Audio Language Models with Python</em>. Independently published.</code></pre>
+      </div>
+      <div class="cite-card cite-card-wide">
+        <div class="cite-label">BibTeX</div>
+        <pre class="cite-block"><code>@book{piskala2026buildingspeech,
+  author    = {Piskala, Deepak Babu},
+  title     = {Building Speech AI: A Practitioner's Guide to Speech Recognition,
+               Synthesis, and Audio Language Models with Python},
+  year      = {2026},
+  publisher = {Independently published},
+  isbn      = {979-8-249-50140-2},
+  url       = {https://www.amazon.com/dp/B0H1ZXP6YS},
+  note      = {Companion code: \url{https://github.com/prdeepakbabu/building-speech-ai}}
+}</code></pre>
+      </div>
+    </div>
+    <p class="cite-note">
+      Paperback ISBN <code>979-8-249-50140-2</code> · Hardcover ISBN <code>979-8-196-45507-0</code> · Kindle ASIN <code>B0GX2WG2ZC</code>.
+      Cite the paperback ISBN by default — it is the canonical print edition.
+    </p>
+  </div>
+</section>
+
 <!-- ============ CTA ============ -->
 <section class="section section-final-cta">
   <div class="container">
@@ -818,7 +1219,7 @@ python examples/02_whisper_basic.py --audio samples/test.wav</code></pre>
   <div class="container footer-inner">
     <div>
       <div class="footer-title">Building Speech AI</div>
-      <div class="footer-sub">A Practitioner's Guide · First edition coming May 2026</div>
+      <div class="footer-sub">A Practitioner's Guide · First edition, 2026 · ISBN 979-8-249-50140-2</div>
     </div>
     <div class="footer-links">
       <a href="https://github.com/prdeepakbabu/building-speech-ai" target="_blank" rel="noopener" data-analytics-event="footer_link_click" data-analytics-label="repository">Repository</a>
@@ -832,5 +1233,27 @@ python examples/02_whisper_basic.py --audio samples/test.wav</code></pre>
 </footer>
 
 <script src="script.js"></script>
+<script>
+// Inline cheatsheet tab switcher — kept inline (not in script.js) so it
+// runs even if any earlier script.js IIFE errors out.
+(function(){
+  const tabs = document.querySelectorAll('.cs-tab');
+  const panels = document.querySelectorAll('.cs-panel');
+  if (!tabs.length) return;
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const t = tab.dataset.csTab;
+      tabs.forEach(x => {
+        x.classList.toggle('active', x === tab);
+        x.setAttribute('aria-selected', x === tab ? 'true' : 'false');
+      });
+      panels.forEach(p => p.classList.toggle('active', p.dataset.csPanel === t));
+      if (typeof gtag === 'function') {
+        gtag('event','cheatsheet_tab_click',{event_label:t});
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
