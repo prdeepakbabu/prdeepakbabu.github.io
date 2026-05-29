@@ -109,6 +109,74 @@
         },
         {
           "@type": "Book",
+          "@id": "https://www.amazon.com/dp/B0H2JFP11J#hardcover",
+          "bookEdition": "1st edition",
+          "bookFormat": "https://schema.org/Hardcover",
+          "inLanguage": "en-US",
+          "datePublished": "2026-05-28",
+          "url": "https://www.amazon.com/dp/B0H2JFP11J",
+          "name": "Building Speech AI (Hardcover)",
+          "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "Amazon ASIN",
+            "value": "B0H2JFP11J"
+          },
+          "potentialAction": {
+            "@type": "ReadAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.amazon.com/dp/B0H2JFP11J",
+              "actionPlatform": [
+                "https://schema.org/DesktopWebPlatform",
+                "https://schema.org/MobileWebPlatform"
+              ]
+            },
+            "expectsAcceptanceOf": {
+              "@type": "Offer",
+              "price": "69.99",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "url": "https://www.amazon.com/dp/B0H2JFP11J"
+            }
+          }
+        },
+        {
+          "@type": "Audiobook",
+          "@id": "https://deepakbabu.gumroad.com/l/building-speech-ai-audiobook#audiobook",
+          "bookEdition": "1st edition",
+          "bookFormat": "https://schema.org/AudiobookFormat",
+          "inLanguage": "en-US",
+          "datePublished": "2026-05-28",
+          "url": "https://deepakbabu.gumroad.com/l/building-speech-ai-audiobook",
+          "name": "Building Speech AI (Audiobook)",
+          "duration": "PT10H8M",
+          "readBy": {
+            "@type": "Person",
+            "name": "Kokoro-82M (AI voice, with author's permission)"
+          },
+          "potentialAction": {
+            "@type": "ListenAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://deepakbabu.gumroad.com/l/building-speech-ai-audiobook",
+              "actionPlatform": [
+                "https://schema.org/DesktopWebPlatform",
+                "https://schema.org/MobileWebPlatform",
+                "https://schema.org/IOSPlatform",
+                "https://schema.org/AndroidPlatform"
+              ]
+            },
+            "expectsAcceptanceOf": {
+              "@type": "Offer",
+              "price": "19.99",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock",
+              "url": "https://deepakbabu.gumroad.com/l/building-speech-ai-audiobook"
+            }
+          }
+        },
+        {
+          "@type": "Book",
           "@id": "https://www.amazon.com/dp/B0GX2WG2ZC#ebook",
           "bookEdition": "1st edition",
           "bookFormat": "https://schema.org/EBook",
@@ -157,6 +225,26 @@
         },
         {
           "@type": "Offer",
+          "name": "Hardcover",
+          "price": "69.99",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "itemCondition": "https://schema.org/NewCondition",
+          "url": "https://www.amazon.com/dp/B0H2JFP11J",
+          "seller": { "@type": "Organization", "name": "Amazon.com" }
+        },
+        {
+          "@type": "Offer",
+          "name": "Audiobook",
+          "price": "19.99",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "itemCondition": "https://schema.org/NewCondition",
+          "url": "https://deepakbabu.gumroad.com/l/building-speech-ai-audiobook",
+          "seller": { "@type": "Organization", "name": "Gumroad" }
+        },
+        {
+          "@type": "Offer",
           "name": "Kindle eBook",
           "price": "39.99",
           "priceCurrency": "USD",
@@ -169,7 +257,9 @@
       ],
       "sameAs": [
         "https://www.amazon.com/dp/B0H1ZXP6YS",
+        "https://www.amazon.com/dp/B0H2JFP11J",
         "https://www.amazon.com/dp/B0GX2WG2ZC",
+        "https://deepakbabu.gumroad.com/l/building-speech-ai-audiobook",
         "https://github.com/prdeepakbabu/building-speech-ai"
       ]
     },
@@ -227,7 +317,7 @@
   <canvas id="wave-canvas"></canvas>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="badge badge-release"><span class="badge-dot"></span> Paperback available now · Kindle pre-order (Jul 1, 2026)</div>
+    <div class="badge badge-release"><span class="badge-dot"></span> Paperback, hardcover &amp; audiobook available now · Kindle pre-order (Jul 1, 2026)</div>
     <h1 class="hero-title">
       <span class="hero-title-pre">Building</span>
       <span class="hero-title-main">Speech<span class="accent"> AI</span></span>
@@ -248,6 +338,14 @@
       <a href="https://www.amazon.com/dp/B0H1ZXP6YS" target="_blank" rel="noopener" class="btn btn-primary" data-analytics-event="hero_cta_click" data-analytics-label="buy_paperback">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         Buy Paperback ($44.95)
+      </a>
+      <a href="https://www.amazon.com/dp/B0H2JFP11J" target="_blank" rel="noopener" class="btn btn-ghost" data-analytics-event="hero_cta_click" data-analytics-label="buy_hardcover">
+        Buy Hardcover ($69.99)
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a href="https://deepakbabu.gumroad.com/l/building-speech-ai-audiobook" target="_blank" rel="noopener" class="btn btn-ghost" data-analytics-event="hero_cta_click" data-analytics-label="buy_audiobook">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 18 0v4a2 2 0 0 1-2 2h-2v-7h4M5 12v7H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h2"/></svg>
+        Audiobook ($19.99)
       </a>
       <a href="https://www.amazon.com/dp/B0GX2WG2ZC" target="_blank" rel="noopener" class="btn btn-ghost" data-analytics-event="hero_cta_click" data-analytics-label="preorder_kindle">
         Pre-order Kindle ($39.99)
@@ -1100,7 +1198,7 @@ python examples/02_whisper_basic.py --audio samples/test.wav</code></pre>
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Get the Book</div>
-      <h2>Three formats. One ASIN per format. Pick your fit.</h2>
+      <h2>Four formats. Pick your fit.</h2>
     </div>
     <div class="buy-grid">
       <article class="buy-card available">
@@ -1131,25 +1229,39 @@ python examples/02_whisper_basic.py --audio samples/test.wav</code></pre>
           Pre-order on Amazon →
         </a>
       </article>
-      <article class="buy-card coming">
-        <div class="buy-badge buy-badge-coming">Coming soon</div>
+      <article class="buy-card available">
+        <div class="buy-badge">Available now</div>
         <h3>Hardcover</h3>
-        <div class="buy-price">~$69.99</div>
+        <div class="buy-price">$69.99</div>
         <ul class="buy-meta">
           <li>320 pages</li>
           <li>7 × 10 in trim</li>
           <li>Premium color, case-laminate</li>
-          <li>ISBN: 979-8-196-45507-0</li>
+          <li>ASIN: B0H2JFP11J</li>
         </ul>
-        <a class="btn btn-ghost big buy-btn disabled" aria-disabled="true">
-          In review at KDP
+        <a class="btn btn-primary big buy-btn" href="https://www.amazon.com/dp/B0H2JFP11J" target="_blank" rel="noopener" data-analytics-event="buy_click" data-analytics-label="hardcover">
+          Buy on Amazon →
+        </a>
+      </article>
+      <article class="buy-card available">
+        <div class="buy-badge">Available now</div>
+        <h3>Audiobook</h3>
+        <div class="buy-price">$19.99</div>
+        <ul class="buy-meta">
+          <li>10 hours 8 minutes, 12 chapters</li>
+          <li>M4B with chapter markers, DRM-free</li>
+          <li>AI narration (Kokoro-82M, with permission)</li>
+          <li>Apple Books, VLC, BookPlayer, Audiobookshelf</li>
+        </ul>
+        <a class="btn btn-primary big buy-btn" href="https://deepakbabu.gumroad.com/l/building-speech-ai-audiobook" target="_blank" rel="noopener" data-analytics-event="buy_click" data-analytics-label="audiobook">
+          Buy on Gumroad →
         </a>
       </article>
     </div>
     <p class="buy-note">
-      Worldwide availability via Amazon (US, UK, EU, Canada, Australia, Japan, India*).
-      Each Amazon marketplace converts the price to local currency at order time.
-      <span class="buy-note-fine">*India: paperback &amp; Kindle only; hardcover not yet supported on Amazon.in.</span>
+      Print formats (paperback, hardcover) and Kindle eBook are on Amazon worldwide (US, UK, EU, Canada, Australia, Japan, India).
+      Each marketplace converts price to local currency at order time.
+      The audiobook is sold direct on Gumroad (worldwide, DRM-free), which keeps the most revenue with the author.
     </p>
   </div>
 </section>
