@@ -16,6 +16,7 @@ import glob
 import html
 import json
 import re
+import subprocess
 import urllib.parse
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -173,6 +174,33 @@ def as_iso_date_or_empty(value: str) -> str:
 def file_mtime_iso(path: Path) -> str:
     dt = datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc)
     return dt.date().isoformat()
+
+
+def sitemap_lastmod_iso(path: Path) -> str:
+    """Use commit dates for unchanged files; clone timestamps are not edit dates."""
+    try:
+        relative_path = path.resolve().relative_to(SITE_ROOT.resolve())
+        status = subprocess.run(
+            ["git", "status", "--porcelain", "--", str(relative_path)],
+            cwd=SITE_ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        if status.stdout.strip():
+            return datetime.now(tz=timezone.utc).date().isoformat()
+        committed = subprocess.run(
+            ["git", "log", "-1", "--format=%cI", "--", str(relative_path)],
+            cwd=SITE_ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        if committed.stdout.strip():
+            return datetime.fromisoformat(committed.stdout.strip()).astimezone(timezone.utc).date().isoformat()
+    except (OSError, subprocess.CalledProcessError, ValueError):
+        pass
+    return file_mtime_iso(path)
 
 
 def post_url(slug: str) -> str:
@@ -729,7 +757,7 @@ def write_sitemap(posts: list[PostRecord]) -> None:
     for path_url, changefreq, priority, local_file in static_pages:
         abs_url = f"{SITE_URL}{path_url}"
         local_path = SITE_ROOT / local_file
-        lastmod = file_mtime_iso(local_path) if local_path.exists() else datetime.now(tz=timezone.utc).date().isoformat()
+        lastmod = sitemap_lastmod_iso(local_path) if local_path.exists() else datetime.now(tz=timezone.utc).date().isoformat()
         lines.extend(
             [
                 "  <url>",
