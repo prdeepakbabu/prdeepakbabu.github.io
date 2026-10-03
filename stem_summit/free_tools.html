@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNWLG8DBTN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XNWLG8DBTN', {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free tools to explore speech AI</title>
+<link rel="canonical" href="https://prdeepakbabu.github.io/stem_summit/free_tools.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+  @page { size: Letter; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { font-family: "Segoe UI", Calibri, Arial, sans-serif; color: #0E1116; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 8.5in; height: 11in; padding: 0.45in 0.55in 0.4in; display: flex; flex-direction: column; }
+  a { color: #00629B; text-decoration: none; }
+  .head { border-bottom: 3px solid #00629B; padding-bottom: 6pt; }
+  .kicker { font-size: 8.5pt; font-weight: 700; letter-spacing: 0.16em; color: #E0533F; text-transform: uppercase; }
+  h1 { font-size: 24pt; font-weight: 900; color: #00629B; line-height: 1.1; }
+  .tagline { font-size: 10pt; color: #2a2f36; margin-top: 3pt; }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 8pt; }
+  th { font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.08em; color: #5a6068; text-align: left; padding: 3pt 5pt; border-bottom: 1.5px solid #0E1116; }
+  td { font-size: 8.8pt; line-height: 1.35; color: #2a2f36; padding: 5pt 5pt; border-bottom: 1px solid #d6dbe1; vertical-align: top; }
+  td.stage { width: 0.85in; }
+  td.stage b { display: block; font-size: 8pt; letter-spacing: 0.08em; color: #fff; background: #00629B; border-radius: 3px; padding: 1.5pt 5pt; text-align: center; }
+  td.stage span { display: block; font-size: 7.5pt; color: #5a6068; text-align: center; margin-top: 2pt; }
+  td.tool { width: 1.45in; font-weight: 800; color: #0E1116; }
+  td.tool small { display: block; font-weight: 400; color: #7a8089; font-size: 7.5pt; margin-top: 1pt; }
+  td.access { width: 2.05in; font-size: 8pt; color: #4a5058; }
+  kbd { font-family: Consolas, "Courier New", monospace; font-size: 7.8pt; background: #eef1f5; border: 1px solid #c9d0d8; border-radius: 3px; padding: 0 3pt; }
+
+  h2 { font-size: 11pt; font-weight: 800; color: #00629B; margin: 10pt 0 3pt; }
+  ul { padding-left: 14pt; }
+  li { font-size: 9pt; line-height: 1.4; color: #2a2f36; margin-bottom: 1.5pt; }
+  .note { margin-top: 8pt; background: #fff3f0; border-left: 4px solid #E0533F; border-radius: 4px; padding: 5pt 9pt; font-size: 8.5pt; line-height: 1.4; color: #2a2f36; }
+  .foot { margin-top: auto; padding-top: 5pt; border-top: 1px solid #d6dbe1; font-size: 7.5pt; line-height: 1.4; color: #7a8089; }
+
+  /* Web version (the kit's free_tools.html); the print rules above make the one-page PDF. */
+  @media print { .web-only { display: none !important; } }
+  @media screen {
+    html, body { background: #eef1f5; }
+    .page { width: auto; height: auto; min-height: 100vh; max-width: 1080px; margin: 0 auto; padding: 0 22px 28px; background: #fff; display: block; }
+    a { text-decoration: underline; }
+    a:focus-visible, button:focus-visible { outline: 3px solid #FFB400; outline-offset: 2px; }
+    .webbar { display: flex; justify-content: space-between; gap: 12px; padding: 14px 0 12px; font-size: 14px; }
+    .kicker { font-size: 13px; }
+    h1 { font-size: clamp(28px, 4vw, 40px); }
+    .tagline { font-size: 17px; line-height: 1.45; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 16px; font-size: 14px; color: #5a6068; }
+    .filters button { font: inherit; font-weight: 700; font-size: 13px; letter-spacing: 0.06em; border-radius: 999px; border: 2px solid #00629B; background: #fff; color: #00629B; padding: 3px 12px; cursor: pointer; }
+    .filters button[aria-pressed="true"] { background: #00629B; color: #fff; }
+    th { font-size: 12px; }
+    td { font-size: 15px; padding: 10px 8px; }
+    td.stage { width: 110px; }
+    td.stage b { font-size: 12px; padding: 3px 6px; }
+    td.stage span { font-size: 12px; }
+    td.tool { width: 200px; font-size: 16px; }
+    td.tool small { font-size: 13px; }
+    td.access { width: 290px; font-size: 14px; }
+    td a.web-only { display: inline-block; margin-top: 6px; font-weight: 700; }
+    tr[hidden] { display: none !important; }
+    kbd { font-size: 13px; }
+    h2 { font-size: 21px; margin: 24px 0 6px; }
+    li { font-size: 15px; }
+    .note { font-size: 15px; padding: 10px 14px; margin-top: 16px; }
+    .foot { font-size: 13px; margin-top: 22px; padding-top: 10px; }
+  }
+  @media screen and (max-width: 760px) {
+    table, tbody, tr, td { display: block; width: auto !important; }
+    tr:first-child { display: none; }
+    tr { border: 1px solid #d6dbe1; border-radius: 10px; padding: 10px 12px; margin-top: 10px; }
+    td { border: none; padding: 3px 0; }
+    td.stage b { display: inline-block; }
+    td.stage span { display: inline; margin-left: 8px; }
+  }
+</style>
+</head>
+<body>
+<section class="page">
+  <nav class="webbar web-only"><a href="index.html">&larr; Speech AI Classroom Kit</a><a href="free_tools_speech_ai.pdf">Download the one-page PDF</a></nav>
+  <div class="head">
+    <div class="kicker">Companion to the Be the Recognizer activity &middot; every tool here is free</div>
+    <h1>Free tools to explore speech AI</h1>
+    <div class="tagline">Run the unplugged activity first. Then have students test real systems with the same speaker cards and compare word error rates.</div>
+  </div>
+
+  <table>
+    <tr><th>Stage</th><th>Tool</th><th>Try this with students</th><th>Access and privacy</th></tr>
+    <tr>
+      <td class="stage"><b>HEAR</b><span>speech &rarr; text</span></td>
+      <td class="tool">Windows Live Captions vs. Windows voice typing<small>Microsoft</small></td>
+      <td>Read the speaker cards aloud to each and score the word error rate. Which copes better with whispering or music? No Windows PC? Phone or Chromebook voice typing works too. <a class="web-only" href="be_the_recognizer.html#any">Score it with the online scorer &rarr;</a></td>
+      <td class="access">Built into Windows 11. Live Captions (<kbd>Win</kbd>+<kbd>Ctrl</kbd>+<kbd>L</kbd>) generates captions on the device. Voice typing (<kbd>Win</kbd>+<kbd>H</kbd>) uses online recognition. A live on-device vs. cloud comparison.</td>
+    </tr>
+    <tr>
+      <td class="stage"><b>SAY</b><span>text &rarr; speech</span></td>
+      <td class="tool">Read Aloud in Microsoft Edge<small>Microsoft</small></td>
+      <td>Have the computer read the speaker cards in different voices. Which words sound robotic, and why?</td>
+      <td class="access">Free in the Edge browser (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>U</kbd>). No account needed.</td>
+    </tr>
+    <tr>
+      <td class="stage"><b>MEASURE</b><span>the S/D/I idea</span></td>
+      <td class="tool">Reading Coach and Reading Progress<small>Microsoft</small></td>
+      <td>Reading Coach: students read aloud, then practice the words the AI detected they struggled with. Reading Progress (for teachers) flags mispronunciations, omissions and insertions: the worksheet&rsquo;s swapped, missing and extra words, in a real product.</td>
+      <td class="access">Reading Coach: free on the web (<a href="https://coach.microsoft.com/">coach.microsoft.com</a>) or Windows with a school or personal Microsoft account. Reading Progress: in Microsoft Teams for Education. Both process student voices, so use school accounts and policies.</td>
+    </tr>
+    <tr>
+      <td class="stage"><b>BUILD</b><span>train a model</span></td>
+      <td class="tool">Teachable Machine<small>Google</small></td>
+      <td>Train a clap, snap or silence classifier, then test whether it works equally well for everyone&rsquo;s clap.</td>
+      <td class="access">Free in the browser, no account needed: <a href="https://teachablemachine.withgoogle.com/">teachablemachine.withgoogle.com</a></td>
+    </tr>
+    <tr>
+      <td class="stage"><b>PLAY</b><span>AI and fairness</span></td>
+      <td class="tool">Minecraft Education: Hour of AI<small>Microsoft &middot; Code.org</small></td>
+      <td>&ldquo;The First Night&rdquo;: train an AI agent to survive. &ldquo;Generation AI&rdquo;: fix a sensor that is unfair about height, a fairness lesson that pairs with &ldquo;voices for everyone.&rdquo;</td>
+      <td class="access">Hour of AI lessons are free to play or host; Generation AI is a free demo: <a href="https://aka.ms/hourofai">aka.ms/hourofai</a></td>
+    </tr>
+    <tr>
+      <td class="stage"><b>CREATE</b><span>teacher prep</span></td>
+      <td class="tool">Microsoft 365 Copilot Chat<small>Microsoft</small></td>
+      <td>Teachers: ask it for new sound-alike sentence cards at your students&rsquo; level, then check each one yourself.</td>
+      <td class="access">With Microsoft 365 Education licenses. Students 13&ndash;17 only if school IT turns it on; students under 13 are blocked.</td>
+    </tr>
+    <tr>
+      <td class="stage"><b>GO DEEPER</b><span>grades 11&ndash;12</span></td>
+      <td class="tool">Building Speech AI companion code<small>open source</small></td>
+      <td>Run real speech models (Whisper, wav2vec 2.0) in pre-executed Python notebooks, and read every output before installing anything.</td>
+      <td class="access">Free (MIT license): <a href="https://github.com/prdeepakbabu/building-speech-ai">github.com/prdeepakbabu/building-speech-ai</a></td>
+    </tr>
+  </table>
+
+  <h2>Learn more (teachers)</h2>
+  <ul>
+    <li><b>Microsoft Learn, &ldquo;Introduction to AI speech concepts&rdquo;:</b> a free short module on speech recognition and synthesis. <a href="https://learn.microsoft.com/en-us/training/modules/introduction-ai-speech/">learn.microsoft.com/training/modules/introduction-ai-speech</a></li>
+    <li><b>Microsoft Elevate for Educators:</b> free AI training, community and credentials for teachers (search &ldquo;Microsoft Elevate for Educators&rdquo;).</li>
+    <li><b>IEEE TryEngineering:</b> free engineering lesson plans. <a href="https://tryengineering.org/">tryengineering.org</a></li>
+    <li><b>Code.org Hour of AI:</b> one-hour AI activities, held around CS Education Week in early December. <a href="https://code.org/en-US/hour-of-ai">code.org/en-US/hour-of-ai</a></li>
+  </ul>
+
+  <h2>Free credits to experiment (teachers and older students)</h2>
+  <ul>
+    <li><b>Azure Speech free tier:</b> 5 hours of speech-to-text and 0.5 million characters of text-to-speech a month (adult Azure account).</li>
+    <li><b>Azure for Students:</b> $100 of Azure credit a year with no credit card, for full-time college students 18 and older.</li>
+    <li><b>GitHub Education:</b> free GitHub Copilot for verified students (13 and older) and teachers.</li>
+  </ul>
+
+  <div class="note"><b>Before students use any online tool:</b> follow your school&rsquo;s technology and privacy policies. Prefer school-managed accounts, and don&rsquo;t upload recordings of students to services your school hasn&rsquo;t approved.</div>
+
+  <div class="foot">Compiled by Deepak Babu Piskala for the IEEE STEM Summit 2026 virtual exhibit booth. Disclosure: I work at Microsoft. These tools are listed because they are free and fit this lesson; this is not an endorsement by Microsoft or IEEE. Features and availability change, so check each site for current details.</div>
+</section>
+<script>
+(() => {
+  const rows = [...document.querySelectorAll('table tr')].slice(1);
+  const stageOf = (row) => row.querySelector('td.stage b').textContent;
+  const filters = document.createElement('div');
+  filters.className = 'filters web-only';
+  filters.setAttribute('role', 'group');
+  filters.setAttribute('aria-label', 'Show tools for one stage');
+  filters.append('Show: ');
+  for (const stage of ['All', ...rows.map(stageOf)]) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.textContent = stage === 'All' ? 'All tools' : stage;
+    button.setAttribute('aria-pressed', String(stage === 'All'));
+    button.addEventListener('click', () => {
+      for (const b of filters.querySelectorAll('button')) b.setAttribute('aria-pressed', String(b === button));
+      for (const row of rows) row.hidden = stage !== 'All' && stageOf(row) !== stage;
+    });
+    filters.appendChild(button);
+  }
+  document.querySelector('table').before(filters);
+  for (const a of document.querySelectorAll('a[href^="http"]')) { a.target = '_blank'; a.rel = 'noopener'; }
+})();
+</script>
+</body>
+</html>

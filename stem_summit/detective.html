@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNWLG8DBTN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XNWLG8DBTN', {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Spectrogram Detective: a free 15-minute online puzzle. Match eight pictures of sound to their words, the way a speech recognizer does. Nothing is saved or sent.">
+<title>Spectrogram Detective: read sound pictures like a computer</title>
+<link rel="canonical" href="https://prdeepakbabu.github.io/stem_summit/detective.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+  :root { --blue: #00629B; --coral: #E0533F; --ink: #0E1116; --muted: #5a6068; --paper: #f4f6fa; --good: #1e7b34; --bad: #b3261e; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
+  body { font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; color: var(--ink); background: #fff; line-height: 1.5; }
+  a { color: var(--blue); }
+  header { background: linear-gradient(135deg, #00629B, #003a5d); color: #fff; padding: 22px 20px 20px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  header .wrap { padding: 0; }
+  .crumb { font-size: 14px; }
+  .crumb a { color: #cfe3f2; }
+  h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 900; letter-spacing: -0.01em; margin-top: 4px; }
+  header p { color: #dce9f3; max-width: 760px; }
+  .privacy { display: inline-block; margin-top: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 4px 14px; font-size: 14px; }
+  main.wrap { padding-top: 4px; padding-bottom: 40px; }
+  h2 { font-size: 24px; margin: 26px 0 8px; color: var(--blue); }
+  .lead { color: #2a2f36; max-width: 800px; margin-bottom: 12px; }
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 10px; }
+  .rule { background: var(--paper); border-radius: 10px; padding: 12px 14px; display: flex; gap: 10px; align-items: baseline; }
+  .rule b { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 14px; }
+  .clues { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 235px), 1fr)); gap: 12px; }
+  .clue { border: 1px solid #d6dbe1; border-radius: 10px; padding: 10px 12px 12px; }
+  .clue .tag { font-size: 13px; font-weight: 800; letter-spacing: 0.08em; color: #fff; background: var(--coral); border-radius: 4px; padding: 1px 8px; }
+  .clue.vowel .tag { background: var(--blue); }
+  .clue.other .tag { background: var(--muted); }
+  .clue img { display: block; width: 100%; aspect-ratio: 21 / 11; object-fit: fill; border: 1px solid #e1e5ea; margin: 8px 0 6px; }
+  .clue p { font-size: 15px; color: #2a2f36; }
+  .note { font-size: 15px; color: var(--muted); margin-top: 10px; max-width: 900px; }
+  @media (max-width: 600px) { .clues { grid-template-columns: 1fr 1fr; gap: 8px; } .clue { padding: 8px; } .clue p { font-size: 14px; } }
+  .bank { position: sticky; top: 0; z-index: 2; background: #fff7d6; border: 2px dashed #c9a400; border-radius: 10px; padding: 8px 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .bank span { background: #fff; border: 1px solid #c9a400; border-radius: 999px; padding: 1px 12px; font-weight: 700; }
+  .bank span.used { opacity: 0.45; text-decoration: line-through; }
+  .tip { font-size: 15px; color: var(--muted); margin-top: 8px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr)); gap: 14px; margin-top: 14px; }
+  .card { border: 2px solid #c9d0d8; border-radius: 12px; padding: 12px 14px 14px; }
+  .card.right { border-color: var(--good); background: #f3faf5; }
+  .card.wrong { border-color: var(--bad); background: #fdf4f3; }
+  .card .top { display: flex; justify-content: space-between; align-items: baseline; }
+  .card .letter { font-size: 20px; font-weight: 900; color: var(--blue); }
+  .card .hz { font-size: 13px; color: var(--muted); }
+  .plot { display: grid; grid-template-columns: 26px 1fr; gap: 4px; margin-top: 6px; }
+  .yax { position: relative; font-size: 12px; color: var(--muted); }
+  .yax span { position: absolute; right: 2px; transform: translateY(-50%); }
+  .plot img { display: block; width: 100%; aspect-ratio: 5 / 2; object-fit: fill; border: 1px solid #c9d0d8; background: #fff; }
+  .pick { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 10px; }
+  .pick label { font-weight: 600; }
+  select { font: inherit; font-size: 17px; padding: 5px 10px; border-radius: 8px; border: 2px solid #c9d0d8; background: #fff; min-width: 140px; }
+  .result { font-weight: 700; }
+  .card.right .result { color: var(--good); }
+  .card.wrong .result { color: var(--bad); }
+  .hint { font-size: 15px; color: #2a2f36; background: #fff; border: 1px solid #d6dbe1; border-radius: 8px; padding: 8px 10px; margin-top: 8px; }
+  button { font: inherit; font-weight: 700; border-radius: 8px; border: 2px solid var(--blue); background: #fff; color: var(--blue); padding: 8px 16px; cursor: pointer; }
+  button.primary { background: var(--blue); color: #fff; }
+  button.link { border: none; background: none; padding: 0; margin-top: 8px; font-weight: 600; text-decoration: underline; }
+  button:focus-visible, select:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid #FFB400; outline-offset: 2px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 16px; }
+  #score { font-size: 18px; font-weight: 800; }
+  .done { margin-top: 14px; background: #e8f5ec; border: 2px solid var(--good); border-radius: 12px; padding: 14px 16px; }
+  .done h3 { font-size: 20px; color: var(--good); }
+  details.teachers { margin-top: 30px; background: var(--paper); border-radius: 10px; padding: 12px 16px; }
+  details.teachers summary { cursor: pointer; font-size: 20px; font-weight: 800; color: var(--blue); }
+  .notes h3 { font-size: 17px; margin: 12px 0 4px; }
+  .notes li, .notes p { font-size: 15px; color: #2a2f36; }
+  .notes ul, .notes ol { padding-left: 20px; }
+  footer.wrap { border-top: 1px solid #e1e5ea; margin-top: 10px; padding-top: 16px; padding-bottom: 28px; font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">&larr; Speech AI Classroom Kit</a></div>
+    <h1>Spectrogram Detective</h1>
+    <p>Before a computer can understand a word, it has to read a picture of the sound. Study the clues, then crack eight mystery cards. About 15 minutes, grades 3&ndash;12.</p>
+    <span class="privacy">&#128274; Your answers stay on this page. Nothing is saved or sent anywhere.</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2>1. How to read a sound picture</h2>
+  <div class="rules">
+    <div class="rule"><b>1</b><p><strong>Time</strong> runs left to right, like reading a sentence.</p></div>
+    <div class="rule"><b>2</b><p><strong>Low sounds</strong> sit at the bottom and <strong>high sounds</strong> at the top: 0 to 8,000&nbsp;Hz (vibrations per second).</p></div>
+    <div class="rule"><b>3</b><p><strong>Darker</strong> means louder. White means silence.</p></div>
+  </div>
+
+  <h2>2. Detective clues</h2>
+  <p class="lead">Each sound leaves its own pattern. Study these with a partner before you open the case file.</p>
+  <div class="clues">
+    <div class="clue"><span class="tag">S</span><img src="detective/clue_s.png" alt="Dense static filling the top half"><p>Fuzzy static in the <strong>top half</strong> (above about 4,000&nbsp;Hz).</p></div>
+    <div class="clue"><span class="tag">SH</span><img src="detective/clue_sh.png" alt="Dense static in the middle"><p>Fuzzy static that reaches <strong>lower</strong> than S, darkest near 3,000&nbsp;Hz.</p></div>
+    <div class="clue"><span class="tag">F</span><img src="detective/clue_f.png" alt="Pale static from low to high"><p><strong>Faint</strong> fuzz from low to high. Easy to miss!</p></div>
+    <div class="clue other"><span class="tag">STOP</span><img src="detective/clue_stop.png" alt="White gap followed by a thin vertical line"><p>A <strong>blank gap</strong>, then a thin line: p, t, k, b, d, g.</p></div>
+    <div class="clue vowel"><span class="tag">EE</span><img src="detective/clue_ee.png" alt="Striped block with a dark band near the bottom and another higher up"><p>Stripes with a dark band <strong>high up</strong>, near 2,000 to 3,000&nbsp;Hz.</p></div>
+    <div class="clue vowel"><span class="tag">OO</span><img src="detective/clue_oo.png" alt="Striped block with dark bands squeezed near the bottom"><p>Stripes with the dark part <strong>squeezed near the bottom</strong>.</p></div>
+    <div class="clue vowel"><span class="tag">AH</span><img src="detective/clue_ah.png" alt="Striped block with dark bands close together low in the middle"><p>Dark bands <strong>close together</strong> in the lower middle. The a in &ldquo;cat&rdquo; looks similar.</p></div>
+    <div class="clue other"><span class="tag">HUM</span><img src="detective/clue_hum.png" alt="Pale stripes near the bottom only"><p><strong>Faint stripes</strong> near the bottom: m and n.</p></div>
+  </div>
+  <p class="note">Each thin vertical stripe is one buzz of your vocal folds, so vowels and hums look striped. S, SH and F have no buzz, only rushing air, so they look like static. Clue pictures are idealized; real words blend sounds together, so look for the strongest patterns.</p>
+
+  <h2>3. The case file</h2>
+  <p class="lead">Each picture shows one spoken word. Pick a word for every card, then press <strong>Check my answers</strong>.</p>
+  <div class="bank" id="bank" aria-label="Word bank"><strong>Word bank:</strong></div>
+  <p class="tip">Each word is used exactly once. Stuck? Sort first: which cards <strong>start</strong> with static? Which <strong>end</strong> with static? Then look at the vowel bands.</p>
+  <div class="cards" id="cards"></div>
+  <div class="actions">
+    <button id="check" class="primary">Check my answers</button>
+    <button id="reveal">Show all answers</button>
+    <button id="reset">Start over</button>
+    <span id="score" role="status" aria-live="polite"></span>
+  </div>
+  <div class="done" id="done" hidden>
+    <h3>Case closed!</h3>
+    <p>You read sound pictures the way a speech recognizer does: by spotting patterns like hiss, stripes and gaps. Next, make your own cards. Say a word into <a href="see_your_voice.html">See Your Voice</a>, press Pause, then Save picture, and swap with a partner.</p>
+  </div>
+
+  <details class="teachers">
+    <summary>For teachers (includes the solving path)</summary>
+    <div class="notes">
+      <h3>At a glance</h3>
+      <p>15 minutes &middot; grades 3&ndash;12 &middot; pairs &middot; one device per pair, or use the <a href="spectrogram_detective.pdf">printable version</a> (clue sheet, case file and answer key; black and white is fine).</p>
+      <h3>Run it</h3>
+      <ol>
+        <li>Study the clues with a partner (2 minutes).</li>
+        <li>Match each card to a word (8 minutes). <strong>Check my answers</strong> marks each card, and wrong cards offer a hint.</li>
+        <li>Discuss which clue cracked each case (5 minutes). <strong>Show all answers</strong> explains every card.</li>
+      </ol>
+      <h3>Fastest solving path</h3>
+      <p>Cards A, E, F and H start with static; B, C, D and G do not. Endings separate A from E and D from G, and the vowel bands settle the rest.</p>
+      <h3>Discussion prompts</h3>
+      <ul>
+        <li>Would your voice make the same picture? Children&rsquo;s voices are higher, so the buzz stripes pack closer together and the dark bands sit higher. That is one reason voice assistants find kids harder to understand.</li>
+        <li>Why don&rsquo;t computers just follow clues like these? Real speech changes with the speaker, speed and noise. Early systems tried hand-written rules; modern recognizers learn the patterns from many thousands of hours of examples.</li>
+      </ul>
+      <h3>Extensions</h3>
+      <ul>
+        <li><strong>Hard mode:</strong> print the case file and hide the word bank.</li>
+        <li><strong>Make your own cards</strong> with <a href="see_your_voice.html">See Your Voice</a>: say a word, press Pause, then Save picture.</li>
+        <li><strong>AI4K12 connection:</strong> Big Idea 1, Perception.</li>
+      </ul>
+      <h3>How the pictures were made</h3>
+      <p>Word cards use Windows&rsquo; built-in computer voice, so they are cleaner and slower than real speech. Clue tiles are idealized sounds generated from simple models of the voice. Settings: 8&nbsp;ms analysis window, 0 to 8,000&nbsp;Hz, darker&nbsp;=&nbsp;louder.</p>
+      <h3>Privacy</h3>
+      <p>No sign-in or ads. Basic page analytics records visits, while answers are checked inside the browser tab and disappear when it closes.</p>
+    </div>
+  </details>
+</main>
+
+<footer class="wrap">Part of the free Speech AI Classroom Kit by Deepak Babu Piskala, IEEE Senior Member and author of <i>Building Speech AI</i>. A personal volunteer project. Free to use and share for classroom use.</footer>
+
+<script>
+(() => {
+  const WORDS = ['bee', 'cat', 'fish', 'moo', 'see', 'shoe', 'six', 'sun'];
+  const CASES = [
+    { letter: 'A', word: 'six', hint: 'Look at both ends. Is there static at the start and at the end? What is the short blank gap near the end?', why: 'Static at both ends (S \u2026 S), with a short blank gap (the k) before the last one.' },
+    { letter: 'B', word: 'moo', hint: 'No static at the start. Is the dark part of the stripes high up, or squeezed near the bottom?', why: 'No static at the start; stripes with the dark part near the bottom (OO).' },
+    { letter: 'C', word: 'bee', hint: 'No static at the start. Is there a dark band high up, near 2,000 to 3,000 Hz?', why: 'No static at the start; stripes with a dark band up near 2,000 to 3,000 Hz (EE).' },
+    { letter: 'D', word: 'fish', hint: 'Look very closely at the start: is there faint fuzz? How low does the static at the end reach?', why: 'Faint fuzz first (F), a vowel, then strong static that reaches down toward 2,000 Hz (SH).' },
+    { letter: 'E', word: 'sun', hint: 'Static at the start, then a vowel. What are the long, faint stripes at the end?', why: 'Static at the top (S), a vowel, then long faint stripes near the bottom (N).' },
+    { letter: 'F', word: 'shoe', hint: 'Compare the starting static with the S clue. Does it reach lower? Then check where the stripes are darkest.', why: 'Static that reaches lower than S (SH), then stripes darkest near the bottom (OO).' },
+    { letter: 'G', word: 'cat', hint: 'Find the blank gap and the thin full-height lines. Which clue has a gap and a thin line?', why: 'A thin full-height strip first (the k), a vowel, a blank gap, then a thin strip at the end (T).' },
+    { letter: 'H', word: 'see', hint: 'Static high up at the start. Then look for a dark band high up in the stripes.', why: 'Static at the top (S), then stripes with a dark band up near 2,000 to 3,000 Hz (EE).' },
+  ];
+  const $ = (id) => document.getElementById(id);
+  const bank = $('bank'), score = $('score'), done = $('done');
+
+  for (const word of WORDS) {
+    const chip = document.createElement('span');
+    chip.textContent = word;
+    chip.dataset.word = word;
+    bank.appendChild(chip);
+  }
+
+  for (const c of CASES) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.card = c.letter;
+    card.innerHTML = `
+      <div class="top"><span class="letter">Card ${c.letter}</span><span class="hz">0 to 8,000 Hz &middot; time &rarr;</span></div>
+      <div class="plot">
+        <div class="yax" aria-hidden="true"><span style="top:0%">8k</span><span style="top:50%">4k</span><span style="top:100%">0</span></div>
+        <img src="detective/card_${c.letter}.png" alt="Spectrogram of mystery word ${c.letter}">
+      </div>
+      <div class="pick">
+        <label for="pick-${c.letter}">This word is</label>
+        <select id="pick-${c.letter}"><option value="">choose&hellip;</option>${WORDS.map((w) => `<option>${w}</option>`).join('')}</select>
+        <span class="result" aria-live="polite"></span>
+      </div>
+      <button class="link hint-btn" type="button" hidden>Need a hint?</button>
+      <p class="hint" hidden></p>`;
+    $('cards').appendChild(card);
+    c.card = card;
+    c.select = card.querySelector('select');
+    c.result = card.querySelector('.result');
+    c.hintBtn = card.querySelector('.hint-btn');
+    c.hintText = card.querySelector('.hint');
+    c.select.addEventListener('change', () => { clearCard(c); updateBank(); done.hidden = true; score.textContent = ''; });
+    c.hintBtn.addEventListener('click', () => { c.hintText.textContent = 'Hint: ' + c.hint; c.hintText.hidden = false; c.hintBtn.hidden = true; });
+  }
+
+  function clearCard(c) {
+    c.card.classList.remove('right', 'wrong');
+    c.result.textContent = '';
+    c.hintBtn.hidden = true;
+    c.hintText.hidden = true;
+  }
+
+  function updateBank() {
+    const used = new Set(CASES.map((c) => c.select.value).filter(Boolean));
+    for (const chip of bank.querySelectorAll('span')) chip.classList.toggle('used', used.has(chip.dataset.word));
+  }
+
+  $('check').addEventListener('click', () => {
+    let right = 0;
+    for (const c of CASES) {
+      clearCard(c);
+      if (!c.select.value) { c.result.textContent = 'Not answered yet'; continue; }
+      const ok = c.select.value === c.word;
+      right += ok;
+      c.card.classList.add(ok ? 'right' : 'wrong');
+      c.result.textContent = ok ? '\u2713 Correct' : '\u2717 Not quite';
+      c.hintBtn.hidden = ok;
+    }
+    score.textContent = `${right} of ${CASES.length} cases cracked`;
+    done.hidden = right !== CASES.length;
+  });
+
+  $('reveal').addEventListener('click', () => {
+    for (const c of CASES) {
+      clearCard(c);
+      c.select.value = c.word;
+      c.card.classList.add('right');
+      c.result.textContent = 'Answer: ' + c.word;
+      c.hintText.textContent = 'Why: ' + c.why;
+      c.hintText.hidden = false;
+    }
+    updateBank();
+    done.hidden = true;
+    score.textContent = 'All answers shown. Which clue cracked each case?';
+  });
+
+  $('reset').addEventListener('click', () => {
+    for (const c of CASES) { clearCard(c); c.select.value = ''; }
+    updateBank();
+    done.hidden = true;
+    score.textContent = '';
+  });
+})();
+</script>
+</body>
+</html>

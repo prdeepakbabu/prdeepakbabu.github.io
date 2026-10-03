@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNWLG8DBTN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XNWLG8DBTN', {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Be the Recognizer: a free 15-minute speech-AI activity. Students act as the voice assistant, add noise, and score their word error rate with an automatic scorer. Nothing is recorded, saved or sent.">
+<title>Be the Recognizer: can you beat the noise?</title>
+<link rel="canonical" href="https://prdeepakbabu.github.io/stem_summit/be_the_recognizer.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+  :root { --blue: #00629B; --coral: #E0533F; --ink: #0E1116; --muted: #5a6068; --paper: #f4f6fa; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
+  body { font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; color: var(--ink); background: #fff; line-height: 1.5; }
+  a { color: var(--blue); }
+  header { background: linear-gradient(135deg, #00629B, #003a5d); color: #fff; padding: 22px 20px 20px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  header .wrap { padding: 0; }
+  .crumb { font-size: 14px; }
+  .crumb a { color: #cfe3f2; }
+  h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 900; letter-spacing: -0.01em; margin-top: 4px; }
+  header p { color: #dce9f3; max-width: 760px; }
+  .privacy { display: inline-block; margin-top: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 4px 14px; font-size: 14px; }
+  main.wrap { padding-top: 4px; padding-bottom: 40px; }
+  h2 { font-size: 24px; margin: 26px 0 8px; color: var(--blue); }
+  .lead { color: #2a2f36; max-width: 820px; margin-bottom: 12px; }
+  button { font: inherit; font-weight: 700; border-radius: 8px; border: 2px solid var(--blue); background: #fff; color: var(--blue); padding: 7px 14px; cursor: pointer; }
+  button.primary { background: var(--blue); color: #fff; }
+  button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid #FFB400; outline-offset: 2px; }
+
+  .rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 10px; }
+  .rule { background: var(--paper); border-radius: 10px; padding: 12px 14px; border-top: 4px solid var(--blue); }
+  .rule > b { display: block; }
+  .rule p { font-size: 15px; color: #2a2f36; }
+  .tip { font-size: 15px; color: var(--muted); margin-top: 10px; }
+
+  .viewer { background: var(--ink); border-radius: 14px; padding: 14px; }
+  .nums { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 10px; }
+  .nums button { min-width: 42px; padding: 4px 10px; background: #2a2f36; color: #fff; border-color: #4a5058; }
+  .nums button[aria-current="true"] { background: #FFEB6B; color: var(--ink); border-color: #FFEB6B; }
+  .nums .grow { flex: 1; }
+  .face { background: #fff; border-radius: 12px; min-height: 250px; padding: 16px 22px; display: flex; flex-direction: column; border-top: 8px solid var(--blue); }
+  .face.r2 { border-top-color: var(--coral); }
+  .face.bonus { border-top-color: var(--muted); }
+  .face .lab { font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .face .how { font-size: 16px; color: #2a2f36; }
+  .face .say { font-size: clamp(26px, 4.4vw, 44px); font-weight: 800; line-height: 1.2; margin: auto 0; padding: 14px 0; }
+  .face .meta { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; color: var(--muted); }
+  .cover { margin: auto 0; text-align: center; color: var(--muted); padding: 24px 0; }
+  .cover b { display: block; font-size: 22px; color: var(--ink); }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 10px; color: #c8ccd2; font-size: 15px; }
+  .controls button { background: #2a2f36; color: #fff; border-color: #4a5058; }
+  .controls button.primary { background: #FFEB6B; color: var(--ink); border-color: #FFEB6B; }
+  .controls label { display: inline-flex; gap: 8px; align-items: center; }
+
+  .formula { background: #eef4fb; border-radius: 10px; padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; font-size: 15px; }
+  .formula b { font-size: 18px; color: var(--blue); }
+  .round { margin-top: 16px; }
+  .round h3 { font-size: 16px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: var(--blue); border-radius: 8px 8px 0 0; padding: 5px 12px; }
+  .round.r2 h3 { background: var(--coral); }
+  .round.bonus h3 { background: var(--muted); }
+  .srow { border: 1px solid #d6dbe1; border-top: none; padding: 10px 12px; }
+  .srow label { font-weight: 700; display: block; margin-bottom: 4px; }
+  .sin { display: flex; gap: 8px; }
+  input[type="text"], textarea { font: inherit; font-size: 17px; width: 100%; padding: 6px 10px; border: 2px solid #c9d0d8; border-radius: 8px; }
+  textarea { resize: vertical; min-height: 46px; }
+  .said { margin-top: 8px; font-size: 15px; color: #2a2f36; }
+  .align { margin-top: 6px; line-height: 2; }
+  .tok { display: inline-block; margin: 0 2px; padding: 0 7px; border-radius: 6px; background: #eef1f5; line-height: 1.6; }
+  .tok.sub { background: #fde7c7; }
+  .tok.sub s { color: #8a5a00; margin-right: 4px; }
+  .tok.del { background: #fbdcd8; text-decoration: line-through; }
+  .tok.ins { background: #d9ecfb; }
+  .counts { font-size: 15px; color: var(--muted); margin-top: 2px; }
+  .sum { border: 1px solid #d6dbe1; border-top: none; border-radius: 0 0 8px 8px; background: var(--paper); padding: 8px 12px; font-weight: 700; }
+  .any { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px; }
+  .any label { font-weight: 700; display: block; margin-bottom: 4px; }
+  .result { margin-top: 10px; background: var(--paper); border-radius: 10px; padding: 10px 14px; }
+  .think { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 10px; }
+  .think p { background: var(--paper); border-radius: 10px; padding: 12px 14px; font-weight: 600; }
+  details.teachers { margin-top: 30px; background: var(--paper); border-radius: 10px; padding: 12px 16px; }
+  details.teachers summary { cursor: pointer; font-size: 20px; font-weight: 800; color: var(--blue); }
+  .notes h3 { font-size: 17px; margin: 12px 0 4px; }
+  .notes li, .notes p, .notes td { font-size: 15px; color: #2a2f36; }
+  .notes ul, .notes ol { padding-left: 20px; }
+  .notes table { border-collapse: collapse; }
+  .notes td { padding: 2px 10px 2px 0; vertical-align: top; }
+  .notes td:first-child { font-weight: 800; color: var(--blue); }
+  footer.wrap { border-top: 1px solid #e1e5ea; margin-top: 10px; padding-top: 16px; padding-bottom: 28px; font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">&larr; Speech AI Classroom Kit</a></div>
+    <h1>Be the Recognizer</h1>
+    <p>Today <b>you</b> are the voice assistant. Can you beat the noise? Listen, write what you hear, then score yourself the way engineers score speech recognizers. About 15 minutes, in pairs, grades 4&ndash;12.</p>
+    <span class="privacy">&#128274; Nothing is recorded, saved or sent. What you type stays on this page.</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2>How to play</h2>
+  <div class="rules">
+    <div class="rule"><b>1 &middot; Partner up</b><p>The Speaker controls the cards below. The Recognizer must not peek.</p></div>
+    <div class="rule"><b>2 &middot; Round 1: quiet</b><p>The Speaker reads cards 1&ndash;3 <b>once</b> each, in a normal voice.</p></div>
+    <div class="rule"><b>3 &middot; Round 2: noisy</b><p>Turn on noise or music. The Speaker <b>whispers</b> cards 4&ndash;6, once each.</p></div>
+    <div class="rule"><b>4 &middot; Score it</b><p>The Recognizer types what they heard below, and the page counts the errors.</p></div>
+  </div>
+  <p class="tip">One device per pair? The Speaker reads from the screen while the Recognizer writes on paper, then types it in to score. Two devices work too: one for the cards, one for scoring.</p>
+
+  <h2>1. Speaker cards <small style="font-size:15px;color:var(--muted);font-weight:600;">(Speaker only!)</small></h2>
+  <div class="viewer">
+    <div class="nums" id="nums" aria-label="Choose a card"></div>
+    <div class="face" id="face">
+      <div class="lab" id="card-label"></div>
+      <div class="how" id="how"></div>
+      <div class="cover" id="cover"><b>Card hidden</b>Turn the screen away from the Recognizer, then press <b style="display:inline;font-size:inherit;">Show card</b>.</div>
+      <div class="say" id="say" hidden></div>
+      <div class="meta" id="meta"><span id="nwords"></span><span id="pron"></span></div>
+    </div>
+    <div class="controls">
+      <button id="prev" type="button">&larr; Previous</button>
+      <button id="show" class="primary" type="button">Show card</button>
+      <button id="next" type="button">Next &rarr;</button>
+      <button id="noise" type="button">Play background noise</button>
+      <label>Noise volume <input id="volume" type="range" min="5" max="100" value="40"></label>
+    </div>
+  </div>
+  <p class="tip">Speaker rules: read each card <b>one time</b>. No repeats, no spelling, no hints. A real voice assistant gets one try, too.</p>
+
+  <h2>2. Score it</h2>
+  <div class="formula">
+    <b>Word error rate = (swapped + missing + extra) &divide; words said</b>
+    <span><span class="tok sub"><s>said</s>heard</span> swapped</span>
+    <span><span class="tok del">said</span> missing</span>
+    <span><span class="tok ins">+heard</span> extra</span>
+  </div>
+  <p class="tip">Type exactly what you heard, even if it makes no sense, then press Score. Heard nothing? Leave it blank and press Score. Capitals and punctuation don&rsquo;t count, and &ldquo;4&rdquo; matches &ldquo;four&rdquo;.</p>
+  <div id="rounds"></div>
+
+  <h2 id="any">3. Score any sentence</h2>
+  <p class="lead">For your own cards, or for <b>human vs. machine</b>: read a card to a voice-typing tool and paste what it wrote. The worked example below scores 75%.</p>
+  <div class="any">
+    <div><label for="any-ref">What was said</label><textarea id="any-ref" spellcheck="false">call mom at four</textarea></div>
+    <div><label for="any-hyp">What was heard or written</label><textarea id="any-hyp" spellcheck="false" autocapitalize="off" autocorrect="off">call tom at for the</textarea></div>
+  </div>
+  <div class="result" aria-live="polite">
+    <div class="align" id="any-align"></div>
+    <p class="counts" id="any-counts"></p>
+  </div>
+
+  <h2>4. Think about it</h2>
+  <div class="think">
+    <p>1. Which round had the higher word error rate? What did the noise and whispering take away?</p>
+    <p>2. When did the other words in the sentence help you guess right, or trick you?</p>
+  </div>
+
+  <details class="teachers">
+    <summary>For teachers</summary>
+    <div class="notes">
+      <h3>At a glance</h3>
+      <p>15 minutes &middot; grades 4&ndash;12 &middot; pairs, or trios with a scorekeeper &middot; one device per pair, or the <a href="be_the_recognizer_worksheet.pdf">printable version</a> (recognizer sheet, speaker cards to cut out, teacher guide).</p>
+      <h3>Run of show</h3>
+      <ol>
+        <li><b>Hook (2 min).</b> &ldquo;Has a voice assistant ever misheard you?&rdquo; Today, students are the voice assistant.</li>
+        <li><b>Round 1 (3 min).</b> Quiet room. Speakers read cards 1&ndash;3 once, in a normal voice.</li>
+        <li><b>Round 2 (3 min).</b> Play music or the noise button at a moderate volume. Speakers whisper cards 4&ndash;6 once.</li>
+        <li><b>Score (4 min).</b> Recognizers type what they heard. Collect each pair&rsquo;s round results; class WER = all errors &divide; all words, for each round.</li>
+        <li><b>Discuss (3 min).</b> Use the prompts below. Bonus cards are for early finishers.</li>
+      </ol>
+      <h3>Scoring notes</h3>
+      <ul>
+        <li>The scorer ignores capitals and punctuation and treats numerals like &ldquo;4&rdquo; and &ldquo;13th&rdquo; as words. Engineers call this <i>text normalization</i>.</li>
+        <li>Sound-alikes with a different spelling (for/four, pears/pairs, two/to) are errors: a machine that writes the wrong word may do the wrong thing.</li>
+        <li>WER can exceed 100% when many extra words are written.</li>
+      </ul>
+      <h3>Discussion prompts</h3>
+      <ul>
+        <li>&ldquo;I scream&rdquo; or &ldquo;ice cream&rdquo;? The sounds are nearly the same. How did you decide?</li>
+        <li>Why was &ldquo;Siobhan&rdquo; so hard? You have probably heard that name far less often than &ldquo;Sarah&rdquo;.</li>
+        <li>Who might voice assistants mishear most often? How could engineers fix that?</li>
+      </ul>
+      <h3>The science connection</h3>
+      <ul>
+        <li>Speech recognizers are graded with this exact metric: word error rate, WER = (S + D + I) &divide; N.</li>
+        <li>A recognizer combines an <b>acoustic model</b> (which sounds did I hear?) with a <b>language model</b> (which words usually go together?). Guessing &ldquo;ice cream&rdquo; from context is the language model at work.</li>
+        <li>Noise and whispering hide acoustic detail. Engineers train models on audio mixed with noise so they learn to cope.</li>
+        <li>Rare words and names remain hard for people and machines alike, and improving them is an active research area.</li>
+      </ul>
+      <h3>What each card tests</h3>
+      <table>
+        <tr><td>1</td><td>Sound-alikes: Mom / Tom, four / for</td></tr>
+        <tr><td>2</td><td>Word boundaries: &ldquo;I scream&rdquo; / &ldquo;ice cream&rdquo;</td></tr>
+        <tr><td>3</td><td>Numbers that sound alike: fifteen / fifty</td></tr>
+        <tr><td>4</td><td>Word boundaries: &ldquo;recognize speech&rdquo; / &ldquo;wreck a nice beach&rdquo;</td></tr>
+        <tr><td>5</td><td>Homophones: eight / ate, pears / pairs</td></tr>
+        <tr><td>6</td><td>A rare name (Siobhan) plus two / to / too</td></tr>
+        <tr><td>7</td><td>Word boundaries: &ldquo;stuffy nose&rdquo; / &ldquo;stuff he knows&rdquo;</td></tr>
+        <tr><td>8</td><td>Numbers that sound alike: thirteenth / thirtieth</td></tr>
+      </table>
+      <h3>Adaptations and extensions</h3>
+      <ul>
+        <li><b>Younger students:</b> skip the formula and count &ldquo;oops words&rdquo; per round. <b>Grades 9&ndash;12:</b> explain why WER can exceed 100%, and graph class results by round.</li>
+        <li><b>Human vs. machine:</b> read the same cards to a voice-typing tool and paste its text into <a href="#any">Score any sentence</a>. Many online speech tools send audio to the cloud, so follow your school&rsquo;s technology and privacy policy.</li>
+        <li><b>See the noise:</b> open <a href="see_your_voice.html">See Your Voice</a> and whisper a card: the voice&rsquo;s buzz stripes disappear.</li>
+        <li><b>AI4K12 connection:</b> Big Idea 1 (Perception) and Big Idea 4 (Natural Interaction).</li>
+      </ul>
+      <h3>Privacy</h3>
+      <p>No sign-in or ads. Basic page analytics records visits, while activity answers stay in this tab. The activity never uses the microphone; the noise button only plays sound, and typed answers disappear when the tab closes.</p>
+    </div>
+  </details>
+</main>
+
+<footer class="wrap">Part of the free Speech AI Classroom Kit by Deepak Babu Piskala, IEEE Senior Member and author of <i>Building Speech AI</i>. A personal volunteer project. Free to use and share for classroom use.</footer>
+
+<script>
+(() => {
+  const CARDS = [
+    { round: 1, text: 'Please call Mom at four.' },
+    { round: 1, text: 'I scream, you scream, we all scream for ice cream.' },
+    { round: 1, text: 'Set a timer for fifteen minutes.' },
+    { round: 2, text: 'It is hard to recognize speech.' },
+    { round: 2, text: 'Add eight pears to the shopping list.' },
+    { round: 2, text: 'Text Siobhan that the game starts at two.', pron: 'Say it: shi-VAWN' },
+    { round: 3, text: 'The stuffy nose can lead to problems.' },
+    { round: 3, text: 'Meet me at the park on the thirteenth.' },
+  ];
+  const ROUNDS = {
+    1: { name: 'Round 1', css: '', title: 'Round 1 \u00b7 quiet room, normal voice', how: 'Quiet room. Say it once, in a normal voice.' },
+    2: { name: 'Round 2', css: 'r2', title: 'Round 2 \u00b7 noise on, whispered', how: 'Noise on. Whisper it once.' },
+    3: { name: 'Bonus', css: 'bonus', title: 'Bonus \u00b7 swap roles if there is time', how: 'Swap roles. Pick quiet or noisy.' },
+  };
+  const ONES = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
+  const TENS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+  const ORDS = ['', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth', 'twentieth'];
+  const $ = (id) => document.getElementById(id);
+
+  function spell(token) {
+    const n = Number(token.replace(/(st|nd|rd|th)$/, ''));
+    if (!/^\d+(st|nd|rd|th)?$/.test(token) || !Number.isInteger(n)) return token;
+    const ordinal = /\D$/.test(token);
+    if (n <= 20) return ordinal ? (ORDS[n] || token) : ONES[n];
+    if (n % 10 === 0 && n < 100) return ordinal ? TENS[n / 10].replace(/y$/, 'ieth') : TENS[n / 10];
+    return token;
+  }
+
+  function words(text) {
+    return text.toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/[^a-z0-9']+/g, ' ')
+      .split(' ').map((w) => w.replace(/^'+|'+$/g, '')).filter(Boolean).map(spell);
+  }
+
+  function charDistance(a, b) {
+    let prev = Array.from({ length: b.length + 1 }, (_, j) => j);
+    for (let i = 1; i <= a.length; i++) {
+      const cur = [i];
+      for (let j = 1; j <= b.length; j++) cur[j] = Math.min(prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1), prev[j] + 1, cur[j - 1] + 1);
+      prev = cur;
+    }
+    return prev[b.length] / Math.max(a.length, b.length, 1);
+  }
+
+  function align(ref, hyp) {
+    // Tiny spelling-based costs break ties toward pairing look-alikes (four/for) without changing the error count.
+    const eps = 1 / (10 * (ref.length + hyp.length + 1));
+    const sub = (a, b) => (a === b ? 0 : 1 + eps * charDistance(a, b));
+    const gap = 1 + eps;
+    const d = Array.from({ length: ref.length + 1 }, (_, i) => Array.from({ length: hyp.length + 1 }, (_, j) => (i ? (j ? 0 : i * gap) : j * gap)));
+    for (let i = 1; i <= ref.length; i++) {
+      for (let j = 1; j <= hyp.length; j++) {
+        d[i][j] = Math.min(d[i - 1][j - 1] + sub(ref[i - 1], hyp[j - 1]), d[i - 1][j] + gap, d[i][j - 1] + gap);
+      }
+    }
+    const same = (x, y) => Math.abs(x - y) < 1e-9;
+    const ops = [];
+    let i = ref.length, j = hyp.length;
+    while (i > 0 || j > 0) {
+      if (i > 0 && j > 0 && same(d[i][j], d[i - 1][j - 1] + sub(ref[i - 1], hyp[j - 1]))) {
+        ops.push({ type: ref[i - 1] === hyp[j - 1] ? 'ok' : 'sub', ref: ref[i - 1], hyp: hyp[j - 1] });
+        i--; j--;
+      } else if (i > 0 && same(d[i][j], d[i - 1][j] + gap)) {
+        ops.push({ type: 'del', ref: ref[i - 1] });
+        i--;
+      } else {
+        ops.push({ type: 'ins', hyp: hyp[j - 1] });
+        j--;
+      }
+    }
+    return ops.reverse();
+  }
+
+  function tally(ops) {
+    const c = { n: 0, s: 0, d: 0, i: 0 };
+    for (const op of ops) {
+      if (op.type !== 'ins') c.n++;
+      if (op.type === 'sub') c.s++;
+      else if (op.type === 'del') c.d++;
+      else if (op.type === 'ins') c.i++;
+    }
+    return c;
+  }
+
+  const wer = (c) => (c.n ? Math.round((100 * (c.s + c.d + c.i)) / c.n) + '%' : '\u2013');
+  const describe = (c) => `N = ${c.n} words \u00b7 swapped ${c.s} \u00b7 missing ${c.d} \u00b7 extra ${c.i} \u00b7 WER ${wer(c)}`;
+
+  function renderAlign(el, ops) {
+    el.replaceChildren(...ops.map((op) => {
+      const tok = document.createElement('span');
+      tok.className = 'tok ' + op.type;
+      if (op.type === 'sub') {
+        const said = document.createElement('s');
+        said.textContent = op.ref;
+        tok.append(said, op.hyp);
+        tok.title = `swapped: "${op.ref}" was heard as "${op.hyp}"`;
+      } else if (op.type === 'del') {
+        tok.textContent = op.ref;
+        tok.title = `missing: "${op.ref}" was said but not written`;
+      } else if (op.type === 'ins') {
+        tok.textContent = '+' + op.hyp;
+        tok.title = `extra: "${op.hyp}" was never said`;
+      } else {
+        tok.textContent = op.ref;
+      }
+      return tok;
+    }));
+  }
+
+  // Speaker card viewer
+  let current = 0;
+  CARDS.forEach((card, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = i + 1;
+    b.setAttribute('aria-label', `Card ${i + 1}`);
+    b.addEventListener('click', () => showCard(i, false));
+    $('nums').appendChild(b);
+  });
+
+  function showCard(i, visible) {
+    current = Math.max(0, Math.min(CARDS.length - 1, i));
+    const card = CARDS[current], round = ROUNDS[card.round];
+    $('face').className = 'face ' + round.css;
+    $('card-label').textContent = `${round.name} \u00b7 card ${current + 1}`;
+    $('how').textContent = round.how;
+    $('say').textContent = `\u201c${card.text}\u201d`;
+    $('nwords').textContent = `N = ${words(card.text).length} words`;
+    $('pron').textContent = card.pron || '';
+    $('say').hidden = $('meta').hidden = !visible;
+    $('cover').hidden = visible;
+    $('show').textContent = visible ? 'Hide card' : 'Show card';
+    [...$('nums').children].forEach((b, k) => b.setAttribute('aria-current', String(k === current)));
+  }
+  $('show').addEventListener('click', () => showCard(current, $('say').hidden));
+  $('prev').addEventListener('click', () => showCard(current - 1, false));
+  $('next').addEventListener('click', () => showCard(current + 1, false));
+  showCard(0, false);
+
+  // Background noise: pink noise (like rain) made in the browser
+  let noise = null;
+  const level = () => (Number($('volume').value) / 100) ** 2;
+  function pinkNoise(ctx) {
+    const buffer = ctx.createBuffer(1, ctx.sampleRate * 4, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+    for (let i = 0; i < data.length; i++) {
+      const white = Math.random() * 2 - 1;
+      b0 = 0.99886 * b0 + white * 0.0555179;
+      b1 = 0.99332 * b1 + white * 0.0750759;
+      b2 = 0.969 * b2 + white * 0.153852;
+      b3 = 0.8665 * b3 + white * 0.3104856;
+      b4 = 0.55 * b4 + white * 0.5329522;
+      b5 = -0.7616 * b5 - white * 0.016898;
+      data[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.11;
+      b6 = white * 0.115926;
+    }
+    return buffer;
+  }
+  $('noise').addEventListener('click', () => {
+    if (noise) {
+      noise.ctx.close();
+      noise = null;
+      $('noise').textContent = 'Play background noise';
+      return;
+    }
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const gain = ctx.createGain();
+    gain.gain.value = level();
+    const src = ctx.createBufferSource();
+    src.buffer = pinkNoise(ctx);
+    src.loop = true;
+    src.connect(gain).connect(ctx.destination);
+    src.start();
+    noise = { ctx, gain };
+    $('noise').textContent = 'Stop noise';
+  });
+  $('volume').addEventListener('input', () => { if (noise) noise.gain.gain.value = level(); });
+
+  // Per-card scorer, grouped by round
+  const rows = [];
+  for (const r of [1, 2, 3]) {
+    const group = document.createElement('div');
+    group.className = 'round ' + ROUNDS[r].css;
+    const h = document.createElement('h3');
+    h.textContent = ROUNDS[r].title;
+    group.appendChild(h);
+    CARDS.forEach((card, i) => {
+      if (card.round !== r) return;
+      const row = document.createElement('div');
+      row.className = 'srow';
+      row.dataset.card = i + 1;
+      row.innerHTML = `
+        <label for="heard-${i + 1}">Card ${i + 1}: what I heard</label>
+        <div class="sin"><input type="text" id="heard-${i + 1}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"><button type="button" class="score">Score</button></div>
+        <div class="out" hidden><p class="said"></p><div class="align"></div><p class="counts"></p></div>`;
+      const input = row.querySelector('input');
+      const entry = { card, row, input, result: null };
+      const score = () => {
+        const ops = align(words(card.text), words(input.value));
+        entry.result = tally(ops);
+        row.querySelector('.said').textContent = `Said: \u201c${card.text}\u201d`;
+        renderAlign(row.querySelector('.align'), ops);
+        row.querySelector('.counts').textContent = describe(entry.result);
+        row.querySelector('.out').hidden = false;
+        summarize();
+      };
+      row.querySelector('.score').addEventListener('click', score);
+      input.addEventListener('keydown', (e) => { if (e.key === 'Enter') score(); });
+      rows.push(entry);
+      group.appendChild(row);
+    });
+    const sum = document.createElement('div');
+    sum.className = 'sum';
+    sum.id = 'sum-' + r;
+    sum.setAttribute('aria-live', 'polite');
+    group.appendChild(sum);
+    $('rounds').appendChild(group);
+  }
+
+  function summarize() {
+    for (const r of [1, 2, 3]) {
+      const inRound = rows.filter((e) => e.card.round === r);
+      const scored = inRound.filter((e) => e.result);
+      const c = { n: 0, s: 0, d: 0, i: 0 };
+      for (const e of scored) for (const k of Object.keys(c)) c[k] += e.result[k];
+      $('sum-' + r).textContent = scored.length
+        ? `${ROUNDS[r].name} WER: ${wer(c)} (${c.s + c.d + c.i} errors in ${c.n} words; ${scored.length} of ${inRound.length} cards scored)`
+        : `${ROUNDS[r].name}: no cards scored yet.`;
+    }
+  }
+  summarize();
+
+  // Free-form scorer
+  function scoreAny() {
+    const ref = words($('any-ref').value), hyp = words($('any-hyp').value);
+    if (!ref.length) {
+      $('any-align').replaceChildren();
+      $('any-counts').textContent = 'Type what was said first.';
+      return;
+    }
+    const ops = align(ref, hyp);
+    renderAlign($('any-align'), ops);
+    $('any-counts').textContent = describe(tally(ops));
+  }
+  $('any-ref').addEventListener('input', scoreAny);
+  $('any-hyp').addEventListener('input', scoreAny);
+  scoreAny();
+})();
+</script>
+</body>
+</html>

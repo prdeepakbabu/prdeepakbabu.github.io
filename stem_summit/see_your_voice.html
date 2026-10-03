@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNWLG8DBTN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XNWLG8DBTN', {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="See Your Voice: a free live spectrogram for classrooms. Runs entirely in your browser; nothing is recorded or uploaded.">
+<title>See Your Voice: a live picture of your voice</title>
+<link rel="canonical" href="https://prdeepakbabu.github.io/stem_summit/see_your_voice.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+  :root { --blue: #00629B; --coral: #E0533F; --ink: #0E1116; --muted: #5a6068; --paper: #f4f6fa; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; color: var(--ink); background: #fff; line-height: 1.5; }
+  a { color: var(--blue); }
+  header { background: linear-gradient(135deg, #00629B, #003a5d); color: #fff; padding: 22px 20px 20px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  header .wrap { padding: 0; }
+  .crumb { font-size: 14px; }
+  .crumb a { color: #cfe3f2; }
+  h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 900; letter-spacing: -0.01em; margin-top: 4px; }
+  header p { color: #dce9f3; max-width: 760px; }
+  .privacy { display: inline-block; margin-top: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 4px 14px; font-size: 14px; }
+  main.wrap { padding-top: 22px; padding-bottom: 40px; }
+  .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 10px; }
+  button { font: inherit; font-weight: 700; border-radius: 8px; border: 2px solid var(--blue); background: #fff; color: var(--blue); padding: 8px 16px; cursor: pointer; }
+  button.primary { background: var(--blue); color: #fff; }
+  button:disabled { opacity: 0.45; cursor: not-allowed; }
+  button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid #FFB400; outline-offset: 2px; }
+  label { font-size: 15px; color: var(--muted); display: inline-flex; gap: 6px; align-items: center; }
+  select { font: inherit; padding: 5px 8px; border-radius: 6px; border: 1px solid #c9d0d8; }
+  #status { min-height: 1.5em; color: var(--muted); font-size: 15px; margin-bottom: 8px; }
+  #status.warn { color: #b3261e; font-weight: 600; }
+  .viz { background: var(--ink); border-radius: 12px; padding: 10px 12px 8px 12px; }
+  .viz .label { color: #9aa0a6; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; margin: 2px 0 4px 44px; }
+  canvas { display: block; width: 100%; border-radius: 6px; background: #0b0d12; }
+  #wave { height: 90px; }
+  .specwrap { display: grid; grid-template-columns: 40px 1fr; gap: 4px; }
+  .yaxis { position: relative; color: #c8ccd2; font-size: 12px; }
+  .yaxis span { position: absolute; right: 4px; transform: translateY(-50%); white-space: nowrap; }
+  #spec { height: clamp(220px, 42vw, 400px); }
+  .xlabel { color: #9aa0a6; font-size: 12px; text-align: right; margin-top: 3px; }
+  h2 { font-size: 24px; margin: 28px 0 10px; color: var(--blue); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+  .challenge { background: var(--paper); border-radius: 10px; padding: 14px; border-top: 4px solid var(--coral); }
+  .challenge h3 { font-size: 17px; margin-bottom: 4px; }
+  .challenge p { font-size: 15px; color: #2a2f36; }
+  .challenge details { margin-top: 6px; font-size: 14px; color: var(--muted); }
+  .challenge summary { cursor: pointer; color: var(--blue); font-weight: 600; }
+  .notes { background: var(--paper); border-radius: 10px; padding: 6px 16px 14px; }
+  .notes h3 { font-size: 17px; margin: 12px 0 4px; }
+  .notes li, .notes p { font-size: 15px; color: #2a2f36; }
+  .notes ul { padding-left: 20px; }
+  footer.wrap { border-top: 1px solid #e1e5ea; padding-top: 16px; padding-bottom: 28px; font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="crumb"><a href="index.html">&larr; Speech AI Classroom Kit</a></div>
+    <h1>See Your Voice</h1>
+    <p>Talk, sing, whistle or clap and watch a live picture of the sound. This is the kind of picture a voice assistant starts from before it guesses any words.</p>
+    <span class="privacy">&#128274; Runs entirely in your browser. Nothing is recorded, saved or sent anywhere.</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="controls">
+    <button id="start" class="primary">Start microphone</button>
+    <button id="pause" disabled>Pause</button>
+    <button id="tone">Play test tone</button>
+    <button id="save" disabled>Save picture</button>
+    <label>Top of picture
+      <select id="range"><option value="8000">8,000 Hz</option><option value="4000">4,000 Hz</option></select>
+    </label>
+    <label>Sensitivity <input id="gain" type="range" min="-20" max="20" step="2" value="0" aria-describedby="status"></label>
+  </div>
+  <p id="status" role="status" aria-live="polite">Press Start microphone and allow access. No microphone? Try the test tone.</p>
+
+  <div class="viz">
+    <div class="label">The wiggle (what the microphone measures)</div>
+    <canvas id="wave" width="1024" height="90" aria-label="Live waveform of the microphone signal"></canvas>
+    <div class="label">The picture (spectrogram)</div>
+    <div class="specwrap">
+      <div class="yaxis" id="yaxis" aria-hidden="true"></div>
+      <canvas id="spec" width="1024" height="400" role="img" aria-label="Live spectrogram. Time runs left to right, low pitches at the bottom, high at the top, brighter means louder."></canvas>
+    </div>
+    <div class="xlabel">time &rarr; &nbsp;&middot;&nbsp; low sounds at the bottom, high sounds at the top &nbsp;&middot;&nbsp; brighter = louder</div>
+  </div>
+
+  <h2>Challenges</h2>
+  <div class="grid">
+    <div class="challenge"><h3>&#127925; Whistle a line</h3><p>Whistle one steady note. Then slide it up and down. What can you draw?</p><details><summary>What to notice</summary>A whistle is almost a single pitch, so it makes one bright line.</details></div>
+    <div class="challenge"><h3>&#128013; Find the snake</h3><p>Say &ldquo;sssss&rdquo;, then &ldquo;shhhhh&rdquo;. Which one sits higher?</p><details><summary>What to notice</summary>S is higher than SH. Both look like static because there is no voice buzz, only rushing air.</details></div>
+    <div class="challenge"><h3>&#127752; Vowel rainbow</h3><p>Slowly say &ldquo;eeee&rdquo;, &ldquo;ooooo&rdquo;, then &ldquo;ahhh&rdquo;. Watch the bright bands move.</p><details><summary>What to notice</summary>Your tongue and lips reshape your mouth, which moves the loud bands. Recognizers use these bands to tell vowels apart.</details></div>
+    <div class="challenge"><h3>&#129323; Whisper vs. talk</h3><p>Say &ldquo;hello&rdquo; normally, then whisper it. What disappears?</p><details><summary>What to notice</summary>The stacked lines vanish because whispering switches off your voice&rsquo;s buzz. That is why whispered words were harder in Be the Recognizer.</details></div>
+    <div class="challenge"><h3>&#127929; Staircase</h3><p>Sing do-re-mi up a scale. Can you make steps?</p><details><summary>What to notice</summary>Each note is a new pitch, so the stacked lines jump up like stairs.</details></div>
+    <div class="challenge"><h3>&#128079; One clap</h3><p>Clap once. Why is a clap a tall, thin line?</p><details><summary>What to notice</summary>A clap is very short and has low and high sounds at once, just like the burst in p, t or k.</details></div>
+    <div class="challenge"><h3>&#128674; Ship or chip?</h3><p>Say &ldquo;ship&rdquo;, then &ldquo;chip&rdquo;. Spot the difference at the start.</p><details><summary>What to notice</summary>&ldquo;Chip&rdquo; starts with a tiny silence and a pop before the static; &ldquo;ship&rdquo; starts smoothly.</details></div>
+    <div class="challenge"><h3>&#128483; Name game</h3><p>Say your name, press Pause, then Save picture. Can a partner guess whose name it is?</p><details><summary>What to notice</summary>This is Spectrogram Detective with your own voices. Different people make different pictures of the same word.</details></div>
+  </div>
+
+  <h2>For teachers</h2>
+  <div class="notes">
+    <h3>Privacy</h3>
+    <p>The activity does not record, store or upload audio, and it has no ads. Basic page analytics records visits but never receives microphone audio. &ldquo;Save picture&rdquo; downloads an image to this device, and the activity turns off the browser&rsquo;s noise suppression so students see the real sound.</p>
+    <h3>Setup and troubleshooting</h3>
+    <ul>
+      <li>Works in current Chrome, Edge, Firefox and Safari on Chromebooks, Windows, Mac and iPad, over https or from a saved copy.</li>
+      <li>If the microphone is blocked, select the lock or microphone icon in the address bar, allow the microphone, then reload. School devices may need IT to allow it.</li>
+      <li>No microphone? The test tone draws a gliding line so you can still explain the picture.</li>
+      <li>Too dark or too bright? Move the Sensitivity slider.</li>
+    </ul>
+    <h3>The science</h3>
+    <p>The top strip is the raw &ldquo;wiggle&rdquo;: air pressure measured thousands of times per second. The picture below splits it into pitches. This live view uses a longer analysis window than the printed Spectrogram Detective cards, so it shows a voice as stacked horizontal lines (the harmonics of your pitch) instead of thin vertical buzz stripes. Both are real ways to picture sound.</p>
+  </div>
+</main>
+
+<footer class="wrap">Part of the free Speech AI Classroom Kit by Deepak Babu Piskala, IEEE Senior Member and author of <i>Building Speech AI</i>. A personal volunteer project. Free to use and share for classroom use.</footer>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const spec = $('spec'), sctx = spec.getContext('2d');
+  const wave = $('wave'), wctx = wave.getContext('2d');
+  const status = (msg, warn = false) => { $('status').textContent = msg; $('status').className = warn ? 'warn' : ''; };
+  const COLS = 2, MIN_DB = -100, MAX_DB = -30, TILT_DB_PER_OCT = 4;
+  const lut = buildLut([[0, [11, 13, 18]], [0.25, [58, 16, 110]], [0.5, [168, 42, 100]], [0.75, [243, 122, 32]], [1, [252, 250, 170]]]);
+  let ctx = null, analyser = null, source = null, stream = null, rowBin = null, rowTilt = null, dbBuf = null, timeBuf = null;
+  let running = false, paused = false, topHz = 8000, gainDb = 0, toneEnd = 0;
+
+  function buildLut(stops) {
+    const out = new Uint8ClampedArray(256 * 3);
+    for (let i = 0; i < 256; i++) {
+      const t = i / 255;
+      let k = 0;
+      while (k < stops.length - 2 && t > stops[k + 1][0]) k++;
+      const [t0, c0] = stops[k], [t1, c1] = stops[k + 1], u = (t - t0) / (t1 - t0);
+      for (let j = 0; j < 3; j++) out[i * 3 + j] = c0[j] + (c1[j] - c0[j]) * u;
+    }
+    return out;
+  }
+
+  function clearCanvases() {
+    sctx.fillStyle = `rgb(${lut[0]},${lut[1]},${lut[2]})`;
+    sctx.fillRect(0, 0, spec.width, spec.height);
+    wctx.fillStyle = '#0b0d12';
+    wctx.fillRect(0, 0, wave.width, wave.height);
+  }
+
+  function drawAxis() {
+    const ticks = topHz === 8000 ? [8000, 6000, 4000, 2000, 0] : [4000, 3000, 2000, 1000, 0];
+    $('yaxis').innerHTML = ticks.map((f) => `<span style="top:${(1 - f / topHz) * 100}%">${f ? f / 1000 + 'k' : '0'} Hz</span>`).join('');
+  }
+
+  function buildRows() {
+    if (!analyser) return;
+    const binHz = ctx.sampleRate / analyser.fftSize, H = spec.height;
+    rowBin = new Uint16Array(H);
+    rowTilt = new Float32Array(H);
+    for (let y = 0; y < H; y++) {
+      const f = (1 - y / (H - 1)) * topHz;
+      rowBin[y] = Math.min(analyser.frequencyBinCount - 1, Math.round(f / binHz));
+      // Speech energy falls with pitch; this tilt keeps s-sounds and upper bands visible.
+      rowTilt[y] = f > 300 ? TILT_DB_PER_OCT * Math.log2(f / 300) : 0;
+    }
+  }
+
+  async function ensureAudio() {
+    if (!ctx) {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) throw new Error('This browser does not support Web Audio.');
+      ctx = new Ctx();
+      analyser = ctx.createAnalyser();
+      analyser.fftSize = 2048;
+      analyser.smoothingTimeConstant = 0;
+      dbBuf = new Float32Array(analyser.frequencyBinCount);
+      timeBuf = new Float32Array(analyser.fftSize);
+      buildRows();
+    }
+    if (ctx.state === 'suspended') await ctx.resume();
+  }
+
+  function frame() {
+    requestAnimationFrame(frame);
+    if (!analyser || paused || (!running && ctx.currentTime > toneEnd)) return;
+    analyser.getFloatFrequencyData(dbBuf);
+    sctx.drawImage(spec, -COLS, 0);
+    const H = spec.height, img = sctx.createImageData(COLS, H), span = MAX_DB - MIN_DB;
+    for (let y = 0; y < H; y++) {
+      const db = dbBuf[rowBin[y]] + rowTilt[y] + gainDb;
+      const v = Math.max(0, Math.min(255, Math.round(((db - MIN_DB) / span) * 255))) * 3;
+      for (let x = 0; x < COLS; x++) {
+        const o = (y * COLS + x) * 4;
+        img.data[o] = lut[v]; img.data[o + 1] = lut[v + 1]; img.data[o + 2] = lut[v + 2]; img.data[o + 3] = 255;
+      }
+    }
+    sctx.putImageData(img, spec.width - COLS, 0);
+
+    analyser.getFloatTimeDomainData(timeBuf);
+    wctx.fillStyle = '#0b0d12';
+    wctx.fillRect(0, 0, wave.width, wave.height);
+    wctx.strokeStyle = '#FFEB6B';
+    wctx.lineWidth = 2;
+    wctx.beginPath();
+    const mid = wave.height / 2;
+    for (let i = 0; i < timeBuf.length; i++) {
+      const x = (i / (timeBuf.length - 1)) * wave.width, y = mid - Math.max(-1, Math.min(1, timeBuf[i] * 4)) * (mid - 4);
+      i ? wctx.lineTo(x, y) : wctx.moveTo(x, y);
+    }
+    wctx.stroke();
+  }
+
+  async function startMic() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      status('This browser cannot use the microphone on this page. Open it over https in Chrome, Edge, Firefox or Safari.', true);
+      return;
+    }
+    try {
+      await ensureAudio();
+      stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } });
+      source = ctx.createMediaStreamSource(stream);
+      source.connect(analyser); // not connected to the speakers, so there is no feedback
+      running = true;
+      paused = false;
+      $('start').textContent = 'Stop microphone';
+      $('pause').disabled = false;
+      $('pause').textContent = 'Pause';
+      $('save').disabled = false;
+      status('Listening. Try a challenge below. Nothing is recorded.');
+    } catch (err) {
+      const blocked = err && (err.name === 'NotAllowedError' || err.name === 'SecurityError');
+      status(blocked ? 'Microphone blocked. Allow it from the icon in the address bar, then reload. The test tone still works.' : `Could not start the microphone (${err && err.name ? err.name : err}). The test tone still works.`, true);
+    }
+  }
+
+  function stopMic() {
+    if (stream) stream.getTracks().forEach((t) => t.stop());
+    if (source) source.disconnect();
+    stream = source = null;
+    running = false;
+    $('start').textContent = 'Start microphone';
+    $('pause').disabled = true;
+    status('Microphone off. Your picture stays on screen until you start again.');
+  }
+
+  async function playTone() {
+    try {
+      await ensureAudio();
+    } catch (err) {
+      status(err.message, true);
+      return;
+    }
+    const t = ctx.currentTime, osc = ctx.createOscillator(), amp = ctx.createGain();
+    osc.frequency.setValueAtTime(300, t);
+    osc.frequency.exponentialRampToValueAtTime(3000, t + 2);
+    osc.frequency.exponentialRampToValueAtTime(300, t + 4);
+    amp.gain.setValueAtTime(0.0001, t);
+    amp.gain.exponentialRampToValueAtTime(0.12, t + 0.1);
+    amp.gain.setValueAtTime(0.12, t + 3.9);
+    amp.gain.exponentialRampToValueAtTime(0.0001, t + 4);
+    osc.connect(amp);
+    amp.connect(analyser);
+    amp.connect(ctx.destination);
+    osc.start(t);
+    osc.stop(t + 4.05);
+    toneEnd = t + 4.3;
+    paused = false;
+    $('pause').textContent = 'Pause';
+    $('save').disabled = false;
+    status('Test tone: a single pitch gliding up and down draws one bright curved line.');
+  }
+
+  $('start').addEventListener('click', () => (running ? stopMic() : startMic()));
+  $('pause').addEventListener('click', () => {
+    paused = !paused;
+    $('pause').textContent = paused ? 'Resume' : 'Pause';
+    status(paused ? 'Paused. Save the picture or press Resume.' : 'Listening.');
+  });
+  $('tone').addEventListener('click', playTone);
+  $('save').addEventListener('click', () => {
+    spec.toBlob((blob) => {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'my-voice-picture.png';
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+    });
+  });
+  $('range').addEventListener('change', (e) => { topHz = Number(e.target.value); drawAxis(); buildRows(); clearCanvases(); });
+  $('gain').addEventListener('input', (e) => { gainDb = Number(e.target.value); });
+
+  clearCanvases();
+  drawAxis();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

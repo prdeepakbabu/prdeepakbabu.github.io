@@ -16,6 +16,7 @@ import glob
 import html
 import json
 import re
+import subprocess
 import urllib.parse
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -173,6 +174,33 @@ def as_iso_date_or_empty(value: str) -> str:
 def file_mtime_iso(path: Path) -> str:
     dt = datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc)
     return dt.date().isoformat()
+
+
+def sitemap_lastmod_iso(path: Path) -> str:
+    """Use commit dates for unchanged files; clone timestamps are not edit dates."""
+    try:
+        relative_path = path.resolve().relative_to(SITE_ROOT.resolve())
+        status = subprocess.run(
+            ["git", "status", "--porcelain", "--", str(relative_path)],
+            cwd=SITE_ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        if status.stdout.strip():
+            return datetime.now(tz=timezone.utc).date().isoformat()
+        committed = subprocess.run(
+            ["git", "log", "-1", "--format=%cI", "--", str(relative_path)],
+            cwd=SITE_ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        if committed.stdout.strip():
+            return datetime.fromisoformat(committed.stdout.strip()).astimezone(timezone.utc).date().isoformat()
+    except (OSError, subprocess.CalledProcessError, ValueError):
+        pass
+    return file_mtime_iso(path)
 
 
 def post_url(slug: str) -> str:
@@ -458,6 +486,7 @@ def write_llms_txt(posts: list[PostRecord], sections: list[SearchIntentSection])
     lines.append(f"- Publications: {SITE_URL}/publications.html")
     lines.append(f"- ICML 2026 Spotlight paper: {SITE_URL}/speech_icml_paper/")
     lines.append(f"- Building Speech AI book: {SITE_URL}/building-speech-ai/")
+    lines.append(f"- IEEE STEM Summit 2026 Speech AI Classroom Kit: {SITE_URL}/stem_summit/")
     lines.append(f"- Blog: {SITE_URL}/blogs.html")
     lines.append(f"- Question Answers: {SITE_URL}/answers.html")
     lines.append(f"- Social Posts: {SITE_URL}/sm_posts.html")
@@ -716,6 +745,7 @@ def write_sitemap(posts: list[PostRecord]) -> None:
         ("/speech_icml_paper/", "monthly", "0.8", "speech_icml_paper/index.html"),
         ("/blogs.html", "weekly", "0.9", "blogs.html"),
         ("/building-speech-ai/", "monthly", "0.9", "building-speech-ai/index.html"),
+        ("/stem_summit/", "monthly", "0.9", "stem_summit/index.html"),
         ("/answers.html", "weekly", "0.8", "answers.html"),
         ("/sm_posts.html", "weekly", "0.8", "sm_posts.html"),
         ("/paperreviews.html", "monthly", "0.7", "paperreviews.html"),
@@ -729,7 +759,7 @@ def write_sitemap(posts: list[PostRecord]) -> None:
     for path_url, changefreq, priority, local_file in static_pages:
         abs_url = f"{SITE_URL}{path_url}"
         local_path = SITE_ROOT / local_file
-        lastmod = file_mtime_iso(local_path) if local_path.exists() else datetime.now(tz=timezone.utc).date().isoformat()
+        lastmod = sitemap_lastmod_iso(local_path) if local_path.exists() else datetime.now(tz=timezone.utc).date().isoformat()
         lines.extend(
             [
                 "  <url>",

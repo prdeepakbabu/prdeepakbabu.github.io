@@ -9,14 +9,14 @@
     },
     {
       "id": "patents_and_papers",
-      "value": "21+",
-      "label": "Patents and publications",
+      "value": "24",
+      "label": "Google Scholar listings",
       "href": "publications.html",
       "ariaLabel": "View publications"
     },
     {
       "id": "recent_outputs",
-      "value": "11",
+      "value": "15",
       "label": "Recent papers and preprints (2025-2026)",
       "href": "publications.html",
       "ariaLabel": "View recent publications"
