@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNWLG8DBTN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XNWLG8DBTN', {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Voice Assistants Hear You</title>
+<link rel="canonical" href="https://prdeepakbabu.github.io/stem_summit/slides.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+  @page { size: 13.33in 7.5in; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: "Segoe UI", "Segoe UI Variable Text", Calibri, Arial, sans-serif;
+    color: #0E1116; background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+  .display {
+    font-family: "Segoe UI", "Segoe UI Variable Display", "Arial Black", Arial, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .mono { font-family: Consolas, "Courier New", monospace; }
+  .slide {
+    width: 13.33in; height: 7.5in;
+    page-break-after: always;
+    padding: 0.55in 0.75in;
+    position: relative;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    background: #fff;
+  }
+  .slide:last-child { page-break-after: auto; }
+  .pg { position: absolute; bottom: 0.22in; right: 0.4in; font-size: 10pt; color: #9aa0a6; font-weight: 600; }
+  .brand { position: absolute; bottom: 0.22in; left: 0.4in; font-size: 9pt; color: #9aa0a6; letter-spacing: 0.08em; font-weight: 600; }
+
+  h1 { font-family: "Segoe UI", Arial, sans-serif; font-weight: 800; font-size: 48pt; line-height: 1.05; color: #00629B; letter-spacing: -0.02em; }
+  h2 { font-family: "Segoe UI", Arial, sans-serif; font-weight: 800; font-size: 32pt; line-height: 1.1; color: #00629B; margin-bottom: 0.2in; letter-spacing: -0.015em; }
+  h3 { font-family: "Segoe UI", Arial, sans-serif; font-weight: 700; font-size: 19pt; color: #0E1116; }
+  p  { font-size: 15pt; line-height: 1.45; color: #2a2f36; }
+
+  .accent { color: #FF6F61; }
+  .blue { color: #00629B; }
+  .yellow-hi { background: linear-gradient(180deg, transparent 60%, #FFEB6B 60%); padding: 0 6pt; }
+  .tag-top { font-weight: 700; font-size: 11pt; letter-spacing: 0.18em; color: #FF6F61; text-transform: uppercase; margin-bottom: 0.15in; }
+
+  /* ============ S1 cold open ============ */
+  .s1 { background: #0E1116; color: #fff; justify-content: center; align-items: center; text-align: center; }
+  .s1 .clip {
+    background: rgba(255,255,255,0.06); border: 1px solid #2a2f36;
+    border-radius: 12px; padding: 12pt 22pt; margin: 5pt; font-size: 16pt;
+    color: #d4d7da; display: inline-flex; align-items: center; gap: 12pt; min-width: 460pt;
+  }
+  .s1 .play { width: 22pt; height: 22pt; border-radius: 50%; background: #FF6F61;
+    display: inline-flex; justify-content: center; align-items: center; color: #fff; font-size: 9pt; font-weight: 700; }
+  .s1 h1 { color: #fff; font-size: 32pt; margin-top: 0.35in; font-weight: 800; }
+  .s1 .yhi { color: #FFEB6B; }
+
+  /* ============ S2 title ============ */
+  .s2 { background: linear-gradient(135deg, #00629B 0%, #003a5d 100%); color: #fff; justify-content: center; padding-left: 1.1in; }
+  .s2 h1 { color: #fff; font-size: 60pt; max-width: 11in; font-weight: 900; }
+  .s2 .sub { color: #FF6F61; font-size: 22pt; font-weight: 600; margin-top: 0.25in; }
+  .s2 .bio { color: #b8d4e8; font-size: 13pt; margin-top: 0.55in; letter-spacing: 0.06em; font-weight: 600; }
+
+  /* ============ S3 big question ============ */
+  .s3 { justify-content: center; align-items: center; text-align: center; }
+  .s3 .q { font-family: "Segoe UI", Arial, sans-serif; font-weight: 700; font-size: 38pt; line-height: 1.25; color: #0E1116; max-width: 11in; letter-spacing: -0.015em; }
+
+  /* ============ S4 wiggle ============ */
+  .s4 .wave-box { background: #0E1116; border-radius: 16px; padding: 0.35in; margin: 0.25in 0; }
+  .s4 .pill { background: #FFEB6B; padding: 8pt 18pt; border-radius: 999px; font-weight: 700; font-size: 16pt; display: inline-block; margin-top: 0.18in; }
+
+  /* ============ S5 phonemes ============ */
+  .s5 .lego-row { display: flex; gap: 14pt; align-items: center; justify-content: center; margin: 0.25in 0; }
+  .lego { width: 96pt; height: 76pt; border-radius: 10px; display: flex; justify-content: center; align-items: center;
+    font-weight: 800; font-size: 26pt; color: #fff; position: relative;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.18); }
+  .lego::before { content: ''; position: absolute; top: -10pt; left: 18pt; width: 22pt; height: 14pt; background: inherit; border-radius: 50% 50% 4px 4px; }
+  .lego::after { content: ''; position: absolute; top: -10pt; right: 18pt; width: 22pt; height: 14pt; background: inherit; border-radius: 50% 50% 4px 4px; }
+  .lego.c1 { background: #FF6F61; }
+  .lego.c2 { background: #00629B; }
+  .lego.c3 { background: #2EA84E; }
+  .arrow { font-size: 28pt; color: #9aa0a6; font-weight: 600; }
+  .word-out { font-weight: 800; font-size: 46pt; color: #0E1116; letter-spacing: 0.04em; }
+
+  /* ============ S6 ambiguity ============ */
+  .s6 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4in; margin: 0.25in 0; }
+  .s6 .opt { background: #f4f6fa; border-radius: 14px; padding: 0.25in; text-align: center; border: 2px dashed #c4cad3; }
+  .s6 .opt .text { font-weight: 800; font-size: 24pt; color: #00629B; margin-bottom: 10pt; letter-spacing: 0.02em; }
+  .s6 .same { text-align: center; margin-top: 0.2in; font-weight: 600; font-size: 16pt; color: #FF6F61; }
+
+  /* ============ S7 STACK (NEW) ============ */
+  .s7 .sub-h { font-size: 12pt; color: #5a6068; max-width: 11in; margin-bottom: 0.15in; }
+  .s7 .stack-row { display: flex; align-items: stretch; justify-content: center; gap: 6pt; margin-top: 6pt; }
+  .s7 .ep { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4pt; padding: 8pt 4pt; min-width: 52pt; }
+  .s7 .ep .em { font-size: 26pt; }
+  .s7 .ep .lbl { font-size: 9pt; color: #9aa0a6; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+  .s7 .stage {
+    flex: 1; background: #fff; border-radius: 10px; padding: 8pt 8pt 10pt;
+    border-top: 4px solid #00629B; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 88pt;
+  }
+  .s7 .stage.warn { border-top-color: #FF6F61; }
+  .s7 .stage .num { font-size: 9pt; font-weight: 700; color: #9aa0a6; letter-spacing: 0.1em; }
+  .s7 .stage .name { font-weight: 800; font-size: 12pt; color: #0E1116; margin-top: 3pt; line-height: 1.15; }
+  .s7 .stage .what { font-size: 9.5pt; color: #5a6068; margin-top: 4pt; line-height: 1.3; }
+  .s7 .conn { font-size: 18pt; color: #9aa0a6; align-self: center; padding: 0 1pt; }
+  .s7 .legend { margin-top: 14pt; display: grid; grid-template-columns: 1fr 1fr; gap: 12pt; }
+  .s7 .legend .box { padding: 12pt 16pt; border-radius: 10px; }
+  .s7 .legend .why { background: #fff4f2; border-left: 4px solid #FF6F61; }
+  .s7 .legend .career { background: #eef4fb; border-left: 4px solid #00629B; }
+  .s7 .legend h4 { font-size: 12pt; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4pt; }
+  .s7 .legend .why h4 { color: #c63d2f; }
+  .s7 .legend .career h4 { color: #00629B; }
+  .s7 .legend p { font-size: 11pt; line-height: 1.4; }
+
+  /* ============ S8 evolution rules+pipeline ============ */
+  .s8 .era { display: grid; grid-template-columns: 170pt 1fr; gap: 0.25in; padding: 0.15in 0; border-top: 2px solid #e5e8ed; }
+  .s8 .era:first-of-type { border-top: none; }
+  .s8 .era-year { font-weight: 800; font-size: 18pt; color: #FF6F61; letter-spacing: 0.02em; }
+  .s8 .era-year .yr { color: #9aa0a6; font-size: 12pt; display: block; margin-top: 2pt; font-weight: 600; }
+  .s8 .era-body h3 { font-size: 17pt; margin-bottom: 6pt; font-weight: 700; }
+  .s8 .era-body p { font-size: 13pt; color: #5a6068; }
+  .s8 .pipe { display: flex; gap: 5pt; align-items: center; margin-top: 8pt; flex-wrap: nowrap; }
+  .s8 .pipe .box { background: #fff; border: 2px solid #00629B; padding: 5pt 9pt; border-radius: 6px; font-weight: 700; font-size: 10pt; color: #00629B; white-space: nowrap; }
+  .s8 .pipe .arr { color: #9aa0a6; font-size: 12pt; font-weight: 600; }
+
+  /* ============ S9 end-to-end ============ */
+  .s9-canvas { flex: 1; display: flex; align-items: center; justify-content: center; }
+  .blob {
+    width: 300pt; height: 200pt; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #FF6F61, #c63d2f);
+    display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; text-align: center;
+    font-weight: 800; font-size: 18pt; line-height: 1.3;
+    box-shadow: 0 18px 50px rgba(198,61,47,0.3); padding: 0 30pt;
+  }
+  .blob .params { font-size: 10pt; opacity: 0.9; font-weight: 600; display: block; margin-top: 6pt; }
+  .io-label { font-weight: 700; font-size: 16pt; color: #0E1116; padding: 12pt 18pt; background: #f4f6fa; border-radius: 10px; text-align: center; }
+  .io-label .sub { display: block; font-size: 10pt; color: #9aa0a6; font-weight: 600; margin-top: 3pt; }
+  .e2e-row { display: flex; align-items: center; justify-content: center; gap: 18pt; }
+  .e2e-row .arr { font-size: 32pt; color: #00629B; font-weight: 700; }
+  .s9 .punch { text-align: center; font-weight: 600; font-size: 16pt; color: #5a6068; margin-top: 0.2in; }
+  .s9 .punch .b { color: #FF6F61; font-weight: 800; }
+
+  /* ============ S10 demo ============ */
+  .s10 { background: #FFEB6B; }
+  .s10 h2 { color: #0E1116; }
+  .s10 .demo-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16pt; margin: 0.25in 0; }
+  .s10 .card { background: #fff; padding: 0.25in; border-radius: 14px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+  .s10 .icon { font-size: 32pt; }
+  .s10 .card h3 { font-size: 16pt; margin: 8pt 0 5pt; font-weight: 800; }
+  .s10 .card p { font-size: 12pt; color: #5a6068; }
+  .s10 .live { background: #FF6F61; color: #fff; padding: 10pt 22pt; border-radius: 999px; display: inline-block;
+    font-weight: 800; font-size: 16pt; margin-top: 0.15in; }
+
+  /* ============ S11 kids ============ */
+  .s11 .big-stat { font-weight: 900; font-size: 84pt; color: #FF6F61; line-height: 1; letter-spacing: -0.04em; }
+  .s11 .stat-cap { font-weight: 700; font-size: 18pt; color: #0E1116; margin-top: 6pt; }
+  .s11 .reasons { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14pt; margin-top: 0.25in; }
+  .s11 .reason { background: #f4f6fa; padding: 14pt; border-radius: 12px; border-left: 5px solid #FF6F61; }
+  .s11 .reason .ic { font-size: 24pt; }
+  .s11 .reason h4 { font-weight: 800; font-size: 13pt; margin: 5pt 0; }
+  .s11 .reason p { font-size: 11pt; color: #5a6068; }
+  .s11 .hook { margin-top: 0.25in; font-weight: 800; font-size: 18pt; color: #00629B; text-align: center; }
+  .s11 .src { margin-top: 10pt; font-size: 9.5pt; color: #9aa0a6; text-align: center; }
+
+  /* ============ S12 multimodal ============ */
+  .s12 { background: linear-gradient(135deg, #f4f6fa 0%, #e8eef5 100%); }
+  .s12 .modal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12pt; margin: 0.25in 0; }
+  .s12 .mod { background: #fff; padding: 16pt; border-radius: 12px; text-align: center; border: 2px solid transparent; }
+  .s12 .mod.core { border-color: #00629B; }
+  .s12 .mod .ic { font-size: 32pt; margin-bottom: 8pt; }
+  .s12 .mod h4 { font-weight: 800; font-size: 14pt; color: #0E1116; }
+  .s12 .mod p { font-size: 10pt; color: #5a6068; margin-top: 3pt; line-height: 1.35; }
+  .s12 .fuse-arrow { text-align: center; font-size: 22pt; color: #FF6F61; margin: 8pt 0; font-weight: 700; }
+  .s12 .fuse-box { background: #00629B; color: #fff; padding: 16pt; border-radius: 12px; text-align: center;
+    font-weight: 700; font-size: 17pt; }
+  .s12 .fuse-box .b { color: #FFEB6B; }
+
+  /* ============ S13 open problems ============ */
+  .s13 h2 { color: #00629B; }
+  .s13 .sub-h { font-size: 11pt; color: #FF6F61; font-weight: 800; margin-bottom: 0.15in; letter-spacing: 0.15em; text-transform: uppercase; }
+  .s13 .prob-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10pt; }
+  .s13 .prob { background: #fff; border: 2px solid #e5e8ed; border-radius: 10px; padding: 12pt; position: relative; }
+  .s13 .prob .tag { background: #FFEB6B; padding: 2pt 6pt; border-radius: 3px; font-weight: 800; font-size: 8pt; color: #0E1116; display: inline-block; margin-bottom: 5pt; letter-spacing: 0.06em; }
+  .s13 .prob h4 { font-weight: 800; font-size: 13pt; color: #0E1116; margin-bottom: 3pt; }
+  .s13 .prob p { font-size: 10pt; color: #5a6068; line-height: 1.35; }
+  .s13 .prob .ic { font-size: 20pt; margin-bottom: 4pt; }
+  .s13 .call { margin-top: 0.18in; padding: 12pt 16pt; background: linear-gradient(90deg, #00629B, #FF6F61); border-radius: 10px; color: #fff; font-weight: 700; font-size: 14pt; text-align: center; }
+
+  /* ============ S14 classroom activity ============ */
+  .s14 .activity { display: grid; grid-template-columns: 1fr 240pt; gap: 0.4in; margin-top: 0.15in; }
+  .s14 .steps { display: flex; flex-direction: column; gap: 10pt; }
+  .s14 .step { display: flex; gap: 12pt; align-items: flex-start; }
+  .s14 .step .num { background: #FF6F61; color: #fff; width: 28pt; height: 28pt; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 14pt; flex-shrink: 0; }
+  .s14 .step .txt h4 { font-weight: 800; font-size: 15pt; margin-bottom: 2pt; }
+  .s14 .step .txt p { font-size: 12pt; color: #5a6068; }
+  .s14 .qr-box { background: #f4f6fa; border-radius: 14px; padding: 16pt; text-align: center; }
+  .s14 .doc { font-size: 96pt; line-height: 1.15; }
+  .s14 .qr-box p { font-weight: 800; font-size: 12pt; margin-top: 8pt; color: #00629B; }
+
+  /* ============ S15 resources ============ */
+  .s15 .res-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14pt; margin: 0.18in 0; }
+  .s15 .res { background: #fff; border: 2px solid #e5e8ed; border-radius: 12px; padding: 16pt; display: flex; gap: 14pt; align-items: center; }
+  .s15 .res .ic { font-size: 32pt; flex-shrink: 0; }
+  .s15 .res h4 { font-weight: 800; font-size: 15pt; color: #00629B; }
+  .s15 .res p { font-size: 11pt; color: #5a6068; margin-top: 2pt; }
+  .s15 .footer-tag { margin-top: 0.18in; text-align: center; font-weight: 700; font-size: 16pt; color: #FF6F61; }
+
+  /* ============ S16 closing ============ */
+  .s16 { background: linear-gradient(135deg, #00629B 0%, #0E1116 100%); color: #fff; justify-content: center; align-items: center; text-align: center; }
+  .s16 .closer { font-weight: 900; font-size: 42pt; max-width: 11in; line-height: 1.25; letter-spacing: -0.015em; }
+  .s16 .closer .hi { color: #FFEB6B; }
+  .s16 .sig { margin-top: 0.4in; font-size: 12pt; color: #b8d4e8; letter-spacing: 0.06em; font-weight: 600; }
+
+  svg.wave { width: 100%; height: 120pt; }
+  svg.spec { width: 100%; height: 100pt; }
+
+  /* ============ on-screen viewer (kit slides page); print and ?static keep the stacked layout ============ */
+  body:not(.viewer) .web-only { display: none !important; }
+  .s10 a.live { color: #fff; text-decoration: none; }
+  @media screen {
+    body.viewer .print-only { display: none !important; }
+    body.viewer { background: #1b1f26; overflow: hidden; height: 100vh; }
+    body.viewer .slide { display: none; position: absolute; left: 0; top: 0; transform-origin: 0 0; box-shadow: 0 10px 40px rgba(0,0,0,0.45); }
+    body.viewer .slide.current { display: flex; }
+    .deck-bar { position: fixed; left: 0; right: 0; bottom: 0; height: 56px; display: flex; align-items: center; gap: 10px; padding: 0 16px; background: #0E1116; color: #fff; font: 600 15px "Segoe UI", Arial, sans-serif; }
+    .deck-bar .gap { flex: 1; }
+    .deck-bar a { color: #cfe3f2; }
+    .deck-bar button { font: inherit; background: #2a2f36; color: #fff; border: 1px solid #4a5058; border-radius: 8px; padding: 6px 14px; cursor: pointer; }
+    .deck-bar button:disabled { opacity: 0.4; cursor: default; }
+    .deck-bar :focus-visible { outline: 3px solid #FFB400; outline-offset: 2px; }
+    #deck-count { min-width: 72px; text-align: center; }
+  }
+  @media screen and (max-width: 600px) {
+    .deck-bar { gap: 6px; padding: 0 8px; }
+    .deck-bar .long, #deck-full { display: none; }
+  }
+  @media print {
+    .web-only { display: none !important; }
+    body.viewer { overflow: visible; height: auto; background: #fff; }
+    body.viewer .slide { display: flex !important; position: relative !important; transform: none !important; box-shadow: none !important; }
+    .deck-bar { display: none !important; }
+  }
+
+  /* ============ hands-on demos (web viewer only) ============ */
+  .ctl { font: 700 12pt "Segoe UI", Arial, sans-serif; border-radius: 999px; border: 2px solid #00629B; background: #fff; color: #00629B; padding: 4pt 13pt; cursor: pointer; }
+  .ctl[aria-pressed="true"] { background: #00629B; color: #fff; }
+  .ctl.dark { background: #2a2f36; color: #fff; border-color: #5a6068; }
+  .ctl:focus-visible, .slide [role="button"]:focus-visible, .slide input:focus-visible { outline: 3px solid #FFB400; outline-offset: 2px; }
+  .slide [role="button"] { cursor: pointer; }
+  .try-lab { display: inline-block; background: #FF6F61; color: #fff; font-weight: 800; font-size: 9pt; letter-spacing: 0.12em; text-transform: uppercase; padding: 2pt 7pt; border-radius: 4px; vertical-align: middle; margin-right: 7pt; }
+  .try { font-size: 12pt; color: #5a6068; }
+  .s1 .try { color: #9aa0a6; margin-top: 12pt; }
+  .s1 .reply.thinking { color: #9aa0a6 !important; font-style: italic; }
+  .s4 .wig-canvas { display: block; width: 100%; height: 150pt; border-radius: 8px; }
+  .s4 .wig-controls { display: flex; flex-wrap: wrap; gap: 10pt; align-items: center; margin-top: 10pt; color: #c8ccd2; font-size: 12pt; }
+  .s4 .wig-controls label { display: inline-flex; gap: 8pt; align-items: center; }
+  .s4 .wig-zoom { width: 170pt; }
+  .s4 .wig-read { color: #FFEB6B; font-weight: 600; }
+  .s5 .try, .s5 .brick-note { text-align: center; }
+  .s5 .brick-note { font-size: 13pt; font-weight: 600; color: #00629B; min-height: 1.45em; margin-top: -8pt; }
+  .s5 .word-out.nonword { color: #9aa0a6; }
+  .s5 .lego[role="button"] { transition: transform 0.15s; }
+  .s5 .lego[role="button"]:hover { transform: translateY(-3px); }
+  body.viewer .s6 svg.spec { height: 64pt; }
+  .s6 .opt { transition: opacity 0.3s, background 0.3s; }
+  .s6 .opt.chosen { border-style: solid; border-color: #00629B; background: #eef4fb; }
+  .s6 .opt.dim { opacity: 0.35; }
+  .s6 .ctx { text-align: center; margin-top: 10pt; font-size: 12pt; color: #2a2f36; }
+  .s6 .ctx .ctl { margin-left: 6pt; }
+  .s6 .stream { display: flex; justify-content: center; margin-top: 12pt; font: 800 20pt Consolas, "Courier New", monospace; }
+  .s6 .stream span { position: relative; background: #f4f6fa; border: 2px solid #c4cad3; border-radius: 6px; padding: 2pt 7pt; margin-right: 3pt; transition: margin-right 0.4s ease; }
+  .s6 .stream span::after { content: ''; position: absolute; top: -5pt; bottom: -5pt; right: -15pt; width: 3pt; border-radius: 2pt; background: #FF6F61; opacity: 0; transition: opacity 0.4s; }
+  .s6 .stream span.cut { margin-right: 27pt; }
+  .s6 .stream span.cut::after { opacity: 1; }
+  .s6 .ctx-out { font-size: 13pt; margin-top: 8pt; min-height: 2.9em; color: #2a2f36; }
+  .s7 .stage { transition: background 0.25s, box-shadow 0.25s; }
+  .s7 .stage.active { box-shadow: 0 0 0 3px #FFEB6B, 0 6px 16px rgba(0,0,0,0.12); }
+  .s7 .stage.good { background: #f1f9f3; }
+  .s7 .stage.bad { background: #fff0ee; }
+  .s7 .stage .out { margin-top: auto; padding-top: 5pt; min-height: 2.6em; font-size: 9.5pt; font-weight: 700; line-height: 1.25; color: #1e7b34; }
+  .s7 .stage.bad .out { color: #c63d2f; }
+  .s7 .run { display: flex; flex-wrap: wrap; gap: 8pt; align-items: center; margin-top: 10pt; font-size: 12pt; }
+  .s7 .run label { display: inline-flex; gap: 6pt; align-items: center; font-weight: 600; color: #2a2f36; }
+  .s7 .run .go { background: #FF6F61; border-color: #FF6F61; color: #fff; }
+  .s7 .run-note { flex-basis: 100%; min-height: 1.3em; font-weight: 700; }
+  .s7 .run-note.good { color: #1e7b34; }
+  .s7 .run-note.bad { color: #c63d2f; }
+  .s10 .card .ctl { margin-top: 8pt; font-size: 11pt; }
+  .s11 .hundred { display: flex; align-items: center; justify-content: center; gap: 16pt; margin-top: 12pt; }
+  .s11 .h-btns { display: flex; flex-direction: column; align-items: flex-start; gap: 6pt; }
+  .s11 .h-grid { display: grid; grid-template-columns: repeat(20, 12pt); gap: 3pt; }
+  .s11 .h-grid i { width: 12pt; height: 12pt; border-radius: 3pt; background: #dfe4ea; transition: background 0.3s; }
+  .s11 .h-grid i.wrong { background: #FF6F61; }
+  .s11 .h-grid i.maybe { background: repeating-linear-gradient(45deg, #FF6F61 0 3px, #ffd9d4 3px 6px); }
+  .s11 .h-read { max-width: 250pt; font-size: 12pt; font-weight: 600; color: #2a2f36; }
+  .s12 .mod { transition: opacity 0.25s, background 0.25s, border-color 0.25s; }
+  .s12 .mod[aria-pressed="false"] { opacity: 0.5; }
+  .s12 .mod[aria-pressed="true"] { border-color: #00629B; background: #eef4fb; }
+  .s12 .ptt { text-align: center; font-size: 13pt; color: #2a2f36; }
+  .s12 .ptt-out { font-size: 15pt; font-weight: 700; margin-top: 5pt; min-height: 1.4em; }
+  .s12 .ptt-out .gap { color: #c63d2f; }
+  .s12 .ptt-out .got { color: #00629B; }
+  .s12 .ptt-src { font-size: 9.5pt; color: #9aa0a6; margin-top: 3pt; }
+  .s15 .res .open { display: inline-block; margin-top: 4pt; font-size: 11pt; font-weight: 800; color: #00629B; }
+</style>
+</head>
+<body>
+
+<!-- 1: COLD OPEN -->
+<section class="slide s1">
+  <div>
+    <div class="clip"><span class="play">▶</span>&nbsp; "Call mom" &nbsp;&rarr;&nbsp; <span class="reply" style="color:#FF6F61">"Calling Tom..."</span></div><br>
+    <div class="clip"><span class="play">▶</span>&nbsp; 4-yr-old: "Play Elsa" &nbsp;&rarr;&nbsp; <span class="reply" style="color:#FF6F61">"Playing Alexa radio"</span></div><br>
+    <div class="clip"><span class="play">▶</span>&nbsp; British accent: "tomato" &nbsp;&rarr;&nbsp; <span class="reply" style="color:#FF6F61">[confused silence]</span></div>
+  </div>
+  <p class="try web-only"><span class="try-lab">Try it</span>Click each &#9654; to see what the assistant did.</p>
+  <h1>Today: why this is one of the<br><span class="yhi">hardest problems in AI</span>.</h1>
+  <div class="brand" style="color:#5a6068">IEEE STEM SUMMIT 2026</div>
+</section>
+
+<!-- 2: TITLE -->
+<section class="slide s2">
+  <h1>How Voice Assistants<br>Hear You</h1>
+  <div class="sub">The hidden science of speech AI</div>
+  <div class="bio">DEEPAK PISKALA &nbsp;·&nbsp; 19 YEARS IN AI &nbsp;·&nbsp; AUTHOR, <i>BUILDING SPEECH AI</i></div>
+  <div class="pg" style="color:#b8d4e8">02</div>
+</section>
+
+<!-- 3: BIG QUESTION -->
+<section class="slide s3">
+  <div class="tag-top">The question this booth answers</div>
+  <div class="q">How does a microphone turn the words<br><span class="yellow-hi">"play despacito"</span> into Despacito actually playing?</div>
+  <div class="pg">03</div>
+</section>
+
+<!-- 4: WIGGLE -->
+<section class="slide s4">
+  <div class="tag-top">Part 1 &middot; What the machine actually sees</div>
+  <h2>Your voice is just a wiggle.</h2>
+  <div class="wave-box">
+    <svg class="wave print-only" viewBox="0 0 1000 200" preserveAspectRatio="none">
+      <path d="M0,100 Q20,40 40,100 T80,100 T120,100 Q140,20 160,100 T200,100 Q220,160 240,100 T280,100 Q300,30 320,100 Q340,170 360,100 T400,100 Q420,50 440,100 Q460,150 480,100 Q500,20 520,100 T560,100 Q580,160 600,100 Q620,40 640,100 T680,100 Q700,180 720,100 Q740,30 760,100 T800,100 Q820,140 840,100 Q860,60 880,100 Q900,150 920,100 Q940,40 960,100 T1000,100" stroke="#FFEB6B" stroke-width="2.5" fill="none"/>
+    </svg>
+    <div class="wiggle web-only">
+      <canvas class="wig-canvas" width="1068" height="200" role="img" aria-label="Waveform of a computer-made voice saying ah, then ee. Zoom in to see single measurements."></canvas>
+      <div class="wig-controls">
+        <button type="button" class="ctl dark" data-act="play">&#9654; Hear it</button>
+        <button type="button" class="ctl dark" data-act="mic">&#127908; Use my microphone</button>
+        <label>Zoom in <input type="range" class="wig-zoom" min="0" max="100" value="0"></label>
+        <span class="wig-read" aria-live="polite"></span>
+      </div>
+    </div>
+  </div>
+  <h3 style="text-align:center; color:#5a6068; font-weight: 500;">A microphone records pressure changes ~16,000 times per second.</h3>
+  <div style="text-align:center; margin-top: 0.15in;"><span class="pill">That's all your voice assistant gets. A wiggle.</span></div>
+  <div class="pg">04</div>
+</section>
+
+<!-- 5: PHONEMES -->
+<section class="slide s5">
+  <div class="tag-top">Part 2 &middot; Sound is made of Lego bricks</div>
+  <h2>English has ~44 sounds. Every word is built from them.</h2>
+  <p class="try web-only"><span class="try-lab">Try it</span>Click a brick in the top row to swap its sound.</p>
+  <div class="lego-row">
+    <div class="lego c1">/k/</div>
+    <div class="lego c3">/æ/</div>
+    <div class="lego c2">/t/</div>
+    <span class="arrow">&rarr;</span>
+    <span class="word-out">CAT</span>
+  </div>
+  <p class="brick-note web-only" aria-live="polite"></p>
+  <div class="lego-row">
+    <div class="lego c2">/d/</div>
+    <div class="lego c1">/ɔ/</div>
+    <div class="lego c3">/g/</div>
+    <span class="arrow">&rarr;</span>
+    <span class="word-out">DOG</span>
+  </div>
+  <p style="text-align:center; margin-top: 0.2in; color:#5a6068; font-size: 14pt;">
+    These tiny units are called <b class="blue">phonemes</b>. The first job of a voice assistant: <b class="accent">listen to the wiggle and guess which Legos.</b>
+  </p>
+  <div class="pg">05</div>
+</section>
+
+<!-- 6: AMBIGUITY -->
+<section class="slide s6">
+  <div class="tag-top">Part 3 &middot; Why this is hard</div>
+  <h2>These two sentences sound <span class="accent">identical</span>.</h2>
+  <div class="pair">
+    <div class="opt">
+      <div class="text">"RECOGNIZE SPEECH"</div>
+      <svg class="spec" viewBox="0 0 300 100" preserveAspectRatio="none">
+        <rect width="300" height="100" fill="#0E1116"/>
+        <g fill="#FF6F61"><rect x="10" y="20" width="6" height="60" opacity="0.4"/><rect x="20" y="30" width="6" height="40" opacity="0.7"/><rect x="30" y="15" width="6" height="70" opacity="0.5"/><rect x="40" y="35" width="6" height="30" opacity="0.8"/><rect x="50" y="25" width="6" height="50" opacity="0.6"/><rect x="60" y="40" width="6" height="20" opacity="0.9"/><rect x="80" y="20" width="6" height="60" opacity="0.5"/><rect x="90" y="30" width="6" height="40" opacity="0.7"/><rect x="100" y="15" width="6" height="70" opacity="0.4"/><rect x="120" y="25" width="6" height="50" opacity="0.8"/><rect x="130" y="35" width="6" height="30" opacity="0.6"/><rect x="150" y="20" width="6" height="60" opacity="0.5"/><rect x="160" y="30" width="6" height="40" opacity="0.7"/><rect x="180" y="25" width="6" height="50" opacity="0.6"/><rect x="200" y="15" width="6" height="70" opacity="0.4"/><rect x="220" y="35" width="6" height="30" opacity="0.8"/><rect x="240" y="20" width="6" height="60" opacity="0.5"/><rect x="260" y="30" width="6" height="40" opacity="0.7"/><rect x="280" y="25" width="6" height="50" opacity="0.6"/></g>
+      </svg>
+    </div>
+    <div class="opt">
+      <div class="text">"WRECK A NICE BEACH"</div>
+      <svg class="spec" viewBox="0 0 300 100" preserveAspectRatio="none">
+        <rect width="300" height="100" fill="#0E1116"/>
+        <g fill="#FFEB6B"><rect x="10" y="20" width="6" height="60" opacity="0.4"/><rect x="20" y="30" width="6" height="40" opacity="0.7"/><rect x="30" y="15" width="6" height="70" opacity="0.5"/><rect x="40" y="35" width="6" height="30" opacity="0.8"/><rect x="50" y="25" width="6" height="50" opacity="0.6"/><rect x="60" y="40" width="6" height="20" opacity="0.9"/><rect x="80" y="20" width="6" height="60" opacity="0.5"/><rect x="90" y="30" width="6" height="40" opacity="0.7"/><rect x="100" y="15" width="6" height="70" opacity="0.4"/><rect x="120" y="25" width="6" height="50" opacity="0.8"/><rect x="130" y="35" width="6" height="30" opacity="0.6"/><rect x="150" y="20" width="6" height="60" opacity="0.5"/><rect x="160" y="30" width="6" height="40" opacity="0.7"/><rect x="180" y="25" width="6" height="50" opacity="0.6"/><rect x="200" y="15" width="6" height="70" opacity="0.4"/><rect x="220" y="35" width="6" height="30" opacity="0.8"/><rect x="240" y="20" width="6" height="60" opacity="0.5"/><rect x="260" y="30" width="6" height="40" opacity="0.7"/><rect x="280" y="25" width="6" height="50" opacity="0.6"/></g>
+      </svg>
+    </div>
+  </div>
+  <p class="same">↑ Same waveform. <b>You</b> know which is which because you know the conversation. Machines are still catching up.</p>
+  <div class="ctx web-only">
+    <span class="try-lab">Try it</span>What was the conversation about?
+    <button type="button" class="ctl" data-ctx="0" aria-pressed="false">&ldquo;My phone can &hellip;&rdquo;</button>
+    <button type="button" class="ctl" data-ctx="1" aria-pressed="false">&ldquo;The storm will &hellip;&rdquo;</button>
+    <div class="stream" aria-hidden="true"></div>
+    <p class="ctx-out" aria-live="polite"></p>
+  </div>
+  <div class="pg">06</div>
+</section>
+
+<!-- 7: NEW — VOICE ASSISTANT STACK -->
+<section class="slide s7">
+  <div class="tag-top">Part 4 &middot; The anatomy of a voice assistant</div>
+  <h2>Inside Alexa, Siri, Google — the same <span class="accent">7-stage pipeline</span>.</h2>
+  <div class="sub-h">From the moment you speak the wake word to the moment the device speaks back, your voice passes through seven specialised AI systems &mdash; each one a research field of its own.</div>
+
+  <div class="stack-row">
+    <div class="ep"><div class="em">🗣️</div><div class="lbl">YOU</div></div>
+    <span class="conn">→</span>
+    <div class="stage warn">
+      <span class="num">1</span>
+      <div class="name">Wake Word</div>
+      <div class="what">"Alexa", "Hey Siri" — always listening, on-device, ultra low power.</div>
+    </div>
+    <span class="conn">→</span>
+    <div class="stage">
+      <span class="num">2</span>
+      <div class="name">ASR</div>
+      <div class="what">Speech → text. The "wiggle to words" model.</div>
+    </div>
+    <span class="conn">→</span>
+    <div class="stage">
+      <span class="num">3</span>
+      <div class="name">NLU</div>
+      <div class="what">What did you <i>mean</i>? Intent + slots.</div>
+    </div>
+    <span class="conn">→</span>
+    <div class="stage">
+      <span class="num">4</span>
+      <div class="name">Dialog Mgr</div>
+      <div class="what">Track context. Ask follow-ups. Remember turn-to-turn.</div>
+    </div>
+    <span class="conn">→</span>
+    <div class="stage">
+      <span class="num">5</span>
+      <div class="name">Skill / Action</div>
+      <div class="what">The actual <i>thing</i>: play music, set timer, call mom.</div>
+    </div>
+    <span class="conn">→</span>
+    <div class="stage">
+      <span class="num">6</span>
+      <div class="name">NLG</div>
+      <div class="what">Write a natural reply ("Playing Despacito").</div>
+    </div>
+    <span class="conn">→</span>
+    <div class="stage warn">
+      <span class="num">7</span>
+      <div class="name">TTS</div>
+      <div class="what">Text → speech. The voice you hear.</div>
+    </div>
+    <span class="conn">→</span>
+    <div class="ep"><div class="em">🔊</div><div class="lbl">REPLY</div></div>
+  </div>
+
+  <div class="run web-only">
+    <span class="try-lab">Try it</span>
+    <button type="button" class="ctl" data-req="call" aria-pressed="true">&ldquo;Alexa, call Mom&rdquo;</button>
+    <button type="button" class="ctl" data-req="play" aria-pressed="false">&ldquo;Alexa, play Despacito&rdquo;</button>
+    <label><input type="checkbox" class="mishear"> Stage 2 mishears one word</label>
+    <button type="button" class="ctl go">&#9654; Run it</button>
+    <span class="run-note" aria-live="polite"></span>
+  </div>
+
+  <div class="legend">
+    <div class="box why">
+      <h4>⚡ Why this matters</h4>
+      <p>If <i>any one</i> of these 7 stages misfires, the whole experience breaks. ASR mishears "mom" as "Tom" → you call the wrong person. That's why voice AI is fragile even after decades of research.</p>
+    </div>
+    <div class="box career">
+      <h4>🎓 Each box = a STEM career</h4>
+      <p>Signal processing (wake word), deep learning (ASR), linguistics (NLU), reinforcement learning (dialog), software engineering (skills), generative AI (NLG), audio synthesis (TTS).</p>
+    </div>
+  </div>
+  <div class="pg">07</div>
+</section>
+
+<!-- 8: EVOLUTION rules + pipeline -->
+<section class="slide s8">
+  <div class="tag-top">Part 5 &middot; How we got here</div>
+  <h2>For 30+ years, voice AI was <span class="accent">many small models</span> stitched together.</h2>
+
+  <div class="era">
+    <div class="era-year">RULES ERA<span class="yr">1950s – 1970s</span></div>
+    <div class="era-body">
+      <h3>"If it sounds like <i>this</i>, then it's <i>that</i>."</h3>
+      <p>Engineers hand-built rules and sound templates. Brittle. Worked for a tiny vocabulary in a quiet room (Bell Labs' 1952 "Audrey" knew only spoken digits). Failed the moment you had a cold.</p>
+    </div>
+  </div>
+
+  <div class="era">
+    <div class="era-year">PIPELINE ML<span class="yr">1980s – mid-2010s</span></div>
+    <div class="era-body">
+      <h3>A factory line of small ML brains, each doing one job.</h3>
+      <div class="pipe">
+        <div class="box">Acoustic model</div><span class="arr">→</span>
+        <div class="box">Pronunciation</div><span class="arr">→</span>
+        <div class="box">Language model</div><span class="arr">→</span>
+        <div class="box">Decoder</div><span class="arr">→</span>
+        <div class="box">Text out</div>
+      </div>
+      <p style="margin-top:8pt;">Each box was its own model, trained separately. If one was weak, the whole pipeline got worse. Errors compounded.</p>
+    </div>
+  </div>
+  <div class="pg">08</div>
+</section>
+
+<!-- 9: END-TO-END -->
+<section class="slide s9">
+  <div class="tag-top">Part 5 (cont.) &middot; The breakthrough</div>
+  <h2>Today: <span class="accent">one giant brain</span> learns the whole job.</h2>
+
+  <div class="s9-canvas">
+    <div class="e2e-row">
+      <div class="io-label">audio<span class="sub">(the wiggle)</span></div>
+      <span class="arr">→</span>
+      <div class="blob">END-TO-END<br>NEURAL MODEL<span class="params">~1 billion parameters</span></div>
+      <span class="arr">→</span>
+      <div class="io-label">text<span class="sub">(what you said)</span></div>
+    </div>
+  </div>
+
+  <div class="punch">
+    No hand-written rules. No separate pipeline stages. <span class="b">The model figures it out from millions of examples.</span><br>
+    That shift, plus far more training data, is why today's recognizers handle accents, noise, and casual speech much better than a decade ago.
+  </div>
+  <div class="pg">09</div>
+</section>
+
+<!-- 10: LIVE DEMO -->
+<section class="slide s10">
+  <div class="tag-top" style="color:#c63d2f;">⚡ Try it yourself — 3 minutes</div>
+  <h2>Let's break it on purpose.</h2>
+  <p style="font-size: 14pt;">Open the voice-typing feature on a phone or Chromebook (or any free browser-based recognizer) and try to fool it three ways.</p>
+  <div class="demo-grid">
+    <div class="card">
+      <div class="icon">🤫</div>
+      <h3>The Whisperer</h3>
+      <p>Speak a sentence at half-volume. Watch which words go missing.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🌍</div>
+      <h3>The Accent</h3>
+      <p>Same sentence — different regional accent. Note which words slip.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🎵</div>
+      <h3>The Noisy Room</h3>
+      <p>Speak with background music. Watch the model hallucinate lyrics.</p>
+      <button type="button" class="ctl noise web-only">&#9654; Or play noise from this page</button>
+    </div>
+  </div>
+  <div style="text-align:center;"><span class="live print-only">↳ Try it live with me in this booth: Fri 23 Oct, 12:45–1:30 PM ET</span><a class="live web-only" href="be_the_recognizer.html#any">↳ Then score it: paste what it wrote into the Be the Recognizer scorer</a></div>
+  <div class="pg">10</div>
+</section>
+
+<!-- 11: KIDS -->
+<section class="slide s11">
+  <div class="tag-top">Why this matters in your classroom</div>
+  <h2>Voice assistants are <span class="accent">worse</span> at understanding the people in your room.</h2>
+  <div style="display: grid; grid-template-columns: 230pt 1fr; gap: 0.35in; align-items: center; margin-top: 0.1in;">
+    <div>
+      <div class="big-stat">2-3×</div>
+      <div class="stat-cap">higher error rate<br>on children's speech<br>vs. adults.</div>
+    </div>
+    <div class="reasons">
+      <div class="reason"><div class="ic">📏</div><h4>Shorter vocal tracts</h4><p>Higher pitch, different formants — most models weren't trained on them.</p></div>
+      <div class="reason"><div class="ic">👅</div><h4>Developing pronunciation</h4><p>"R", "S", "Th" come online at different ages.</p></div>
+      <div class="reason"><div class="ic">📊</div><h4>Less training data</h4><p>Privacy rules limit children's audio in datasets.</p></div>
+    </div>
+  </div>
+  <div class="hundred web-only">
+    <div class="h-btns"><span class="try-lab">Try it</span><button type="button" class="ctl" data-who="adult" aria-pressed="true">Adult speaker</button><button type="button" class="ctl" data-who="child" aria-pressed="false">Child speaker</button></div>
+    <div class="h-grid" role="img" aria-label="100 squares, one per spoken word. Coloured squares are words the recognizer got wrong."></div>
+    <p class="h-read" aria-live="polite"></p>
+  </div>
+  <div class="hook">Your students are the underserved users — and the future researchers who fix this.</div>
+  <div class="src">Source: The Learning Agency, "Closing the Child Speech Recognition Gap": about 5% word error rate on adults vs. 11–18% on children for the same models.</div>
+  <div class="pg">11</div>
+</section>
+
+<!-- 12: MULTIMODAL -->
+<section class="slide s12">
+  <div class="tag-top">Part 6 &middot; What's next</div>
+  <h2>The future isn't voice alone. It's <span class="accent">multimodal</span>.</h2>
+  <p style="font-size: 13pt; color: #5a6068; max-width: 11in;">When you talk to a friend, they don't <i>just</i> hear you. They see your face, follow your gaze, watch your hands, remember the conversation. The next generation of AI does the same.</p>
+  <div class="modal-grid">
+    <div class="mod core"><div class="ic">🎤</div><h4>Voice</h4><p>What you said</p></div>
+    <div class="mod"><div class="ic">👁️</div><h4>Vision</h4><p>Lip-reading, gaze, who's in the room</p></div>
+    <div class="mod"><div class="ic">✋</div><h4>Gesture</h4><p>Pointing, nodding, sign language</p></div>
+    <div class="mod"><div class="ic">🧠</div><h4>Context</h4><p>What you said 5 minutes ago, where you are</p></div>
+  </div>
+  <div class="ptt web-only">
+    <div><span class="try-lab">Try it</span>You say <b>&ldquo;Put that there.&rdquo;</b> Switch on more senses above.</div>
+    <div class="ptt-out" aria-live="polite"></div>
+    <div class="ptt-src">Inspired by MIT&rsquo;s 1980 &ldquo;Put-That-There&rdquo; demo.</div>
+  </div>
+  <div class="fuse-arrow">▼ fused inside one model ▼</div>
+  <div class="fuse-box">A truly conversational AI understands you the way <span class="b">a person</span> would.</div>
+  <div class="pg">12</div>
+</section>
+
+<!-- 13: OPEN PROBLEMS -->
+<section class="slide s13">
+  <div class="sub-h">Open problems = tomorrow's careers</div>
+  <h2>Six unsolved problems waiting for <span class="accent">your students</span>.</h2>
+  <div class="prob-grid">
+    <div class="prob">
+      <div class="ic">🌐</div>
+      <span class="tag">LINGUISTICS + ML</span>
+      <h4>Low-resource languages</h4>
+      <p>7,000+ human languages. Only a small fraction have enough data for voice AI to work well. Whole communities are locked out.</p>
+    </div>
+    <div class="prob">
+      <div class="ic">🔀</div>
+      <span class="tag">SOCIO-LINGUISTICS</span>
+      <h4>Code-switching</h4>
+      <p>Bilingual speakers mix languages mid-sentence (Spanglish, Hinglish). Models break. Humans don't.</p>
+    </div>
+    <div class="prob">
+      <div class="ic">❤️</div>
+      <span class="tag">AFFECTIVE COMPUTING</span>
+      <h4>Emotion &amp; intent</h4>
+      <p>Sarcasm. Urgency. Distress. Same words, different meaning. Today's AI hears the words and misses the human.</p>
+    </div>
+    <div class="prob">
+      <div class="ic">👶</div>
+      <span class="tag">DEVELOPMENTAL AI</span>
+      <h4>Voices for everyone</h4>
+      <p>Children, elderly, speech disorders. Build assistants that work for the people they currently fail.</p>
+    </div>
+    <div class="prob">
+      <div class="ic">🔒</div>
+      <span class="tag">PRIVACY + EDGE ML</span>
+      <h4>On-device recognition</h4>
+      <p>Run capable speech models on small, low-power chips so audio never leaves the device. Privacy by default.</p>
+    </div>
+    <div class="prob">
+      <div class="ic">🎭</div>
+      <span class="tag">MULTIMODAL FUSION</span>
+      <h4>Voice + vision + gesture</h4>
+      <p>Combine signals the way humans do. Still wide open for new ideas.</p>
+    </div>
+  </div>
+  <div class="call">📣 Every one of these is a PhD thesis, a startup, and a 30-year career — waiting for a student you teach next semester.</div>
+  <div class="pg">13</div>
+</section>
+
+<!-- 14: ACTIVITY -->
+<section class="slide s14">
+  <div class="tag-top">Take this back to your classroom — 15 min, no equipment</div>
+  <h2>Activity: <span class="accent">"Be the Recognizer"</span></h2>
+  <div class="activity">
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div class="txt"><h4>Pair students up</h4><p>One speaker, one "recognizer" (writes down what they hear).</p></div></div>
+      <div class="step"><div class="num">2</div><div class="txt"><h4>Add noise</h4><p>Round 1 in a quiet room. Round 2 with music playing while the speaker whispers.</p></div></div>
+      <div class="step"><div class="num">3</div><div class="txt"><h4>Tally errors</h4><p>Compare what was said to what was written. Calculate the class-wide "word error rate".</p></div></div>
+      <div class="step"><div class="num">4</div><div class="txt"><h4>Discuss</h4><p>What made it hard? Where would <i>context</i> have helped? Bridge directly to how AI faces the same problem.</p></div></div>
+    </div>
+    <div class="qr-box">
+      <div class="doc">📄</div>
+      <p>FREE WORKSHEET + TEACHER GUIDE<br><span class="print-only" style="color:#5a6068; font-size:10pt; font-weight: 500;">Download the PDF from this booth's Resources (printable, no logins)</span><a class="web-only" href="be_the_recognizer.html" style="font-size:11pt;">Play it online, or print it from this kit</a></p>
+    </div>
+  </div>
+  <div class="pg">14</div>
+</section>
+
+<!-- 15: RESOURCES -->
+<section class="slide s15">
+  <div class="tag-top">For you, for your classroom — all free</div>
+  <h2>Resources</h2>
+  <div class="res-grid">
+    <div class="res"><div class="ic">🧪</div><div><h4>Teachable Machine (Google)</h4><p>Train a voice classifier in a browser in 10 minutes. No code.</p><a class="open web-only" href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener">Open &#8599;</a></div></div>
+    <div class="res"><div class="ic">🤗</div><div><h4>Hugging Face Spaces</h4><p>Hundreds of free speech-AI demos to try in a browser. Preview before class.</p><a class="open web-only" href="https://huggingface.co/spaces" target="_blank" rel="noopener">Open &#8599;</a></div></div>
+    <div class="res"><div class="ic">📘</div><div><h4>Building Speech AI</h4><p>Free companion code at github.com/prdeepakbabu/building-speech-ai</p><a class="open web-only" href="https://github.com/prdeepakbabu/building-speech-ai" target="_blank" rel="noopener">Open &#8599;</a></div></div>
+    <div class="res"><div class="ic">🛠️</div><div><h4>IEEE TryEngineering</h4><p>Free, ready-to-use engineering lesson plans for pre-university classrooms.</p><a class="open web-only" href="https://tryengineering.org/" target="_blank" rel="noopener">Open &#8599;</a></div></div>
+  </div>
+  <div class="footer-tag">All four open in a web browser. None require an account to explore.</div>
+  <div class="pg">15</div>
+</section>
+
+<!-- 16: CLOSING -->
+<section class="slide s16">
+  <div class="closer">The next breakthrough in voice AI<br>is sitting in your <span class="hi">classroom</span>.</div>
+  <div class="sig">DEEPAK PISKALA &nbsp;·&nbsp; @prdeepakbabu &nbsp;·&nbsp; prdeepakbabu.github.io</div>
+</section>
+
+<script>
+// On screen, present one slide at a time; ?static keeps the stacked layout for the PDF and video renders.
+(() => {
+  if (new URLSearchParams(location.search).has('static')) return;
+  const slides = [...document.querySelectorAll('section.slide')];
+  const BAR = 56;
+  document.body.classList.add('viewer');
+  const bar = document.createElement('nav');
+  bar.className = 'deck-bar';
+  bar.setAttribute('aria-label', 'Slide controls');
+  bar.innerHTML = '<a href="index.html">&larr; <span class="long">Classroom </span>kit</a><span class="gap"></span>' +
+    '<button type="button" id="deck-prev" aria-label="Previous slide">&larr;</button><span id="deck-count" aria-live="polite"></span>' +
+    '<button type="button" id="deck-next" aria-label="Next slide">&rarr;</button><span class="gap"></span>' +
+    '<button type="button" id="deck-full">Full screen</button><a href="voice_assistants_deck_booth.pdf"><span class="long">Download </span>PDF</a>';
+  document.body.appendChild(bar);
+  const $ = (id) => document.getElementById(id);
+  slides.forEach((s, k) => { s.setAttribute('role', 'group'); s.setAttribute('aria-label', `Slide ${k + 1} of ${slides.length}`); });
+  const stoppers = [];  // run on every slide change, so sound and the microphone never outlive their slide
+  let current = 0;
+
+  function fit() {
+    const s = slides[current], w = s.offsetWidth, h = s.offsetHeight;
+    const scale = Math.min(innerWidth / w, (innerHeight - BAR) / h);
+    s.style.transform = `translate(${(innerWidth - w * scale) / 2}px, ${(innerHeight - BAR - h * scale) / 2}px) scale(${scale})`;
+  }
+  function go(n) {
+    const next = Math.max(0, Math.min(slides.length - 1, n));
+    if (next !== current) stoppers.forEach((stop) => stop());
+    slides[current].classList.remove('current');
+    current = next;
+    slides[current].classList.add('current');
+    $('deck-count').textContent = `${current + 1} / ${slides.length}`;
+    $('deck-prev').disabled = current === 0;
+    $('deck-next').disabled = current === slides.length - 1;
+    history.replaceState(null, '', '#' + (current + 1));
+    fit();
+  }
+  const fromHash = () => go((parseInt(location.hash.slice(1), 10) || 1) - 1);
+
+  $('deck-prev').addEventListener('click', () => go(current - 1));
+  $('deck-next').addEventListener('click', () => go(current + 1));
+  if (!document.fullscreenEnabled) $('deck-full').hidden = true;
+  $('deck-full').addEventListener('click', () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen().catch(() => {});
+  });
+  document.addEventListener('fullscreenchange', () => { $('deck-full').textContent = document.fullscreenElement ? 'Exit full screen' : 'Full screen'; });
+  const inside = (e, selector) => e.target.closest && e.target.closest(selector);
+  addEventListener('keydown', (e) => {
+    if (inside(e, 'input, select, textarea')) return;
+    const onControl = inside(e, 'button, a, [role="button"]');
+    if (['ArrowRight', 'ArrowDown', 'PageDown'].includes(e.key) || (e.key === ' ' && !onControl)) { e.preventDefault(); go(current + 1); }
+    else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); go(current - 1); }
+    else if (e.key === 'Home') go(0);
+    else if (e.key === 'End') go(slides.length - 1);
+  });
+  let startX = null;
+  addEventListener('pointerdown', (e) => { startX = e.pointerType === 'mouse' || inside(e, 'button, a, input, [role="button"]') ? null : e.clientX; });
+  addEventListener('pointerup', (e) => {
+    if (startX !== null && Math.abs(e.clientX - startX) > 50) go(current + (e.clientX < startX ? 1 : -1));
+    startX = null;
+  });
+  addEventListener('resize', fit);
+  addEventListener('hashchange', fromHash);
+
+  coldOpen(document.querySelector('.s1'));
+  wiggle(document.querySelector('.s4'));
+  bricks(document.querySelector('.s5'));
+  context(document.querySelector('.s6'));
+  pipeline(document.querySelector('.s7'));
+  noisyRoom(document.querySelector('.s10'));
+  hundredWords(document.querySelector('.s11'));
+  senses(document.querySelector('.s12'));
+  fromHash();
+
+  // ---------- hands-on demos (web viewer only) ----------
+  function makeButton(el, label, onPress) {
+    el.setAttribute('role', 'button');
+    el.tabIndex = 0;
+    el.setAttribute('aria-label', label);
+    el.addEventListener('click', onPress);
+    el.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      e.stopPropagation();
+      onPress();
+    });
+  }
+
+  let audio = null;
+  function audioCtx() {
+    audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+    if (audio.state === 'suspended') audio.resume();
+    return audio;
+  }
+
+  function pinkNoise(c) {
+    const buffer = c.createBuffer(1, c.sampleRate * 4, c.sampleRate), data = buffer.getChannelData(0);
+    let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+    for (let i = 0; i < data.length; i++) {
+      const white = Math.random() * 2 - 1;
+      b0 = 0.99886 * b0 + white * 0.0555179; b1 = 0.99332 * b1 + white * 0.0750759; b2 = 0.969 * b2 + white * 0.153852;
+      b3 = 0.8665 * b3 + white * 0.3104856; b4 = 0.55 * b4 + white * 0.5329522; b5 = -0.7616 * b5 - white * 0.016898;
+      data[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.11;
+      b6 = white * 0.115926;
+    }
+    return buffer;
+  }
+
+  // Slide 1: reveal what each assistant did.
+  function coldOpen(slide) {
+    for (const clip of slide.querySelectorAll('.clip')) {
+      const reply = clip.querySelector('.reply'), answer = reply.textContent;
+      reply.textContent = '\u2026';
+      makeButton(clip.querySelector('.play'), 'Play this request', () => {
+        reply.textContent = 'listening\u2026';
+        reply.classList.add('thinking');
+        setTimeout(() => { reply.textContent = answer; reply.classList.remove('thinking'); }, 700);
+      });
+    }
+  }
+
+  // Slide 4: a computer-made "ah ... ee" sampled 16,000 times a second. Zoom down to single samples, or show your own voice.
+  function wiggle(slide) {
+    const SR = 16000, canvas = slide.querySelector('.wig-canvas'), g = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height, mid = H / 2;
+    const zoom = slide.querySelector('.wig-zoom'), read = slide.querySelector('.wig-read');
+    const playBtn = slide.querySelector('[data-act="play"]'), micBtn = slide.querySelector('[data-act="mic"]');
+    const wave = new Float32Array(SR);
+    vowel(0.05, 0.45, 150, [[730, 70], [1090, 90], [2440, 150]]);
+    vowel(0.55, 0.95, 135, [[270, 60], [2290, 90], [3010, 150]]);
+    let view = { start: 0, len: SR }, playing = null, mic = null, raf = 0;
+
+    // Buzz of the vocal folds (a pulse train) shaped by three mouth resonances (formants).
+    function vowel(t0, t1, f0, formants) {
+      const n0 = Math.round(t0 * SR), len = Math.round((t1 - t0) * SR), x = new Float32Array(len);
+      for (let t = 0, phase = 0; t < len; t++) { phase += f0 / SR; if (phase >= 1) { phase -= 1; x[t] = 1; } }
+      for (const [f, bw] of formants) {
+        const r = Math.exp(-Math.PI * bw / SR), a1 = 2 * r * Math.cos(2 * Math.PI * f / SR), a2 = -r * r;
+        let y1 = 0, y2 = 0;
+        for (let t = 0; t < len; t++) { const y = x[t] + a1 * y1 + a2 * y2; y2 = y1; y1 = y; x[t] = y; }
+      }
+      let mean = 0, peak = 0;
+      for (let t = 0; t < len; t++) mean += x[t] / len;
+      for (let t = 0; t < len; t++) { x[t] -= mean; peak = Math.max(peak, Math.abs(x[t])); }
+      for (let t = 0; t < len; t++) wave[n0 + t] = (0.8 * x[t] / peak) * Math.sqrt(Math.sin((Math.PI * t) / len));
+    }
+
+    const fmt = (s) => (s >= 0.1 ? `${+s.toFixed(2)} s` : `${+(s * 1000).toFixed(s < 0.01 ? 1 : 0)} ms`);
+    function setView() {
+      const z = Number(zoom.value) / 100, len = Math.max(32, Math.round(SR * Math.pow(0.002, z)));
+      const center = SR * (0.5 - 0.25 * z);
+      view = { start: Math.max(0, Math.min(SR - len, Math.round(center - len / 2))), len };
+      read.textContent = `Showing ${fmt(len / SR)}: ${len.toLocaleString('en-US')} measurements` + (len <= 64 ? '. Each dot is one measurement.' : '');
+      draw();
+    }
+
+    function draw(playT) {
+      const { start, len } = view, spp = len / W, amp = mid * 0.9;
+      g.fillStyle = '#0E1116'; g.fillRect(0, 0, W, H);
+      g.strokeStyle = 'rgba(255,255,255,0.15)'; g.lineWidth = 1;
+      g.beginPath(); g.moveTo(0, mid); g.lineTo(W, mid); g.stroke();
+      g.strokeStyle = '#FFEB6B';
+      g.beginPath();
+      if (spp >= 1) {
+        for (let x = 0; x < W; x++) {
+          const a = start + Math.floor(x * spp), b = Math.max(a + 1, start + Math.floor((x + 1) * spp));
+          let lo = 1, hi = -1;
+          for (let i = a; i < b; i++) { lo = Math.min(lo, wave[i]); hi = Math.max(hi, wave[i]); }
+          g.moveTo(x + 0.5, mid - hi * amp); g.lineTo(x + 0.5, mid - lo * amp + 1);
+        }
+      } else {
+        g.lineWidth = 2;
+        for (let i = 0; i < len; i++) { const x = ((i + 0.5) / len) * W, y = mid - wave[start + i] * amp; if (i) g.lineTo(x, y); else g.moveTo(x, y); }
+      }
+      g.stroke();
+      if (len <= 64) {
+        for (let i = 0; i < len; i++) {
+          const x = ((i + 0.5) / len) * W, y = mid - wave[start + i] * amp;
+          g.strokeStyle = 'rgba(255,235,107,0.4)'; g.lineWidth = 2;
+          g.beginPath(); g.moveTo(x, mid); g.lineTo(x, y); g.stroke();
+          g.fillStyle = '#FF6F61'; g.beginPath(); g.arc(x, y, 6, 0, 2 * Math.PI); g.fill();
+        }
+      }
+      g.fillStyle = 'rgba(255,255,255,0.6)'; g.font = '600 18px "Segoe UI", Arial, sans-serif';
+      if (len > SR / 4) {
+        for (const [t, text] of [[0.25, '\u201cah\u201d'], [0.75, '\u201cee\u201d']]) {
+          const x = ((t * SR - start) / len) * W;
+          if (x > 30 && x < W - 30) g.fillText(text, x - 14, 24);
+        }
+      }
+      if (playT !== undefined) {
+        const x = ((playT * SR - start) / len) * W;
+        g.strokeStyle = '#FF6F61'; g.lineWidth = 3;
+        g.beginPath(); g.moveTo(x, 0); g.lineTo(x, H); g.stroke();
+      }
+      g.lineWidth = 1;
+    }
+
+    function scope(buf) {
+      g.fillStyle = '#0E1116'; g.fillRect(0, 0, W, H);
+      g.strokeStyle = 'rgba(255,255,255,0.15)'; g.lineWidth = 1;
+      g.beginPath(); g.moveTo(0, mid); g.lineTo(W, mid); g.stroke();
+      let peak = 0;
+      for (const v of buf) peak = Math.max(peak, Math.abs(v));
+      const amp = (mid * 0.9) / Math.max(peak, 0.05);
+      g.strokeStyle = '#FFEB6B'; g.lineWidth = 2; g.beginPath();
+      for (let i = 0; i < buf.length; i++) { const x = (i / (buf.length - 1)) * W, y = mid - buf[i] * amp; if (i) g.lineTo(x, y); else g.moveTo(x, y); }
+      g.stroke(); g.lineWidth = 1;
+    }
+
+    function stopPlay() {
+      if (!playing) return;
+      const src = playing;
+      playing = null;
+      src.stop();
+      cancelAnimationFrame(raf);
+      draw();
+    }
+
+    function stopMic() {
+      if (!mic) return;
+      mic.stream.getTracks().forEach((t) => t.stop());
+      mic.node.disconnect();
+      mic = null;
+      cancelAnimationFrame(raf);
+      micBtn.textContent = '\u{1F3A4} Use my microphone';
+      zoom.disabled = false;
+      setView();
+    }
+
+    playBtn.addEventListener('click', () => {
+      stopMic(); stopPlay();
+      const c = audioCtx(), buffer = c.createBuffer(1, SR, SR);
+      buffer.copyToChannel(wave, 0);
+      const src = c.createBufferSource();
+      src.buffer = buffer; src.connect(c.destination); src.start();
+      const t0 = c.currentTime;
+      playing = src;
+      src.onended = () => { if (playing === src) { playing = null; cancelAnimationFrame(raf); draw(); } };
+      const tick = () => { if (playing !== src) return; draw(c.currentTime - t0); raf = requestAnimationFrame(tick); };
+      tick();
+    });
+
+    micBtn.addEventListener('click', async () => {
+      if (mic) { stopMic(); return; }
+      stopPlay();
+      let stream;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } });
+      } catch (err) {
+        read.textContent = 'The microphone is blocked or missing. Allow it in the address bar, or press \u25b6 Hear it.';
+        return;
+      }
+      if (!slide.classList.contains('current')) { stream.getTracks().forEach((t) => t.stop()); return; }  // left while the permission prompt was open
+      const c = audioCtx(), analyser = c.createAnalyser(), node = c.createMediaStreamSource(stream);
+      analyser.fftSize = 2048;
+      node.connect(analyser);
+      mic = { stream, node };
+      micBtn.textContent = '\u25a0 Stop microphone';
+      zoom.disabled = true;
+      read.textContent = 'Live: the wiggle of your own voice. Nothing is recorded or sent.';
+      const buf = new Float32Array(analyser.fftSize);
+      const tick = () => { if (!mic) return; analyser.getFloatTimeDomainData(buf); scope(buf); raf = requestAnimationFrame(tick); };
+      tick();
+    });
+
+    zoom.addEventListener('input', setView);
+    stoppers.push(() => { stopPlay(); stopMic(); });
+    setView();
+  }
+
+  // Slide 5: swap one sound brick and watch the word change (or stop being a word).
+  function bricks(slide) {
+    const OPTIONS = [['k', 'b', 'p', 's'], ['\u00e6', '\u026a', '\u028c'], ['t', 'n', 'g']];
+    const WORDS = {
+      'k\u00e6t': 'CAT', 'k\u00e6n': 'CAN', 'k\u026at': 'KIT', 'k\u026an': 'KIN', 'k\u028ct': 'CUT',
+      'b\u00e6t': 'BAT', 'b\u00e6n': 'BAN', 'b\u00e6g': 'BAG', 'b\u026at': 'BIT', 'b\u026an': 'BIN', 'b\u026ag': 'BIG', 'b\u028ct': 'BUT', 'b\u028cn': 'BUN', 'b\u028cg': 'BUG',
+      'p\u00e6t': 'PAT', 'p\u00e6n': 'PAN', 'p\u026at': 'PIT', 'p\u026an': 'PIN', 'p\u026ag': 'PIG', 'p\u028ct': 'PUTT', 'p\u028cn': 'PUN', 'p\u028cg': 'PUG',
+      's\u00e6t': 'SAT', 's\u00e6g': 'SAG', 's\u026at': 'SIT', 's\u026an': 'SIN', 's\u028cn': 'SUN or SON',
+    };
+    const row = slide.querySelector('.lego-row'), out = row.querySelector('.word-out'), note = slide.querySelector('.brick-note');
+    const blocks = [...row.querySelectorAll('.lego')], pick = [0, 0, 0];
+    blocks.forEach((block, k) => makeButton(block, '', () => { pick[k] = (pick[k] + 1) % OPTIONS[k].length; update(); }));
+    function update() {
+      const sounds = pick.map((p, k) => OPTIONS[k][p]), word = WORDS[sounds.join('')];
+      blocks.forEach((block, k) => { block.textContent = `/${sounds[k]}/`; block.setAttribute('aria-label', `Sound ${k + 1}: /${sounds[k]}/. Press to swap it.`); });
+      out.textContent = word || '???';
+      out.classList.toggle('nonword', !word);
+      note.textContent = !word ? 'Not an English word, so a recognizer would never pick it.'
+        : word.includes(' or ') ? 'Same three sounds, two different words. Only the rest of the sentence can tell them apart.'
+        : pick.every((p) => p === 0) ? 'Swap one brick and see what happens.'
+        : `Changing one sound made a new word: ${word}.`;
+    }
+    update();
+  }
+
+  // Slide 6: the same stream of sounds splits into different words depending on the conversation.
+  function context(slide) {
+    const CHUNKS = ['rek', 'uh', 'nai', 's', 'pee', 'ch'];
+    const READINGS = [
+      { cuts: [2], text: '\u201cMy phone can recognize speech.\u201d A phone that listens makes \u201crecognize speech\u201d the likeliest words. Guessing from the words around them is a language model at work.' },
+      { cuts: [0, 1, 3], text: '\u201cThe storm will wreck a nice beach.\u201d Same sounds! In \u201cspeech\u201d, a p right after an s has no puff of air, so it sounds almost like the b in \u201cbeach\u201d.' },
+    ];
+    const stream = slide.querySelector('.stream'), out = slide.querySelector('.ctx-out');
+    const opts = [...slide.querySelectorAll('.opt')], buttons = [...slide.querySelectorAll('[data-ctx]')];
+    const pieces = CHUNKS.map((c) => stream.appendChild(Object.assign(document.createElement('span'), { textContent: c })));
+    out.textContent = 'On their own, the sounds run together with no word breaks. Pick a conversation.';
+    buttons.forEach((button) => button.addEventListener('click', () => {
+      const k = Number(button.dataset.ctx), reading = READINGS[k];
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+      pieces.forEach((piece, i) => piece.classList.toggle('cut', reading.cuts.includes(i)));
+      opts.forEach((opt, i) => { opt.classList.toggle('chosen', i === k); opt.classList.toggle('dim', i !== k); });
+      out.textContent = reading.text;
+    }));
+  }
+
+  // Slide 7: send one request through all seven stages, optionally with a mishearing at stage 2.
+  function pipeline(slide) {
+    const REQUESTS = {
+      call: {
+        steps: ['heard \u201cAlexa\u201d', '\u201ccall mom\u201d', 'Call \u00b7 who: Mom', 'one number: go', 'dialing Mom', '\u201cCalling Mom.\u201d', 'says it out loud'],
+        mistake: ['heard \u201cAlexa\u201d', '\u201ccall tom\u201d', 'Call \u00b7 who: Tom', 'one number: go', 'dialing Tom', '\u201cCalling Tom.\u201d', 'says it out loud'],
+        marks: 'grrrrrr',
+        ok: 'Every stage did its job, so Mom gets the call.',
+        oops: 'One wrong word at stage 2, and every later stage faithfully does the wrong thing: Tom gets the call.',
+      },
+      play: {
+        steps: ['heard \u201cAlexa\u201d', '\u201cplay despacito\u201d', 'PlayMusic \u00b7 song: Despacito', 'one match: go', 'music starts', '\u201cPlaying Despacito.\u201d', 'says it out loud'],
+        mistake: ['heard \u201cAlexa\u201d', '\u201cplay this pacito\u201d', 'PlayMusic \u00b7 song: This Pacito', 'no such song: ask', 'waits for you', '\u201cWhich song did you mean?\u201d', 'asks out loud'],
+        marks: 'grrgggg',
+        ok: 'Every stage did its job, so Despacito plays.',
+        oops: 'Stage 2 misheard, but the dialog manager (stage 4) found no such song and asked a follow-up. Good assistants catch mistakes.',
+      },
+    };
+    const STEP_MS = 550;
+    const stages = [...slide.querySelectorAll('.stage')];
+    const outs = stages.map((s) => s.appendChild(Object.assign(document.createElement('div'), { className: 'out' })));
+    const pickers = [...slide.querySelectorAll('[data-req]')], mishear = slide.querySelector('.mishear'), note = slide.querySelector('.run-note');
+    let request = 'call', timers = [];
+    function reset() {
+      timers.forEach(clearTimeout);
+      timers = [];
+      stages.forEach((s) => s.classList.remove('active', 'good', 'bad'));
+      outs.forEach((o) => { o.textContent = ''; });
+      note.textContent = '';
+      note.className = 'run-note';
+    }
+    pickers.forEach((b) => b.addEventListener('click', () => { request = b.dataset.req; pickers.forEach((x) => x.setAttribute('aria-pressed', String(x === b))); reset(); }));
+    mishear.addEventListener('change', reset);
+    slide.querySelector('.go').addEventListener('click', () => {
+      reset();
+      const r = REQUESTS[request], wrong = mishear.checked, steps = wrong ? r.mistake : r.steps;
+      stages.forEach((stage, k) => timers.push(setTimeout(() => {
+        stages.forEach((s) => s.classList.remove('active'));
+        stage.classList.add('active', wrong && r.marks[k] === 'r' ? 'bad' : 'good');
+        outs[k].textContent = steps[k];
+      }, k * STEP_MS)));
+      timers.push(setTimeout(() => {
+        stages.forEach((s) => s.classList.remove('active'));
+        note.textContent = wrong ? r.oops : r.ok;
+        note.classList.add(wrong && request === 'call' ? 'bad' : 'good');
+      }, stages.length * STEP_MS));
+    });
+    stoppers.push(reset);
+  }
+
+  // Slide 10: background noise for the Noisy Room test, when no music is handy.
+  function noisyRoom(slide) {
+    const button = slide.querySelector('.noise');
+    let src = null;
+    const stop = () => {
+      if (src) { src.stop(); src = null; }
+      button.textContent = '\u25b6 Or play noise from this page';
+    };
+    button.addEventListener('click', () => {
+      if (src) { stop(); return; }
+      const c = audioCtx(), gain = c.createGain();
+      gain.gain.value = 0.25;
+      src = c.createBufferSource();
+      src.buffer = pinkNoise(c);
+      src.loop = true;
+      src.connect(gain).connect(c.destination);
+      src.start();
+      button.textContent = '\u25a0 Stop noise';
+    });
+    stoppers.push(stop);
+  }
+
+  // Slide 11: word error rates as wrong words out of 100 (numbers from the source line on the slide).
+  function hundredWords(slide) {
+    const grid = slide.querySelector('.h-grid'), read = slide.querySelector('.h-read'), buttons = [...slide.querySelectorAll('[data-who]')];
+    const cells = Array.from({ length: 100 }, () => grid.appendChild(document.createElement('i')));
+    const ORDER = [37, 82, 9, 61, 24, 90, 53, 16, 71, 44, 3, 66, 28, 95, 12, 58, 79, 33];  // fixed, so the same words stay wrong when you switch
+    function show(who) {
+      const solid = who === 'adult' ? 5 : 11, range = who === 'adult' ? 0 : 7;
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.who === who)));
+      cells.forEach((cell, k) => {
+        const rank = ORDER.indexOf(k);
+        cell.className = rank < 0 ? '' : rank < solid ? 'wrong' : rank < solid + range ? 'maybe' : '';
+        cell.style.transitionDelay = rank < 0 ? '0ms' : `${rank * 40}ms`;
+      });
+      read.textContent = who === 'adult'
+        ? 'Adult speakers: about 5 of every 100 words come out wrong.'
+        : 'Child speakers: 11 to 18 of every 100 words come out wrong. Striped squares show the range.';
+    }
+    buttons.forEach((b) => b.addEventListener('click', () => show(b.dataset.who)));
+    show('adult');
+  }
+
+  // Slide 12: add senses to voice until "Put that there" makes sense.
+  function senses(slide) {
+    const cards = [...slide.querySelectorAll('.mod')], out = slide.querySelector('.ptt-out');
+    const KEYS = [null, 'vision', 'gesture', 'context'], on = { vision: false, gesture: false, context: false };
+    cards.forEach((card, k) => {
+      if (!KEYS[k]) return;  // voice is always on
+      card.setAttribute('aria-pressed', 'false');
+      makeButton(card, `${card.querySelector('h4').textContent}: switch on or off`, () => {
+        on[KEYS[k]] = !on[KEYS[k]];
+        card.setAttribute('aria-pressed', String(on[KEYS[k]]));
+        update();
+      });
+    });
+    const part = (text, known) => Object.assign(document.createElement('span'), { className: known ? 'got' : 'gap', textContent: text });
+    function update() {
+      const extra = on.context ? ' And you\u2019re tidying up, so it offers to shelve the other cups too.'
+        : Object.values(on).some(Boolean) ? '' : ' Voice alone gets the words, not the meaning.';
+      out.replaceChildren('It understands: \u201cPut ',
+        part(on.vision ? 'the red cup you\u2019re looking at' : 'that ???', on.vision), ' ',
+        part(on.gesture ? 'on the top shelf you\u2019re pointing to' : 'there ???', on.gesture), '.\u201d', extra);
+    }
+    update();
+  }
+})();
+</script>
+
+</body>
+</html>

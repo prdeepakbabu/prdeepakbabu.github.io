@@ -260,6 +260,63 @@ section li {
   color: var(--muted);
 }
 
+.event-spotlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 280px);
+  gap: clamp(18px, 4vw, 34px);
+  align-items: center;
+  background: linear-gradient(135deg, var(--surface) 0 70%, var(--accent-2) 70% 100%);
+}
+
+.event-spotlight-copy {
+  display: grid;
+  gap: 12px;
+}
+
+.event-spotlight h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.event-meta {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.event-spotlight-copy .btn {
+  justify-self: start;
+}
+
+.event-spotlight-link {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  min-height: 220px;
+  padding: 22px;
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 1.35rem;
+  font-weight: 950;
+  line-height: 1.05;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.event-spotlight-link:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 6px 6px 0 var(--border);
+}
+
+.event-icon {
+  font-size: 4rem;
+  line-height: 1;
+}
+
 .book-spotlight {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(170px, 260px);
@@ -888,6 +945,15 @@ footer a:hover {
   .book-spotlight {
     grid-template-columns: 1fr;
     background: var(--surface);
+  }
+
+  .event-spotlight {
+    grid-template-columns: 1fr;
+    background: var(--surface);
+  }
+
+  .event-spotlight-link {
+    min-height: 0;
   }
 
   .book-spotlight-actions {
