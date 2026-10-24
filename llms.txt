@@ -78,6 +78,7 @@ Sections:
 - ICML 2026 Spotlight paper: https://prdeepakbabu.github.io/speech_icml_paper/
 - Building Speech AI book: https://prdeepakbabu.github.io/building-speech-ai/
 - IEEE STEM Summit 2026 Speech AI Classroom Kit: https://prdeepakbabu.github.io/stem_summit/
+- miLni 2027 Northwest travel guide: https://prdeepakbabu.github.io/others/milni2027/
 - Blog: https://prdeepakbabu.github.io/blogs.html
 - Question Answers: https://prdeepakbabu.github.io/answers.html
 - Social Posts: https://prdeepakbabu.github.io/sm_posts.html
