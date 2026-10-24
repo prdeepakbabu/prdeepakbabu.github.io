@@ -487,6 +487,7 @@ def write_llms_txt(posts: list[PostRecord], sections: list[SearchIntentSection])
     lines.append(f"- ICML 2026 Spotlight paper: {SITE_URL}/speech_icml_paper/")
     lines.append(f"- Building Speech AI book: {SITE_URL}/building-speech-ai/")
     lines.append(f"- IEEE STEM Summit 2026 Speech AI Classroom Kit: {SITE_URL}/stem_summit/")
+    lines.append(f"- miLni 2027 Northwest travel guide: {SITE_URL}/others/milni2027/")
     lines.append(f"- Blog: {SITE_URL}/blogs.html")
     lines.append(f"- Question Answers: {SITE_URL}/answers.html")
     lines.append(f"- Social Posts: {SITE_URL}/sm_posts.html")
@@ -746,6 +747,8 @@ def write_sitemap(posts: list[PostRecord]) -> None:
         ("/blogs.html", "weekly", "0.9", "blogs.html"),
         ("/building-speech-ai/", "monthly", "0.9", "building-speech-ai/index.html"),
         ("/stem_summit/", "monthly", "0.9", "stem_summit/index.html"),
+        ("/others/milni2027/", "monthly", "0.7", "others/milni2027/index.html"),
+        ("/others/milni2027/travel.html", "monthly", "0.7", "others/milni2027/travel.html"),
         ("/answers.html", "weekly", "0.8", "answers.html"),
         ("/sm_posts.html", "weekly", "0.8", "sm_posts.html"),
         ("/paperreviews.html", "monthly", "0.7", "paperreviews.html"),
